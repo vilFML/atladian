@@ -1,0 +1,195 @@
+{
+  "main": {
+    "id": "403b28306e6050f8",
+    "type": "split",
+    "children": [
+      {
+        "id": "9c2e4e6324dd9e4d",
+        "type": "tabs",
+        "children": [
+          {
+            "id": "13dbf1cba3092d0c",
+            "type": "leaf",
+            "state": {
+              "type": "empty",
+              "state": {},
+              "icon": "lucide-file",
+              "title": "New tab"
+            }
+          }
+        ]
+      }
+    ],
+    "direction": "vertical"
+  },
+  "left": {
+    "id": "32537b95f4c692cb",
+    "type": "split",
+    "children": [
+      {
+        "id": "e75a0d84d104471f",
+        "type": "tabs",
+        "children": [
+          {
+            "id": "d947358916c514b7",
+            "type": "leaf",
+            "state": {
+              "type": "search",
+              "state": {
+                "query": "",
+                "matchingCase": false,
+                "explainSearch": false,
+                "collapseAll": false,
+                "extraContext": false,
+                "sortOrder": "alphabetical"
+              },
+              "icon": "lucide-search",
+              "title": "Search"
+            }
+          },
+          {
+            "id": "79f54fbf60e3c78b",
+            "type": "leaf",
+            "state": {
+              "type": "bookmarks",
+              "state": {},
+              "icon": "lucide-bookmark",
+              "title": "Bookmarks"
+            }
+          },
+          {
+            "id": "0a134ba119167c83",
+            "type": "leaf",
+            "state": {
+              "type": "file-explorer",
+              "state": {
+                "sortOrder": "alphabetical",
+                "autoReveal": false
+              },
+              "icon": "lucide-folder-closed",
+              "title": "Files"
+            }
+          }
+        ],
+        "currentTab": 2
+      }
+    ],
+    "direction": "horizontal",
+    "width": 300
+  },
+  "right": {
+    "id": "cd3b268ed7bc3a5e",
+    "type": "split",
+    "children": [
+      {
+        "id": "31ae51ca884e6ecc",
+        "type": "tabs",
+        "children": [
+          {
+            "id": "dd0201992fd9b8c0",
+            "type": "leaf",
+            "state": {
+              "type": "backlink",
+              "state": {
+                "collapseAll": false,
+                "extraContext": false,
+                "sortOrder": "alphabetical",
+                "showSearch": false,
+                "searchQuery": "",
+                "backlinkCollapsed": false,
+                "unlinkedCollapsed": true
+              },
+              "icon": "links-coming-in",
+              "title": "Backlinks"
+            }
+          },
+          {
+            "id": "0726e4ef7e821129",
+            "type": "leaf",
+            "state": {
+              "type": "outgoing-link",
+              "state": {
+                "linksCollapsed": false,
+                "unlinkedCollapsed": true
+              },
+              "icon": "links-going-out",
+              "title": "Outgoing links"
+            }
+          },
+          {
+            "id": "270ea67ead8ea151",
+            "type": "leaf",
+            "state": {
+              "type": "tag",
+              "state": {
+                "sortOrder": "frequency",
+                "useHierarchy": true,
+                "showSearch": false,
+                "searchQuery": ""
+              },
+              "icon": "lucide-tags",
+              "title": "Tags"
+            }
+          },
+          {
+            "id": "32e2ca568ec4731a",
+            "type": "leaf",
+            "state": {
+              "type": "outline",
+              "state": {
+                "followCursor": false,
+                "showSearch": false,
+                "searchQuery": ""
+              },
+              "icon": "lucide-list",
+              "title": "Outline"
+            }
+          }
+        ]
+      }
+    ],
+    "direction": "horizontal",
+    "width": 300
+  },
+  "left-ribbon": {
+    "hiddenItems": {
+      "obsidian-git:Open Git source control": false,
+      "switcher:Open quick switcher": false,
+      "graph:Open graph view": false,
+      "canvas:Create new canvas": false,
+      "daily-notes:Open today's daily note": false,
+      "templates:Insert template": false,
+      "command-palette:Open command palette": false
+    }
+  },
+  "active": "13dbf1cba3092d0c",
+  "lastOpenFiles": [
+    "1- sin organizar/Integración de Lebesgue.md",
+    "Capítulo 1.md",
+    "1- sin organizar/Medidas de Lebesgue.md",
+    "1- sin organizar/CheatSheet.md",
+    "Untitled.canvas",
+    "A - Archivos Adjuntos",
+    "Untitled.md",
+    "2 - Tags/Química.md",
+    "2 - Tags/Ecuaciones Diferenciales Ordinarias.md",
+    "1- sin organizar/Estudio PostC3.md",
+    "1- sin organizar/Interacciones de Funciones Continuas con Conjuntos.md",
+    "1- sin organizar/Química C3.md",
+    "funcion.md",
+    "3 - Contenido/Soluciones.md",
+    "3 - Contenido/Optimización.md",
+    "2 - Tags/Cálculo.md",
+    "3 - Contenido/Reacciones de Precipitación.md",
+    "3 - Contenido/molaridad (M).md",
+    "3 - Contenido/Dilución.md",
+    "3 - Contenido",
+    "2 - Tags",
+    "1- sin organizar",
+    "Untitled 1.canvas",
+    "Untitled 1.md",
+    "diferencial.md",
+    "Química",
+    "Welcome.md"
+  ]
+}
