@@ -4,17 +4,21 @@
     "type": "split",
     "children": [
       {
-        "id": "9c2e4e6324dd9e4d",
+        "id": "7316bfdd84177ea5",
         "type": "tabs",
         "children": [
           {
-            "id": "13dbf1cba3092d0c",
+            "id": "644e868b52caf7e3",
             "type": "leaf",
             "state": {
-              "type": "empty",
-              "state": {},
+              "type": "markdown",
+              "state": {
+                "file": "Capítulo 1.md",
+                "mode": "source",
+                "source": false
+              },
               "icon": "lucide-file",
-              "title": "New tab"
+              "title": "Capítulo 1"
             }
           }
         ]
@@ -91,6 +95,7 @@
             "state": {
               "type": "backlink",
               "state": {
+                "file": "Capítulo 1.md",
                 "collapseAll": false,
                 "extraContext": false,
                 "sortOrder": "alphabetical",
@@ -100,7 +105,7 @@
                 "unlinkedCollapsed": true
               },
               "icon": "links-coming-in",
-              "title": "Backlinks"
+              "title": "Backlinks for Capítulo 1"
             }
           },
           {
@@ -162,13 +167,13 @@
       "command-palette:Open command palette": false
     }
   },
-  "active": "13dbf1cba3092d0c",
+  "active": "644e868b52caf7e3",
   "lastOpenFiles": [
+    "Untitled.canvas",
     "1- sin organizar/Integración de Lebesgue.md",
     "Capítulo 1.md",
     "1- sin organizar/Medidas de Lebesgue.md",
     "1- sin organizar/CheatSheet.md",
-    "Untitled.canvas",
     "A - Archivos Adjuntos",
     "Untitled.md",
     "2 - Tags/Química.md",
