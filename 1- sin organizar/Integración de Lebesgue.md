@@ -1,3 +1,4 @@
+#calculo
 Se definen las 'integrales simples', que tienen integrales fáciles de calcular, y para el resto, se hará una aproximación a ellas.
 
 # Teoría
