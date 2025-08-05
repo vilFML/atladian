@@ -4,11 +4,11 @@
     "type": "split",
     "children": [
       {
-        "id": "065a41963784a623",
+        "id": "fa4300fb6fb04bf6",
         "type": "tabs",
         "children": [
           {
-            "id": "d03919db4c75813a",
+            "id": "692cb5d5a95e4678",
             "type": "leaf",
             "state": {
               "type": "split-diff-view",
@@ -177,8 +177,10 @@
       "obsidian-git:Open Git source control": false
     }
   },
-  "active": "d03919db4c75813a",
+  "active": "692cb5d5a95e4678",
   "lastOpenFiles": [
+    "Untitled.md",
+    "1 - Sin Organizar/Termodinámica, Introducción.md",
     "1- sin organizar/Matriz.md",
     "1- sin organizar/Medidas de Lebesgue.md",
     "1- sin organizar/Integración de Lebesgue.md",
@@ -187,7 +189,6 @@
     "Untitled.canvas",
     "1- sin organizar/CheatSheet.md",
     "A - Archivos Adjuntos",
-    "Untitled.md",
     "2 - Tags/Química.md",
     "2 - Tags/Ecuaciones Diferenciales Ordinarias.md",
     "1- sin organizar/Estudio PostC3.md",
