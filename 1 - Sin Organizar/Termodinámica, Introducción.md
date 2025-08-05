@@ -87,4 +87,38 @@ $$
 K determina la unidad en la que se está midiendo $I(·)$, 
 1. Si $K=1 \implies I_{2}=$, se mide en 'neps'.
 2. Si $K=\frac{1}{\ln(2)} \implies I=-\sum x_{i}\log_{2}(x_{i})$, se mide en **bits**. Ejemplo, la memoria computacional:
-   
+   La memoria es un conjunto de compartimientos que almacena un '0' o un '1', entonces se tienen 2 configuraciones en una sola casilla. Entonces para 'n' casillas se tienen $2^n$ configuraciones.
+
+***
+# Compactación
+Es el proceso de eliminar información que no es completamente relevante.
+	Ejemplo: '¿Qué?' -> Q?
+
+***
+## $I_{2}$ como número de mediciones
+
+La función $I_{2}(·)=\sum_{i=1}^{\Omega}x_{i}\log_{2}(x_{i})$ se puede interpretar como el número promedio de opciones binarias.
+
+Ejemplo: Algoritmo de búsqueda de guía telefónica:
+
+| Numero de mediciones | Opciones             |
+| -------------------- | -------------------- |
+| 0                    | 0                    |
+| 1                    | $\frac{\Omega}{2}$   |
+| 2                    | $\frac{\Omega}{2·2}$ |
+| $\vdots$             | $\vdots$             |
+| n                    | $\frac{\Omega}{2^n}$ |
+y se llega al final si el número de opciones es 1 o aproximadamente 1.
+$$
+\begin{align}
+
+\frac{\Omega}{2^n} \approx 1  \\ \\
+
+\therefore \log_{2}(\Omega)=n
+\end{align}
+$$
+es posible obtener la información desconocida máxima como:
+$$
+S = k_{b}\ln(\Omega)
+$$
+con $\Omega$ el número de configuraciones posibles.

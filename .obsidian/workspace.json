@@ -4,21 +4,21 @@
     "type": "split",
     "children": [
       {
-        "id": "fa4300fb6fb04bf6",
+        "id": "1db7eca84bed59a3",
         "type": "tabs",
         "children": [
           {
-            "id": "692cb5d5a95e4678",
+            "id": "587a060c6073a121",
             "type": "leaf",
             "state": {
-              "type": "split-diff-view",
+              "type": "markdown",
               "state": {
-                "aFile": ".obsidian/workspace.json",
-                "bFile": ".obsidian/workspace.json",
-                "aRef": ""
+                "file": "1 - Sin Organizar/Campo Eléctrico.md",
+                "mode": "source",
+                "source": false
               },
-              "icon": "diff",
-              "title": "Diff: workspace.json"
+              "icon": "lucide-file",
+              "title": "Campo Eléctrico"
             }
           }
         ]
@@ -177,10 +177,16 @@
       "obsidian-git:Open Git source control": false
     }
   },
-  "active": "692cb5d5a95e4678",
+  "active": "587a060c6073a121",
   "lastOpenFiles": [
-    "Untitled.md",
+    "1 - Sin Organizar/Electromagnetismo, introduccion.md",
+    "1 - Sin Organizar/líneas de fuerza.md",
+    "1 - Sin Organizar/Campo Eléctrico.md",
+    "1 - Sin Organizar/Fuerza de Coulomb.md",
+    "2 - Tags/Electromagnetismo.md",
     "1 - Sin Organizar/Termodinámica, Introducción.md",
+    "conflict-files-obsidian-git.md",
+    "Untitled.md",
     "1- sin organizar/Matriz.md",
     "1- sin organizar/Medidas de Lebesgue.md",
     "1- sin organizar/Integración de Lebesgue.md",
@@ -205,8 +211,6 @@
     "1- sin organizar",
     "Untitled 1.canvas",
     "Untitled 1.md",
-    "diferencial.md",
-    "Química",
-    "Welcome.md"
+    "Química"
   ]
 }

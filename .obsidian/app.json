@@ -2,5 +2,6 @@
   "livePreview": true,
   "newFileLocation": "folder",
   "newFileFolderPath": "1 - Sin Organizar",
-  "attachmentFolderPath": "A - Anexos"
+  "attachmentFolderPath": "A - Anexos",
+  "alwaysUpdateLinks": true
 }
