@@ -1,3 +1,4 @@
+[[Álgebra Lineal]]
 ***def:*** Una matriz A de *m* filas y *n* columnas con coeficientes en el cuerpo $\mathbb{K}$ (de ahora en adelante será $\mathbb{R} \text{ o }\mathbb{C}$) es una **tabla** de doble entrada:
 $$
 A = \begin{pmatrix}
