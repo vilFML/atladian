@@ -4,21 +4,17 @@
     "type": "split",
     "children": [
       {
-        "id": "4f9bbe17c982bcaa",
+        "id": "72fd319a7baabee5",
         "type": "tabs",
         "children": [
           {
-            "id": "911d00acdd3034d0",
+            "id": "959be9e67c7f1f1b",
             "type": "leaf",
             "state": {
-              "type": "split-diff-view",
-              "state": {
-                "aFile": "conflict-files-obsidian-git.md",
-                "bFile": "conflict-files-obsidian-git.md",
-                "aRef": ""
-              },
-              "icon": "diff",
-              "title": "Diff: conflict-files-obsidian-git"
+              "type": "empty",
+              "state": {},
+              "icon": "lucide-file",
+              "title": "New tab"
             }
           }
         ]
@@ -127,7 +123,7 @@
               "type": "tag",
               "state": {
                 "sortOrder": "frequency",
-                "useHierarchy": true,
+                "useHierarchy": false,
                 "showSearch": false,
                 "searchQuery": ""
               },
@@ -141,13 +137,12 @@
             "state": {
               "type": "outline",
               "state": {
-                "file": "conflict-files-obsidian-git.md",
                 "followCursor": false,
                 "showSearch": false,
                 "searchQuery": ""
               },
               "icon": "lucide-list",
-              "title": "Outline of conflict-files-obsidian-git"
+              "title": "Outline"
             }
           },
           {
@@ -165,7 +160,7 @@
       }
     ],
     "direction": "horizontal",
-    "width": 325.5
+    "width": 247.5
   },
   "left-ribbon": {
     "hiddenItems": {
@@ -178,35 +173,37 @@
       "obsidian-git:Open Git source control": false
     }
   },
-  "active": "911d00acdd3034d0",
+  "active": "959be9e67c7f1f1b",
   "lastOpenFiles": [
-    "conflict-files-obsidian-git.md",
-    "3 - Contenido/Fuerza de Coulomb.md",
-    "3 - Contenido/Electromagnetismo, introduccion.md",
-    "3 - Contenido/Ecuaciones Diferenciales Ordinarias.md",
-    "3 - Contenido/Campo Eléctrico.md",
     "2 - Tags/Cálculo Avanzado y Aplicaciones.md",
-    "1 - Sin Organizar/parametrización.md",
+    "4 - Clases/CAA 1, Introducción.md",
+    "4 - Clases/Termo 1, Introducción.md",
+    "4 - Clases/Electromagnetismo 1, Introducción.md",
+    "2 - Tags/Economía.md",
+    "2 - Tags/Cálculo.md",
+    "2 - Tags/Álgebra Lineal.md",
+    "3 - Contenido/Electromagnetismo 1, Introducción.md",
+    "3 - Contenido/parametrización.md",
+    "3 - Contenido/Fuerza de Coulomb.md",
+    "3 - Contenido/Campo Eléctrico.md",
+    "3 - Contenido/Dilución.md",
+    "3 - Contenido/Optimización.md",
+    "3 - Contenido/Matriz.md",
+    "3 - Contenido/Integración de Lebesgue.md",
+    "C - Plantillas/Clases.md",
     "1 - Sin Organizar/Integración en curvas N-dimensionales.md",
-    "1 - Sin Organizar/Curva simple.md",
-    "1 - Sin Organizar/Curva cerrada.md",
     "1 - Sin Organizar/Campo Vectorial.md",
     "1 - Sin Organizar/Campo Escalar.md",
+    "4 - Clases",
+    "1 - Sin Organizar/Curva Continua.md",
+    "1 - Sin Organizar/Curva simple.md",
+    "1 - Sin Organizar/Curva cerrada.md",
+    "1 - Sin Organizar/Links.md",
     "1 - Sin Organizar/Untitled.md",
-    "1 - Sin Organizar/Campo Eléctrico.md",
-    "1 - Sin Organizar/Electromagnetismo, introduccion.md",
-    "1 - Sin Organizar/líneas de fuerza.md",
-    "1 - Sin Organizar/Fuerza de Coulomb.md",
-    "2 - Tags/Electromagnetismo.md",
-    "1 - Sin Organizar/Termodinámica, Introducción.md",
-    "Untitled.md",
-    "1- sin organizar/Matriz.md",
-    "1- sin organizar/Medidas de Lebesgue.md",
-    "1- sin organizar/Integración de Lebesgue.md",
-    "2 - Tags/Cálculo.md",
-    "Capítulo 1.md",
+    "C - Plantillas/Definiciones.md",
     "Untitled.canvas",
-    "1- sin organizar/CheatSheet.md",
+    "B - Extras/CheatSheet.md",
+    "C - Plantillas",
     "A - Archivos Adjuntos",
     "3 - Contenido",
     "2 - Tags",

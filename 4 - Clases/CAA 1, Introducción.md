@@ -1,3 +1,41 @@
+Materia: Cálculo Avanzado y Aplicaciones
+	Fecha cátedra: 05/08/25
+	Fecha digitalización: 06/08/25
+	*tags: #Educación #Cálculo/CálculoAvanzado
+
+Materia:
+# [[Campo Escalar]]
+Sea $\Omega \subseteq \mathbb{R}^{3}$ abierto y no vacío,
+un **campo escalar** es una aplicación $f:\Omega \to \mathbb{R}$, que asigna a cada $\vec{x} \in \Omega$ una función:
+$$
+f=f(\vec{x})
+$$
+
+# [[Campo Vectorial]]
+
+Se puede definir en $\mathbb{R}^n$, pero se definirá sólo en $\mathbb{R}^{2}, \mathbb{R}^{3}$ por su uso en física.
+
+***def:*** Campo vectorial
+Es una aplicación $\vec{F}:\Omega \subseteq \mathbb{R}^{3} \to \mathbb{R}^{3}$, de la forma
+$$
+\vec{F}=\vec{F}(\vec{x})
+$$
+*obs:* en cartesianas se tiene que
+$$
+\vec{F}(\vec{x})=F_{1}(\vec{x})\hat{i}+F_{2}(\vec{x})\hat{j}+F_{3}(\vec{x})\hat{k}
+$$
+donde $\vec{F}_{i}(\vec{x})$ son [[Campo Escalar|campos escalares]].
+
+*ej:* los puntos de un disco plano que gira en sentido antihorario, con velocidad angular $\omega>0$ constante y de radio $r=1$, tiene como campos de velocidad:
+***dIBUJO EJ DISCO GIRANDO***
+
+$$
+\implies  \vec{v}(x,y,0)=-\omega y \hat{i} + \omega x \hat{j}+0\hat{k}
+$$
+ej2:Gravitación universal
+ej3: gravitación cerca de la tierra
+
+# Integración en Curvas N-Dimensionales
 Para integrar en $\mathbb{R}^n$ se requiere un conjunto [[Jordan-medible]]. Esto es equivalente a decir que el 'borde' tenga medida 0, por ejemplo: el volumen; pero una curva no tiene volumen, entonces, se definen para integrar una curva:
 
 ### [[Curva Continua]]
@@ -109,7 +147,7 @@ $$
 	\end{array}
 \right.
 $$
-es una pametrización de la curva $\Gamma$, de la forma:
+es una parametrización de la curva $\Gamma$, de la forma:
 $$
 \Gamma=\Gamma_{1}\cup\Gamma_{2}
 $$

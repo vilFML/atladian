@@ -1,5 +1,30 @@
-*tags:* [[Electromagnetismo]]
+Materia: Electromagnetismo
+	Fecha cátedra: 05/08/25
+	Fecha digitalización: 06/08/25
+	*tags:* #Educación #Física/Electromagnetismo
 
+El electromagnetismo estudia cómo interactúan los campos eléctricos y magnéticos con cargas eléctricas.
+
+La materia esta compuesta por cargas, entonces estas interactúan con los campos eléctricos y magnéticos.
+
+1. Existen dos tipos de carga: positivo y negativo
+La carga de una partícula está **cuantizada**. Esto es, las magnitudes de las cargas de las partículas son múltiplos enteros de la carga del electrón.
+
+La carga del electrón y del protón son opuestas pero aproximadamente iguales en módulo:
+$$
+|e| \approx|p|\approx 1,62·10^{-19}\; [C]
+$$
+Como notación se utiliza:
+- $-e$, para electrón.
+- $+e$, para protón.
+
+
+2. Existen dos tipos de fuerzas: de atracción o de repulsión
+
+3. Existen dos tipos de materiales: Conductores o aislantes.
+	Para los materiales aislantes no es posible mover cargas eléctricas en su interior.
+
+# Fuerza de Coulomb
 El módulo de la carga de un electrón es:
 $$
 |e|=1,62·10^{-19}\;[C]
@@ -63,6 +88,17 @@ entonces, el campo eléctrico de a carga $q$ es:
 $$
 \vec{E}=\frac{1}{4\pi\varepsilon_{0}}·\frac{q}{r²}\hat{u}_{r}
 $$
-$$
+# Campo Eléctrico
+Para una carga positiva, se puede ver que el campo eléctrico es:
+***dibujo1***
+y para una carga negativa:
 
-$$
+Los vectores visualizados corresponden a las [[líneas de fuerza]].
+
+## Líneas de Fuerza
+
+Son líneas radiales que salen o entran a la carga. Determinan cómo se dibuja e campo eléctrico de una carga.
+1. Son tangentes a cada punto del campo eléctrico.
+2. Entran en carga positiva y salen en carga negativa.
+3. Son **más densas** en donde el campo es más fuerte.
+4. Son líneas que 'empiezan' en cargas positivas y 'terminan' en negativas.
