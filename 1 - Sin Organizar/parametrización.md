@@ -1,0 +1,1 @@
+Una parametrización es una forma de representar una curva como función.

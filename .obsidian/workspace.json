@@ -4,53 +4,24 @@
     "type": "split",
     "children": [
       {
-        "id": "8931ecd7961fe3c9",
+        "id": "09280fd9bec79af0",
         "type": "tabs",
         "children": [
           {
-            "id": "3a4b94456c257379",
+            "id": "07785e653c4f07ed",
             "type": "leaf",
             "state": {
-              "type": "split-diff-view",
+              "type": "markdown",
               "state": {
-                "aFile": ".obsidian/workspace.json",
-                "bFile": ".obsidian/workspace.json",
-                "aRef": ""
+                "file": "1 - Sin Organizar/Integración en curvas N-dimensionales.md",
+                "mode": "source",
+                "source": false
               },
-              "icon": "diff",
-              "title": "Diff: workspace.json"
-            }
-          },
-          {
-            "id": "06b742994d62b09f",
-            "type": "leaf",
-            "state": {
-              "type": "split-diff-view",
-              "state": {
-                "aFile": "conflict-files-obsidian-git.md",
-                "bFile": "conflict-files-obsidian-git.md",
-                "aRef": ""
-              },
-              "icon": "diff",
-              "title": "Diff: conflict-files-obsidian-git"
-            }
-          },
-          {
-            "id": "9372c2078dcaba94",
-            "type": "leaf",
-            "state": {
-              "type": "split-diff-view",
-              "state": {
-                "aFile": ".gitignore",
-                "bFile": ".gitignore",
-                "aRef": ""
-              },
-              "icon": "diff",
-              "title": "Diff: .gitignore"
+              "icon": "lucide-file",
+              "title": "Integración en curvas N-dimensionales"
             }
           }
-        ],
-        "currentTab": 2
+        ]
       }
     ],
     "direction": "vertical"
@@ -170,13 +141,13 @@
             "state": {
               "type": "outline",
               "state": {
-                "file": "conflict-files-obsidian-git.md",
+                "file": "1 - Sin Organizar/Integración en curvas N-dimensionales.md",
                 "followCursor": false,
                 "showSearch": false,
                 "searchQuery": ""
               },
               "icon": "lucide-list",
-              "title": "Outline of conflict-files-obsidian-git"
+              "title": "Outline of Integración en curvas N-dimensionales"
             }
           },
           {
@@ -207,16 +178,21 @@
       "obsidian-git:Open Git source control": false
     }
   },
-  "active": "9372c2078dcaba94",
+  "active": "8c282e73f3f31990",
   "lastOpenFiles": [
-    "conflict-files-obsidian-git.md",
-    "1 - Sin Organizar/Untitled.md",
-    "1 - Sin Organizar/Campo Eléctrico.md",
-    "1 - Sin Organizar/Electromagnetismo, introduccion.md",
-    "1 - Sin Organizar/líneas de fuerza.md",
-    "1 - Sin Organizar/Fuerza de Coulomb.md",
-    "2 - Tags/Electromagnetismo.md",
+    "1 - Sin Organizar/parametrización.md",
+    "1 - Sin Organizar/Campo Escalar.md",
+    "1 - Sin Organizar/Integración en curvas N-dimensionales.md",
+    "1 - Sin Organizar/Campo Vectorial.md",
+    "2 - Tags/Cálculo Avanzado y Aplicaciones.md",
     "1 - Sin Organizar/Termodinámica, Introducción.md",
+    "3 - Contenido/Ecuaciones Diferenciales Ordinarias.md",
+    "3 - Contenido/Electromagnetismo, introduccion.md",
+    "1 - Sin Organizar/líneas de fuerza.md",
+    "3 - Contenido/Fuerza de Coulomb.md",
+    "3 - Contenido/Campo Eléctrico.md",
+    "conflict-files-obsidian-git.md",
+    "2 - Tags/Electromagnetismo.md",
     "Untitled.md",
     "1- sin organizar/Matriz.md",
     "1- sin organizar/Medidas de Lebesgue.md",
@@ -232,11 +208,6 @@
     "1- sin organizar/Interacciones de Funciones Continuas con Conjuntos.md",
     "1- sin organizar/Química C3.md",
     "funcion.md",
-    "3 - Contenido/Soluciones.md",
-    "3 - Contenido/Optimización.md",
-    "3 - Contenido/Reacciones de Precipitación.md",
-    "3 - Contenido/molaridad (M).md",
-    "3 - Contenido/Dilución.md",
     "3 - Contenido",
     "2 - Tags",
     "1- sin organizar",

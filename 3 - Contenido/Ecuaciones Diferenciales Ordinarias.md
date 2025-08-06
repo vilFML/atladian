@@ -1,4 +1,4 @@
-Con el análisis del cálculo se pudieron modelar comportamientos de la naturaleza con relaciones entre una función y sus propias derivadas, las cuales se denominan [[Ecuaciones Diferenciales Ordinarias]] (EDO). Son 'ordinarias' por tener sólo una variable real con una derivada habitual. Para el caso de varias variables, se conocen como Ecuaciones Diferenciales Parciales (EDP).
+Con el análisis del cálculo se pudieron modelar comportamientos de la naturaleza con relaciones entre una función y sus propias derivadas, las cuales se denominan [[2 - Tags/Ecuaciones Diferenciales Ordinarias]] (EDO). Son 'ordinarias' por tener sólo una variable real con una derivada habitual. Para el caso de varias variables, se conocen como Ecuaciones Diferenciales Parciales (EDP).
 
 ### Ejemplos de EDOs
 1. **Decaimiento Radioactivo**: Considerando un material radioactivo: "La tasa de decaimiento radioactivo es proporcional a la cantidad de isótopo existente en cada instante de tiempo." 
