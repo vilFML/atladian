@@ -4,21 +4,21 @@
     "type": "split",
     "children": [
       {
-        "id": "308ce28828677c7e",
+        "id": "4f9bbe17c982bcaa",
         "type": "tabs",
         "children": [
           {
-            "id": "339894823d9844a9",
+            "id": "911d00acdd3034d0",
             "type": "leaf",
             "state": {
-              "type": "markdown",
+              "type": "split-diff-view",
               "state": {
-                "file": "conflict-files-obsidian-git.md",
-                "mode": "source",
-                "source": false
+                "aFile": "conflict-files-obsidian-git.md",
+                "bFile": "conflict-files-obsidian-git.md",
+                "aRef": ""
               },
-              "icon": "lucide-file",
-              "title": "conflict-files-obsidian-git"
+              "icon": "diff",
+              "title": "Diff: conflict-files-obsidian-git"
             }
           }
         ]
@@ -178,7 +178,7 @@
       "obsidian-git:Open Git source control": false
     }
   },
-  "active": "8c282e73f3f31990",
+  "active": "911d00acdd3034d0",
   "lastOpenFiles": [
     "conflict-files-obsidian-git.md",
     "3 - Contenido/Fuerza de Coulomb.md",
