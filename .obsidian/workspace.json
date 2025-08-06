@@ -4,53 +4,20 @@
     "type": "split",
     "children": [
       {
-        "id": "8931ecd7961fe3c9",
+        "id": "8c929c429870acff",
         "type": "tabs",
         "children": [
           {
-            "id": "3a4b94456c257379",
+            "id": "863e13fb9f158058",
             "type": "leaf",
             "state": {
-              "type": "split-diff-view",
-              "state": {
-                "aFile": ".obsidian/workspace.json",
-                "bFile": ".obsidian/workspace.json",
-                "aRef": ""
-              },
-              "icon": "diff",
-              "title": "Diff: workspace.json"
-            }
-          },
-          {
-            "id": "06b742994d62b09f",
-            "type": "leaf",
-            "state": {
-              "type": "split-diff-view",
-              "state": {
-                "aFile": "conflict-files-obsidian-git.md",
-                "bFile": "conflict-files-obsidian-git.md",
-                "aRef": ""
-              },
-              "icon": "diff",
-              "title": "Diff: conflict-files-obsidian-git"
-            }
-          },
-          {
-            "id": "9372c2078dcaba94",
-            "type": "leaf",
-            "state": {
-              "type": "split-diff-view",
-              "state": {
-                "aFile": ".gitignore",
-                "bFile": ".gitignore",
-                "aRef": ""
-              },
-              "icon": "diff",
-              "title": "Diff: .gitignore"
+              "type": "empty",
+              "state": {},
+              "icon": "lucide-file",
+              "title": "New tab"
             }
           }
-        ],
-        "currentTab": 2
+        ]
       }
     ],
     "direction": "vertical"
@@ -207,7 +174,7 @@
       "obsidian-git:Open Git source control": false
     }
   },
-  "active": "9372c2078dcaba94",
+  "active": "8c282e73f3f31990",
   "lastOpenFiles": [
     "conflict-files-obsidian-git.md",
     "1 - Sin Organizar/Untitled.md",
