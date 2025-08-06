@@ -1,3 +1,4 @@
+[[Electromagnetismo]]
 El electromagnetismo estudia cómo interactúan los campos eléctricos y magnéticos con cargas eléctricas.
 
 La materia esta compuesta por cargas, entonces estas interactúan con los campos eléctricos y magnéticos.

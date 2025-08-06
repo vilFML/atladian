@@ -4,17 +4,21 @@
     "type": "split",
     "children": [
       {
-        "id": "8c929c429870acff",
+        "id": "308ce28828677c7e",
         "type": "tabs",
         "children": [
           {
-            "id": "863e13fb9f158058",
+            "id": "339894823d9844a9",
             "type": "leaf",
             "state": {
-              "type": "empty",
-              "state": {},
+              "type": "markdown",
+              "state": {
+                "file": "conflict-files-obsidian-git.md",
+                "mode": "source",
+                "source": false
+              },
               "icon": "lucide-file",
-              "title": "New tab"
+              "title": "conflict-files-obsidian-git"
             }
           }
         ]
@@ -177,6 +181,17 @@
   "active": "8c282e73f3f31990",
   "lastOpenFiles": [
     "conflict-files-obsidian-git.md",
+    "3 - Contenido/Fuerza de Coulomb.md",
+    "3 - Contenido/Electromagnetismo, introduccion.md",
+    "3 - Contenido/Ecuaciones Diferenciales Ordinarias.md",
+    "3 - Contenido/Campo Eléctrico.md",
+    "2 - Tags/Cálculo Avanzado y Aplicaciones.md",
+    "1 - Sin Organizar/parametrización.md",
+    "1 - Sin Organizar/Integración en curvas N-dimensionales.md",
+    "1 - Sin Organizar/Curva simple.md",
+    "1 - Sin Organizar/Curva cerrada.md",
+    "1 - Sin Organizar/Campo Vectorial.md",
+    "1 - Sin Organizar/Campo Escalar.md",
     "1 - Sin Organizar/Untitled.md",
     "1 - Sin Organizar/Campo Eléctrico.md",
     "1 - Sin Organizar/Electromagnetismo, introduccion.md",
@@ -193,17 +208,6 @@
     "Untitled.canvas",
     "1- sin organizar/CheatSheet.md",
     "A - Archivos Adjuntos",
-    "2 - Tags/Química.md",
-    "2 - Tags/Ecuaciones Diferenciales Ordinarias.md",
-    "1- sin organizar/Estudio PostC3.md",
-    "1- sin organizar/Interacciones de Funciones Continuas con Conjuntos.md",
-    "1- sin organizar/Química C3.md",
-    "funcion.md",
-    "3 - Contenido/Soluciones.md",
-    "3 - Contenido/Optimización.md",
-    "3 - Contenido/Reacciones de Precipitación.md",
-    "3 - Contenido/molaridad (M).md",
-    "3 - Contenido/Dilución.md",
     "3 - Contenido",
     "2 - Tags",
     "1- sin organizar",
