@@ -4,17 +4,21 @@
     "type": "split",
     "children": [
       {
-        "id": "72fd319a7baabee5",
+        "id": "2857fd8649d41517",
         "type": "tabs",
         "children": [
           {
-            "id": "959be9e67c7f1f1b",
+            "id": "59b78af41e4fa99b",
             "type": "leaf",
             "state": {
-              "type": "empty",
-              "state": {},
+              "type": "markdown",
+              "state": {
+                "file": "4 - Clases/Electromagnetismo 1.md",
+                "mode": "source",
+                "source": false
+              },
               "icon": "lucide-file",
-              "title": "New tab"
+              "title": "Electromagnetismo 1"
             }
           }
         ]
@@ -173,12 +177,13 @@
       "obsidian-git:Open Git source control": false
     }
   },
-  "active": "959be9e67c7f1f1b",
+  "active": "59b78af41e4fa99b",
   "lastOpenFiles": [
+    "4 - Clases/CAA 1.md",
+    "4 - Clases/Termo 1.md",
+    "4 - Clases/Untitled.md",
     "2 - Tags/Cálculo Avanzado y Aplicaciones.md",
-    "4 - Clases/CAA 1, Introducción.md",
-    "4 - Clases/Termo 1, Introducción.md",
-    "4 - Clases/Electromagnetismo 1, Introducción.md",
+    "4 - Clases/Electromagnetismo 1.md",
     "2 - Tags/Economía.md",
     "2 - Tags/Cálculo.md",
     "2 - Tags/Álgebra Lineal.md",
@@ -202,7 +207,6 @@
     "1 - Sin Organizar/Untitled.md",
     "C - Plantillas/Definiciones.md",
     "Untitled.canvas",
-    "B - Extras/CheatSheet.md",
     "C - Plantillas",
     "A - Archivos Adjuntos",
     "3 - Contenido",
