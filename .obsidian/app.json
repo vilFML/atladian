@@ -3,5 +3,8 @@
   "newFileLocation": "folder",
   "newFileFolderPath": "1 - Sin Organizar",
   "attachmentFolderPath": "A - Anexos",
-  "alwaysUpdateLinks": true
+  "alwaysUpdateLinks": true,
+  "showLineNumber": false,
+  "autoPairBrackets": false,
+  "autoPairMarkdown": false
 }

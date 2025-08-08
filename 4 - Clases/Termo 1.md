@@ -1,5 +1,7 @@
-[[Termodinámica]]
-04/08, Clase 1: Introducción
+Materia: Termodinámica
+	Fecha cátedra: 04/08/25
+	Fecha digitalización: 06/08/25
+	*tags:* #Educación #Física/Termodinámica
 
 # Orígenes de la termodinámica
 
