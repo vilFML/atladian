@@ -4,21 +4,21 @@
     "type": "split",
     "children": [
       {
-        "id": "6eed79edc7c8ed0d",
+        "id": "2857fd8649d41517",
         "type": "tabs",
         "children": [
           {
-            "id": "271a32c72bbf32ac",
+            "id": "59b78af41e4fa99b",
             "type": "leaf",
             "state": {
-              "type": "split-diff-view",
+              "type": "markdown",
               "state": {
-                "aFile": ".obsidian/workspace.json",
-                "bFile": ".obsidian/workspace.json",
-                "aRef": ""
+                "file": "4 - Clases/Economía Unidad 1.md",
+                "mode": "source",
+                "source": false
               },
-              "icon": "diff",
-              "title": "Diff: workspace.json"
+              "icon": "lucide-file",
+              "title": "Economía Unidad 1"
             }
           }
         ]
@@ -40,7 +40,7 @@
             "state": {
               "type": "search",
               "state": {
-                "query": "tag:#calculo",
+                "query": "",
                 "matchingCase": false,
                 "explainSearch": false,
                 "collapseAll": false,
@@ -74,7 +74,8 @@
               "title": "Files"
             }
           }
-        ]
+        ],
+        "currentTab": 2
       }
     ],
     "direction": "horizontal",
@@ -94,7 +95,6 @@
             "state": {
               "type": "backlink",
               "state": {
-                "file": "1 - Sin Organizar/Integración en curvas N-dimensionales.md",
                 "collapseAll": false,
                 "extraContext": false,
                 "sortOrder": "alphabetical",
@@ -104,7 +104,7 @@
                 "unlinkedCollapsed": true
               },
               "icon": "links-coming-in",
-              "title": "Backlinks for Integración en curvas N-dimensionales"
+              "title": "Backlinks"
             }
           },
           {
@@ -113,12 +113,11 @@
             "state": {
               "type": "outgoing-link",
               "state": {
-                "file": "1 - Sin Organizar/Integración en curvas N-dimensionales.md",
                 "linksCollapsed": false,
                 "unlinkedCollapsed": true
               },
               "icon": "links-going-out",
-              "title": "Outgoing links from Integración en curvas N-dimensionales"
+              "title": "Outgoing links"
             }
           },
           {
@@ -128,7 +127,7 @@
               "type": "tag",
               "state": {
                 "sortOrder": "frequency",
-                "useHierarchy": true,
+                "useHierarchy": false,
                 "showSearch": false,
                 "searchQuery": ""
               },
@@ -142,13 +141,12 @@
             "state": {
               "type": "outline",
               "state": {
-                "file": "conflict-files-obsidian-git.md",
                 "followCursor": false,
                 "showSearch": false,
                 "searchQuery": ""
               },
               "icon": "lucide-list",
-              "title": "Outline of conflict-files-obsidian-git"
+              "title": "Outline"
             }
           },
           {
@@ -166,7 +164,7 @@
       }
     ],
     "direction": "horizontal",
-    "width": 325.5
+    "width": 247.5
   },
   "left-ribbon": {
     "hiddenItems": {
@@ -179,37 +177,37 @@
       "obsidian-git:Open Git source control": false
     }
   },
-  "active": "271a32c72bbf32ac",
+  "active": "59b78af41e4fa99b",
   "lastOpenFiles": [
-    "1 - Sin Organizar/Integración en curvas N-dimensionales.md",
-    "conflict-files-obsidian-git.md",
-    "C - Plantillas/Definiciones.md",
-    "C - Plantillas/Clases.md",
-    "C - Plantillas",
-    "4 - Clases/Termo 1.md",
+    "4 - Clases/Economía, intro.md",
+    "4 - Clases/Economía Unidad 1.md",
     "4 - Clases/Electromagnetismo 1.md",
     "4 - Clases/CAA 1.md",
-    "4 - Clases",
-    "3 - Contenido/parametrización.md",
-    "1 - Sin Organizar/parametrización.md",
-    "1 - Sin Organizar/Campo Escalar.md",
-    "1 - Sin Organizar/Untitled.md",
-    "3 - Contenido/Fuerza de Coulomb.md",
-    "3 - Contenido/Electromagnetismo, introduccion.md",
-    "3 - Contenido/Ecuaciones Diferenciales Ordinarias.md",
-    "3 - Contenido/Campo Eléctrico.md",
+    "4 - Clases/Termo 1.md",
     "2 - Tags/Cálculo Avanzado y Aplicaciones.md",
+    "2 - Tags/Economía.md",
+    "2 - Tags/Cálculo.md",
+    "2 - Tags/Álgebra Lineal.md",
+    "3 - Contenido/Electromagnetismo 1, Introducción.md",
+    "3 - Contenido/parametrización.md",
+    "3 - Contenido/Fuerza de Coulomb.md",
+    "3 - Contenido/Campo Eléctrico.md",
+    "3 - Contenido/Dilución.md",
+    "3 - Contenido/Optimización.md",
+    "3 - Contenido/Matriz.md",
+    "3 - Contenido/Integración de Lebesgue.md",
+    "C - Plantillas/Clases.md",
+    "1 - Sin Organizar/Integración en curvas N-dimensionales.md",
+    "1 - Sin Organizar/Campo Vectorial.md",
+    "1 - Sin Organizar/Campo Escalar.md",
+    "4 - Clases",
+    "1 - Sin Organizar/Curva Continua.md",
     "1 - Sin Organizar/Curva simple.md",
     "1 - Sin Organizar/Curva cerrada.md",
-    "1 - Sin Organizar/Campo Vectorial.md",
-    "1 - Sin Organizar/Campo Eléctrico.md",
-    "1 - Sin Organizar/Electromagnetismo, introduccion.md",
-    "1 - Sin Organizar/líneas de fuerza.md",
-    "1 - Sin Organizar/Fuerza de Coulomb.md",
-    "2 - Tags/Electromagnetismo.md",
-    "1 - Sin Organizar/Termodinámica, Introducción.md",
-    "Untitled.md",
+    "1 - Sin Organizar/Links.md",
+    "1 - Sin Organizar/Untitled.md",
     "Untitled.canvas",
+    "C - Plantillas",
     "A - Archivos Adjuntos",
     "3 - Contenido",
     "2 - Tags",
