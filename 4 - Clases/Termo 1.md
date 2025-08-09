@@ -124,3 +124,100 @@ $$
 S = k_{b}\ln(\Omega)
 $$
 con $\Omega$ el número de configuraciones posibles.
+
+# Clase 08/08
+No es posible describir el sistema viendo el comportamiento de cada partícula, entonces se usa una capa de abstracción del sistema de forma que se representa a nivel macro como una "caja negra". Al hacer esto se dice que se pierde información acerca del sistema, pero en realidad hay una información que nunca se tuvo.
+
+# Microestado y Macroestado
+## Microestado, Configuración o Estado microscópico
+Es especificar las variables de cada partícula que compone el sistema.
+
+## Macroestado
+Es la descripción del sistema a mayor escala, con variables macroscópicas: Estas son relativamente pocas y en general son manejables.
+* Un mismo macroestado puede estar dado por distintos microestados, osea existen muchas configuraciones que corresponden al mismo macroestado, pero no son infinitas.
+
+	Ejemplo: Vacante (espacio vacío) en un sólido:
+	Un sólido puede tener un espacio vacío entre sus partículas. Este espacio puede cambiar de posición a cualquier partícula que compone el objeto, entonces:
+	sólido con $n$ espacios $\implies n$ configuraciones para 1 mismo macroestado (la misma manifestación del sólido).
+		\* las vacantes si se manifiestan visualmente, ejemplo: irradiar a un gas con una cantidad creciente de vacantes varía su color.
+
+Una configuración no puede corresponder a más de un macroestado.
+	Ejemplo: Velocidad de partículas dentro de un gas.
+	Múltiples posibles velocidades para las partículas que componen el gas, pero éstas resultan la misma presión.
+
+## Configuraciones Accesibles ($\Omega$)
+Dado un macroestado, las configuraciones que lo entregan se dicen **configuraciones accesibles** del macroestado.
+El número de configuraciones accesibles se denota con $\Omega$
+### propiedades:
+1. El número de configuraciones accesibles $\Omega$ es multiplicativo:
+   $\Omega_{(A\cup B)}=\Omega_{A}\cdot \Omega_{B}$
+	   Ejemplo: Tener dos dados:
+	   1. se tiene un 1 y en el sig pueden ser 6
+	   2. se tiene un 2 y en el sig pueden ser 6
+	$\vdots$
+	entonces se tienen $6 \cdot 6
+
+2. Crece rápidamente con la energía disponible del sistema.
+	   Ejemplo: Cuántas cosas se pueden comprar con $2000 versus $4000 pesos: No es necesariamente el doble, si no que las posibilidades se pueden combinar
+
+Si se tiene un sistema de $N$ átomos $\to N!$
+con $m$ configuraciones equivalentes $\implies m!$
+$N+m$ objetos $\to (N+m)!$
+
+entonces:
+$$
+\Omega=\frac{(N+m)!}{m!N!}=\left( \begin{matrix}
+N+m \\
+m
+\end{matrix} \right)
+$$
+esto corresponde a un sistema discreto. Para un sistema continuo:
+***dibujjo de curva***
+cada curva tiene infinitos puntos, pero también tienen **medida**, la cual varía según se tenga una línea, una superficie o volumen.
+
+
+## Información faltante
+
+### Equilibrio
+Es un concepto que se asocia solamente al nivel macro, pues en el nivel micro las partículas vibran o se mueven constantemente.
+	Ej: Equilibrio Mecánico
+	existen puntos de equilibrio estable e inestable
+	Ejs: Químico, electro y térmico.
+
+Cuando se tienen equilibrios mecánico, químico, eléctrico y térmico, se dice que se tiene **equilibrio termodinámico**.
+El equilibrio en macro no depende del tiempo, en micro sí existe variación en el tiempo.
+
+### Axioma de Equiprobabilidad
+"***En el equilibrio, todas las configuraciones accesibles son equiprobables.***"
+* Si las configuraciones accesibles no son equiprobables, entonces no se está en equilibrio.
+	  Ejemplo:  Tener 2 compartimientos gaseosos separados.
+	  En un instante se tiene la compuerta cerrada, y se está en equilibrio
+	  En otro instante se abre la compuerta y el gas se mueve (no está en equilibrio)
+	  En el instante final el gas llena ambos compartimientos y se llegó a otro equilibrio.
+
+Si las configuraciones son equiprobables, **la información faltante es máxima.**
+
+La información faltante es una medida, que en física es denominada **Entropía**.
+
+## Entropía
+
+ La información que le falta a un observador que conoce el macroestado de un sistema, pero desconoce la configuración (microestado) en la que se encuentra.
+Está dada por:
+$$
+S=k_{b}\ln \Omega
+$$
+se puede ver que, recordando que:  si $\Omega_{A},\Omega_{B}$ son independientes $\implies \Omega_{(A\cup B)}=\Omega_{A}\cdot \Omega_{B}$
+así, para la entropía de dos sistemas $A,B$:
+$$
+\begin{align}
+S(A\cup B)  & = k_{b}\ln(\Omega _{A\cup B}) \\
+ & = k_{b}\ln(\Omega_{A}\cdot \Omega_{B}) \\
+ & =S_{A}+S_{B}
+\end{align}
+$$
+	*observaciones de clase:* 
+	1. Clausius: dice que la entropía es una magnitud que determina la capacidad transformadora de un sistema.
+	2. Landauer: Borrar memoria toma energía 'útil' y la disipa en forma de **calor**.
+
+
+
