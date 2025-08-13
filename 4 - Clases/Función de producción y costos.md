@@ -157,5 +157,64 @@ $$
 
 Viendo las isocuantas de producción, y como la TST es el opuesto de la tasa (derivada <-> tangente), se vé que esta es mayor cuando se tienen menos trabajadores $L$:
 ![[Pasted image 20250812172248.png]]
-Esto se debe a que a una menor cantidad de trabajadores, cada uno es más valioso para la producción de bienes, entonces perder uno genera un mayor impacto y se requiere más capital para reemplazarlo.
+Esto se debe a que a una menor cantidad de trabajadores, cada uno es más valioso para la producción de bienes, entonces perder uno genera un mayor impacto y se requiere más capital para reemplazarlo, así se puede ver que: $TST_{1}>TST_{2}$
 
+### Proposición
+Si se tiene una cantidad $q$ de producción fija, se tiene que :
+$$
+\begin{align}
+f(K(L,q),L)=q & \;/\; \frac{d}{dL} \\
+\frac{\partial}{\partial K}f\cdot \frac{dK}{dL}+\frac{\partial}{\partial L}f=0 \\
+\implies -\frac{dK(L,q)}{dL}= \frac{\frac{\partial f}{\partial L}}{\frac{\partial f}{\partial K} } &  =\frac{PMgL}{PMgK}=TST_{K,L}
+\end{align}
+$$
+Es la tasa de sustitución de capital por trabajo dada la razón entre productividades marginales.
+
+# Función de Costo
+Una función de costo indica el mínimo gasto necesario para producir $q$ a precios de ... $(w,r)$.
+Sea $w$ el costo de una unidad de trabajo $L$ y $r$ el costo de una unidad de capital $K$, se define la **función de costo** como:
+$$
+\begin{align}
+C(w,r,q) & =\text{min}_{K,L}(rk+wl) \\
+ & s.a: \\
+ & f(K,L)=q
+\end{align}
+$$
+
+Para verlo gráficamente se introducen las **rectas de isocosto**
+### Rectas de Isocosto
+Corresponden a rectas que representan todas las combinaciones de insumos con igual costo de producción, esto es:
+$$
+\{ (K,L)\ |\ wL+ =c  \}=\left\{  (K,L)\ |\ K=\frac{c}{r}-\frac{w}{r}L  \right\}
+$$
+se vé gráficamente:
+![[Pasted image 20250812215136.png]]
+* Si bien cada recta corresponde al mismo costo, inducen niveles diferentes de producción
+* Todas tiene pendiente $= -\frac{w}{r}$
+* Los isocostos al origen son más baratos, a medida que las rectas de alejan del origen, son más caras.
+
+### 
+Para encontrar el menor costo posible para una cantidad $q_{0}$ se debe elegir recta de isocosto más baja que coincida con la isocuanta correspondiente a la cantidad $q_{0}$
+* Va a haber un punto en donde ambas funciones son **tangentes** en donde el punto entrega la cantidad de capital $K_{0}$ y de trabajo $L_{0}$.
+  En dicho punto, la tangente es una recta de isocosto de pendiente es $-\frac{w}{r}$ 
+Gráficamente:
+
+![[Pasted image 20250812220519.png]]
+
+Así
+$$
+TST_{K,L}(K_{0},L_{0})=-\frac{dK(L_{0},q_{0})}{dL}=\frac{w}{r}, \text{ y } f(K_{0},L_{0})=q_{0}
+$$
+equivalentemente:
+$$
+\frac{PMgL(K_{0},L_{0})}{PMgK(K_{0},L_{0})}=\frac{w}{r},\text{ y }f(K_{0},L_{0})=q_{0}
+$$
+Entonces,***en el óptimo, la TST es igual a la razón entre los precios de insumos.*** 
+
+Si se resuelve el sistema de ecuaciones se obtiene $K_{0}(w,r,q_{0})$ y $L_{0}(w,r,q_{0})$, que se denominan **demandas condicionales por factores**.
+Entonces, la cantidad de trabajadores contratados depende del salario, del costo del capital y la tecnología.
+
+Y para la función de costo, se reemplazan los valores $K_{0},L_{0}$ en $wL+rK$ y, por lo tanto:
+$$
+c(w,r,q_{0})=w\cdot L_{0}(w,r,q_{0})+r\cdot K_{0}(w,r,q_{0})
+$$
