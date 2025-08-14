@@ -69,7 +69,8 @@ ambas representan el arco parabólico $y=x^{2}$ que va desde $(0,0) \to(2,4)$
 diremos que un punto $x_{0}$ está sobre $\Gamma$ si existe 
 $$
 t_{0} \in [a,b]\text{ tq: }\vec{x_{0}}=\vec{\gamma}(t_{0})
-$$ la colección de todos aquellos puntos se llama la **traza** de la curva $\Gamma$ y se denota $\text{tr}(\Gamma)$
+$$
+la colección de todos aquellos puntos se llama la **traza** de la curva $\Gamma$ y se denota $\text{tr}(\Gamma)$
 	la traza corresponde a los puntos que pertenecen a la curva, esto es efectivamente el grafo de la curva.
 ##### ej: 
 las parametrizaciones
@@ -190,7 +191,8 @@ $$
 Para una curva suave, en el punto $x_{0}=\vec{\gamma}(t_{0})$, se puede definir la recta tangente:
 $$
 x=x_{0}+s\;\vec{\gamma}(t_{0}),\;s \in \mathbb{R}^{n}
-$$* es la recta tangente común que pasa por un punto.
+$$
+* es la recta tangente común que pasa por un punto.
 y $\vec{\gamma}(t_{0})\neq_{0}$ es un vector tangente a la curva. Esto dice que $\Gamma$ puede representar una trayectoria recorrida por una partícula en el instante 't', mediante $\vec{\gamma}(t)$,y el vector $\vec{\gamma}'(t)$ representa la velocidad de la partícula en instante 't'.
 
 # Orientación o Sentido
@@ -276,7 +278,8 @@ $$
 y, finalmente, tomando $n\to \infty$, queda:
 $$
 \mathbb{W}=\int_{a}^{b} \vec{F}(\vec{\gamma (t}))·\vec{\gamma}'(t)dt
-$$ que corresponde a la **integral de línea**.
+$$
+que corresponde a la **integral de línea**.
 
 
 # 
@@ -295,3 +298,94 @@ $$
 $$
 	Ejemplo: si $\mathcal{f}$ es la densidad de masa de un alambre $\Gamma$, la integral representa la masa total de $\Gamma$
 
+
+# Clase 12/08
+
+## Integral de Línea
+Si se tiene una curva seccioalmente suave $S:\Gamma=\Gamma_{1}+\Gamma_{2}+\dots+\Gamma_{n}$ y un campo vectorial $\vec{F}$ definido y contino sobre $\text{tr}(\Gamma)$, entonces
+La integral de línea se define como:
+$$
+\int_{\Gamma}\vec{F} d \vec{x}=\sum_{i=1}^{n}\int_{\Gamma_{i}}\vec{F}d \vec{x}
+$$
+### teorema:
+Si $\Gamma$ es una cuerva suave seccionalmente y $\vec{F}$ un campo vectorial definido y continuo sobre $\text{tr}(\Gamma)$, entonces se cumple que:
+$$
+\int_{-\Gamma}\vec{F} d \vec{x} = -\int_{\Gamma}\vec{F} d \vec{x}
+$$
+* esto es similar a que $\int_{a}^{b}fdx=-\int_{b}^{a}fdx$
+
+*obs:* se puede ser menos riguroso en la notación de las integrales de línea,
+	por ejemplo, si $n=2$, usualmente se escribe:
+	$\int_{\Gamma}P\ dx+a\ dy$, o bien $\int_{\Gamma}P(x,y)dx+a(x,y)dy$ para referise a la integral de línea: $\int_{\Gamma}\vec{F} d \vec{x}$, con $\vec{F}=(P,Q)$
+	ya que: $\int_{\Gamma}\vec{F} d \vec{x}= \int_{P}(P,Q)\cdot(dx,dy)=\int_{P}Pdx+Qdy$
+
+### teorema: Linealidad de integral de línea
+Si $\Gamma$ es una curva seccionalmente suave, y $\vec{F}$ y $\vec{G}$ son campos vectoriales continuos sobre $\text{tr}(\Gamma)$. Si $a,b$ son constantes, entonces:
+$$
+\int_{\Gamma}(a\vec{F}+b\vec{G})d\vec{x} = a\int_{\Gamma}\vec{F}d\vec{x}+b\int_{\Gamma}\vec{G}d\vec{x}
+$$
+
+### Caso para curvas cerradas
+Dada $\vec{\alpha}:[a,b] \to \mathbb{R}^{n}$ una parametrización de $\Gamma$, la cual es una curva cerrada. Sean $a<c<b$, y $\vec{\beta}:[c,c+b-a]\to \mathbb{R}^{n}$ definida por:
+
+$$
+\vec{B}(t) = 
+\left\{
+	\begin{array}{ll}
+		\vec{\alpha}(t) &  , \text{si } c\leq t<b \\
+		\vec{\alpha}(t-b+a)  & , \text{si } b\leq t\leq c+b-a
+	\end{array}
+\right.
+$$
+así $x_{1}=\vec{\beta}(c)=\vec{\alpha}(c)$ es el punto inicial y final de $\Gamma$,
+*** ejercicio, ver que $\text{tr}(\Gamma)=\text{tr}(\Gamma_{1})$
+
+Si $\vec{F}$ es un campo vectoral continuamente definido en $\text{tr}(\Gamma)$ y $\Gamma$ es suave seccionalmente, entonces:
+$$
+\begin{align}
+\int_{\Gamma_{1}}\vec{F}d\vec{x} = & \int_{c}^{c+b-a}\vec{F}(\vec{\beta}(t))\vec{\beta}'(t)dt \\
+=\int_{c}^{b} \vec{F}(\vec{\alpha}(t)) \vec{\alpha}'(t)dt= & \int_{b}^{c+b-a} \vec{F}(\vec{\alpha}(t-b+a))\vec{\alpha}'(t-b+a)dx
+\end{align}
+$$
+y, haciendo el cambio de variable $\tau=t$ en la primera integral y $\tau=t-b+a$ en la segunda:
+$$
+\vdots
+$$
+por lo tanto ***para curvas cerradas, no importa el punto final e inicial que se elija, así, no es necesario especificar estos puntos.***
+
+* *observación 1*: La integral de línea sobre una curva cerrada se suele denotar por:
+$$
+\oint_{\Gamma}=\vec{F} d\vec{x}
+$$
+* *observación 2*: la que sí hace cambiar el valor de la integral a lo largo de una curva cerrada $\Gamma$, es cuando se cambia el **número de veces que se recorre la curva y cuando se cambia el sentido de recorrido.**
+
+## Integrales de línea independientes del camino (o curva)
+### Campos Vectoriales Conservativos
+Si se considera el ejemplo: dos curvas que unen los puntos $(0,0)$ con $(1,1)$ de la forma:
+$\Gamma_{1}$: La parte de la parábola $y=x^{2}$
+$\Gamma_{2}$: El segmento de recta
+![[Pasted image 20250814112231.png]]
+considerando el campo vectorial $\vec{F}(x,y)=(x+y^{2},x^{2})$ y calcular: $\int_{\Gamma_{1}}\vec{F}d\vec{x}$ y $\int_{\Gamma_{2}}\vec{F}d\vec{x}$
+si se tienen las parametrizaciones
+$$
+\vdots
+$$
+
+*def:* 
+Si $\vec{F}$ es un campo vectorial continua en un abierto $\Omega \subseteq \mathbb{R}^{n}$ y $\int_{\Gamma_{1}}\vec{F}d\vec{x}=\int_{\Gamma_{2}}\vec{F}d\vec{x}$ para todo par de curvas $\Gamma_{1},\Gamma_{2}\subseteq \Omega$ con el mismo punto inicial y final, 
+entonces se dice que:
+Las integrales de línea son independientes del camino en $\Omega$
+
+*obs:* Hay casos en que los anterior se denota por:
+$$
+\int_{x_{0}}^{x_{1}} \vec{F} d\vec{x}
+$$
+para cualquier curva seccionalmente desde $x_{0}$ a $x_{1}$
+
+### teorema
+Supongamos que $\vec{F}$ es un campo vectorial continuo en un conjunto abierto $\Omega$. Entonces,
+Las integrales de líneas son independientes del camino si se cumple que:
+$$
+\oint_{\Gamma}\vec{F}d\vec{x}=0
+$$
+para toda curva cerrada $\Gamma \subseteq \Omega$

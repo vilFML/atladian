@@ -284,5 +284,33 @@ $$
 ## Trabajo Electrostático
 A cada fuerza conservativa se le puede asociar una energía potencial, y el trabajo entre dos puntos se puede obtener de la forma $\mathbb{W}=-\Delta U$, si se utiliza el potencial eléctrostático, denotado como $U_{e}$, entonces el trabajo electrostático se puede obtener como:
 $$
-\mathbb{W}_{AB}=-\Delta U_{e}=U_{e}(A)-U_{e}(B)
+\mathbb{W}_{AB}=-\Delta U_{e}=U_{e}(A)-U_{e}(B) = q_{0}V_{B}\cdot q_{0}V_{A}
 $$
+
+## Energía Cinética
+El teorema de la energía cinética dice que la variación del trabajo desde un punto $A$  un punto $B$ es la variación de energía cinética $E_{c}$, osea:
+$$
+\begin{align}
+\mathbb{W}_{AB} =  & \Delta E_{c}=\frac{1}{2}mV_{b}^{2}-\frac{1}{2}mV_{A}^{2} \\
+\mathbb{W}_{AB} =  & -\Delta U_{e}=Ue(A)-U_{e}(B) \\
+ & =q_{0}(V_{A}-V_{B})  \\
+\implies & \frac{1}{2}m(V_{B}²-V_{A}²)=q_{0}(V_{A}-V_{B})
+\end{align}
+$$
+si se quiere acelerar la carga: $V_{B}²>V_{A}²$, y, como la masa es positiva $m>0$, entonces:
+$$ 
+\left\{
+	\begin{array}{ll}
+		\text{si } q_{0}>0 \implies V_{A}>V_{B} \\
+		\text{si } q_{0}<0 \implies V_{A}<V_{B}
+	\end{array}
+\right.
+$$
+
+la energía potencial obliga a la existencia de un campo eléctrico y una carga que lo genera.
+
+Cuando una carga se aceera por la diferencia de potencial de 1[V], ésta adquiere una energía de 1 eV (electronvolt):
+$$
+eV=1,6\cdot 10^{-19} CV =1,6\cdot 10^{-19} J
+$$
+es la unidad de energía preferida para describir fenómenos en escalas atómicas.

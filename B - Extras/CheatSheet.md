@@ -188,4 +188,14 @@ Table Cell A  |  Table Cell B
 
 <a href='https://ko-fi.com/C1C73CUZM' target='_blank'><img height='38' style='border:0px;height:36px;' src='https://storage.ko-fi.com/cdn/kofi3.png?v=6' border='0' alt='Buy Me a Coffee at ko-fi.com' /></a>
 
- 
+ ***
+ personal
+$$
+1_A(x) = 
+\left\{
+	\begin{array}{ll}
+		1\; , \text{si } x\in A \\
+		0\; , \text{si } x\notin A
+	\end{array}
+\right.
+$$
