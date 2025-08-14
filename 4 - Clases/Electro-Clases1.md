@@ -156,7 +156,8 @@ si una carga tiene más carga, la otra podría no tener la suficiente para recib
 Para el campo eléctrico, se vé que
 $$
 \vec{E}=\frac{1}{4\pi\varepsilon_{0}}·\frac{q}{r²}\hat{u}_{r}
-$$ el término $\frac{q}{4\pi\varepsilon_{0}}$ es constante y $\frac{1}{r^{2}}$ depende del radio, así si dos partículas de prueba se encuentran en puntos distintos del espacio, pero a la misma distancia de la carga inicial, sentirán la misma magnitud de campo eléctrico.
+$$ 
+el término $\frac{q}{4\pi\varepsilon_{0}}$ es constante y $\frac{1}{r^{2}}$ depende del radio, así si dos partículas de prueba se encuentran en puntos distintos del espacio, pero a la misma distancia de la carga inicial, sentirán la misma magnitud de campo eléctrico.
 
 ## múltiples cargas
 Si se tienen múltiples cargas $q_{i}, i\in \{ 1,\dots n \}$ con su propio campo eléctrico $\vec{E_{i}}$ cada una, el campo eléctrico total es la suma del campo eléctrico de todas las cargas del sistema:
@@ -186,3 +187,102 @@ $$
    $$dq=\lambda d \mathcal{l}$$
 ***Cuando se habla de campo electrostático, éste no cambia en el tiempo (no depende del tiempo)***
 El campo electrostático es conservativo, entonces para integrar sólo importa el punto inicial y final.
+
+
+***
+# 
+Clase 12/08
+## Trabajo y Potencial Eléctrico
+Si se tiene una carga de prueba $q_{0}$ moviéndose desde un punto A hasta un punto B, bajo la existencia de un campo eléctrico externo $\vec{E}$, hay un trabajo $\mathbb{W}$ ejercido por la fuerza de coulomb $\vec{F}_{c}$ ejercida sobre la carga de prueba, y, por lo tanto, se puede relacionar con el campo eléctrico mediante la expresión $\vec{F}_{c}=q_{0}\cdot  \vec{E}$
+Gráficamente, se tiene la figura:
+![[Pasted image 20250813194828.png]]
+
+Si el trabajo que ejerce una fuerza cualquiera se define como la fuerza multiplicada por el desplazamiento, es posible *encontrar el trabajo realizado por la fuerza de coulomb* ejercida sobre la carga de prueba. De la forma:
+$$
+\begin{align}
+ & d\mathbb{W}=\vec{F} d \vec{s} \\
+\text{usando que }\vec{F}=\pm q_{0} \vec{E}\implies   & \;d\mathbb{W}=q_{0} \vec{E} \cdot d\vec{S} \\
+\text{usando el producto punto} \implies  & d\mathbb{W} = q_{0}E\ ds\ \cos \theta
+\end{align}
+$$
+donde $\theta$ es el ángulo entre el campo eléctrico $\vec{E}$ y el desplazamiento infinitesimal $d \vec{s}$. Luego, para obtener la suma de todos los fragmentos de desplazamiento infinitesimal, se realiza una integración desde el punto $A$ hasta el punto $B$ a través del camino $\mathcal{C}_{1}$
+$$
+\begin{align}
+\mathbb{W}=\int_{\mathcal{C}_{1}}q_{0}\vec{E}\ d \vec{s}  \\
+\iff \mathbb{W} = q_{0} \int_{\mathcal{C_{1}}} \vec{E} d \vec{s}
+\end{align}
+$$
+así se tiene ***la integral de línea*** del campo $\vec{E}$ por el camino $\mathcal{C}_{1}$.
+
+Si se toma un camino distinto $\mathcal{C}_{2}$ para ir desde los mismos puntos $A$ hasta el punto $B$, en general no se tiene el mismo trabajo.
+
+De la integral de línea del campo $\vec{E}$, osea:
+$$
+\mathbb{W}=q_{0}\int_{\mathcal{C}_{1}}\vec{E}\ d \vec{s}
+$$
+aislando la integral de línea:
+$$
+\int_{\mathcal{C}_{1}} \vec{E}\ d \vec{s} = \frac{\mathbb{W}}{q_{0}}
+$$
+donde el término $\frac{\mathbb{W}}{q_{0}}$ corresponde a la **tensión eléctrica entre los puntos $A$ y $B$ a través del camino $\mathcal{C}_{1}$**
+Se define la tensión eléctrica entre dos puntos $A$ y $B$ a través del camino $\mathcal{C}_{1}$ de la forma:
+$$
+T(A \to B \text{ en }\mathcal{C}_{1}) = \int_{\mathcal{C}_{1}}\vec{E}\ d \vec{s}
+$$
+
+Al igual que para el trabajo, en general tomar otro camino $C_{2}$ entrega una distinta tensión eléctrica. 
+
+El sentido en el que se recorre un camino $\mathcal{C}_{i}$ es relevante. Desde ello, es posible expresar el trabajo correspondiente al camino $\mathcal{C}_{2}$ expresándolo como el opuesto de la integral de línea, a través del camino $-\mathcal{C}_{2}$, osea:
+$$
+\mathbb{W}_{2}=-q_{0}\int_{-\mathcal{C}_{2}}\vec{E}\ d \vec{s}
+$$
+aparte, si esto se suma con el trabajo asociado al camino 1 $\mathcal{C}_{1}$, $\mathbb{W}_{1}=\int_{\mathcal{C}_{1}}\vec{E}\ d \vec{s}$, esto es:
+$$
+\mathbb{W}_{1}+\mathbb{W}_{2}=q_{0}\int_{\mathcal{C}_{1}}\vec{E}\ d \vec{s}-q_{0}\int_{-\mathcal{C}_{2}}\vec{E}\ d \vec{s}
+$$
+factorizando por $q_{0}$, queda la expresión 
+$$
+q_{0}\cdot \varepsilon
+$$
+donde
+$$
+\varepsilon = \oint_{\mathcal{C}}\vec{E}\ d \vec{s}
+$$
+se conoce como **fuerza electromotriz (f.e.m.)**, la cual no es una fuerza pues no tiene dimensiones de fuerza.
+
+### Fuerzas electrostática conservativa
+Para las fuerzas conservativas se cumple que el trabajo realizado por ellas es independiente del camino y sólo se considera la posición inicial y final, siendo el trabajo igual a través de todos los caminos: $\mathbb{W}(\mathcal{C}_{1})=\mathbb{W}(\mathcal{C}_{2})=\dots=\mathbb{W}(\mathcal{C}_{n})$
+entonces, se puede ver que, como el trabajo desde el punto inicial $A$ hasta el punto final $B$ es el opuesto al trabajo realizado desde $B$ hasta $A$, se concluye que ***el trabajo realizado en camino cerrado es nulo***
+$$
+\text{Campo electrostatico conservativo }\iff \varepsilon=0
+$$
+
+Si bien, no todas las fuerzas eléctricas son conservaticas, esto sí se cumple para la fuerza electrostática, que es generado por un campo electrostático. Entonces se dice que un campo electrostático es conservativo, entonces el trabajo (equivalente a la integral de línea) del campo electrostático se puede expresar como una diferencia de alguna función entre los puntos:
+$$
+\int_{A}^{B} \vec{E}\ d \vec{s} = f(B)-f(A)
+$$
+
+## Potencial Electrostático
+desde la expresión:
+$$
+\int_{A}^{B} \vec{E}\ d \vec{s} = f(B)-f(A)
+$$
+de funciones $f$ desconocidas, se define el **la diferencia de potencial entre el punto A y B**. del campo $\vec{E}$, expresado como:
+$$
+V_{A}-V_{B}=\int_{A}^{B}\vec{E}\ d \vec{s}
+$$
+
+Así, se puede expresar el trabajo entre los puntos $A$ y $B$ con la diferencia de potencial, reemplazando $\int_{A}^{B}\vec{E}\ d \vec{s}=V_{A}-V_{B}$ en la ecuación del trabajo $\mathbb{W}=q_{0}\int_{\mathcal{C}_{1}}\vec{E}\ d \vec{s}$, quedando:
+$$
+\begin{align}
+ & \mathbb{W}_{AB}=q_{0}(V_{A}-V_{B}) \\
+\text{expresando diferencia con delta: } & \mathbb{W}_{AB}=-q_{0}\Delta V 
+
+\end{align}
+$$
+
+## Trabajo Electrostático
+A cada fuerza conservativa se le puede asociar una energía potencial, y el trabajo entre dos puntos se puede obtener de la forma $\mathbb{W}=-\Delta U$, si se utiliza el potencial eléctrostático, denotado como $U_{e}$, entonces el trabajo electrostático se puede obtener como:
+$$
+\mathbb{W}_{AB}=-\Delta U_{e}=U_{e}(A)-U_{e}(B)
+$$

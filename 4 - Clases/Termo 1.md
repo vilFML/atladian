@@ -219,5 +219,7 @@ $$
 	1. Clausius: dice que la entropía es una magnitud que determina la capacidad transformadora de un sistema.
 	2. Landauer: Borrar memoria toma energía 'útil' y la disipa en forma de **calor**.
 
+# 
+Clase 11/08
 
-
+Se puede obtener la entropía absoluta de un sistema, pero se va a trabajar con la variación de ella $\Delta S$
