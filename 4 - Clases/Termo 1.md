@@ -52,13 +52,9 @@ Se puede ver que la función logaritmo natural cumple estos puntos.
 Si se busca matemáticamente la función:
 $$
 \begin{align}
-
 f(xy)f(x)+f(y)\;  /\frac{\partial}{\partial x}\\ \\
-
 f'(xy)y = f'(x)\; / \frac{\partial}{\partial y} \\ \\
-
 f''(xy)xy+f'(xy)=0 \\ \\
-
 \text{si }w=xy, \\ \\
 f''(w)w+f'(w)=0 \\ \\
 (f'w)'=0 \implies f'w = \text{cte} \iff f'=\text{cte} \\ \\
@@ -67,6 +63,7 @@ f''(w)w+f'(w)=0 \\ \\
 \therefore f(w)=-K\ln (w), K>0
 \end{align}
 $$
+
 ***
 Se usa el promedio de la información del error. Así, info faltante prom $\bar{f} = <f>$, se usa función $I(\cdot)$
 $$
@@ -222,4 +219,31 @@ $$
 # 
 Clase 11/08
 
-Se puede obtener la entropía absoluta de un sistema, pero se va a trabajar con la variación de ella $\Delta S$
+Se puede obtener la entropía absoluta de un sistema, pero se va a trabajar con la variación de ella $\Delta S$, osea, para un sistema, se calcula la diferencia de configuraciones final y la inicial.
+Por ejemplo, para la expansión de un gas contenido en un solo contenedor a dos:
+![[Pasted image 20250815105607.png]]
+si se propone que, para 1 molécula, $\Omega_{1} \propto V$, así:
+$$
+\begin{align}
+\Omega_{1}=k\cdot V \\
+\Omega_{2}=k\cdot V \\
+\vdots \\
+\Omega_{n}=\Omega
+\end{align}
+$$
+así, iniclal $\Omega_{i}=(k\cdot V)^{n}$ y final $\Omega_{f}=(k\cdot V)^{n}$, entonces:
+$$
+\begin{align}
+ & \Delta S=k\cdot \ln(\Omega_{f})-k\cdot \ln(\Omega_{i})=k\cdot \ln\left( \frac{\Omega_{f}}{\Omega_{i}} \right) \\
+\iff & \Delta S=k\cdot \ln\left( \frac{V_{f}}{V_{i}} \right)^{n}=nk\cdot \ln\left( \frac{V_{f}}{V_{i}} \right) \\
+\text{si suponemos que: }V_{f}=,N=N_{A}: &  \Delta S=N_{A}k\ln(2) \\
+\text{si } k=\frac{R}{N_{A}}\implies & \Delta S_{mol}=R\ln (2) \\
+ & \Delta S_{mol}=5,8 \left[ \frac{J}{K\cdot mol} \right]
+\end{align}
+$$
+
+La entropía se conoce coloquialmente como el ´desorden' de un sistema, pero es más formal decir que hay más entropía en un sistema cuando la cantidad de configuraciones posibles es muy alta para el sistema.
+
+## Sistema
+***def: Sistema***
+Es una región acotada (notación $\partial V$ es el contorno de $V$) del espacio bajo estudio.
