@@ -314,3 +314,34 @@ $$
 eV=1,6\cdot 10^{-19} CV =1,6\cdot 10^{-19} J
 $$
 es la unidad de energía preferida para describir fenómenos en escalas atómicas.
+
+***
+# Clase 14/08
+Se tiene que el campo eléctricostático es conservativo, entonces se le puede asociar un potencial:
+$$
+\mathbb{W}_{AB}=-\Delta U_{e} =q_{0}(V_{A}-V_{B})=-q_{0}\Delta V
+$$
+entonces, se tiene que la diferencia del potencial eléctrico:
+$$
+\Delta U_{e}=q_{0}\Delta V
+$$
+de ello, se vé que no existen cargas fijas. Ellas siempre están en movimiento.
+
+Tomando que 
+$$
+\mathbb{W}_{AB}=-q_{0}\Delta V =\frac{q_{0}q}{4\pi\varepsilon_{0}}\left( \frac{1}{r_{A}}-\frac{1}{r_{B}} \right) =U_{e}(A)-U_{e}(B)
+$$
+considerando que $q_{0}q>0$ y $U_{e}(A)>0,\ U_{e}(B)>0\ \implies\ U_{e}(A)-U_{e}(B)>0$ entonces:
+$$
+\implies \frac{1}{r_{A}}-\frac{1}{r_{B}}>0\iff\frac{1}{r_{A}}>\frac{1}{r_{B}}
+$$
+si $q_{0}q<0$ entonces:
+$$
+\implies U_{e}(A)<0,U_{e}(B)<0
+$$
+y como
+$$
+\frac{q_{0}q}{4\pi\varepsilon_{0}}<0\implies \frac{1}{r_{A}}-\frac{1}{r_{B}}>0\iff\frac{1}{r_{A}}>\frac{1}{r_{B}}
+$$
+
+## Campo Eléctrico como Gradiente del Potencial
