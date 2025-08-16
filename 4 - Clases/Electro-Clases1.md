@@ -129,7 +129,7 @@ $$
 \end{align}
 $$
 
-por la condición 1 de tangencialidad de las líneas de fuerza, y utilizando la derivada en forma de diferencial:
+por la condición 1 de tangencialidad de las líneseas de fuerza, y utilizando la derivada en forma de diferencial:
 $$
 dr=dx \hat{u}_{x}
 $$
@@ -345,3 +345,55 @@ $$
 $$
 
 ## Campo Eléctrico como Gradiente del Potencial
+El campo electrostático es conservativo, entonces tiene un potencial eléctrico asociado y se puede obtener la diferencia de potencial entre el punto final e inicial. Existe una relación que permite calcular el campo electrostático conociendo el potencial.
+Para un desplazamiento infinitesimal, que es el desplazamiento infinitesimal en cada coordenada: $d\vec{r}=dx\vec{u}_{x}+dy\vec{u}_{y}+dz\vec{u}_{z}$ que une dos puntos inicial $A(x,y,z)$ y final $B(x+dx,y+dy,z+dz)$, en donde cada punto tiene su potencial asociado: $V_{A}(x,y,z);V_{B}(x+dx,y+dy,z+dz)$, entonces la variación inifinitesimal de potencial es:
+$$
+\begin{align}
+ & dV=V_{B}(x+dx,y+dy,z+dz)-V_{A}(x,y,z) \\
+ & dV=-\vec{E}d\vec{r} \\
+ & dV=-E_{x}dx-E_{y}dy-E_{z}dz \\
+\end{align}
+$$
+Y, por el teorema del diferencial total, osea:
+$$
+\begin{align}
+ & f(x+dx)=f(x)+\frac{\partial}{\partial x}fdx \\
+ & f(x+dx)-f(x)=\frac{df}{dx}\cdot dx=df
+\end{align}
+$$
+entonces:
+$$
+\begin{align}
+ & dV=V_{B}(x+dx,y+dy,z+dz)-V_{A}(x,y,z) \\
+\iff & dV=\frac{\partial}{\partial x}Vdx+\frac{\partial}{\partial y}Vdy+\frac{\partial}{\partial z}Vdz 
+\end{align}
+$$
+Así, se tienen las relaciones por coordenadas del campo eléctrico con el potencial electrostático:
+$$
+E_{x}=-\frac{\partial}{\partial x}V,E_{y}=-\frac{\partial}{\partial y}V,E_{z}=-\frac{\partial}{\partial z}V
+$$
+
+### Relación campo electrostático y potencial
+La relación por componentes anterior se puede resumir con el operador $\nabla$ de la forma:
+$$
+\vec{E}=-\nabla V
+$$
+a través del cálculo de las derivadas parciales del potencial se puede tener cada componente del campo eléctrico.
+
+### Teorema del Gradiente en potencial
+Desde que el diferencial del potencial $dV=-\vec{E}d\vec{s}$, si se tiene que $\vec{E}=-\nabla V$, entonces:
+$$
+dV=\nabla Vd\vec{s}
+$$
+y también, si la diferencia de potencial se define como:
+$$
+\begin{align}
+ & V_{A}-V_{B}=\int_{A}^{B}\vec{E}\ d \vec{s} \\
+\text{usando }\vec{E} \text{ como }-\nabla V \\
+ \implies & V_{A}-V_{B}=-\int_{A}^{B}\nabla V\ d \vec{s} \\
+\text{ o bien }\iff  & V_{B}-V_{A}=\int_{B}^{A} \nabla V\ d\vec{s}
+\end{align}
+$$
+
+Finalmente, es más sencillo calcular $\vec{E}$ con $-\nabla V$ ya que se requiere calcular una sola integral para obtener V y después aplicar el operador $-\nabla$ al potencial para obtener el campo eléctrico (Antes se requería integrar 3 veces). 
+
