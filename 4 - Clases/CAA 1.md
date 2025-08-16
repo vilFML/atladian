@@ -157,7 +157,7 @@ $$
 \Gamma=\Gamma_{1}+\Gamma_{2}
 $$
 	*obs:* una curva $\Gamma$ se dice seccionalmente suave si $\Gamma=\Gamma_{1}+\Gamma_{2}+\dots+\Gamma_{n}$, donde $\Gamma_{i}$ son suaves.
-		osea una curva es seccionalmente suave si se puede escribir como unión de curvas suaves.
+		o sea una curva es seccionalmente suave si se puede escribir como unión de curvas suaves.
 
 ***
 # Clase 2, 07/08
@@ -223,7 +223,7 @@ L(\Gamma)=\text{sup}\{ L_{p}(\Gamma),\;P\text{ es una partición de }[a,b] \}
 $$
 
 para tener la longitud $L_{P}(\Gamma)$ sin calcular supremo:
-si se multiplica $L_{p}(\Gamma)$ por un 1 conveniente $=\frac{||t_{i}-t_{i-1}||}{||t_{i}-t_{i-1}||}$, osea:
+si se multiplica $L_{p}(\Gamma)$ por un 1 conveniente $=\frac{||t_{i}-t_{i-1}||}{||t_{i}-t_{i-1}||}$, o sea:
 $$
 L_{p}(\Gamma)=\sum_{i=1}^{n}\lvert\lvert \vec{\gamma(t_{i})}-\vec{\gamma}(t_{{i-1}}) \rvert\rvert · \frac{||t_{i}-t_{i-1}||}{||t_{i}-t_{i-1}||}
 $$
@@ -389,3 +389,108 @@ $$
 \oint_{\Gamma}\vec{F}d\vec{x}=0
 $$
 para toda curva cerrada $\Gamma \subseteq \Omega$
+
+# clase 14/08
+## Campo Escalar Conservativo
+
+*def:* **Campo Vectorial Conservativo**
+Dado $\vec{F}:\Omega \subseteq \mathbb{R}^{n}\to \mathbb{R}^{n}$ se dice conservativo si existe un campo escalar diferenciable $f:\Omega \subseteq \mathbb{R}^{n}\to \mathbb{R}$ tal que:
+$$
+\forall x \in \Omega,\;\vec{F}(x)=\nabla f(x)
+$$
+en este caso, a $f$ se le llama **potencial** de $\vec{F}$
+
+## Conjunto Conexo
+
+*def:* **Conjunto Conexo**
+Dado conjunto $\Omega \subseteq \mathbb{R}^{n}$ abierto,
+$\Omega$ es conexo si todos los puntos de $\Omega$ pueden unirse mediante una curva seccionalmente suave en $\Omega$.
+Gráficamente:
+![[Pasted image 20250815192136.png]]
+
+### teorema
+Si se tiene un campo vectorial $\vec{F}$ continuo en $\Omega$ y $\Omega$ es un conjunto conexo, entonces:
+Las integrales de línea son independientes del camino $\iff$ $\vec{F}$ es conservativo.
+
+* *observación 1:* si $\vec{F}=\nabla F$ se cumple que cualquier curva seccionalmente suave, con punto inicial $x_{0}$ y final $x_{1}$:
+  $$
+  \int_{\Gamma}\vec{F}d\vec{x}=f(x_{1})-f(x_{0})
+  $$
+  O sea, se tiene un campo vectorial conservativo, no es necesario saber la parametrización, sino que sólo importa el valor del potencial en los extremos.
+* *Observación 2:* Si se tiene un campo vectorial $\vec{F}:\Omega \subseteq \mathbb{R}^{n}\to \mathbb{R}^{n}$ que es continuo y $\Omega$ es conexo, entonces son equivalentes:
+  1. Las integrales de línea son independientes del camino.
+  2. $\oint_{\Gamma}\vec{F}d\vec{x}=0$ con $\Gamma$ seccionalmente suave.
+  3. $\vec{F}$ es conservativo.
+
+### propiedades
+Para un conjunto $\Omega \subseteq \mathbb{R}^{n}$ abierto y un campo vectorial $\vec{F}:\Omega \subseteq \mathbb{R}^{n}\to \mathbb{R}^{n}$ de clase $\mathcal{C}^{1}$, si $\vec{F}$ es conservativo, entonces:
+Su matriz derivada $\vec{F}_{n\times n}'$ es simétrica, es decir:
+$$
+\forall x \in \Omega,\forall i,j \in \{ 1,\dots,n \}:\frac{\partial}{\partial x_{j}}F_{i}(x)=\frac{\partial}{\partial x_{i}}F_{j}(x)
+$$
+* *observación:* Si $n=3,\; \vec{F}(x,y,z)=(P(x,y,z),Q(x,y,z),R(x,y,z))$, el resultado anterior se reduce a:
+  $$
+  \frac{\partial}{\partial y}P=\frac{\partial}{\partial x}Q,\;\frac{\partial}{\partial z}Q=\frac{\partial}{\partial y}R,\;\frac{\partial}{\partial x}R=\frac{\partial}{\partial z}P
+  $$
+para este caso existe una forma equivalente al teorema anterior, en términos del rotacional de $\vec{F}$
+
+## Rotacional o Rotor
+*def:* **Rotacional de un campo vectorial**
+Dado un campo vectorial $\vec{F}=(P,Q,R)$ definido en un conjunto abierto conexo $\Omega \subseteq \mathbb{R}^{3}$, se define el *rotacional o rotor* de $\vec{F}$, denotado como $\text{rot}(\vec{F})$, como un campo vectorial $\text{rot}(\vec{F}):\Omega \subseteq \mathbb{R}^{3}\to \mathbb{R}^{3}$, de la forma:
+$$
+\text{rot}(\vec{F})=\left( \frac{\partial}{\partial y}R-\frac{\partial}{\partial z}Q,\;\frac{\partial}{\partial z}P-\frac{\partial}{\partial x}R,\;\frac{\partial}{\partial x}Q-\frac{\partial}{\partial y}P \right)
+$$
+es más fácil de recordar si se escribe de la forma:
+$$
+\text{rot}(\vec{F})=\det
+\left( \begin{matrix}
+\hat{\imath} & \hat{\jmath} & \hat{k} \\
+\frac{\partial}{\partial x} & \frac{\partial}{\partial y} & \frac{\partial}{\partial z} \\
+P & Q & R
+\end{matrix} \right)
+=\nabla \vec{\times}F
+$$
+Luego, el teorema anterior se reduce a:
+$$
+\begin{align}
+\text{rot}(\vec{F})=\text{rot}(\nabla F)=(0,0,0) \\
+\text{rot}(\nabla F)=\vec{0}
+\end{align}
+$$
+	Ejemplo: Si se considera $\vec{F}:\mathbb{R}^{2}\setminus \{(0,0)\}\to \mathbb{R}^{2}$
+	$$
+	\vec{F}(x,y)=\left( -\frac{y}{x^{2}+y^{2}},\frac{x}{x^{2}+y^{2}} \right)
+	$$
+	es de clase $\mathcal{C}^{1}$ y $\vec{F}'$ es simpetrica.
+	$\vdots$
+
+La condición para $\vec{F}'$ es suficiente en cierta clase de dominio que incluyen, por ejemplo: $\{ (x,y)|x\geq 0 \}$ pero no a $\mathbb{R}^{2}\setminus \{ (0,0) \}$
+
+## Conjunto Estrellado
+*def:* **Conjunto Estrellado**
+Dado un conjunto $\Omega \subseteq \mathbb{R}^{n}$ se dice estrellado si $\exists x_{0}\in \Omega, \forall x \in \Omega$, el segmento:
+$$
+\left[ x_{0},x \right] : \{ x_{0}+t(x-x_{0}) |t\in \left[ 0,1 \right]  \}
+$$
+
+* *observación:* Intuitivamente, un dominio estrellado no tiene 'agujeros'. Graficamente:
+  ![[Pasted image 20250815201217.png]]
+
+### teorema: Lema de Poincaré
+Dado un conjunto $\Omega \subseteq \mathbb{R}^{n}$ abierto y estrellado y sea un campo vectorial $\vec{F}:\Omega\to \mathbb{R}^{n}$ de clase $\mathcal{C}^{1}$ tal que $\forall x \in \Omega,\vec{F'(x)}$ es simétrico, entonces $\vec{F}$ es conservativo.
+
+Otra forma de definir conjuntos sin agujeros en $\mathbb{R}^{2}$ es considerar que el conjunto $\Omega$ es **simplemente conexo**. Para ello, se considera una curva de joran $\Gamma \in \mathbb{R}^{2}$ divide a $\mathbb{R}^{2}\setminus \Gamma$ en dos dominios con frontera común $\Gamma$, la región interior a $\Gamma$ y la región exterior a $\Gamma$. Gráficamente:
+![[Pasted image 20250815201806.png]]
+
+## Simplemente Conexo
+*def:* **Simplemente Conexo**
+Un conjunto $\Omega \subseteq \mathbb{R}^{2}$ abierto y conexo, se llama *simplemente conexo* si,
+para cada curva de jordan $\Gamma \in \Omega$, la región interior a $\Gamma$ también está contenida en el conjunto $\Omega$. Gráficamente:
+![[Pasted image 20250815201955.png]]
+
+### teorema
+Dado un conjunto $\Omega \subseteq \mathbb{R}^{n}$ simplemente conexo y $\vec{F}:\Omega\to \mathbb{R}^{n}$ es de clase $\mathcal{C}^{1}$ tal que:
+$$
+\forall x \in \Omega,\forall i,j \in \{ 1,\dots,n \}:\frac{\partial}{\partial x_{j}}F_{i}(x)=\frac{\partial}{\partial x_{i}}F_{j}(x)
+$$
+entonces $\vec{F}$ es conservativo.

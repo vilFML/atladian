@@ -246,4 +246,70 @@ La entropía se conoce coloquialmente como el ´desorden' de un sistema, pero es
 
 ## Sistema
 ***def: Sistema***
-Es una región acotada (notación $\partial V$ es el contorno de $V$) del espacio bajo estudio.
+Es una región acotada del espacio bajo estudio.
+- Se denota con $\partial V$ como el contorno del sistema $V$.
+
+## Medio
+***def: Medio***
+Es el conjunto de todos los otros sistemas que interactúan con un sistema determinado.
+
+## Universo Local
+***def: Universo local***
+El universo local es la unión del sistema con el medio. Por construcción, es un sistema.
+
+## Estado
+Es la condición o caracterización se un sistema mediante las medidas $E,P,N,M,T,S$.
+- Si el sistema no está en equilibrio, los números son dependientes del tiempo.
+
+## Proceso
+Es la transición de un sistema desde un estado a otro (inicial a final), mediante estados intermedios.
+
+![[Pasted image 20250815183503.png]]
+
+Dados dos estados, hay un número indeterminado de procesos diferentes que conectan el mismo estado inicial con el mismo final.
+La fuerza y torque no son variables de estado, sino que se consideran como flujos de momento y momento angular, respectivamente.
+	Ejemplo:
+	micro: masa, posición, momento lineal
+	macro: presión, energía, masa
+
+## Sistema Aislado
+Es un sistema que cuya interacción con otros sistemas es menor de lo que se puede medir.
+- El universo local es un sistema aislado.
+
+## Ligadura
+Es una restricción que le impide evolucionar a un sistema.
+	Ejemplo: Evitar la expansión libre de un gas con una llave entremedio de dos contenedores.
+- Relajar una ligadura desencadena un proceso.
+- Casi todo proceso puede ser interpretado como **la relajación de una ligadura.**
+- Cuando se relaja una restricción **se están agregando posibles configuraciones del sistema.**
+Así, al relajar la restricción:
+$$
+\Omega_{f}=\Omega_{i}+\text{Config. adicionales}
+$$
+de donde
+$$
+\begin{align}
+\Omega_{f}\geq \Omega_{i} \\
+\therefore S_{f}\geq S_{i}
+\end{align}
+$$
+La entropía $S$ puede ser igual ($\Delta S=0$) si el proceso desencadenado es trivial, osea que no hay efecto.
+## II° Ley de Termodinámica
+**AXIOMA:** ***En un sistema aislado, la entropía nunca decrece***, o bien, la entropía del universo local nunca decrece.
+- No es correcto decir que la entropía siempre crece, sino que la entropía de un sistema no decrece.
+- No es correcto decir que la entropía nunca puede disminir, sino que la entropía *de un sistema aislado* no disminuye. Pero la entropía de un sistema que interactúa con el medio sí puede disminuir.
+	Ejemplo: comprimir un gas con un émbolo, o los seres vivos.
+
+## Reversibilidad
+En un sistema aislado, un proceso es reversible es reversible si el sistema puede retornar por sí mismo al estado anterior.
+- Sólo tiene sentido **macroscópico**, los processos microscópicos son inherentemente reversibles.
+	Ejemplo: La expansión de una partícula gaseosa desde un contenedor a otro, sí es posible que ésta vuelva a su contenedor original.
+
+## Irreversibilidad y probabilidad de retorno
+Para tener probabilidad de retorno: 
+$$
+\frac{\text{casos favorables}}{\text{casos posibles}}
+$$
+$$
+=\frac{\Omega_{1}}{\Omega_{2}}\leq 1 \text{ siempre y, en general } \ll 1
+$$
