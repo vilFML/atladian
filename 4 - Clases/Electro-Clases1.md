@@ -397,3 +397,13 @@ $$
 
 Finalmente, es más sencillo calcular $\vec{E}$ con $-\nabla V$ ya que se requiere calcular una sola integral para obtener V y después aplicar el operador $-\nabla$ al potencial para obtener el campo eléctrico (Antes se requería integrar 3 veces). 
 
+## Superficies Equipotenciales
+Anteriormente se introdujeron las líneas de fuerzas para representar visualmente el campo eléctrico. Y para visalizar el potencial, se pueden utilizar entidades similares: Las Superficies Equipotenciales.
+*def:* **Superficies Equipotenciales**
+Una superficie tridimensional en cuyos puntos el potencial toma el mismo valor. El potencial $V$ en un punto en el espacio $(x,y,z)$ es constante:
+$$
+V(x,y,z)=\text{cte}
+$$
+al variar el valor de la constante, se obtiene una familia de puntos, que corresponden a la superficie equipotencial.
+- Las superficies equipotenciales nunca se cruzan: En cada punto pasa solamente una superficie equipotencial.
+
