@@ -2,5 +2,6 @@
   "accentColor": "#fd3f3f",
   "cssTheme": "Tokyo Night",
   "textFontFamily": "Futura",
-  "monospaceFontFamily": "Cascadia Code"
+  "monospaceFontFamily": "Cascadia Code",
+  "showRibbon": true
 }

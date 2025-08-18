@@ -209,7 +209,7 @@ equivalentemente:
 $$
 \frac{PMgL(K_{0},L_{0})}{PMgK(K_{0},L_{0})}=\frac{w}{r},\text{ y }f(K_{0},L_{0})=q_{0}
 $$
-Entonces,***en el óptimo, la TST es igual a la razón entre los precios de insumos.*** 
+Entonces,***en el óptimo, la [[#Tasa Marginal de Sustitución de Capital por Trabajo (TST)|TST]] es igual a la razón entre los precios de insumos.*** 
 
 Si se resuelve el sistema de ecuaciones se obtiene $K_{0}(w,r,q_{0})$ y $L_{0}(w,r,q_{0})$, que se denominan **demandas condicionales por factores**.
 Entonces, la cantidad de trabajadores contratados depende del salario, del costo del capital y la tecnología.

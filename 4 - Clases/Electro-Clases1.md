@@ -374,7 +374,7 @@ E_{x}=-\frac{\partial}{\partial x}V,E_{y}=-\frac{\partial}{\partial y}V,E_{z}=-\
 $$
 
 ### Relación campo electrostático y potencial
-La relación por componentes anterior se puede resumir con el operador $\nabla$ de la forma:
+La relación de que la derivada parcial por componentes del potencial entrega cada componente del campo eléctrico, de la forma: $E_{x}=-\frac{\partial}{\partial x}V,E_{y}=-\frac{\partial}{\partial y}V,E_{z}=-\frac{\partial}{\partial z}V$, se puede resumir con el operador $\nabla$ como:
 $$
 \vec{E}=-\nabla V
 $$
@@ -405,5 +405,24 @@ $$
 V(x,y,z)=\text{cte}
 $$
 al variar el valor de la constante, se obtiene una familia de puntos, que corresponden a la superficie equipotencial.
+Gráficamente:
+![[Pasted image 20250816112536.png]]
 - Las superficies equipotenciales nunca se cruzan: En cada punto pasa solamente una superficie equipotencial.
 
+Si $dV=\nabla V\ d\vec{s}$, por la  [[#Relación campo electrostático y potencial|relación del campo eléctrico y del potencial]] ($\vec{E}=-\nabla V$), entonces:
+$$
+dV=-\vec{E}\cdot d\vec{s}
+$$
+de esto se puede ver que para un movimiento $d\vec{s}$ ortogonal al campo eléctrico (y a lo largo de la superficie equipotencial), el producto punto entre $\vec{E}\cdot d\vec{s}$ es nulo. Y por ello, la variación del potencial $dV$ es nulo, correspondiendo así a una superficie equipotencial.
+
+Para un desplazamiento $d \vec{\eta}$ paralelo al campo eléctrico y ortogonal a la superficie equipotencial, orientado en el sentido creciente del potencial, se tienen entonces dos superficies $V_{1},\ V_{2}=V_{1}+dV$:
+$$
+\begin{align}
+ & V_{1}-V_{2}=-dV \\
+\text{si }dV=-\vec{E}\ d\vec{s}\iff & -dV=\vec{E}\ d\vec{s} \\
+\implies & -dV=-\nabla V\ d \vec{\eta} \\
+ \iff & dV=\nabla V\ d \vec{\eta}
+\end{align}
+$$
+definiendo así $dV=|\Delta V|\  d \vec{\eta} \iff|\Delta V|=\frac{dV}{d \vec{\eta}}$ esto indica que *el módulo del gradiente es igual a la derivada del potencial en la dirección ortogonal a la superficie equipotencial, indicando el sentido de crecimiento equipotencial.*
+- Las superficies equipotenciales son ortogonales a las líneas de fuerza.
