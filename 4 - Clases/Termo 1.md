@@ -313,3 +313,37 @@ $$
 $$
 =\frac{\Omega_{1}}{\Omega_{2}}\leq 1 \text{ siempre y, en general } \ll 1
 $$
+***
+Clase 18/08
+# Segunda Ley: Sistema No Aislado
+
+En el caso de un sistema no aislado, este interactúa con el medio. Y juntos conforman el universo local, el cual corresponde a un sistema aislado, gráficamente:
+![[Pasted image 20250819111513.png]]
+si el universo es un sistema aislado, se le aplica la segunda ley de la termodinámica: La entropía no decrece,
+$$
+S_{U_{f}}\geq S_{U_{0}}
+$$
+además, por la razón de ser sistema aislado cumple que:
+$$
+\begin{align}
+ & S_{u_{i}}=S_{sist_{i}}+S_{medio_{i}} \\
+\text{si } & S_{U_{f}}\geq S_{U_{0}}: \\
+\implies & S_{sist_{f}}+S_{medio_{f}}\geq S_{sist_{0}}+S_{medio_{0}} 
+\end{align}
+$$
+el sistema no es aislado ya que interactúa con el medio, esto provoca que el sistema puede ir de un estado de mayor entropía a uno de menor entropía, osea:
+$$
+S_{sist_{f}}\leq S_{sist_{0}}\iff S_{sist_{f}}=S_{sist_{0}} - \Delta S
+$$
+entonces se tiene que:
+$$
+\begin{align}
+\text{si } & S_{sist_{f}}+S_{medio_{f}}\geq S_{sist_{0}}+S_{medio_{0}} \\
+\iff & S_{medio_{f}} \geq S_{sist_{0}}+S_{medio_{0}}-S_{sist_{f}} \\
+\text{si } S_{sist_{f}}=S_{sist_{0}}-\Delta S: \\
+\implies & S_{medio_{f}}=S_{sist_{0}}+S_{medio_{0}}-(S_{sist_{0}}-\Delta S) \\
+\iff & S_{medio_{f}}=S_{sist_{0}}+S_{medio_{0}}-S_{sist_{0}}+\Delta S \\
+\iff & S_{medio_{f}}=S_{medio_{0}}+\Delta S
+\end{align}
+$$
+Esto se puede interpretar como que, si el sistema disminuye su entropía, entonces la entropía del medio aumentará
