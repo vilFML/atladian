@@ -426,3 +426,74 @@ $$
 $$
 definiendo así $dV=|\Delta V|\  d \vec{\eta} \iff|\Delta V|=\frac{dV}{d \vec{\eta}}$ esto indica que *el módulo del gradiente es igual a la derivada del potencial en la dirección ortogonal a la superficie equipotencial, indicando el sentido de crecimiento equipotencial.*
 - Las superficies equipotenciales son ortogonales a las líneas de fuerza.
+
+# Rotor del Campo Vectorial
+
+Se considera un rectángulo infinitesimal en el plano $XZ$ denotado por $d\Gamma_{x}$, cuyos vértices son $A,B,C,D$, con largos infinitesimales $AB=dy, BC=dz paralélos a los ejes. Entonces, el área infinitesimal es $d\Sigma=dy\ dz$. Gráficamente:
+
+***wea 3d***
+
+calculando la integral de línea del camino cerrado:
+$$
+\mathcal{E}=\oint_{\mathcal{C}}\vec{E}\ d\vec{s}=\vec{E}_{AB}·\vec{AB}+\vec{E}_{BC}·\vec{BC}+\vec{E}_{CD}\vec{CD}+\vec{E}_{DA}\vec{DA}
+$$
+con $\vec{E}_{AB}$ el campo eléctrico en el segmento $\vec{AB}$.
+Como $\vec{CD}=-\vec{AB},\ \vec{DA}=-\vec{BC}$:
+$$
+\begin{align}
+ & \vec{E}_{AB}\vec{AB}+\vec{E}_{BC}\vec{BC}+\vec{E}_{CD}\vec{CD}+\vec{E}_{DA}\vec{DA} \\
+= & \vec{E}_{AB}\vec{AB}+\vec{E}_{BC}\vec{BC}+\vec{E}_{CD}(-\vec{AB})+\vec{E}_{DA}(-\vec{BC}) \\
+= & \vec{E}_{AB}\vec{AB}-\vec{E}_{CD}\vec{AB}+\vec{E}_{BC}\vec{BC}-\vec{E}_{DA}\vec{BC} \\
+= & \vec{AB}\ (\vec{E}_{AB}-\vec{E}_{CD})+\vec{BC}\ (\vec{E}_{BC}-\vec{E}_{DA})
+\end{align}
+$$
+los lados corresponden a un diferencial infinitesimal: $\vec{AB}=dy\ \hat{u}_{y},\ \vec{BC}=dz\ \hat{u}_{z}$, asi que se tiene:
+$$
+=dy\ \hat{u_{y}}(\vec{E}_{AB}-\vec{E}_{CD})+dz\ \hat{u_{z}} (\vec{E}_{BC}-\vec{E}_{DA})
+$$
+el vector unitario en cada dirección entrega el campo en dicha dirección:
+$$ 
+= dy\ (\vec{E}_{y}(AB)-\vec{E}_{y}(CD))+dz\ (\vec{E}_{z}(BC)-\vec{E}_{z}(DA))
+$$
+expresando los lados en coordenadas generales cartesianas, osea:
+$$
+\begin{align}
+AB = z & \\
+CD = z & + dz \\
+BC = y & + dy \\
+DA = y &  \\
+\implies \mathcal{E} &  = dy\ (\vec{E}_{y}(AB)-\vec{E}_{y}(CD))+dz\ (\vec{E}_{z}(BC)-\vec{E}_{z}(DA)) \\
+ & = dy\ (\vec{E}_{y}(z)-\vec{E}_{y}(z + dz))+dz\ (\vec{E}_{z}(y+dy)-\vec{E}_{z}(y)) 
+\end{align}
+$$
+usando el siguiente desarrollo de taylor:
+$$
+E_{y}(z+dz)=E_{y}(z)+\frac{\partial E_{y}}{\partial z}dz
+$$
+entonces la integral de línea queda:
+$$
+\mathcal{E}=\oint_{\mathcal{C}}\vec{E}\ d\vec{s} =\left( \frac{\partial E_{y}}{\partial z} -\frac{\partial E_{z}}{\partial y} \right) dydz = \left( \frac{\partial E_{y}}{\partial z} -\frac{\partial E_{z}}{\partial y} \right)d\Sigma_{x}
+$$
+que corresponde al rectángulo en el plano $YZ$, y lo mismo se puede hacer para los otros planos.
+El resultado no depende de la forma del contorno de la superficie $d\Sigma$ y para la circulación $d\Gamma$ se toman en cuenta las descomposiciones en cada coordenada $d\Gamma_{z},d\Gamma_{y},d\Gamma_{z}$ de las cuales sólo se toma en cuenta el contorno:
+$$
+d\Gamma=\left( \frac{\partial E_{y}}{\partial z} -\frac{\partial E_{z}}{\partial y} \right)d\Sigma_{x} + \left( \frac{\partial E_{x}}{\partial z} -\frac{\partial E_{z}}{\partial x} \right)d\Sigma_{y}+\left( \frac{\partial E_{y}}{\partial x} -\frac{\partial E_{x}}{\partial y} \right)d\Sigma_{z}
+$$
+$d\Gamma$ es un escalar y hay una igualdad a componentes de un vector, así que se introduce el *rotor*
+
+
+
+## def: Circulación
+> La circulación de $\vec{E}$ por un camino cerrado infinitesimal con una superficie $d\Sigma$ está dada por el flujo del rotor de $\vec{E}$ por la superficie $d\Sigma$
+
+$$
+\oint_{\mathcal{C}}\vec{E}\ d\vec{s} = \int_{\Sigma}\nabla \times \vec{E}\ d\Sigma\ \hat{u_{n}} = \int \int (\nabla \times \vec{E})\hat{u_{n}}\ d\Sigma
+$$
+
+Si el campo es conservativo entonces la circulación es nula, entonces el rotor es nulo, también dicho *irrotacional*:
+$$
+\oint_{\mathcal{C}}\vec{E}\ d\vec{s} =\int \int (\nabla \times \vec{E})\hat{u_{n}}\ d\Sigma =0 \iff \nabla \times \vec{E} =0
+$$
+
+
+En resumen, si un campo es conservativo, puede expresarse coo el gradiente de una función escalar y su rotor es cero

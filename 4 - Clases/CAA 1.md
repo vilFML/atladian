@@ -494,3 +494,105 @@ $$
 \forall x \in \Omega,\forall i,j \in \{ 1,\dots,n \}:\frac{\partial}{\partial x_{j}}F_{i}(x)=\frac{\partial}{\partial x_{i}}F_{j}(x)
 $$
 entonces $\vec{F}$ es conservativo.
+
+
+# 
+***
+clase 19/08
+
+Para calcular el potencial $f$ de un campo vectorial $\vec{F}$, si $\vec{F}=\nabla f$ en un $\Omega$ abierto y conexo, entonces:
+$$
+\begin{align}
+ \vec{F}·d\vec{x}= & F_{1}dx_{1}+F_{2}dx_{2}+\dots+F_{n}dx_{n} \\
+ =& \frac{\partial f}{\partial x_{1}}dx_{1}+\dots+\frac{\partial f}{\partial x_{n}}dx_{n} \\
+= & df
+\end{align}
+$$
+Luego, la integral de línea 
+$$
+\int \vec{F} d\vec{x}=\int_{\Gamma}df
+$$
+Una manera de encontrar el potencial $f$ es escogiendo un punto conveniente $x_{0}\in \Omega$ y evaluando, de la forma:
+$$
+f(x)=\int_{x_{0}}^{x}\vec{F}d\vec{x}
+$$
+para una curva $\Gamma$ que está en un conjunto $\Omega$, que une $x_{0}$ con $x$.
+Si se considera un segmento de recta que una $x_{0}$ con $x$, (por $\Omega$ ser conexo) se puede parametrizar $\Gamma$ como:
+$$
+\vec{\gamma}(t)=tx+(1-t)x_{0},\ t\in[0,1]
+$$
+así
+$$
+f(x)=\int_{0}^{1}F\left( tx+(1-t)x_{0} \right) (x-x_{0})dt
+$$
+##### Ejemplo:
+Sea $\vec{F}:\mathbb{R}^{2}\to \mathbb{R}^{2}$ definido como $\vec{F}(x,y)=(e^{x}+y,x+2y)=\left( P(x,y),Q(x,y) \right)$:
+$\vec{F}$ es de clase $\mathcal{C}^{1}$ en $\mathbb{R}^{2}$ y además:
+$$
+\frac{\partial Q}{\partial x}=1=\frac{\partial P}{\partial y}
+$$
+por lo que $\vec{F}$ es conservativo, es decir, existe un potencial asociado $f:\mathbb{R}^{2}\to \mathbb{R}$ tal que:
+$$
+\nabla f=\vec{F}
+$$
+como $\mathbb{R}^{2}$ es conexo, tomamos el punto convecniente $x_{0}=(0,0)$, luego:
+$$
+\begin{align}
+f(x,y)= & \int_{0}^{1}\vec{F(t(x,y)+(1-t)(0,0))\ ((x,y)-(0,0))} \\
+  & \vdots \\
+= & 
+\end{align}
+$$
+
+# Teorema de Green
+Se va a trabajar sólo en $\mathbb{R}^{2}$, osea, tomando sólo el caso $n=2$.
+Sea $\Omega$ un conjunto abierto y $\vec{F}:\Omega\to \mathbb{R}^{2}$ de clase $\mathcal{C}^{1}$, definido por: $\vec{F}(x,y)=(P(x,y),Q(x,y))$, 
+la simetría (o asimetría) de $\vec{F}$ está dado por la diferencia:
+$$
+\frac{\partial Q}{\partial x}-\frac{\partial P}{\partial y}
+$$
+si $=0$ , entonces es simétrico.
+Y se puede relacionar con el valor de la integral de línea $\oint_{\Gamma}\vec{F}d\vec{x}$ sobre una curva $\Gamma$ de jordan $\Gamma \subseteq \Omega$
+
+## Teorema de Green: 1° Forma
+Dados $P,Q:\Omega \subseteq \mathbb{R}^{2}\to \mathbb{R}$ campos escalares de clase $\mathcal{C}^{1}$ con $\Omega$ abierto. 
+Sea $\Gamma$ una curva de jordan seccionalmente suave, se representa por $\mathcal{R}$ a la unión de $\Gamma$ con su región interior.
+Si $\mathcal{R}\subseteq \Omega$, entonces:
+$$
+\int \int_{\mathcal{R}} \left( \frac{\partial Q}{\partial x}-\frac{\partial P}{\partial y} \right)dxdy =\oint_{\Gamma}Pdx+Qdy
+$$
+con $\Gamma$ en sentido antihorario.
+##### ejemplo:
+Calcular $\oint_{\Gamma}y^{2}dx+xdy$, donde $\Gamma$ es el cuadrado de vértices $(0,0),(2,0),(2,2),(0,2)$, si:
+$P(x,y)=y²,Q(x,y)=x$
+
+$$
+\frac{\partial Q}{\partial x}-\frac{\partial P}{\partial y}=1-2y\neq 0 \implies \text{asimetrica}
+$$
+calculando:
+$$
+\oint_{\Gamma}y^{2}dx+xdy=\int_{0}^{2}\int_{0}^{2}(1-2y)dxdy
+$$
+### Corolario
+Si $\Gamma$ es una curva de Jordan seccionalmente suave en $\mathbb{R}^{2}$ y $\mathcal{R}$ es la región interior a $\Gamma$ junto con la misma curva $\Gamma$, entonces:
+$$
+A(\mathcal{R})=\oint_{\Gamma}xdy=-\oint_{\Gamma}ydx=\frac{1}{2}\oint-ydx+xdy
+$$
+
+## Teorema de Green: 2° Forma
+
+Dadas $\Gamma_{1},\Gamma_{2},\dots,\Gamma_{k}\subseteq \mathbb{R}^{2}$, k-curvas de Jordan seccionalmente suaves que cumplen:
+1. Dos cualesquiera de las k-curvas no se intersectan
+2. $\Gamma_{2},\dots,\Gamma_{k}$ están en la región interior de $\Gamma_{1}$
+3. para cada $i>1,j>1,i\neq j$, la curva $\Gamma_{i}$ está en la región exterior de $\Gamma_{j}$
+
+Se le designa con $\mathcal{R}$ a la región que está en la unión de $\Gamma_{1}$ con su propio interior que NO está en el interior de las otras curvas.
+
+Dadas $P,Q\subseteq \mathbb{R}^{2}\to \mathbb{R}$ de clase $\mathcal{C}^{1}$ en un conjunto abierto $\Omega \supset \mathcal{R}$, entonces:
+$$
+\int \int_{\mathcal{R}} \left( \frac{\partial Q}{\partial x}-\frac{\partial P}{\partial y} \right)dxdy =\oint_{\Gamma}Pdx+Qdy -\sum_{i=2}^{k}\oint_{\Gamma_{i}}Pdx+Qdy
+$$
+con $\Gamma_{i}, i \in \{ 1,\dots,k \}$ en sentido antihorario.
+
+> Si no se tomaran los 'agujeros' al interior de las otras curvas se tendría la 1° forma de Green, así que en este caso se le restan los agujeros.
+
