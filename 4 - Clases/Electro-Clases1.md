@@ -114,6 +114,7 @@ Son líneas radiales que salen o entran a la carga. Determinan cómo se dibuja e
 	Si se instala una carga de prueba en una zona 'sin líneas', ésta estará en un equilibrio inestable: Si se desplaza un poco la carga, caerá en una línea.
 	***dibujo***
 
+***
 # clase 07/08
 
 Si se tiene una carga positiva $q$ que genera un campo eléctrico $\vec{E}$ de la forma:
@@ -577,4 +578,135 @@ $$
 \alpha=\frac{E_{\theta}}{E_{r}}=\frac{1}{2}\tan \theta
 $$
 ## Fuerza sobre un dipolo
-Si se tiene un dipolo 
+Si se tiene un dipolo en una región con un campo eléctrico, éste va a sentir una fuerza debido a la acción del campo eléctrico.
+Dado un dipolo con una carga $-q$ en el punto $P_{1}(x,y,z)$ y otra carga $+q$ en el punto $P_{2}(x+a_{x},y+a_{y},z+a_{z})$ unidos por el vector $\vec{a}=a_{x}\hat{u}_{x}+a_{y}\hat{u}_{y}+a_{z}\hat{u}_{z}$, siendo el momento del dipolo $\vec{p}=q\vec{a}$, gráficamente:
+![[Pasted image 20250823093021.png]]
+Por la región del campo eléctrico, la energía potencial electrostática  será:
+$$
+U_{e}=qV(x+a_{x},y+a_{y},z+a_{z})-qV(x,y,z)
+$$
+y si las distancias $a_{x},a_{y},a_{z}$ son infinitesimales, pasan a ser $dx,dy,dz$, quedando la energía potencial como
+$$
+U_{e}=(x+dx,y+dy,z+dz)
+$$
+usando desarrollo de Taylor:
+$$
+U_{e}=V(x,y,z)+\frac{\partial V}{\partial x}a_{x}+\frac{\partial V}{\partial y}a_{y}+\frac{\partial V}{\partial z}a_{z}
+$$
+> ???
+
+así la energía electrostática del dipolo es
+$$
+\begin{align}
+U_{e}= & q \frac{\partial V}{\partial x}a_{x}+ q\frac{\partial V}{\partial y}a_{y}+\frac{\partial V}{\partial z}a_{z} \\
+\text{si } \nabla V·\vec{p}=-\vec{E}·\vec{p}: & \\
+U_{e}= & -\vec{p}·\vec{E} \\
+U_{e}= & -p·e·\cos \theta
+\end{align}
+$$
+con $\theta$ el ángulo entre el campo eléctrico $\vec{E}$ y el momento del dipolo $\vec{p}$.
+
+## Torque (Momento) en Dipolo
+Si se tiene un campo eléctrico $\vec{E}$ uniforme, la fuerza sobre las cargas serán iguales en magnitud pero opuestas por el signo de su carga. Pero sí habrá un torque ejercido por las fuerzas **que llevará al dipolo a la posición de mínima energía potencial, que corresponde al dipolo en paralelo al campo eléctrico**, alinéandose el momento dipolar $\vec{p}$ con el campo eléctrico $\vec{E}$ de forma paralela.
+
+Considerando un campo eléctrico horizontal de $\theta=0$ y el dipolo fuera de su posición estable, en un ángulo $\theta$, este está sujeto a un torque (o momento) $\vec{M}$ ejercido por las fuerzas para que el dipolo vuelva a una posición de equilibrio $\theta=0$ en donde la energía potencial sea la mínima; viendo los valores de la energía potencial para distintos $\theta$:
+$$
+\begin{align}
+\text{si }U_{e}=-\vec{p}·\vec{E}·\cos \theta: \\
+\theta=0\implies &  U_{e}=-pE \\
+\theta=\frac{\pi}{2}\implies & U_{e}=0 \\
+\theta=\pi \implies & U_{e}=pE
+\end{align}
+$$
+osea, para $\theta=0$ se tiene que la energía potencial es la menor posible.
+
+Para obtener el torque con respecto al centro del dipolo:
+$$
+\begin{align}
+\text{si }\vec{\tau}=\sum_{i}^{n} r_{i}\times \vec{F}_{i}: \\
+\vec{\tau}= & \vec{r}_{1}\times \vec{F}_{c_{1}}+\vec{r}_{2}\times \vec{F}_{c_{2}} \\
+\text{si } \vec{F}_{c_{i}}=q_{i}·\vec{E}:\\
+\implies\vec{\tau}= & \vec{r}_{1}\times (q\vec{E})+\vec{r}_{2}\times((-q)·\vec{E}) \\
+\vec{\tau}= & \vec{r}_{1}\times (q\vec{E}) - \vec{r}_{2}\times (q\vec{E}) \\
+\vec{\tau}= & (\vec{r}_{1}-\vec{r}_{2})\times q\vec{E} \\
+\text{donde }(\vec{r}_{1}-\vec{r}_{2})=\vec{a}: \\
+\implies \vec{\tau}= & \vec{a}\times q\vec{E} \\
+\iff \vec{\tau}= & q\vec{a}\times \vec{E} \\
+\text{y el momento del dipolo }\vec{p}= q\vec{a}: \\
+\implies \vec{\tau}= & \vec{p}\times \vec{E}
+\end{align}
+$$
+de donde se vé que el torque $\vec{\tau}$ sale del plano, y explicitando el producto punto:
+$$
+\begin{align}
+\tau=-pE\cos \theta \\
+\tau=-\frac{dU_{e}}{d\theta}
+\end{align}
+$$
+no es derivada parcial pues la energía sólo depende del ángulo.
+
+## Campo eléctrico No Uniforme
+
+Si el campo no es uniforme, hay una resultante de las fuerzas sobre el dipolo $\vec{F}$ no nula por ser las fuerzas sobre cada carga distintas.
+Expresando esta diferencia de fuerzas por la diferencia en el campo eléctrico:
+$$
+\begin{align}
+\vec{F}_{1}= & -q\vec{E} \\ \\
+
+\vec{F}_{2}= & q(\vec{E}+d\vec{E}) \\
+\text{usando  taylor:} \\
+\vec{F}_{2}= & q\left( \vec{E}+\frac{\partial \vec{E}}{\partial x}a_{x}+\frac{\partial \vec{E}}{\partial y}a_{y}+\frac{\partial \vec{E}}{\partial z}a_{z}  \right) 
+\end{align}
+$$
+así la fuerza total es:
+$$
+\vec{F}=\vec{F}_{1}+\vec{F}_{2}= q \frac{\partial \vec{E}}{\partial x}a_{x}+ q\frac{\partial \vec{E}}{\partial y}a_{y}+\frac{\partial \vec{E}}{\partial z}a_{z}
+$$
+donde $q·a_{x}=p_{x}$:
+$$
+\vec{F}=p_{x}\frac{\partial \vec{E}}{\partial x}+ p_{y}\frac{\partial \vec{E}}{\partial y}+p_{z}\frac{\partial \vec{E}}{\partial z}
+$$
+que es **válida tambien para campos no conservativos**, y de forma compacta:
+$$
+\vec{F}=(\vec{p}·\nabla)\vec{E}
+$$
+
+Como en un campo conservativo se debe cumplir que:
+$$
+\begin{align}
+\vec{F}= & -\nabla U_{e} \\
+\vec{F}= & -\nabla(-\vec{p}\vec{E}) \\
+\vec{F}= & \nabla(\vec{p}\vec{E}) \\
+\vec{F}= & \nabla(p_{x}E_{x}+p_{y}E_{y}+p_{z}E_{z})
+\end{align}
+$$
+viendo las componentes por separado:
+$$
+\begin{align}
+F_{x}= & \frac{\partial}{\partial x}(\vec{p}\vec{E}) \\
+F_{x}= & p_{x}\frac{\partial \vec{E}_{x}}{\partial x}+ p_{y}\frac{\partial \vec{E}_{x}}{\partial x}+p_{z}\frac{\partial \vec{E}_{x}}{\partial x} \\
+ \\
+F_{y}= & \frac{\partial}{\partial y}(\vec{p}\vec{E}) \\
+F_{y}= & p_{x}\frac{\partial \vec{E}_{x}}{\partial y}+ p_{y}\frac{\partial \vec{E}_{y}}{\partial y}+p_{z}\frac{\partial \vec{E}_{x}}{\partial y} \\
+ \\
+F_{z}= & \frac{\partial}{\partial z}(\vec{p}\vec{E}) \\
+F_{z}= & p_{x}\frac{\partial \vec{E}_{x}}{\partial z}+ p_{y}\frac{\partial \vec{E}_{y}}{\partial z}+p_{z}\frac{\partial \vec{E}_{x}}{\partial z}
+\end{align}
+$$
+
+## Interacción entre Dipolos
+Dos dipolos de momentos $p_{1},p_{2}$ a una distancia $r$ interactúan por estar sometidos cada uno al campo eléctrico del otro.
+
+$$
+U_{e}=\frac{p_{1}p_{2}}{4\pi\varepsilon_{0}r^{3}}(\sin \theta_{1}\sin \theta_{2}-2\cos \theta_{1}\cos \theta_{2})
+$$
+donde $\theta_{1},\theta_{2}$ son los ángulos formados por los vectores $\vec{p}_{1}-\hat{u}_{r},\vec{p}_{2}-\hat{u}_{r}$ respectivamente.
+
+Y la fueza de un dipolo sobre otro es
+$$
+\vec{F}_{2}=-\nabla U_{e}=-\frac{\partial U_{e}}{\partial r}\hat{u}_{r}=\frac{3p_{1}p_{2}}{4\pi\varepsilon_{0}r^{4}}\hat{u}_{r}
+$$
+para dipolos de momentos paralelos:
+$$
+\vec{F}=-\frac{6p_{1}p_{2}}{4\pi\varepsilon_{0}r^{4}}\hat{u}_{r}
+$$

@@ -354,13 +354,54 @@ Esto se puede interpretar como que, si el sistema disminuye su entropía, entonc
 Los sistemas microscópicos son descritos por leyes simétricas temporalmente: El sistema puede ir desde un primer estado a un segundo estado y viceversa. En cuanto a sistemas con muchas partículas (nivel macroscópico) la experiencia nos dice que la simetría temporal no sucede, si no que *el tiempo siempre fluye en una dirección: del pasado al futuro, y no al revés.*
 El problema al asignar estado final e inicial viene de que un sistema puede interactuar con el medio, pudiendo disminuir su entropía.
 
+### El Tiempo en Sistema Microscópico
+Para un sistema microscópico, se puede considerar un sistema microscópico aislado compuesto por una partícula gaseosa confinada en un contenedor dividido por un tabique en dos cámaras, teniendo así la expansión libre de la partícula en una de las dos cámaras:
+![[Pasted image 20250823132806.png]]
+El tabique actúa como una [[#Ligadura|ligadura]], y ,en un instante de tiempo, se **relaja** dicha ligadura provocando que la partícula pueda moverse libremente por todo el contenedor:
+![[Pasted image 20250823132943.png]]
+un observador de sólamente la última situación, no puede determinar cuál de las dos situaciones fue primero que la otra: Si comenzó en la derecha o la izquierda para moverse a la otra posición, así, para el observador: ***ambas situaciones son igual de posibles y entonces equiprobables*** con probabilidad $P=\frac{1}{2}$.
 
+¿Se puede determinar el orden de las situaciones con las leyes de Newton? las leyes de newton establecen que:
+$$
+\begin{align}
+\vec{F}= & m\vec{a} \\
+\vec{F}= & m\frac{d^{2}\vec{x}}{dt^{2}} \\
+\vec{F}= & m \frac{d\vec{v}}{dt}
+\end{align}
+$$
+en la velocidad $\vec{v}=\frac{d\vec{v}}{dt}$ reemplazando el tiempo $t'$ como $-t$:
+$$
+\begin{align}
+\vec{v}'= & \frac{d\vec{v}'}{dt'}=-\frac{d\vec{v}}{dt} \\
+\iff & \vec{v}'=-\vec{v}
+\end{align}
+$$
+osea se invierte la velocidad cuando el tiempo es negativo, dicho de otro modo, cuando el tiempo va en reversa, la velocidad va 'hacia atrás' viéndose como el efecto de rebobinar una película.
+Ahora, viendo qué le sucede a la aceleración si se reemplaza el tiempo por uno negativo $t'=-t$:
 
+$$
+\begin{align}
+\vec{a}'= & \frac{d\vec{v}'}{dt'} \\
+\iff\vec{a}'= & \frac{d(-\vec{v}')}{d(-t)} \\
+\iff\vec{a}'= & -\frac{d(-\vec{v})}{dt} \\
+\iff \vec{a}'= & \frac{d\vec{v}}{dt} \\
+\iff \vec{a}'=\vec{a}
+\end{align}
+$$
+la aceleración no se invierte, osea que la tasa en la que crece la velocidad (en módulo) es la misma, así la fuerza queda igual:
+$$
+\vec{F}'= m\vec{a}'=m\vec{a}=\vec{F}
+$$
+por lo tanto las leyes de newton no distinguen entre futuro y pasado y son invertibles en términos temporales.
+> Para sistemas microscópicos (de pocas partículas) no es posible determinar cuál es el orden temporal de sucesos.
 
-
-
-
-
+### El Tiempo en Sistema Macroscópico
+Si se tiene la misma situación anterior pero con una mayor cantidad de partículas:
+![[Pasted image 20250823150156.png]]
+se muestran dos situaciones y se tiene una mayor intuición en cuanto a la temporalidad de sucesos: Se puede afirmar que la situación en donde las partículas están confinadas a la izquierda (luego de relajar la ligadura) es anterior a la situación en donde las partículas están repartidas por el contenedor.
+Considerando un gas con una cantidad de partículas de $\approx 10^{20}$:
+![[Pasted image 20250823150721.png]]
+se puede intuir que, luego de relajar la ligadura, el gas comenzará a expandirse por todo el contenedor. Así, es fácil decir cuál es el estado anterior y posterior del gas, ya que es muy poco probable que el gas se comprima de vuelta a la cámara en donde estaba confinado, por mucho tiempo que pase.
 
 ***
 # 22/08
