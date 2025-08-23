@@ -1,0 +1,1 @@
+Son las variables independientes de una función

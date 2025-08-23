@@ -596,3 +596,192 @@ con $\Gamma_{i}, i \in \{ 1,\dots,k \}$ en sentido antihorario.
 
 > Si no se tomaran los 'agujeros' al interior de las otras curvas se tendría la 1° forma de Green, así que en este caso se le restan los agujeros.
 
+
+***
+# 
+Clase 21/08
+### Corolario
+Sea $\Omega \subseteq \mathbb{R}^{2}$ un abierto [[#Simplemente Conexo]], y $\vec{F}=(P,Q)$ de clase $\mathcal{C}^{1}$ tal que:
+$$
+\frac{\partial Q}{\partial x}-\frac{\partial P}{\partial y}=0 \text{ en } \Omega
+$$
+entonces $\vec{F}$ es conservativo:
+
+## Teorema: Invarianza de una integral de línea al deformar un camino
+Sea $\Omega \subseteq \mathbb{R}^{2}$ abierto y conexo; $P,Q:\Omega\to \mathbb{R}$ de clase $\mathcal{C}^{1}$, y supongamos que $\frac{\partial Q}{\partial x}=\frac{\partial P}{\partial y}$ en todo $\Omega$.
+Sean $\Gamma_{1},\Gamma_{2}$ dos curvas de Jordan seccionalmente suaves en $\Omega$ que cumplen que:
+1. $\Gamma_{2}$ está en la región interior de $\Gamma_{1}$,
+2. Los puntos de la región de $\Gamma_{1}$ que están en la región exterior de $\Gamma_{2}$ pertenecen a $\Omega$
+entonces:
+$$
+\oint_{\Gamma_{1}}Pdx+Qdy=\oint_{\Gamma_{2}}Pdx+Qdy
+$$
+recorriendo las curvas en el mismo sentido.
+
+fin de curvas
+***
+# Integrales sobre superficies
+
+def básica de superficie:
+## Superficie
+Una superficie es el lugar geométrico de un punto que se mueve en $\mathbb{R}^{3}$ con dos [[Grado de Libertad|grados de libertad]].
+
+Hay tres métodos para representar una superficie:
+1. Representación Implícita
+2. Representación Explícita
+
+### Representación Implícita
+$$
+S=\{ (x,y,z)\in \mathbb{R}^{3}:F(x,y,z)=0 \}
+$$
+se puede decir que se tienen tres grados de libertad, pero el proceso es 'despejar' una variable en función de la otra, pero en estos casos no es sencillo.
+
+##### ejemplo
+sea 
+$$
+S=\{ (x,y,z)\in \mathbb{R}^{3}:x^{2}+y^{2}+z^{2}-4=0 \}
+$$
+ es una esfera de radio 2
+
+
+### Representación Explícita
+Cuando se puede despejar en la ecuación una de las coordenadas..
+
+##### ejemplo
+del ejemplo anterior, si se tiene:
+$$
+S=\{ (x,y,z)\in \mathbb{R}^{3}:x^{2}+y^{2}+z^{2}-4=0 \}
+$$
+se puede despejar $z$ como:
+$$
+z=\pm \sqrt{ 4-x^{2}-y^{2} }
+$$
+se tiene entonces el conjunto:
+$$
+S=\{ (x,y,z)\in \mathbb{R}^{3} :z=\pm \sqrt{ 4-x^{2}-y^{2} }\}
+$$
+y se tiene entonces que $z$ es una función que depende de dos variables: $z=f(x,y)$
+
+### Representación Paramétrica
+Cuando se puede parametrizar la superficie mediante una función $\vec{r}$.
+De ahora en adelante se va a utilizar la representación paramétrica.
+
+## Superficie Parámetrica
+*def:* sea $T\subseteq \mathbb{R}^{2}$ un conjunto abierto y acotado, y sean $X,Y,Z: T\to \mathbb{R}$ funciones continuas. El conjunto 
+$$
+S=\{ (X(u,v),Y(u,v),Z(u,v)):(u,v)\in T \}\subseteq \mathbb{R}^{3}
+$$
+se llama superficie parámetrica; donde las ecuaciones $x=X(u,v),y=Y(u,v),z=Z(u,v) \in T$ son las ecuaciones parámetricas de la superficie $S$
+> se llaman superficies parámetricas porque son las que parametrizan a la superficie
+
+
+### Parametrización de la Superficie
+Si introducimos el radio vector $\vec{r}$ que une el origen a un punto $(x,y,z)\in S$, se puede escribir:
+$$
+\vec{r}(u,v)= \left(  X(u,v),Y(u,v),Z(u,v) \right), (u,v)\in T
+$$
+es la parametrización de la superficie.
+
+*obs:* $S=\vec{r}(T)$
+***grafico***
+
+##### ejemplo
+si una superficie viene dada explícitamente por:
+$$
+z=f(x,y),\ (x,y)\in T
+$$
+entonces
+$$
+\vec{r}(x,y)=(x,y,f(x,y)),\ (x,y)\in T
+$$
+
+## derivada de superficie 
+En curvas se podía tener la 'velocidad' de la curva como $\Gamma'$. Viendo para superficies:
+Consideremos la superficie parametrizada por
+$$
+\vec{r}(u,v)=\left( X(u,v),Y(u,v),Z(u,v) \right)
+$$
+si $X,Y,Z$ son variables en $T$, se puede considerar:
+$$
+\frac{\partial \vec{r}}{\partial u}=\left( \frac{\partial X}{\partial u},\frac{\partial Y}{\partial u},\frac{\partial Z}{\partial u} \right) =\vec{t}_{u}
+$$
+
+$$
+\frac{\partial \vec{r}}{\partial v}=\left( \frac{\partial X}{\partial u},\frac{\partial Y}{\partial v},\frac{\partial Z}{\partial v} \right) =\vec{t}_{v}
+$$
+
+
+
+> los vectores $\vec{t}$ son los vectores tangentes a la superficie.
+
+### Producto Vectorial Fundamental
+El producto vectorial
+$$
+\frac{\partial \vec{r}}{\partial u}\times \frac{\partial \vec{r}}{\partial v}
+$$
+que es una función que depende de $(u,v)$, se denomina producto vectorial fundamental de $\vec{r}$
+
+### Puntos regulares y singulares
+*obs:* Si $(\bar{u},\bar{v})\in T$ es tal que
+$$
+\frac{\partial \vec{r}}{\partial u},\frac{\partial \vec{r}}{\partial v}
+$$
+ son continuas, y el producto vectorial es no nulo, entonces:
+ $$
+\vec{r}(u,v)
+$$
+se llama **punto regular** de $\vec{r}$.
+Y los puntos no regulares se llaman puntos singulares.
+
+### Superficie regular
+
+Una superficie $S=\vec{r}(T)$ se llama regular si todos sus puntos son **regulares**.
+
+> es análogo a las curvas suaves
+
+*obs:* en cada punto regular, los vectores:
+$$
+\frac{\partial \vec{r}}{\partial u},\frac{\partial \vec{r}}{\partial v}
+$$
+determinan un plano que tiene vector $\frac{\partial \vec{r}}{\partial u}\times \frac{\partial \vec{r}}{\partial v}$ como normal.
+
+### Plano Tangente
+El plano determinado por los vectores $\frac{\partial \vec{r}}{\partial u},\frac{\partial \vec{r}}{\partial v}$ se llama **plano tangente** a la superficie.
+
+### Superficie Suave
+Una superficie será suave si admite una parametrización $\vec{r}$ de clase $\mathcal{C}^{1}$ 
+
+# Campos de Normales
+Una esfera tiene infinitos vectores normales, por ello, se habla de campos.
+
+Si $S\subseteq \mathbb{R}cb$ una superficie regular y sea $\vec{r}:T\subseteq \mathbb{R}^{2}\to \mathbb{R}^{3}$ una parametrización de $S$,
+entonces se define el campo de normales sobre $S$ como:
+$$
+\hat{n}=\frac{\vec{t}_{u}\times \vec{t}_{v}}{||\vec{t}_{u}\times \vec{t}_{v}||}
+$$
+
+# Superficie Regular Orientable
+Una superficie regular $S$ está orientada según $\hat{n}:S\to \mathbb{R}^{3}$ cuando la normal está bien definida globalmente como una función continua sobre $S$.
+> gráfico
+
+
+# Área de Superficie
+El área de una superficie regular se define como:
+$$
+A(S)=\iint_{\Gamma}\left| \left| \frac{\partial \vec{r}(u,v)}{\partial u}\times \frac{\partial \vec{r}(u,v)}{\partial v}  \right|   \right|\ du\ dv
+$$
+esta definición es independiente de la parametrización.
+
+*obs:* si $S$ está definida explíciatemente por $z=f(x,y),\ (x,y)\in T$, se tiene que:
+$$
+\vec{r}(x,y)=(x,y,f(x,y)),\ (x,y)\in T
+$$
+y con esto:
+$$
+\frac{\partial \vec{r}(u,v)}{\partial u}\times \frac{\partial \vec{r}(u,v)}{\partial v}=\left( -\frac{\partial f}{\partial x},-\frac{\partial f}{\partial y},1 \right)
+$$
+y así
+$$
+A(S)=\iint_{T}\sqrt{ 1+\partial f() }
+$$
+>se parece al área de un sólido de revolución 

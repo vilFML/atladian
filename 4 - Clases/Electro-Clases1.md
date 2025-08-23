@@ -497,3 +497,84 @@ $$
 
 
 En resumen, si un campo es conservativo, puede expresarse coo el gradiente de una función escalar y su rotor es cero
+
+
+# Dipolo Eléctrico
+
+Un dipolo eléctrico es un objeto compuesto por dos cargas opuestas de igual magnitud $q,-q$ separadas en una distancia $a$. Un átomo compuesto de 1 protón y un electrón puede ser un dipolo eléctrico.
+A la distancia $a$ se le asigna la dirección desde la carga negativa a positiva, siendo así un vector $\vec{a}$.
+
+Considerando el sistema de un electrón con un protón y que esté en presencia de un campo eléctrico, las cargas sentirán la fuerza asociada al campo eléctrico $\vec{F}_{c}=\pm q\ \vec{E}$. Por la segunda ley de newton, la aceleración es inversamente proporcional a la masa ($\vec{F}=m\vec{a}$), entonces el protón casi no acelera por su gran masa en comparación al electrón.
+
+## Momento de Dipolo Eléctrico
+
+Se define el momento de dipolo eléctrico al vector:
+$$
+\vec{p}=q\ \vec{a}
+$$
+este va en la misma dirección que el vector distancia $\vec{a}$, pero se define **saliendo de la carga positiva**.
+
+
+## Potencial de Dipolo
+
+Un sistema de dos cargas eléctricas genera un potencial eléctrico.
+Sea $P(x,y,z)$ el punto en donde se quiere saber el potencial, para el sistema de dos cargas:
+> El potencial en un punto no tiene sentido físico, pero sí entre dos puntos. Entonces, tomando el segundo punto en el infinito.
+
+$$
+\begin{align}
+V(P)-V(\infty)= & \int_{P}^{\infty}\vec{E}\ d\vec{s} \\
+\text{por sistema de 2 cargas:} \\
+V(P)-V(\infty)= & \sum_{i}^{n} \frac{q}{4\pi\mathcal{E}_{0}r_{i}}=\frac{q}{4\pi\mathcal{E}_{0}r_{1}}+\frac{q}{4\pi\mathcal{E}_{0}r_{2}} \\
+\text{si } V(\infty)\to 0, \text{entonces}: \\
+V(P)= & \frac{q}{4\pi\mathcal{E}_{0}}\left( \frac{1}{r_{1}}-\frac{1}{r_{2}} \right) \\
+V(P) = &  \frac{q}{4\pi\mathcal{E}_{0}}
+\left( \frac{r_{2}-r_{1}}{r_{1}r_{2}} \right) \end{align}
+$$
+considerando al punto $P$ muy lejano al dipolo: $r_{2}-r_{1}=a\cos \theta,\ \ r_{1}r_{2}=r^{2}$, entonces:
+$$
+\begin{align}
+V(P)= & \frac{qa\cos \theta}{4\pi\mathcal{E}_{0}r^{2}} \\
+V(P)= & \frac{p\cos \theta}{4\pi\mathcal{E}_{0}r^{2}} \\
+V(P)= & \frac{\vec{p} \hat{u_{r}}}{4\pi\mathcal{E}_{0}r^{2}}
+\end{align}
+$$
+donde $\hat{u_{r}}$ es el versor que va desde el punto medio entre las cargas $O$ y el punto de interés $P$.
+Desde la última expresión:
+$$
+V(P)= \frac{\vec{p} \hat{u_{r}}}{4\pi\mathcal{E}_{0}r^{2}}
+$$
+se vé que el potencial en el punto $P$ generado por el dipolo eléctrico depende sólamente del momento del dipolo eléctrico. Así, si se tienen cargas de mayor o menor magnitud, generan el mismo potencial.
+
+## Campo Eléctrico de Dipolo
+ Se pueden calcular las componentes del campo eléctrico en coordenadas esféricas como:
+ $$
+\begin{align}
+  &  E_{r}=  -\frac{\partial V}{\partial r}  \\
+ \iff & E_{r}= \frac{2p\cos \theta}{4\pi \varepsilon_{0}r^{3}} \\
+
+E_{\theta}= & -\frac{1}{r}\frac{\partial V}{\partial \theta} \\
+\iff  &  E_{\theta} = \frac{p \sin \theta}{4\pi\varepsilon_{0}r^{3}} \\
+
+E_{\phi}= & -\frac{1}{r\sin \theta}\frac{\partial V}{\partial \phi} \\
+ & E_{\phi}=0
+\end{align}
+$$
+entonces el campo eléctrico está en el plano $\{ \vec{p},\hat{u_{r}} \}$, vectorialmente:
+$$
+\begin{align}
+ & \vec{E}=E_{r}\hat{u}_{r}+E_{\theta}\hat{u}_{\theta} \\
+\iff & \vec{E}= \frac{2p\cos \theta}{4\pi \varepsilon_{0}r^{3}}\hat{u}_{r} + \frac{p \sin \theta}{4\pi\varepsilon_{0}r^{3}} \hat{u}_{\theta} \\
+\iff & \vec{E}=\frac{p}{4\pi\varepsilon_{0}r^{3}}(2\cos \theta\hat{u}_{r}+\sin \theta \hat{u}_{\theta})
+\end{align}
+$$
+y el módulo del campo eléctrico será:
+$$
+E=\frac{p}{4\pi\varepsilon_{0}r^{3}}\sqrt{ 3\cos ^{2}\theta+1 }
+$$
+de esto se vé que el **campo eléctrico disminuye con el cubo de la distancia al dipolo**, y el ángulo $\alpha$ del campo eléctrico $\vec{E}$ con respecto a $\hat{u}_{r}$ es:
+$$
+\alpha=\frac{E_{\theta}}{E_{r}}=\frac{1}{2}\tan \theta
+$$
+## Fuerza sobre un dipolo
+Si se tiene un dipolo 

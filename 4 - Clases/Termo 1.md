@@ -354,3 +354,14 @@ Esto se puede interpretar como que, si el sistema disminuye su entropía, entonc
 Los sistemas microscópicos son descritos por leyes simétricas temporalmente: El sistema puede ir desde un primer estado a un segundo estado y viceversa. En cuanto a sistemas con muchas partículas (nivel macroscópico) la experiencia nos dice que la simetría temporal no sucede, si no que *el tiempo siempre fluye en una dirección: del pasado al futuro, y no al revés.*
 El problema al asignar estado final e inicial viene de que un sistema puede interactuar con el medio, pudiendo disminuir su entropía.
 
+
+
+
+
+
+
+
+
+***
+# 22/08
+
