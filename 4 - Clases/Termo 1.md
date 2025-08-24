@@ -402,6 +402,29 @@ se muestran dos situaciones y se tiene una mayor intuición en cuanto a la tempo
 Considerando un gas con una cantidad de partículas de $\approx 10^{20}$:
 ![[Pasted image 20250823150721.png]]
 se puede intuir que, luego de relajar la ligadura, el gas comenzará a expandirse por todo el contenedor. Así, es fácil decir cuál es el estado anterior y posterior del gas, ya que es muy poco probable que el gas se comprima de vuelta a la cámara en donde estaba confinado, por mucho tiempo que pase.
+Utilizando la física mecánica para la i-ésima partícula de las $N$ partículas que componen el gas, en la 2° Ley de Newton:
+$$
+\begin{align}
+\vec{F}_{i}= & m_{i}\vec{a}_{i} \\
+\text{si }\vec{a}_{i}=\frac{d\vec{v}}{dt}=\frac{d^{2}x_{i}}{dt^{2}}
+\end{align}
+$$
+tiene las mismas propiedades que para una partícula, ya que se está haciendo el cálculo para cada partícula singularmente. Por lo tanto, para la física mecánica, un sistema compuesto de muchas partículas también es reversible. Pero esto contradice a la experiencia cotidiana.
+
+#### Distribución Binomial
+La física mecánica es determinista: Dado un estado inicial, se puede conocer siempre el estado final, dado por la leyes de Newton. Pero en la realidad el estado inicial de un sistema nunca es completamente determinado: Existen errores experimentales y también la **predicibilidad** del sistema, esto es, dados dos estados iniciales próximos, ello no garantiza que los estados finales lo sean. Condiciones iniciales con una pequeña diferencia pueden llevar a estados finales radicalmente diferentes.
+Luego, cabe preguntarse: Dado el estado inicial aproximado de un sistema, ¿Cuál es la *probabilidad* de encontrarlo en un estado final determinado, después de un largo intervalo de tiempo? Para simplificar, se toma el ejemplo del gas ideal compuesto de varias partículas, en donde el estado final de las partículas es estar en la cámara de la derecha o de la izquierda, sin importar la posición exacta de ellas:
+Considerando un total de $N$ partículas y que, si en una cámara hay $m$ partículas entonces hay $m!$ maneras de ordenarlas en su cámara, y para la cámara restante, hay $(N-m)!$ maneras de que estén las partículas en su interior. Luego, la manera en que las partículas pueden estar repartidas en el contenedor está dada por una combinación de ellas: $\frac{N!}{m!(N-m)!}$ maneras de que estén las partículas en el interior.
+Para una cámara, y para cada partícula hay sólo dos posibilidades: Que esté en ella o que no esté, así la probabilidad para cada partícula es de $\frac{1}{2}$, así la probabilidad de estar, para cada cámara es:
+$$
+\frac{1}{2}\cdot \frac{1}{2}\cdot \frac{1}{2}\dots N \text{ veces} \implies =\left( \frac{1}{2} \right)^{N} 
+$$
+y para cada manera de repartir las $N$ partículas, se tiene entonces las probabilidades de que hayan $m$ a un lado y $m-n$ en el otro:
+$$
+P_{N}[m]=\frac{N!}{m!(N-m)!}\cdot \frac{1}{2^{N}}
+$$
+que se denomina la distribución binomial de probabilidades.
+
 
 ***
 # 22/08
