@@ -426,6 +426,227 @@ $$
 que se denomina la distribución binomial de probabilidades.
 
 
+# Sistemas Modelos
+Un gas real está compuesto por $n$ partículas iguales y puntuales, por lo que no tienen volumen y no chocan entre ellas.
+Si las partículas no interactúan entre ellas entonces sus posiciones no alteran sus energías, así las posibles configuraciones del sistema es tal que:
+$$
+\Omega(x\text{ y vel})=\Omega(x)·\Omega(vel)
+$$
+## Omega como Medida Bidimensional
+Si se tiene una circunferencia 
+![[Pasted image 20250825162137.png]]
+donde $\Omega$ es el perímetro, entonces
+$$
+\Omega=2\pi R
+$$
+y para tres dimensiones: $x^{2}+y^{2}+z^{2}=R^{2}$ donde $\Omega$ es el perímetro, entonces:
+$$
+\Omega=4\pi R^{2}
+$$
+y en cuatro dimensiones:
+$$
+\Omega=k·R^{4-1}
+$$
+Luego, para un gas ideal de N-dimensiones:
+$$
+\Omega=k·R^{N-1}
+$$
+en donde la energía esta dada por la suma de la energía cinética de todas las partículas:
+$$
+E=\sum_{i=1}^{n} \frac{1}{2}m\vec{v}_{i}^{2}
+$$
+si $\vec{v}_{1}=(v_{x_{1}},v_{y_{1}},v_{z_{1}})\implies n=3N\text{ terminos}$ y $\Omega=\Omega_{pos}·\Omega_{vel}=cte·V^{N}·E^{\frac{3N}{2}}$
+Si $S=k\ln \Omega=cte''+Nk\ln V+\frac{3Nk}{2}\ln E$ y sean estados de referencia $V_{0},E_{0}$ de entropía $S_{0}$:
+$$
+\begin{align}
+ & S_{0}=cte''+Nk\ln V_{0}+\frac{3Nk}{2}\ln E_{0} \\
+\implies & S-S_{0}=Nk\ln\left( \frac{V}{V_{0}} \right)+\frac{3}{2}Nk\ln\left( \frac{E}{E_{0}} \right)
+\end{align}
+$$
+# Procesos
+1. Reversibles (Isentrópicos): Es una sucesión ordenada de estados de equilibrio de igual entropía. Son isentrópicos pues para ser reversibles no deben crear entropía.
+2. Cuasiestáticos: Sucesión ordenada de estados de equilbrio.
+3. Real: Sucesión ordenada temporal de estados de equilbrio y de no equilibrio.
+
+Real -> No cuasiestático -> Irreversible
+
+
 ***
 # 22/08
+# Trabajo Macroscópico
+
+Se va a llamar trabajo $\mathbb{W}$ al trabajo realizado por **el medio sobre el sistema**. Así, lo que entra al sistema es positivo, y se denota al trabajo realizado por el sistema como $\mathbb{W}'=-\mathbb{W}$
+Para un proceso muy próximo al otro (infinitesimalmente) se va a denotar con $w$ (minúscula)
+![[Pasted image 20250825163619.png]]
+se sabe ya que el trabajo está dado por:
+$$
+\mathbb{W}=\vec{F}·d\vec{s}
+$$
+
+## Trabajo Volumétrico
+Es el trabajo en el cual el sistema cambia su volumen por un agente externo.
+	Ejemplo: Gas confinado en una cámara que se contrae por la fuerza aplicada con un émbolo.
+
+$w=\vec{F}d\vec{x}$, si $F=\rho A\implies w=\rho Ad\vec{x}$ y la variación de volumen es $|dV|=A|dx|$.
+Si se comprimió: $dV<0\implies d=-Adx \implies w=-PdV$ y el signo se opone a la compresión.
+Deben estar en equilibrio el medio y el sistema ($P_{medio}=P_{sist}=P$) sino, no se puede usar fórmula.
+
+## Trabajo Extendido
+Requiere especificar el camino $\mathcal{C}$ recorrido. En general, el trabajo realizado por un camino es diferente al realizado por otro camino distinto y no son conservativos (en general).
+> Un camino es sinónimo de curva y éstos representan a un proceso.
+![[Pasted image 20250825164353.png]]
+entonces:
+$$
+\mathbb{W}_{\mathcal{C}}=\int_{i}^{f}-PdV,\ \mathbb{W}_{\mathcal{C}'}=\int_{i}^{f}-PdV
+$$
+*obs:* $w$ no es variable de estado, osea no depende del estado del sistema (en otras palabras: El sistema no 'posee' trabajo en un estado)
+
+##### Ejemplo: Ciclo Cuadrado
+Cuál es el $\mathbb{W}$?
+![[Pasted image 20250825164910.png]]
+*obs:* Proceso en donde no varía presión: Expansión/Compresión isobárica.
+1. Construir tabla de vértices (columnas = variables, filas = puntos del gráfico).
+2. Ingresar datos en celda correspondiente.
+3. Construir tabla con columnas como el valor que se pide y filas como los procesos (e.g. 1->2).
+
+El área entre las curvas es el trabajo realizado por el camino cerrado, ya que el trabajo es el área bajo una curva. Si se calcula el de una curva y luego se suma con la complementaria, se restarán las áreas (por uno de esos caminos devolverse).
+
+### Trabajo Eléctrico
+Existen otros tipos de trabajo, como el trabajo eléctrico dado por un flujo de cargas y la carga:
+$$
+\mathbb{W}=\phi d\Theta
+$$
+
+
+# 1° Ley de la Termodinámica: Conservación de la Energía
+Es un axioma: No se demuestra, pero la historia en datos empíricos lo a
+vala. Y se basa en la información física recolectada.
+Es  posible enunciarla como:
+- En un sistema aislado la energía se conserva
+- La energía del universo local es constante
+- La energía no se crea ni se destruye
+- El incremento de energía en un sistema es igual a:
+  1. La energía que ingresa
+  2. Menos la que sale
+  3. a través de la superficie del sistema
+
+### Calor
+Provisionalmente, es energía transferida cuando no es está realizando trabajo sobre el sistema, así:
+$$
+dA,dV,d\Theta = 0
+$$
+El calor es una transferencia de energía asociada a una transferencia de entropía.
+
+*obs:* El calor no es variable de estado (un sistema no lo posee)
+
+## Expresión 1° Ley
+Así, la primera ley de la termodinámica se puede expresar como:
+$$
+\begin{align}
+ & dE_{A}=q_{A}+w_{A} \\
+ & dE_{B}=q_{B}+w_{B} \\
+dE_{U}=0 &  \\
+ & \iff dE_{U}=dE_{A}+dE_{B} \\
+ & \iff dE_{U}=(q_{A}+q_{B})+(w_{A}+w_{B})
+\end{align}
+$$
+si $w_{A}=-w_{B}$ el trabajo que ejerce A sobre B es igual al opuesto que ejerce B sobre A:
+$$
+\implies q_{B}=q_{A}
+$$
+
+
+***
+# 25/08
+### Teoría del Calórico
+Explicación hecha por Lavoisier: El calórico es una sustancia que se transmite de un cuerpo a otro.
+Experimento de rumford:
+- 1er exp: Botella con agua fria y caliente pesan lo mismo
+- 2° Exp: Taladrar cañón produce virutas que no conservan el calórico
+	- No hay otra fuente de calor que la fricción de los golpes: El trabajo puede 'convertirse' en calor.
+
+### Joule
+Aún en el siglo, se pensaba que trabajo y calor eran independientes.
+
+James Prescott Joule, s.XIX: 
+Muestra que trabajo y calor son ambas energías y que había alguna relación entre ellas.
+Experimento:
+- Cilindro con agua aislado con lana.
+- Paletas fijas dentro del cilindro (estatores) y un eje veritcal conectado a paletas móviles
+- Un termómetro
+- Una masa cuelga afuera y al subir y bajar, subía la temperatura del agua en el interior. Mientras mayor masa, más subía la temperatura.
+
+# Trabajo y Calor
+El **trabajo** esta asociado a la transferencia de energía por medio de magnitudes macroscópicas (visibles)
+El **calor** es la transferencia de energía a través de variables microscópicas en forma de vibraciones atómicas, por lo que se puede relacionar con los microestados.
+
+Si se tienen dos sistemas aislados entre sí de forma que no se pueden ejercer trabajo el uno al otro,  el sistema que contiene mayor energía la transfiere a otro de baja energía a través de calor.
+
+## Propiedades del Calor
+1. El calor al i-ésimo sistema se denota como $Q_{i}$
+2. Empiricamente, se cumple que $Q_{A}+Q_{B}=0\iff Q_{A}=-Q_{B}$, osea se cumple la ley de la conservación de la energía.
+3. El calor no se asocia a la transferencia de una magnitud extensiva visible.
+   Se postula: $E_{q}-E_{i}=Q+\mathbb{W}$
+
+## Transferencia Cuasiestática de Energía
+Si se tiene un universo local B y el sistema A dentro de él.
+La transferencia es cuasiestática si la frontera entre el medio y el sistema se encuentra en equilibrio dentro de la precisión experimental que se tenga.
+
+* Diferencia entre cuasiestático y real:
+poca fuerza en émbolo mantiene la presión estable
+golpe provoca ondas
+
+La *interacción* es cuasiestática cuando la frontera está en equiilibrio.
+Un *proceso* es cuasiestático si todos los estados intermedios son de equilibrio.
+
+## Trabajos
+
+Siempre se puede expresar el trabajo como la transferencia de una magnitud ext multiplicada por otra magnitud extensiva que no depende del tamaño del sistema.
+> El trabajo siempre se puede expresar como transferencia.
+
+### Tensión Superficial
+Se origina en la interacción de las moléculas en la superficie de un líquido: Las moléculas en el interior interactúan con moléculas en todo su alrededor, mientras que las superficiales sólo con las inferiores, minimizando el área del líquido.
+> Es necesario realizar un trabajo para inflar una burbuja de jabón 
+
+Si se tiene una superficie un poco profunda y abierta en uno de sus lados, se puede ampliar la superficie del líquido:
+![[Pasted image 20250825174650.png]]
+Si se busca aumentar el área:
+$$
+dA=2L\ dx
+$$
+el '2' ya que, si se mira transversalmente, se aprecian dos capas (aunque minimamente separadas) asi que se debe calcular el aumento para ambas caras superior e inferior.
+Si se necesita aplicar una fuerza F y tiene un trabajo asociado:
+$$
+\begin{align}
+ & w_{A}=F dx \\
+\text{si }dx=\frac{dA}{2L} \implies & w_{A}=F\frac{dA}{2L}\\
+\end{align}
+$$
+
+# Ecuación Fundamental
+Se denomina ecuación fundamental de un sistema a la ecuación que relaciona todas sus magnitudes extensivas, osea:
+$$
+F(x_{1},x_{2},\dots,x_{n)})=0
+$$
+
+# Magnitudes Extensivas
+1. Están contenidas en un sistema
+2. Son aditivas
+3. Tienen densidad
+4. Se pueden transferir
+Ej: Masa, Energía, Entropía, Volumen y Dimensiones (se aceptan).
+
+> Un estado de equilibrio está completamente determinado por los valores de las magnitudes extensivas
+
+Cualquier interacción entre el medio del sistema se puede interpretar como una transferencia de magnitudes extensivas.
+Una relación entre magnitudes extensivas tiene toda la información entre estados de equilibrio:
+sean $x_{1},x_{2},\dots x_{n}$ magnitudes extensivas, se puede expresar una magnitud extensiva como una función que depende de las otras:
+$$
+F(x_{1},x_{2},\dots,x_{n)})=0
+$$
+es la relación fundamental.
+	Ejemplo: Gas ideal:
+	1. Para monoatómico: $S-S_{0}=Nk\ln\left( \frac{V}{V_{0}} \right)+\frac{3}{2}Nk\ln\left( \frac{E}{E_{0}} \right)$
+
+Si se sabe la relación fundamental, se puede saber el estado del sistema.
 
