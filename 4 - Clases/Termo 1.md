@@ -615,21 +615,53 @@ $$
 dA=2L\ dx
 $$
 el '2' ya que, si se mira transversalmente, se aprecian dos capas (aunque minimamente separadas) asi que se debe calcular el aumento para ambas caras superior e inferior.
-Si se necesita aplicar una fuerza F y tiene un trabajo asociado:
+Si se necesita aplicar una fuerza F y ésta tiene un trabajo asociado:
 $$
 \begin{align}
  & w_{A}=F dx \\
 \text{si }dx=\frac{dA}{2L} \implies & w_{A}=F\frac{dA}{2L}\\
 \end{align}
 $$
+#### Definición
+Si se define la tensión superficial $\alpha$ como:
+$$
+\alpha=\frac{F}{2L}
+$$
+si $2L=L_{tot}$ es el largo total del borde dela película, entonces
+$$
+\alpha=\frac{F}{L_{tot}}
+$$
+por lo tanto:
+> **La tensión superficial se puede interpretar como fuerza por unidad de longitud**,
 
+La tensión superficial tiene unidades de $\frac{N}{m}$, pero se mide en $\frac{J}{m^{2}}$ comúnmente:
+> La tensión superficial también se puede ver como *la energía necesaria para incrementar el área de un sistema*.
+
+ Y el trabajo ejercido por el medio sobre la película para expandir la película es:
+$$
+\mathbb{W}_{A}=\alpha\ dA
+$$
+
+- como la tensión superficial $\alpha>0\implies \mathbb{W}_{A}>0$ osea, el medio le ejerce un trabajo a la película, minimizando su área
+- La tensión superficial es una función de la temperatura y se anula en la temperatura crítica.
 # Ecuación Fundamental
-Se denomina ecuación fundamental de un sistema a la ecuación que relaciona todas sus magnitudes extensivas, osea:
+Se denomina ecuación fundamental de un sistema a la ecuación que relaciona todas sus magnitudes extensivas, osea, es una función de la forma:
 $$
-F(x_{1},x_{2},\dots,x_{n)})=0
+F(E,x_{1},x_{2},\dots,x_{n)})=0
 $$
+permitiendo así expresar una magnitud extensiva en función de todas la demás. Esta ecuación contiene toda la información de los estados de equilibrio del sistema.
+No siempre se tiene y se puede tratar de construir con mediciones experimentales y un formalismo.
+## Ecuación Fundamental en la Representación de Energía
+Si se elige expresar la energía en términos de las demás, la función de la forma:
+$$
+E=E(x_{1},x_{2},\dots,x_{n})
+$$
+se denomina *ecuación fundamental en la representación de energía* y se usa habitualmente en termodinámica.
+# Magnitud
+Una **magnitud** es una propiedad de un sistema que puede ser expresada cuantitativamente. En termodinámica se pueden clasificar en dos grupos: Magnitudes Extensivas y Magnitudes Intensivas.
+## Magnitudes Extensivas
+Se denotan con $X$ (mayúscula) y se pueden reconocer como similares a la masa. Estas *existen* o *hay* en el sistema, osea, **están contenidas en el sistema**. Entonces es posible establecer su localización espacial en el interior de una superficie cerrada
 
-# Magnitudes Extensivas
 1. Están contenidas en un sistema
 2. Son aditivas
 3. Tienen densidad
@@ -640,9 +672,9 @@ Ej: Masa, Energía, Entropía, Volumen y Dimensiones (se aceptan).
 
 Cualquier interacción entre el medio del sistema se puede interpretar como una transferencia de magnitudes extensivas.
 Una relación entre magnitudes extensivas tiene toda la información entre estados de equilibrio:
-sean $x_{1},x_{2},\dots x_{n}$ magnitudes extensivas, se puede expresar una magnitud extensiva como una función que depende de las otras:
+sean $X_{1},X_{2},\dots X_{n}$ magnitudes extensivas, se puede expresar una magnitud extensiva como una función que depende de las otras:
 $$
-F(x_{1},x_{2},\dots,x_{n)})=0
+F(X_{1},X_{2},\dots,X_{n)})=0
 $$
 es la relación fundamental.
 	Ejemplo: Gas ideal:

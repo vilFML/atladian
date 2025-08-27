@@ -710,3 +710,95 @@ para dipolos de momentos paralelos:
 $$
 \vec{F}=-\frac{6p_{1}p_{2}}{4\pi\varepsilon_{0}r^{4}}\hat{u}_{r}
 $$
+# 
+Clase 26/08
+### Potencial en aproximación al dipolo
+Si se tiene un sistema discreto de cargas y se quiere calcular el potencial en un punto $P$, el [[#Potencial de Dipolo]] será:
+$$
+V(P)=\frac{1}{4\pi\mathcal{E}_{0}}\sum_{i=1}^{n}\frac{q_{i}}{r_{i}}
+$$
+donde un punto se está instalando en el infinito.
+$r$ es la distancia desde un origen $\mathcal{O}$ no necesariamente como punto medio entre las cargas, pero sí tiene que estar en el interior de la distribución de cargas.
+![[Pasted image 20250826165655.png]]
+creando el ángulo $\theta_{i}$, se tiene entonces $r_{i}=r-d_{i}\cos \theta_{i}$, que viene de:
+$$
+
+\begin{align}
+ & \text{si }\vec{d}_{i}=\vec{r}-\vec{r}_{i} \\
+\text{expresando }d_{i}\hat{u}_{i}=r\hat{u}_{r}-r_{i}\hat{u}_{r_{i}} &\ /·\hat{u}_{r} \\
+\iff & d_{i}\hat{u}_{r}\hat{u}_{i}=r\hat{u}_{r}\hat{u}_{r}-r_{i}\hat{u}_{r_{i}}\hat{u}_{r} &  \\
+\hat{u}_{r}·\hat{u}_{r}=1, &\ \text{y por aprox de larga dist: }\hat{u}_{r_{i}·\hat{u}_{r}}\approx_{1} \\
+\iff & r_{i}=r-d_{i}\cos \theta_{i}
+\end{align}
+$$
+en potencial:
+$$
+\begin{align}
+ & V=\frac{1}{4\pi\mathcal{E}_{0}}\sum_{1}^{n} \frac{qi}{r-d_{i}\hat{u}} \\
+\vdots \\
+\iff & V=\frac{Q_{tot}}{4\pi\mathcal{E}_{0}r}+\frac{1}{4\pi\mathcal{E}_{0}} \frac{\vec{p}\hat{u}_{r}}{r^{2}}
+\end{align}
+$$
+el primer término se denomina potencial de monopolo, y el segundo potencial de dipolo.
+
+# Ley de Gauss
+La ley de gauss es una manera para obtener el campo eléctrico de manera fácil (si lo permite la simetría).
+Nace del concepto de flujo, denotado como $\Phi$, como por ejemplo, la cantidad de agua que pasa en una cañería; pero en este caso se considera el paso de las líneas de fuerza.
+El flujo obliga a tener una superficie por donde pasa, denotada por $\Sigma$ y se define una superficie infinitesimal $d\Sigma$
+![[Pasted image 20250826170821.png]]
+¿Cuánto flujo se tiene en la superficie infinitesimal $d\Sigma$?
+Se toma un 'trozo' de superficie infinitesimal $d\Sigma$ y el versor $\hat{u}_{n}$ normal a él.
+El flujo $\Phi$ es un escalar, que correponde a un campo que cruza la superficie, osea:
+$$
+d\Phi=\vec{E}\hat{u}_{n}d\Sigma
+$$
+que es el flujo infinitesimal que cruza la superficie infinitesimal $d\Sigma$
+Para el flujo total por una superficie $\Sigma$ de un campo eléctrico $\vec{E}$, denotado como $\Phi_{\Sigma}(\vec{E})$
+$$
+\Phi_{\Sigma}(\vec{E})=\iint_{\Sigma}\vec{E}\hat{u}_{n}d\Sigma
+$$
+e interesan los casos:
+## 1. Campo eléctrico de carga puntual
+Una carga puntual genera un campo eléctrico de al forma:
+$$
+\vec{E}=\frac{1}{4\pi\mathcal{E}_{0}} \frac{q}{r^{2}}\hat{u}_{r}
+$$
+definiendo una superficie de la forma:
+![[Pasted image 20250826171453.png]] ![[Pasted image 20250826171517.png]]
+luego, el flujo a través de la superficie es:
+$$
+\vec{E}\hat{u}_{r}d\Sigma=\frac{1}{4\pi\mathcal{E}_{0}} \frac{1}{r^{2}}\hat{u}_{r}\hat{u}_{n}d\Sigma
+$$
+donde $\hat{u}_{r}·\hat{u}_{n}=\cos \theta$, luego:
+$$
+=\frac{q}{4\pi\mathcal{E}_{0}} \frac{\cos\theta\ d\Sigma}{r^{2}}
+$$
+el término $\cos \theta\ d\Sigma$ corresponde a la proyección ortogonal de la superficie infinitesimal, osea es lo que se vé de la superficie sin importar el ángulo de inclinación que tenga.
+Y además se tiene la razón $\frac{d\Sigma}{r^{2}}=d\Omega$, denominado ángulo de salida, el cual es la extensión tridimensional del ángulo bidimensional, así, es el ángulo con que la carga vé la superficie. Así el flujo:
+$$
+\Phi_{\Sigma}(\vec{E})=\iint_{\Sigma} \frac{q}{4\pi\mathcal{E}_{0}}d\Omega=\frac{q}{4\pi\mathcal{E}_{0}}\Omega_{tot}
+$$
+que corresponde a la **ley de gauss**.
+si $\Sigma$ es superficie cerrada y encierra a la carga (de cualquier forma de la superficie):
+$$
+\Phi_{\Sigma}(\vec{E})=\unicode{x222F} \vec{E}\hat{u}_{r}d\Sigma=\frac{Q_{enc}}{\mathcal{E}_{0}}
+$$
+donde $Q_{enc}$ es la carga que está encerrada en el interior de la superficie $\Sigma$.
+
+
+La ley de gauss entrega la cantidad del flujo de líneas de fuerza que pasan por la superficie, así si el flujo es nulo, indica que se tiene el mismo número de líneas de fuerza entrando que saliendo de la superficie
+
+## Carga Esférica
+$$
+\begin{align}
+ & \Phi_{\Sigma}(\vec{E})=\unicode{x222F}_{\Sigma}\vec{E}\hat{u}_{n}d\Sigma=\frac{Q_{enc}}{\mathcal{E}_{0}} \\
+ & \unicode{x222F}E(r)d\Sigma=\frac{Q_{enc}}{\mathcal{E}_{0}} \\
+\text{si la carga es esferica:} & Q_{enc}=V·\rho=\frac{4}{3}\pi r^{3}·\rho \\
+\iff & E 4\pi r^{2}=\frac{Q_{enc}}{\mathcal{E}_{0}}=\frac{\frac{4\pi R^{3}}{3}\rho}{\mathcal{E}_{0}} \\
+\iff & E=\frac{R^{3}}{r^{2}} \frac{\rho}{3\mathcal{E}_{0}}
+\end{align}
+$$
+La ley de gauss entrega la magnitud del campo, y por simetría de la esfera se puede agregar directamente el vector radial $\hat{u}_{r}$ entonces:
+$$
+\vec{E}=\frac{R^{3}}{r^{2}} \frac{\rho}{3\mathcal{E}_{0}} \hat{u}_{r}
+$$

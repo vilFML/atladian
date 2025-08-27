@@ -785,3 +785,89 @@ $$
 A(S)=\iint_{T}\sqrt{ 1+\partial f() }
 $$
 >se parece al área de un sólido de revolución 
+
+***
+*def*
+Si $S_{1},\dots,s_{k}$ son superficies suaves que satisfacen:
+1. Cada uno de los bordes $\partial S_{1},\dots,\partial S_{k}$ intersectan al menos uno de los otros bordes en una curva seccionalmente suave.
+2. Ningún par de puntos entre las superficies $S_{1},\dots,S_{k}$ tiene puntos en común que no son bordes.
+entonces se dice que:
+$S_{1},\dots,S_{k}$ forman una superficie seccionalmente suave $S$ y se escribe:
+$$
+S=S_{1},S_{2}+\dots+S_{K}
+$$
+y además:
+$$
+A(S)=A(S_{1})+A(S_{2})+\dots+A(S_{k)})
+$$
+
+# 
+*def*
+Sea $S$ una superficie suave representada (parametrizada) por $\vec{r}:T\to \mathbb{R}^{3}$, y supongamos que $f$ es una función real y continua en $S$. Entonces la integral de superficie de $f$ sobre $S$ se representa por el símbolo:
+$$
+\iint_{S}f(x)dA=\iint_{S}f(x,y,z)dS
+$$
+y está definida por
+$$
+\iint_{S}f(x)dA=\iint_{T}f(\vec{r}(u,v))\left| \left| \frac{\partial \vec{r}(u,v)}{\partial u} \times \frac{\partial \vec{r}(u,v)}{\partial v}\right|  \right| du\ dv
+$$
+*obs:* 
+1. si $S_{1}+\dots+S_{k}$,
+   $$
+\iint_{S}f(x)dA=\iint_{S_{1}}f(x)dA+\dots+\iint_{S_{k}}f(x)dA
+$$
+2. Si $f=1$, entonces:
+   $$
+\iint_{S}f(x)dA=\iint_{S}1·dA=A(S)
+$$
+
+# 
+*def*
+Sea $\vec{F}=(P,Q,R)$ un campo vectorial continuo sobre la superficie suave y orientable $S$, supongamos que $\hat{n}$ es una orientación de $S$. 
+Entonces la integral de superficie de $\vec{F}$ sobre $S$ está definida como la integral de superficie del campo escalar $\vec{F}·\hat{n}$, es decir:
+$$
+\iint_{S}\vec{F}·\hat{n}dA
+$$
+
+*obs:* si $\hat{n}$ es inducido por la superficie $S$ mediante $\vec{r}(u,v)$ se tiene:
+$$
+\hat{n}=\frac{\frac{\partial \vec{r}(u,v)}{\partial u} \times \frac{\partial \vec{r}(u,v)}{\partial v}}{\left| \left| \frac{\partial \vec{r}(u,v)}{\partial u} \times \frac{\partial \vec{r}(u,v)}{\partial v}\right|  \right|}
+$$
+por lo tanto:
+$$
+\iint_{S}\vec{F}·\hat{n}dA=\iint_{T}\vec{F}(\vec{r}(u,v))•\hat{n}(\vec{r}(u,v))·\left| \left| \frac{\partial \vec{r}(u,v)}{\partial u} \times \frac{\partial \vec{r}(u,v)}{\partial v}\right|  \right|dudv
+$$
+$$
+=\iint_{T}\vec{F}(\vec{r}(u,v))·\frac{\frac{\partial \vec{r}(u,v)}{\partial u} \times \frac{\partial \vec{r}(u,v)}{\partial v}}{\left| \left| \frac{\partial \vec{r}(u,v)}{\partial u} \times \frac{\partial \vec{r}(u,v)}{\partial v}\right|  \right|}·\left| \left| \frac{\partial \vec{r}(u,v)}{\partial u} \times \frac{\partial \vec{r}(u,v)}{\partial v}\right|  \right|dudv
+$$
+$$
+\iint_{T}\vec{F}(\vec{r}(u,v))·\left(\frac{\partial \vec{r}(u,v)}{\partial u} \times \frac{\partial \vec{r}(u,v)}{\partial v} \right)du\ dv
+$$
+
+Físicamente si F es una velocidad de un fluido, entonces la expresión es el volumen que se mueve.
+
+# 
+*def*
+Sea $S=S_{1}+\dots+S_{k}$ una superficie seccionalmente suave con orientaciones $\hat{n}_{1},\hat{n}_{2},\dots,\hat{n}_{k}$ (osea se divide en superficies chicas y cada una tiene su orientación).
+Si $\vec{F}:S\to \mathbb{R}^{3}$ continuo, se tiene que:
+$$
+\iint_{S}\vec{F}\hat{n}dA=\sum_{i=1}^{k} \iint_{S_{i}}\vec{F}\hat{n}_{i}dA
+$$
+
+# Teorema de la Divergencia
+
+*def:*
+La divergencia de un campo vectorial $\vec{F}:\Omega \subseteq \mathbb{R}^{n}\to\mathbb{R}^{n}$ está definido por lo siguiente:
+$$
+\text{div}(\vec{F})=\sum_{i=1}^{n}\frac{\partial F_{i}(x)}{\partial x_{i}}=\text{tr}(\vec{F}'(x))
+$$
+ > cada componente se deriva por su variable
+
+## Terorema de la Divergencia
+Sea $\Omega$ una región acotada en $\mathbb{R}^{3}$ cuya frontera se parametriza como una superficie $S$ seccionalmente suave, orientable y cerrada (osea no puede ser, por ej. un plano).
+Supongamos que $\vec{F}$ es de clase $\mathcal{C}^{1}$ y $\hat{n}$ es la orientación de $S$ que apunta hacia el exterior. 
+Entonces:
+$$
+\iint_{S}\vec{F}·\hat{n}\ dA=\iiint_{\Omega}\text{div}(\vec{F})\ dx\ dy\ dz
+$$
+*obs:* el teorema de la divergencia es la generalización del teorema de green para 3 dimensiones.
