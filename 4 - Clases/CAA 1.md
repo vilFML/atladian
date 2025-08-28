@@ -27,7 +27,7 @@ $$
 donde $\vec{F}_{i}(\vec{x})$ son [[Campo Escalar|campos escalares]].
 
 *ej:* los puntos de un disco plano que gira en sentido antihorario, con velocidad angular $\omega>0$ constante y de radio $r=1$, tiene como campos de velocidad:
-***dIBUJO EJ DISCO GIRANDO***
+![[Pasted image 20250828111223.png]]
 
 $$
 \implies  \vec{v}(x,y,0)=-\omega y \hat{i} + \omega x \hat{j}+0\hat{k}
@@ -62,7 +62,7 @@ ambas representan el arco parabólico $y=x^{2}$ que va desde $(0,0) \to(2,4)$
 
 - Una misma curva puede estar dadas por parametrizaciones distintas
 - Ambas van en la misma dirección: aumentan en el mismo sentido, no es la misma curva si no crecen en la misma dirección.
-  ***DIBUJO y=x²***
+![[Pasted image 20250828111843.png]]
 
 ### [[Traza]]
 *def:* 
@@ -118,8 +118,8 @@ $$
 \end{matrix} \right)
 = \gamma_{1}'(t)e_{1}+\gamma_{2}'(t)e_{2}+\dots+\gamma_{n}'(t)e_{n}\text{ , con } t \in [a,b]
 $$
-	obs: $\vec{\gamma}'(a),\;\vec{\gamma}'(b)$ deben ser interpretadas como derivadas a la izquierda y derecha, respectivamente.
-	***dibujo lim h->0***
+*obs:* $\vec{\gamma}'(a),\;\vec{\gamma}'(b)$ deben ser interpretadas como derivadas a la izquierda y derecha, respectivamente.
+![[Pasted image 20250828112103.png]]
 
 ### [[Curva suave]]
 Una curva es suave (o de [[clase C1]]) si su parametrización $\vec{\gamma}:[a,b]\to \mathbb{R}^{n}$ es continuamente diferenciable y además:
@@ -132,7 +132,7 @@ $$
 $$
 
 las curvas se pueden concatenar:
-***dibujo concatenación***
+![[Pasted image 20250828112140.png]]
 ### 
 si $\gamma_{1}:[a_{1},b_{1}],\;\gamma_{2}:[a_{2},b_{2}]$ son parametrizaciones de $\Gamma_{1},\Gamma_{2}$ respectivamente, C1 por tramos y tal que $\vec{\gamma}_{1}(b_{1})=\vec{\gamma}_{2}(a_{2})$, entonces:
 $$
@@ -156,8 +156,8 @@ y se denota como la suma de ambas:
 $$
 \Gamma=\Gamma_{1}+\Gamma_{2}
 $$
-	*obs:* una curva $\Gamma$ se dice seccionalmente suave si $\Gamma=\Gamma_{1}+\Gamma_{2}+\dots+\Gamma_{n}$, donde $\Gamma_{i}$ son suaves.
-		o sea una curva es seccionalmente suave si se puede escribir como unión de curvas suaves.
+
+*obs:* una curva $\Gamma$ se dice seccionalmente suave si $\Gamma=\Gamma_{1}+\Gamma_{2}+\dots+\Gamma_{n}$, donde $\Gamma_{i}$ son suaves. O sea una curva es seccionalmente suave si se puede escribir como unión de curvas suaves.
 
 ***
 # Clase 2, 07/08
@@ -166,11 +166,11 @@ $$
 La circunferencia de centro (0,0) es una curva suave. En efecto, puede ser representada por:
 $$
 \begin{align}
-\vec{\gamma}(t)=(\cos t,\sin t),\; 0\leq t\leq 2\pi \\
-\text{donde }\vec{\gamma}'(t) = (-\sin t,\cos t), 0\leq t\leq 2\pi
+ & \vec{\gamma}(t)=(\cos t,\sin t),\; 0\leq t\leq 2\pi \\
+\implies  & \vec{\gamma}'(t) = (-\sin t,\cos t), 0\leq t\leq 2\pi
 \end{align}
 $$
-que es continua, y además $\vec{\gamma}'\neq(0,0),\; \forall t \in [0,2\pi]$
+donde $\vec{\gamma}'$ es continua, y además $\vec{\gamma}'\neq(0,0),\; \forall t \in [0,2\pi]$
 
 ###### Ejemplo 2:
 La curva dada por
@@ -184,7 +184,7 @@ $$
 \vec{\gamma}'(t)=(0,0) \iff t=-2\pi,0,2\pi \\
 \end{align}
 $$
-***dibujo semi circulos***
+![[Pasted image 20250828112530.png]]
 	se sacan las 'puntas' y se secciona en 2 curvas $\Gamma_{1},\Gamma_{2}$
 
 # Recta tangente
@@ -213,8 +213,9 @@ Dada una curva $\Gamma$ parametrizada por $\vec{\gamma}:[a,b] \to \mathbb{R}^{n}
 $$
 L_{p}(\Gamma)=\sum_{i=1}^{n}\lvert\lvert \vec{\gamma(t_{i})}-\vec{\gamma}(t_{{i-1}}) \rvert\rvert 
 $$
-***dibujo curva con particiones***
+![[Pasted image 20250828112711.png]]
 	cuando se agregan puntos, se acerca a la longitud de la curva completa.
+
 Se dice que $\Gamma$ es **rectificable** si el conjunto $\{ L_{p}(\Gamma),P \text{ es una partición de }[a,b] \}$ es acotado superiormente.
 *recuerdo:* si el conjunto es acotado superiormente, entonces tiene supremo. Y tiene ínfimo por norma ser no negativa.
 Y en cuyo caso, la longitud de la curva (o del arco) se define como:
@@ -256,7 +257,7 @@ $$
 Si se supone que la partícula se mueve a lo largo de una curva $\Gamma$ bajo la acción de un campo vectorial de fuerzas $\vec{F}$, se busca calcular el **trabajo realizado** por el campo de fuerzas sobre la partícula cuando ésta describe una curva.
 Si $\Gamma$ es un desplazamiento rectilíneo dado por un vector $\vec{d}$, y $\vec{F}$ es constante, entonces $\mathbb{W}=\vec{F}\cdot\vec{d}$
 Cuando $\Gamma$ no es una recta y $\vec{F}$ no es constante, se puede aproximar la curva $\Gamma$ por un número infinito de desplazamientos rectos:
-***dibujo curva con muchas lineas rectas***
+![[Pasted image 20250828113241.png]]
 
 Dada una parametrización de $\Gamma$ dada por $\vec{\gamma}:[a,b]\to \mathbb{R}^{n}$, si $\mathcal{f}$ varía en un intervalo pequeño de tiempo $[t_{i},t_{i}+\Delta t]$, la partícula se moverá entre $\vec{\gamma}(t_{i})$ y $\vec{\gamma}(t_{i}+\Delta t)$ en un **desplazamiento vectorial** dado por:
 $$
@@ -285,7 +286,7 @@ que corresponde a la **integral de línea**.
 # 
 Dada $\Gamma$ curva suave en $\mathbb{R}^n$ y $\vec{F}$ un campo vectorial continua y definido en $\text{tr}(\Gamma)$, entonces la integral de línea de $\vec{F}$ a lo largo de $\Gamma$ está definida como:
 $$
-\int_{\Gamma}\vec{F} d \vec{x} = \int_{a}^{b}\vec{F}(\vec{\gamma}(t))\vec{\gamma}(t)dt
+\int_{\Gamma}\vec{F} d \vec{x} = \int_{a}^{b}\vec{F}(\vec{\gamma}(t))\vec{\gamma}'(t)dt
 $$
 donde $\vec{\gamma}:[a,b]\to \mathbb{R}^{n}$ es una parametrización de $\Gamma$
 	es similar al teorema de cambio de variable, porque se pasa de un dominio 'raro' $\Gamma$ a uno en $\mathbb{R}$, y el término de la derivada es análogo al Jacobiano del cambio de variable.
@@ -296,13 +297,14 @@ si $\mathcal{f}$ es un campo escalar, se define la integral de línea de $\mathc
 $$
 \int_{\Gamma}\mathcal{f} d \vec{x} = \int_{a}^{b}\mathcal{f}(\vec{\gamma}(t))·||\vec{\gamma}(t)||dt
 $$
-	Ejemplo: si $\mathcal{f}$ es la densidad de masa de un alambre $\Gamma$, la integral representa la masa total de $\Gamma$
+
+*Ejemplo*: si $\mathcal{f}$ es la densidad de masa de un alambre $\Gamma$, la integral representa la masa total de $\Gamma$
 
 
 # Clase 12/08
 
 ## Integral de Línea
-Si se tiene una curva seccioalmente suave $S:\Gamma=\Gamma_{1}+\Gamma_{2}+\dots+\Gamma_{n}$ y un campo vectorial $\vec{F}$ definido y contino sobre $\text{tr}(\Gamma)$, entonces
+Si se tiene una curva seccionalmente suave $S:\Gamma=\Gamma_{1}+\Gamma_{2}+\dots+\Gamma_{n}$ y un campo vectorial $\vec{F}$ definido y contino sobre $\text{tr}(\Gamma)$, entonces
 La integral de línea se define como:
 $$
 \int_{\Gamma}\vec{F} d \vec{x}=\sum_{i=1}^{n}\int_{\Gamma_{i}}\vec{F}d \vec{x}
@@ -871,3 +873,116 @@ $$
 \iint_{S}\vec{F}·\hat{n}\ dA=\iiint_{\Omega}\text{div}(\vec{F})\ dx\ dy\ dz
 $$
 *obs:* el teorema de la divergencia es la generalización del teorema de green para 3 dimensiones.
+
+
+***
+Estudiando operaciones diferenciales, escribamos:
+$$
+\nabla=\left( \frac{\partial}{\partial x_{1}},\dots, \frac{\partial}{\partial x_{n}} \right) =\sum_{i=1}^n e_{i} \frac{\partial}{\partial x_{i}}
+$$
+el teérmino dentro de la sumatoria se llama notación de einstein
+
+Con esta notación, operamos $\nabla$ de la misma forma como lo haríamos con un vector.
+De este modo, para $f:\Omega \subseteq \mathbb{R}^{n}\to \mathbb{R}$, se hace:
+$$
+\nabla f=\sum_{i=1}^n e_{i} \frac{\partial f}{\partial x_{i}}
+$$
+y para $\vec{F}:\Omega \subseteq \mathbb{R}^n \to \mathbb{R}^n$, se tiene:
+$$
+\text{div}(\vec{F})=(\nabla \vec{F})=\dots
+$$
+
+un operador importante es el **laplaciano**, y lo podemos escribir con esa notación:
+$$
+\begin{align}
+\Delta f & =\nabla^{2}f=\nabla·\nabla f \\
+ & =\sum_{i=1}^n \frac{\partial^{2}f}{\partial x_{i}^{2}} \\
+ & =\text{tr}(f''(x))
+\end{align}
+$$
+
+para el caso del **rotacional**, recuperamos la notación anterior:
+$$
+\text{rot}(\vec{F})=\nabla \times \vec{F}
+$$
+que mide la asímetría de la matriz $\vec{F}'(x,y,z)$
+
+Podemos extender lo anterior al caso de tensores:
+Notemos que
+$$
+e_{i}·e_{j}=\delta_{ij}=
+\left\{
+	\begin{array}{ll}
+		1\; , \text{si } i=j \\
+		0\; , \text{si } i\neq j
+	\end{array}
+\right.
+$$
+donde $\delta_{ij}$ se llama delta de Kronecker
+
+Analicemos el producto cruz. Para ello,
+sea $a\times b=c$,
+donde 
+$$
+\begin{align}
+a=e_{i}·a_{i} \\
+b=e_{i}·b_{i} \\
+c=e_{i}·c_{i}
+\end{align}
+$$
+entonces, usando la notación de einstein:
+$$
+C_{k}=(a\times b)_{k}=\epsilon_{ijk}a_{i}b_{i}
+$$
+donde
+$$
+\epsilon_{ijk}=
+\left\{
+	\begin{array}{ll}
+		1\; , \text{ordenamientos par }i\to j\to k \\
+		-1\; , \text{ordenamientos impar }i\to k\to j \\
+        0\;, \text{dos o mas terminos repetidos}
+	\end{array}
+\right.
+$$
+
+*obs:*
+1) $\epsilon_{ijk}=-\epsilon_{ijk}$
+2) $\epsilon_{ijk}\epsilon_{\alpha \beta k}=\delta_{i\alpha}\delta_{i\beta}-\delta_{i\beta}\delta j\alpha$
+
+## teorema: Fórmulas de Green o I.P.P.
+Sea $\Omega \subseteq \mathbb{R}^{3}$ abierto, acotado con frontera $\partial \Omega$ de clase $\mathcal{C}¹$. 
+Entonces, si $u,v \in C²(\Omega)$:
+$$
+\frac{\partial u}{\partial n}=\nabla u·\hat{n}
+$$
+donde $\hat{n}$ es la normal unitaria exterior, se tiene:
+1
+$$
+\iiint_{\Omega}u\Delta v=\iint_{\partial \Omega}u \frac{\partial v}{\partial n}dA-\iiint_{\Omega}\nabla u·\nabla v
+$$
+2.
+$$
+\iiint_{\Omega}(u\Delta v-v\Delta u)=\iint_{\partial \Omega}\left( u \frac{\partial v}{\partial n}-v \frac{\partial u}{\partial n} \right) dA
+$$
+
+## Teorema de Stokes (Forma Restringida)
+Supongamos que S es una superficie orientable suave, definida por $\vec{r}:T\subseteq \mathbb{R}^{2}\to \mathbb{R}^{3}$, donde T es convexo y cerrado, acotado por una curva de jordan $\Gamma$.
+Supongamos también que $\vec{r}$ es de clase $C 2$ en T y que $\vec{F}=(P,Q,R)$ es de clase $C 1$ en S.
+Sea $\hat{n}$ la orientación de S inducida por $\vec{r}$, y que $\vec{r}(u,v)$ recorre el borde de S, denotado por $\partial S$ exactamente una vez cuando $(u,v)$ recorre $\Gamma$. Entonces:
+$$
+\iint_{S}\text{rot}(\vec{F})\hat{n}dA=\oint_{\partial S}\vec{F}d\vec{x}
+$$
+donde el sentido recorrido de $\partial S$ es aquel en el cual $\vec{r}(u,v)$ la recorre cuando $(u,v)$ recorre a $\Gamma$ en el sentido antihorario.
+*obs:* si $S\subseteq \mathbb{R}^{2}$ acotado por una curva de Jordan $\partial S$, considerando $\vec{r}(x,y)=(x,y,0),\ (x,y)\in S$  (es en el plano $XY$). Entonces, la normal va a ser $\hat{n}=(0,0,1)$ y la fórmula se reduce para $\vec{F}=(P,Q,R)$
+$$
+\iint_{S}\left( \frac{\partial Q}{\partial x}-\frac{\partial P}{\partial y} \right) dxdy=\oint_{\partial S}Pdx+Qdy
+$$
+
+> Es un caso particular del teorema de green para un caso plano
+
+## Teorema de Stokes
+Sea $S$ una superficie seccionalmente suave, orientable y acotada, con borde consistente de curvas seccionalmente suaves $\Gamma_{1},\dots,\Gamma_{K}$, cada una de ellas positivamente dirigidas con respecto a $\hat{n}$. Sea $\vec{F}$ de clase $C 1$, entones:
+$$
+\iint_{S}\text{rot}(\vec{F})\hat{n}dA=\sum_{i=1}^K \int_{\Gamma_{i}} \vec{F}d\vec{x} 
+$$

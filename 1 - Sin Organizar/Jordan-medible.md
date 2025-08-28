@@ -1,0 +1,1 @@
+es equivalente a decir que el 'borde' tenga medida 0
