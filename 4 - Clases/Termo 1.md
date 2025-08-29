@@ -682,3 +682,97 @@ es la relación fundamental.
 
 Si se sabe la relación fundamental, se puede saber el estado del sistema.
 
+*** 
+# 
+Clase
+
+Por qué se conserva la energía?
+
+Hay simetría de las leyes físicas:
+1. Invariancia ante traslaciones (
+2. Invariancia ante rotaciones
+3. Invariancia temporal: Son siempre las mismas
+
+¿Se conserva la energía?
+Haciendo un experimento pensado de dos objetos  de $\frac{M}{2}$ de masa que van a chocar a una velocidad $V_{0}$ en sentidos opuestos:
+La energía cinética entre ellas es la misma
+Luego del choque se mantienen juntas con velocidad 0, la energía se esfumó?
+
+Si se vé microscópicamente, se vé una grilla de partículas unidas por resortes, moviéndose con la misma velocidad y cada una sumando a la energía cinética del objeto.
+Después del choque, las partículas se moverán aleatoriamente y vibran en torno al equilibrio. Osea la energía pasó a estar almacenada en vibraciones microscópicas.
+- El proceso es irreversible pues la probabilidad de que las partículas vuelvan a moverse todas en la misma dirección para mover el objeto total, es mínima. Entonces el proceso es irreversile
+
+# Temperatura Absoluta
+
+Notación:
+$$
+\left( \frac{\partial F}{\partial x} \right) _{y}=\frac{\partial}{\partial x}F(x,y)
+$$
+la temperatura sale luego de combinar la primera y segunda ley
+2° En un sist aislado no decrece la entropóa
+1° la en. en un sist aislado es constante
+0° dos sistemas en equilibrio térmico están a la **misma temperatura**
+
+dos gases y en medio un émbolo están en eq si las presiones son iguales.
+Si se considera un sistema:
+- con dos cámaras recubiertas por una pared aislante térmica (pared adiabática),
+- un metal conductor (pared diatérmica) que separa dos fluidos,
+se llegará a equilibrio térmico (estado final en donde no hay más flujo térmico de un lado a otro)
+Entonces, si en el equilibrio, los dos sistemas deben compartir una propiedad, esa propiedad se define como *temperatura* 
+
+Considerando el sistema anterior:
+la 1° ley dice que $E_{A}+E_{B}=E_{0}=cte$, pero no determina cuánta energía en específico
+la ley 2 dice que la entropía nunca decrece, por lo tanto va a crecer en el tiempo hasta llegar a un máximo.
+Entonces, cómo se puede determinar el equilibrio? 
+Si en equilibrio: 
+$$
+\begin{align}
+ & dS_{U}=0 \\
+\iff & dS_{A}+dS_{B}=0 \\
+\text{si }S_{A}=S_{A}(E_{A},V_{A}) & \text{ con }V_{A}=cte
+\end{align}
+$$
+
+$$
+\left( \frac{\partial S}{\partial E} \right)_{V} |_{A}= \left( \frac{\partial S}{\partial E} \right)_{V} |_{B}
+$$
+se define entonces:
+$$
+\frac{1}{T}=\left( \frac{\partial S}{\partial E} \right)_{V}
+$$
+
+
+- la unidad es el kelvin $K$
+- la temperatura absoluta es no negativa $T\geq 0$, ya que $\=Omega$ crece con la energía $E$ luego $S$ crece con $E$, entonces $\frac{\partial S}{\partial E}\geq 0$
+
+*def:* El sistema más caliente es el que cede energía (calor) en una interacción térmica.
+Osea, el sistema más caliente está a mayor temperatura.
+
+*dem:* sistema B está más caliente
+Considerando un sistema justo en el punto anterior a estar en equilibrio, y pared rígida (vol. cte)
+$$
+\begin{align}
+dS=\left( \frac{\partial S}{\partial E} \right)_{A}dE_{1}+\left( \frac{\partial S}{\partial E} \right)_{B}dE_{B} \\
+dS=\frac{1}{T_{A}}dE_{A}+\frac{1}{T_{B}}dE_{B}>0 \\
+dE_{A}=q_{A}+w_{A},\ w_{A}=0 \text{ por } dV=0 \\
+\text{e igual para B} \\
+dE_{U}=0=dE_{A}+dE_{B}=q_{A}+q_{B} \\
+dS=\frac{q_{A}}{T_{A}}+\frac{q_{B}}{T_{B}}>0 \\
+\frac{q_{A}}{T_{A}}+ -\frac{q_{A}}{T_{B}}>0 \\
+\frac{1}{T_{A}}-\frac{1}{T_{B}}>0 \\
+\iff \frac{1}{T_{A}}> \frac{1}{T_{B}} \\
+\iff T_{B}> T_{A}
+\end{align}
+$$
+
+Cómo se mide la temperatura con termómetros
+
+termómetro mide el volumen de un líquido.
+Si a $P=cte,\;V=V(T)$ haciendo taylor alrededor de $T_{0}$:
+$$
+V\approx V(T_{0})+ \frac{dv}{dT}|_{0} (T-T_{0}) + \frac{1}{2} \frac{d^{2}V}{dT^{2}}|_{0} (T-T_{0})^{2} +\dots
+$$
+así en la mayoría de los casos:
+$$
+V\approx V(T_{0})+ \frac{dV}{dT}|_{0}\;(T-T_{0})
+$$
