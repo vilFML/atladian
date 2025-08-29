@@ -802,3 +802,105 @@ La ley de gauss entrega la magnitud del campo, y por simetría de la esfera se p
 $$
 \vec{E}=\frac{R^{3}}{r^{2}} \frac{\rho}{3\mathcal{E}_{0}} \hat{u}_{r}
 $$
+
+***
+# 
+Clase 28/08
+
+## Continuidades del Campo Eléctrico al cruzar una superficie cargada
+
+La [[Ley de Snell]] se basa en la variación del campo eléctrico al enfrentarse a una superficie cargada. 
+
+Si se tiene una capa de cualquier material cargada con densidad de carga superficial $\sigma$, ésta tendrá emite campos eléctricos $\vec{E}_{1},\vec{E}_{2}$ superior e inferiormente:
+![[Pasted image 20250828181539.png]]
+para analizar matemáticamente el comportamiento del campo eléctrico, se construye un rectángulo que cruza la capa:
+![[Pasted image 20250828181947.png]]
+el campo electrostático es conservativo, osea cumple que:
+$$
+\oint_{\mathcal{C}}\vec{E}d\vec{s}=0
+$$
+lo que obliga a tener un camino cerrado $\mathcal{C}$, que va a estar dado por el recorrido que se hace con el rectángulo construido. Indicando los vértices:
+![[Pasted image 20250828182151.png]]
+y sean:
+$$
+\begin{align}
+\bar{AB}=\bar{CD}=d\vec{s} \\
+\bar{BC}=\bar{DA}=d\vec{h}
+\end{align}
+$$
+si se construye el rectángulo de tal forma que $d\vec{h}\to 0$ por ser un infinitesimal de orden superior, entonces se tiene:
+$$
+\begin{align}
+\implies &  \oint_{\mathcal{C}}\vec{E}d\vec{s}=0 \\
+\iff & \vec{E}_{2}d\vec{s}+\vec{E}_{1}d\vec{s}=0
+\end{align}
+$$
+### Componente Tangencial
+Si
+$$
+\vec{E}_{2}d\vec{s}=E_{t_{2}}ds,\ \vec{E}_{1}d\vec{s}=E_{t_{1}}ds
+$$
+son las componentes tangenciales del campo eléctrico (paralelos a la capa de material), así:
+$$
+\begin{align}
+ & \vec{E}_{2}d\vec{s}+\vec{E}_{1}d\vec{s}=0 \\
+\iff  & E_{t_{2}}ds-E_{t_{1}}ds=0 \\
+\iff & (E_{t_{2}}-E_{t_{1}})ds=0 \\
+\text{segmento no es nulo, }ds\neq 0: &  \\
+\implies &  E_{t_{2}}-E_{t_{1}}=0 \\
+\iff & E_{t_{1}}=E_{t_{2}}
+\end{align}
+$$
+Por lo tanto, la componente tangencial del campo eléctrico al cruzar una superficie cargada no varía.
+
+### Componente Normal
+Dibujando un cilindro que cruza la superficie cargada, con los campos arbitrarios $\vec{E}_{1},\vec{E}_{2}$ generados por la superficie:
+![[Pasted image 20250828183354.png]]
+por [[#Ley de Gauss]] se cumple que:
+$$
+∯\vec{E}\hat{u}_{n}d\Sigma=\frac{Q_{enc}}{\mathcal{E}_{0}}
+$$
+haciendo el mismo proceso que se hizo para obtener la componente tangencial:
+$$
+\begin{align}
+ & \vec{E}_{1}\hat{u}_{n}d\Sigma+\vec{E}_{2}\hat{u}_{n}d\Sigma = \frac{Q_{enc}}{\mathcal{E}_{0}}\\
+\iff  & E_{n_{1}}d\Sigma+E_{n_{2}}d\Sigma =\frac{Q_{enc}}{\mathcal{E}_{0}}
+\end{align}
+$$
+donde $Q_{\text{enc}}$ corresponde a la superficie, y asumiendo la carga uniforme, entonces $Q_{\text{enc}}=\sigma d\Sigma$ y se tiene que:
+$$
+\begin{align}
+ & E_{n_{1}}d\Sigma+E_{n_{2}}d\Sigma=\frac{\sigma d\Sigma}{\mathcal{E}_{0}} \\
+\iff  & E_{n_{1}}+E_{n_{2}}=\frac{\sigma}{\mathcal{E}_{0}}
+\end{align}
+$$
+Por lo tanto la componente normal del campo eléctrico varía proporcionalmente a la carga $\sigma$ que tenga la superficie.
+
+
+
+# Conductores
+Los materiales conductores están formados por átomos que se caracterizan por tener los últimos electrones poco ligados al núcleo. Así, bajo la acción de un campo eléctrico, se podrán mover y, por lo tanto, generar una corriente eléctrica.
+Se van a analizar sólamente conductores sólidos.
+
+Un conductor en equilibrio tiene campo eléctrico nulo en su interior. Esto porque se tienen muchas cargas moviéndose en todas las direcciones, así que los campos eléctricos generados se anulan.
+Y el potencial en el interior del conductor es cero pues:
+$$
+\begin{align}
+ & V_{1}-V_{2}=\int \vec{E}d\vec{s} \\
+\text{si }\vec{E}=0\implies & V_{1}-V_{2}=0 \\
+\iff & V_{1}=V_{2}
+\end{align}
+$$
+el potencial es igual en todos los puntos, y la diferencia de potencial es nula.
+También se puede ver por el teorema de Gauss:
+$$
+\begin{align}
+ & ∯\vec{E}\hat{u}_{n}ds=\frac{Q_{\text{enc}}}{\mathcal{E}_{0}} \\
+\text{si }Q_{\text{enc}}=0\implies &  ∯\vec{E}\hat{u}_{n}ds=0 \\
+\text{solo puede ser si }  & \vec{E}=0
+\end{align}
+$$
+
+## Propiedades
+1. La superficie del conductor es superficie equipotencial:
+   ![[Pasted image 20250828190412.png]]
