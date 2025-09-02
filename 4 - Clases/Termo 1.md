@@ -689,7 +689,7 @@ Clase
 Por qué se conserva la energía?
 
 Hay simetría de las leyes físicas:
-1. Invariancia ante traslaciones (
+1. Invariancia ante traslaciones
 2. Invariancia ante rotaciones
 3. Invariancia temporal: Son siempre las mismas
 
@@ -736,19 +736,18 @@ $$
 $$
 \left( \frac{\partial S}{\partial E} \right)_{V} |_{A}= \left( \frac{\partial S}{\partial E} \right)_{V} |_{B}
 $$
-se define entonces:
+se define entonces la temperatura absoluta $T$ como:
 $$
-\frac{1}{T}=\left( \frac{\partial S}{\partial E} \right)_{V}
+\frac{1}{T}= \frac{\partial }{\partial E}S(E,X_{1},X_{2},\dots,X_{k}) =\left( \frac{\partial S}{\partial E} \right)_{V}
 $$
-
-
+cuando la energía está expresada en variables extensivas.
 - la unidad es el kelvin $K$
-- la temperatura absoluta es no negativa $T\geq 0$, ya que $\=Omega$ crece con la energía $E$ luego $S$ crece con $E$, entonces $\frac{\partial S}{\partial E}\geq 0$
+- la temperatura absoluta es no negativa $T\geq 0$, ya que $\Omega$ crece con la energía $E$ luego $S$ crece con $E$, entonces $\frac{\partial S}{\partial E}\geq 0$
 
 *def:* El sistema más caliente es el que cede energía (calor) en una interacción térmica.
 Osea, el sistema más caliente está a mayor temperatura.
 
-*dem:* sistema B está más caliente
+*dem|* sistema B está más caliente
 Considerando un sistema justo en el punto anterior a estar en equilibrio, y pared rígida (vol. cte)
 $$
 \begin{align}
@@ -776,3 +775,152 @@ así en la mayoría de los casos:
 $$
 V\approx V(T_{0})+ \frac{dV}{dT}|_{0}\;(T-T_{0})
 $$
+
+***
+# 01/09
+
+Sean $X_{1},X_{2},X_{3}$ tq: $F(X_{1},X_{2},X_{3})=0$, se elige:
+$$
+\begin{align}
+X_{1}=X_{1}(X_{2},X_{3}) \\
+F(X_{1}(X_{2},3),X_{2},X_{3})=0
+\end{align}
+$$
+con $X_{1}(X_{2},X_{3})$ es la primera variable, $X_{2}$ es la segunda y $X_{3}$ es la tercera. Entonces se usa notación:
+$F_{1}$ derivada parcial con respecto a la primera variable.
+
+$$
+\begin{align}
+F_{1}\left( \frac{\partial X_{1}}{\partial X_{2}} \right)_{X_{2}}+F_{2}=0 \\
+\text{tomando }X_{2}=X_{2}(X_{1},X_{3} \\
+F(X_{1},X_{2}(X_{1},X_{3}),X_{3})=0 \\
+\left( \frac{\partial}{\partial X_{1}} \right)_{X_{2} \\
+} 
+\end{align}
+$$
+
+así, recordando que 
+$$
+\begin{align}
+\frac{1}{T}=\left( \frac{\partial S}{\partial E} \right)_{V} \\
+\text{si }S=X_{1},E=X_{2},V=X_{3} \\
+\frac{1}{T}=\left( \frac{\partial}{\partial E} \right)_{V}=\frac{1}{\left( \frac{\partial E}{\partial S} \right)_{V}} \\
+\iff T=\left( \frac{\partial E}{\partial S} \right)_{V}
+\end{align}
+$$
+
+
+# Gas Ideal
+Ya se ha visto el caso monoatómico y diatómico.
+Si
+$$
+\begin{align}
+S=NK_{B}\ln V+\frac{r}{2}NK_{B}\ln E \\
+\frac{1}{T}=\left( \frac{\partial S}{\partial E} \right)_{V}=0+\frac{r}{2}\frac{NK_{B}}{E} \\
+E=\frac{r}{2}NK_{B}T \\
+\frac{r}{2}PV=\frac{r}{2}NK_{B}T \\
+PV=NK_{B}T
+\end{align}
+$$
+
+# Proceso Adiabático
+Un proceso es adiabático si $q=0$, $q$ (minúscula) es para procesos muy próximos entre sí. Osea, $q=0$ en cada etapa del proceso total.
+
+
+Para un gas ideal,
+**un proceso isentrópico es equivalente a un proceso adiabático y cuasiestático.**
+\*isentrópico proceso entropía constante
+
+
+# Capacidad Térmica C
+
+Si se consideran dos sistemas $A,B$ en donde el primero le transfiere energía a B, de forma $q_{A}$ y el medio (más caliente) está calentando a ambos sistemas,
+
+
+el sistema tiene mayor capacidad si a cierta energía entregada, tiene un aumento de temperatura pequeño.
+
+$$
+C_{A}=\frac{q_{A}}{\Delta T}
+$$
+
+Hay muchas 'capacidades' para cada proceso (adiabático, isentrópico, etc.), pero es usual encontrar los procesos a **presión constante** y **volumen constante**.
+
+$$
+C_{p}=\frac{q_{P}}{\Delta T}=\frac{q}{\Delta t}|_{p}
+$$
+
+
+$$
+C_{V}=\frac{q_{V}}{\Delta T}=\frac{q}{\Delta T}|_{V}
+$$
+Se refiere al sistema completo y se mide en $\frac{J}{K}$
+# Calor Específico C
+No depende de la cantidad, sino que de la temperatura y presión y, por lo tanto, **es una propiedad del material**.
+
+Se dice que el calor específico mide la capacidad de un objeto a 'almacenar calor', aunque no es preciso.
+$$
+c = 
+\left\{
+	\begin{array}{ll}
+		\frac{C}{M}\ \left[ \frac{J}{K·Kg} \right] \\
+		\frac{C}{nroMol}\ \left[ \frac{J}{K·mol} \right] \\
+        \frac{C}{V}=\frac{J}{K·m^{3}}
+	\end{array}
+\right.
+$$
+
+## Propiedades Cap térmica y calor específico
+- C y c son siempre positivas
+- $C_{P}\geq C_{V}\ (C_{P}>C_{V})$
+- En sólidos la capacidad calórica y el calor específico son similares
+- En gases la diferencia entre cap. calórica y el calor específico es notable porque la dilatación térmica es importante.
+
+## Caso Gas Ideal
+Si se tiene que
+$$
+E=\frac{r}{2}NK_{B}T
+$$
+y
+$$
+\Delta E=Q+\mathbb{W}
+$$
+
+Si el proceso es isocórico (a volumen consante): $\mathbb{W}=0$
+
+luego,
+$$
+\begin{align}
+\Delta E_{V}=Q_{V} \\
+\Delta E=\frac{r}{2}NK_{B}\Delta T \\
+ \\
+C_{V}=\frac{\frac{r}{2}NK_{B}\cancel{ \Delta T }}{\cancel{ \Delta T }}=\frac{r}{2}NK_{B} \\
+\text{por mol: }N=N_{A} \\
+c=\frac{r}{2}N_{A}K_{B}=\frac{r}{2}R
+\end{align}
+$$
+para resumir:
+$$
+c_{V}=
+\left\{
+	\begin{array}{ll}
+		\frac{3}{2}R, \text{si es monoatm} \\
+		\frac{5}{2}R,\text{si es diatom}
+	\end{array}
+\right.
+$$
+
+# Fuente Térmica
+Es un sistema muy grande que, al intercambiar temperatura con el medio, su temperatura permanece aproximadamente muy grande.
+A veces se usa reservorio térmico pero no se usa porque tiene otro significado.
+
+# Conducción Térmica
+Uno se quema por la cantidad de energía transferida, pero también depende del tiempo. 
+
+Por ejemplo: piedra vs metal para cocinar pizza
+1. La piedra tiene poros en donde se puede evaporar el agua.
+2. La piedra tiene una mayor capacidad térmica, pero menor conductividad térmica. Por lo tanto, hornea la pizza más lento.
+
+## Formas de conducción térmica.
+1. Radiación
+2. Convección: Transporte de energía asociado al movimiento de una masa (un fluido)
+3. Conducción térmica.

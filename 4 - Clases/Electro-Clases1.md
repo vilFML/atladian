@@ -904,3 +904,14 @@ $$
 ## Propiedades
 1. La superficie del conductor es superficie equipotencial:
    ![[Pasted image 20250828190412.png]]
+
+*** 
+# Clase 02/09
+
+Condensador tiene campo eléctrico entre sus placas. Es horizontal pero en los extremos se curva (pero sólo se verá el caso en que el campo eléctrico es horizontal.
+
+En un conductor las cargas se ubican en el borde 
+Como el campo elećtrico es 0, entonces el potencial es 0 entre cualquiera de los puntos.
+Todos los puntos están al mismo potencial, entonces el conductor es una superficie equipotencial.
+
+Si a un cargador cargado se le acerca otro

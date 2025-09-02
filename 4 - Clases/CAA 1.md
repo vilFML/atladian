@@ -986,3 +986,115 @@ Sea $S$ una superficie seccionalmente suave, orientable y acotada, con borde con
 $$
 \iint_{S}\text{rot}(\vec{F})\hat{n}dA=\sum_{i=1}^K \int_{\Gamma_{i}} \vec{F}d\vec{x} 
 $$
+
+***
+# Clase 02/09
+
+## Operadores diferenciales en otros sistemas de coordenadas
+Las coordenadas cartesianas no siempre son las más adecuadas (o correctas) para describir objetos geométricos y campos escalares o vectoriales.
+
+Un sistema de coordenadas es una transformación invertible "suficientemente" diferenciable $\vec{r}:\Omega \subseteq \mathbb{R}^{3}\to \mathbb{R}^{3}$ donde
+$$
+\vec{r}(u,v,w)=x(u,v,w)\hat{i}+y(u,v,w)\hat{j}+z(u,v,w)\hat{k}
+$$
+donde supondremos que $\vec{r}'(u,v,w)$ es no singular, es decir, invertible para cada $(u_{0},v_{0},w_{0})$ en $\Omega$
+
+En cada punto se define un triedro (una 3-tupla) de vectores unitarios de la siguiente manera:
+Fijamos $(u_{0},v_{0},w_{0})\in \Omega$ y consideramos:
+$$
+u \to \vec{r}(u,v_{0},w_{0})
+$$
+> Me paro en un punto y varío sólo una de las coordenadas (en este caso $u$)
+
+como $\vec{r}'$ es invertible, se tiene:
+$$
+\left| \left| \frac{\partial}{\partial u}\vec{r}(u_{0},v_{0},w_{0}) \right|\neq 0  \right| 
+$$
+y por tanto, el vector tangente a la curva $\vec{r}(u,v_{0},w_{0})$ en $\vec{r}(u_{0},v_{0},w_{0})$ está bien definido y se expresa como:
+$$
+\hat{u}=\frac{\frac{\partial}{\partial u}\vec{r}(u_{0},v_{0},w_{0})}{\left| \left| \frac{\partial}{\partial u}\vec{r}(u_{0},v_{0},w_{0}) \right|  \right| }
+$$
+y se puede hacer el mismo proceso para $v,w$: de la misma manera, los vectores $\hat{v},\hat{w}$ definidos $v\to \vec{r}(u_{0},v,w_{0})$ y $w\to \vec{r}(u_{0},v_{0},w)$ están bien definidos.
+
+> mono1
+
+como $\vec{r}'$ es invertible en todo punto, $\{ \hat{u},\hat{v},\hat{w} \}$ es linealmente independiente, por lo que es una base ortonormal de $\mathbb{R}^{3}$
+
+## Sistema Ortogonal
+*def:*
+Se dice que el sistema de coordenadas $\vec{r}=\vec{r}(u,v,w)$ con $(u,v,w)\in \Omega$ es ortogonal si los vectores $\{ \hat{u},\hat{v},\hat{w} \}$ definidos por:
+$$
+\hat{u}=\frac{\frac{\partial \vec{r}}{\partial u}}{\left| \left| \frac{\partial \vec{r}}{\partial u} \right|  \right| }
+$$
+$$
+\hat{v}=\frac{\frac{\partial \vec{r}}{\partial v}}{\left| \left| \frac{\partial \vec{r}}{\partial v} \right|  \right| }
+$$
+$$
+\hat{w}=\frac{\frac{\partial \vec{r}}{\partial w}}{\left| \left| \frac{\partial \vec{r}}{\partial w} \right|  \right| }
+$$
+
+son mutuamente ortogonales, pero cada $(u,v,w)\in \Omega$, donde:
+$$
+h_{u}=\left| \left| \frac{\partial \vec{r}}{\partial u} \right|  \right| 
+$$
+$$
+h_{v}=\left| \left| \frac{\partial \vec{r}}{\partial v} \right|  \right| 
+$$
+$$
+h_{w}=\left| \left| \frac{\partial \vec{r}}{\partial w} \right|  \right| 
+$$
+y se llaman factores escalares.
+
+> Se está haciendo un cambio de base, equivalente a cambiar la forma de expresar el mismo vector 'con otro idioma'
+##### Ejemplo de Coordenadas Polares.
+>monos
+
+
+## Operadores Diferenciales
+Primero estudiando el gradiente en 2D.
+Para ello, consideremos:
+$$
+\begin{align}
+\vec{r}=x \hat{i}+y\hat{j} \\
+\nabla f=\frac{\partial f}{\partial x}\hat{i}+\frac{\partial f}{\partial y}\hat{j}
+\end{align}
+$$
+está en base $\{ \hat{i},\hat{j} \}$
+Sabemos que 
+$$
+\frac{\partial f}{\partial x}=\nabla f·\hat{\imath}\ ,\ \frac{\partial f}{\partial y}=\nabla f·\hat{\jmath}
+$$
+con esto:
+$$
+\nabla f=(\nabla f·\hat{\imath})\hat{\imath}+(\nabla f·\hat{\jmath}\hat{\jmath})\hat{\jmath}
+$$
+que pasa si generalizamos a la base ortonomal $\{ \hat{u},\hat{v} \}$
+
+Escribiendo:
+$$
+\nabla f=(\nabla f·\hat{u})\hat{u}+(\nabla f·\hat{v})\hat{v}
+$$
+y considerando
+$$
+\hat{u}=\frac{1}{h_{u}}\frac{\partial \vec{r}}{\partial u}\ ,\ v=\frac{1}{h_{v}}\frac{\partial \vec{r}}{\partial v}
+$$
+podemos escribir:
+$$
+\nabla f·\hat{u}=\frac{1}{h_{u}}\left[ \frac{\partial f}{\partial x}\hat{i}+\frac{\partial f}{\partial y}\hat{j} \right] \left[ \frac{\partial f}{\partial u}\hat{i}+\frac{\partial f}{\partial u}\hat{j} \right] 
+$$
+$$
+= \frac{1}{h_{u}}\left[ \frac{\partial f}{\partial x}\frac{\partial x}{\partial u}+\frac{\partial f}{\partial y}\frac{\partial y}{\partial u} \right] 
+$$
+(por regla de la  cadena)
+$$
+=\frac{1}{h_{u}}\frac{\partial f}{\partial u}
+$$
+
+Análogamente 
+$$
+\nabla f·\hat{v}=\frac{1}{h_{v}}\frac{\partial f}{\partial v}
+$$
+por lo tanto
+$$
+\nabla f=\frac{1}{h_{u}}\frac{\partial f}{\partial u}
+$$
