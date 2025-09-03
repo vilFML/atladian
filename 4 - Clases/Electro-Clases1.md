@@ -904,3 +904,115 @@ $$
 ## Propiedades
 1. La superficie del conductor es superficie equipotencial:
    ![[Pasted image 20250828190412.png]]
+
+***
+# Clase 02/09
+Si se tiene un conductor cargado y se acerca a otro conductor (cargado o no), se induce una carga parcial en donde las cargas serán atraídas según el campo eléctrico del primer conductor:
+![[Pasted image 20250902190132.png]]
+por el movimiento de cargas en $C_{2}$ se genera otro campo eléctrico dentro de él $\vec{E}'$.
+- El movimiento de las cargas se detiene cuando se igualan los campos eléctricos: $\vec{E}=\vec{E}'\iff \vec{E}+\vec{E}'=0$ 
+
+##### Conductor con Cavidad Interior:
+![[Pasted image 20250902190354.png]]
+si por ley de gauss: 
+$$
+\begin{align}
+ & \oint \vec{E}d\vec{s}=0 \\
+ & \oint \vec{E}d\vec{s}=\int_{A}^{B}\vec{E}_{\text{int}}d\vec{s}+\int_{B}^{B}\vec{E}'d\vec{s}=0 \\
+\text{si por flujo igual: } & \int_{A}^{B}\vec{E}_{\text{int}}d\vec{s}=0 \\
+\implies & \int_{B}^{A}\vec{E}'d\vec{s} =0
+\end{align}
+$$
+así no hay campo eléctrico inducido en el interior $\vec{E}'=0$, entonces la carga sólamente se distribuye en el exterior.
+##### Conductores con Conexiones
+![[Pasted image 20250902190838.png]]
+Los tres casos corresponden a un sólo conductor, pues la carga encuentra un camino para distribuirse dentro del objeto.
+
+##### Conductor Dentro de Otro
+![[Pasted image 20250902190943.png]]
+La carga sí de distribuye en ambos conductores. Esta forma en donde entran todas las líneas de fuerza en el otro conductor se conoce como **inducción completa**, que sucede en los condensadores.
+
+# Condensador
+Corresponde a dos materiales conductores de una cierta forma y a una determinada distancia y es capaz de almacenar cargas.
+Idealmente hay inducción completa de líneas de fuerzas completamente paralelas entre sí, sin embargo en la realidad hay curvaturas en los extremos.
+Están caracterizados por su Capacitancia $C$ que representa la capacidad de un material de almacenar carga y se tiene de la forma:
+$$
+C=\frac{q}{V}
+$$
+- $q$ es la carga que puede almacenar
+- $V$ es el potencial del condensador, medido entre sus dos terminales.
+
+Se mide en Farad $F=\left[ \frac{C}{V} \right]$ y las mas usuales son del orden de los $\mu F,pF$
+La capacitancia depende de la geometría del condensador, esto es, la forma del conductor y la distancia a la que están.
+Pueden ser planos o cilíndricos
+
+## Condensador Plano
+![[Pasted image 20250902192641.png]]
+la diferencia de potencial es:
+$$
+V_{A}-V_{B}=\int_{A}^{B}\vec{E}d\vec{s}=E·h
+$$
+$$
+C=\frac{q}{V_{A}-V_{B}}=\frac{q}{Eh}=\frac{q}{\frac{\sigma}{\mathcal{E}_{0}}h}=\frac{q}{\frac{q}{\Sigma\mathcal{E}_{0}}h}=\mathcal{E}_{0} \frac{\Sigma}{h}
+$$
+luego, la capacitancia depende sólo del tamaño de las placas y de cuánto están separadas (además del material entremedio)
+
+## Condensador Cilíndrico
+![[Pasted image 20250902193013.png]]
+La capacitancia $C$ es :
+$$
+C=\frac{2\pi\mathcal{E}_{0}d}{\ln\left( \frac{R_{2}}{R_{1}} \right)}
+$$
+
+## Algebra de Condensadores
+### En serie
+![[Pasted image 20250902193104.png]]
+Se sabe que 
+$$
+\frac{1}{C_{eq}}=\frac{1}{C_{1}}+\frac{1}{C_{2}}
+$$
+y viene desde que:
+
+$$
+\begin{align}
+ & V_{1}=V_{A}-V_{D}=\frac{q}{C_{1}} \\
+ & V_{2}=V_{D}-V_{B}=\frac{q}{C_{2}} \\
+\text{se busca }V_{A}-V_{B} & \text{, sumando anteriores:} \\
+V_{A}-V_{B}=q\left( \frac{1}{C_{1}}+\frac{1}{C_{2}} \right) \\
+\iff  & \frac{V_{A}-V_{B}}{q}= \frac{1}{C_{1}}+\frac{1}{C_{2}} \\
+\iff & \frac{1}{C_{eq}}=\frac{1}{C_{1}}+\frac{1}{C_{2}}
+\end{align}
+$$
+
+### En paralelo
+![[Pasted image 20250902193433.png]]
+$$
+\begin{align}
+ & C_{1}=\frac{q_{1}}{V_{A}-V_{B}},C_{2}=\frac{q_{2}}{V_{A}-V_{B}} \\
+ & C_{eq}=\frac{q}{V_{A}-V_{B}} \\
+\text{si } & q=q_{1}+q_{2} \\
+\iff & q=(V_{A}-V_{B})(C_{1}+C_{2}) \\
+\iff & q=(V_{A}-V_{B})C_{eq}
+\end{align}
+$$
+
+## Energía del Campo Eléctrico
+Cuando se energiza un condensador, a medida que van llegando las cargas, se acumulan cargas contrarias en la otra placa, formando cada vez más campo eléctrico en el interior.
+![[Pasted image 20250902193819.png]]
+si el trabajo $\mathbb{W}=Vq$, donde $V$ es la diferencia de potencial en los extremos del condensador ($V_{A}-V_{B}$).
+Llega otra carga y cambia el potencial $V'$ de forma que:
+$$
+\begin{align}
+ & d\mathbb{W}=V'dq' \\
+\text{si } & C=\frac{q}{V} \\
+\mathbb{W}=\int d\mathbb{W}= & \int \frac{q'}{C}dq'=\frac{1}{C}\int_{0}^{q}q'dq' \\
+\text{en donde se integra desde no tener cargas} \\
+\implies & \mathbb{W}=\frac{1}{2C}q^{2}
+\end{align}
+$$
+Es el trabajo necesario para cargar por completo el condensador.
+Luego, la energía potencial eléctrica $U_{e}$ está dado por:
+$$
+U_{e}=\frac{1}{2C}q^{2}
+$$
+el cual no es negativo pues es una energía que se ejerce desde el exterior del condensador.
