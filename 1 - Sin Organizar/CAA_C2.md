@@ -189,3 +189,5 @@ si $K=2$, $z^{2}=1$
 
 si $k=3,z^{3}=1$
 ***grafica ej2***
+
+- [ ] agregar graficos

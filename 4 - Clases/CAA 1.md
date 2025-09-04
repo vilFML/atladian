@@ -1146,7 +1146,8 @@ por lo tanto
 $$
 \nabla\cdot \vec{F}=\frac{1}{h_{u}h_{v}h_{w}}\left[ \frac{ \partial h_{v}h_{w}F_{u} }{ \partial u } +\frac{ \partial h_{u}h_{w}F_{v} }{ \partial v } + \frac{ \partial h_{u}h_{v}F_{w} }{ \partial w } \right] 
 $$
-
+- [ ] completar derivadas parciales
+- [ ] 
 ***
 ***fin contenido C1***
 ***
