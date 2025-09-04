@@ -1098,3 +1098,55 @@ por lo tanto
 $$
 \nabla f=\frac{1}{h_{u}}\frac{\partial f}{\partial u}
 $$
+
+***
+Clase 04/09
+
+Para el caso del operador divergencia, tenemos que para la base $\{ \hat{i},\hat{j},\hat{k} \}$ se tiene:
+$$
+\nabla\cdot \vec{F}=\frac{ \partial F_{1} }{ \partial x } +\frac{ \partial F_{2} }{ \partial y } +\frac{ \partial F_{3} }{ \partial z }
+$$
+ahora, si consideramos $\{ \hat{u},\hat{v},\hat{w} \}$ y $\vec{F}=F_{u}\hat{u}+F_{V}\hat{v}+F_{w}\hat{w}$, se tiene:
+$$
+\begin{align}
+\nabla\cdot \vec{F} & =\nabla\cdot(F_{u}\hat{u}+F_{V}\hat{v}+F_{w}\hat{w}) \\
+ & = \nabla(f_{u}\hat{u})+\nabla(F_{v}\hat{v})+\nabla(F_{w}\hat{w})
+\end{align}
+$$
+calculando:
+$$
+\nabla\cdot(F_{u}\hat{u})=\nabla F_{u}\hat{u}+F_{u}\nabla \cdot\hat{u}
+$$
+recordando que $\hat{u}=\hat{v}\times \hat{w}$, por lo que:
+$$
+\begin{align}
+\nabla\cdot \hat{u} & =\nabla\cdot(\hat{v}\times \hat{w}) \\
+ & =\nabla\cdot\left( (h_{u}h_{w}) \frac{\hat{v}}{h_{v}}\times \frac{\hat{w}}{h_{w}} \right) \\
+ & =\nabla(h_{v}h_{w})\cdot \left[ \frac{\hat{v}}{h_{v}}\times \frac{\hat{w}}{h_{w}} \right] + h_{v}h_{w}\nabla\cdot \left[ \frac{\hat{v}}{h_{v}}\times \frac{\hat{w}}{h_{w}} \right] 
+\end{align}
+$$
+pero
+$$
+\nabla v=\frac{1}{h_{v}}\hat{v},\nabla w=\frac{1}{h_{w}}\hat{w},\text{ y }\nabla\cdot[\nabla v\times \nabla w]=0
+$$
+***EJERCIOCIO***
+
+luego
+$$
+\nabla \hat{u}=\frac{1}{h_{v}h_{w}}\nabla(h_{v}h_{w})\cdot \hat{u}
+$$
+por lo que
+$$
+\nabla\cdot(F_{u}\hat{u})=\frac{1}{h_{u}}\frac{ \partial F_{u} }{ \partial u } + \frac{F_{u}}{h_{v}h_{w}}\frac{ \partial (h_{v}h_{w}) }{ \partial u } 
+$$
+$$
+=\frac{1}{h_{u}h_{v}h_{w}}\frac{ \partial h_{v}h_{w}Fu }{ \partial u } 
+$$
+por lo tanto
+$$
+\nabla\cdot \vec{F}=\frac{1}{h_{u}h_{v}h_{w}}\left[ \frac{ \partial h_{v}h_{w}F_{u} }{ \partial u } +\frac{ \partial h_{u}h_{w}F_{v} }{ \partial v } + \frac{ \partial h_{u}h_{v}F_{w} }{ \partial w } \right] 
+$$
+
+***
+***fin contenido C1***
+***
