@@ -20,85 +20,104 @@ La termodinámica tiene su origen en la sustentabilidad, pues se busca asegurar 
 En mecánica, para describir el movimiento de una partícula, se tienen la [[posición]] y [[velocidad]]. Donde cada una tiene 3 números: $r=(x,y,z)\;;\;\dot{r}=(r_{x},r_{y},r_{z})$.
 Luego, se necesitan 6 números para informar acerca del movimiento de una sola partícula en un instante.
 - En computación, para representar un número real, asumiendo una cierta precisión, se necesitan aproximadamente **400 bits**. Entonces, para los 6 números reales se necesitan 2,4 kBits
-- 
-En termodinámica se considera un número mayor de partículas, por ejemplo, para la cantidad de partículas en 1 centímetro cúbico de materia gaseosa, se tendrían $3\cdot 10^{19}$ átomos y, para un sólido, aproximadamente $10^{23}$ átomos. Así, para especificar su estado en cierto instante de tiempo se requieren alrededor de $10^{23}$ bits. Esto supera en la cantidad de información que se puede almacenar en todos los discos duros existentes. Aparte, si se quiere describir la trayectoria de las partículas, se necesitarían alrededor de $10^{40}$ términos. No existe capacidad computacional para almacenar ni para el proceso de estos datos.
 
-## Ejemplo: Rebote de pelota en superficie
+En termodinámica se considera un número mayor de partículas.
+Por ejemplo, para la cantidad de partículas en 1 centímetro cúbico de materia gaseosa, se tendrían $3\cdot 10^{19}$ átomos y, para un sólido, aproximadamente $10^{23}$ átomos. Así, para especificar su estado en cierto instante de tiempo se requieren alrededor de $10^{23}$ bits. Esto supera en la cantidad de información que se puede almacenar en todos los discos duros existentes. Aparte, si se quiere describir la trayectoria de las partículas, se necesitarían alrededor de $10^{40}$ términos. No existe capacidad computacional para almacenar ni para el proceso de estos datos.
 
+> La física mecánica resulta una solución para sistemas con un número de partículas de orden discreto, pero surgen problemas de procesamiento y almacenamiento de los datos al aumentar el número de partículas. La termodinámica estudia sistemas con una gran cantidad de partículas.
+
+## Factores de Peso o Probabilidad
+
+*Ejemplo: Rebote de pelota en superficie.*
 Se considera el estado inicial (punto desde donde se suelta) y final (punto máximo de altura luego de rebotar) de la situación.
+![[Pasted image 20250903170020.png]]
 1. Estado inicial: Evidentemente, la energía total del sistema corresponde a la energía potencial gravitatoria.
 2. Estado final: La energía del sistema ya no es tan evidente. Se tiene una energía potencial gravitatoria, pero hay una pérdida de ella debido a la menor altura que alcanza la pelota.
 Entonces, ***en dónde se encuentra esa diferencia de energía?***
 
-# Factores de Peso o Probabilidad
-
 En el sistema, al pasar desde el estado inicial al final, hubo una **pérdida de información**. 
-- ***Un sistema con información permite que se pueda generar energía con él.***
+>Un sistema con información permite que se pueda generar energía con él.
 
+### Definición
 El ***factor de peso (o probabilidad)*** es una magnitud real, que cumple:
 $$
-0 \leq x_{i}\leq_{1}
-$$
-y
-$$
+\begin{align}
+0 \leq x_{i}\leq_{1} \\
 \sum x_{i}=1
+\end{align}
 $$
+donde
+- Si $x=1$: la incertidumbre es igual a 0
+- Si $x<1$: la incertidumbre crece
 
 Se busca una magnitud que mida la información faltante: Se tendría una función $f$ que describa la incertidumbre (o ignorancia), que cumpla:
-- $f(x)\geq 0$
-- $f(x)=0 \leftrightarrow \text{certeza}$
-- $f(pq)=f(p)+f(q)$
+1. Sea no negativa: $f(x)\geq 0$
+2. Condición de certeza de un evento $x: f(x)=0$
+3. Aditividad para eventos independientes $p,q:f(pq)=f(p)+f(q)$
+
 Se puede ver que la función logaritmo natural cumple estos puntos.
 Si se busca matemáticamente la función:
 $$
 \begin{align}
-f(xy)f(x)+f(y)\;  /\frac{\partial}{\partial x}\\ \\
-f'(xy)y = f'(x)\; / \frac{\partial}{\partial y} \\ \\
-f''(xy)xy+f'(xy)=0 \\ \\
-\text{si }w=xy, \\ \\
-f''(w)w+f'(w)=0 \\ \\
-(f'w)'=0 \implies f'w = \text{cte} \iff f'=\text{cte} \\ \\
-\implies f(w)=A+\text{cte }\ln(w) \\ \\
-\text{si } f(1)=0 \implies A=0 \\ \\
-\therefore f(w)=-K\ln (w), K>0
+ & f(xy)f(x)+f(y)\;  /\frac{\partial}{\partial x}\\
+ & f'(xy)y = f'(x)\; / \frac{\partial}{\partial y} \\
+ & f''(xy)xy+f'(xy)=0 \\
+ \text{si }w=xy: \\
+ & f''(w)w+f'(w)=0 \\
+ & (f'w)'=0 \implies f'w = \text{cte} \iff f'=\text{cte} \\
+\implies &  f(w)=A+\text{cte }\ln(w) \\
+ & \text{si } f(1)=0 \implies A=0 \\
+ & \therefore f(w)=-K\ln (w) \\
+\iff & f(w)=K\ln\left( \frac{1}{w} \right)
 \end{align}
 $$
+Esta función corresponde a la forma más general que puede tener la función que modela la incertidumbre sobre un sistema, donde $K$ es una contante positiva cualquiera y es la única posible arbitrariedad.
 
-***
-Se usa el promedio de la información del error. Así, info faltante prom $\bar{f} = <f>$, se usa función $I(\cdot)$
+# Información Faltante (o Incertidumbre) Promedio
+Si hay certeza de un evento, se tiene que su probabilidad $x=1$ y la función se anula: $f(w)=0$, osea, no hay incertidumbre; pero si la probabilidad del evento tiende a 0 ($x\to 0$), la incertidumbre tiende a infinito. Esto es contraintuitivo, ya que se esperaría que un evento sin probabilidad de suceder tenga incertidumbre nula. Por ello, se usa **la magnitud promedio**.
+
+Si se considera un conjunto de $\Omega$ eventos de probabilidades $x_{i}=\{ x_{1},x_{2},\dots,x_{\Omega} \}$, que cumplen que
 $$
-I=\sum_{i=1}^{\Omega}f(x_{i})x_{i}
+\sum_{i=1}^{\Omega}x_{i}=1
+$$ 
+como $f(x_{i})=K\ln\left( \frac{1}{x_{i}} \right)$ es la magnitud de la incertidumbre del evento $x_{i}$, la información faltante (o incertidumbre) promedio $I$ se calcula como:
+$$
+I=\sum_{i=1}^{\Omega}x_{i}f(x_{i})
 $$
 y como $f(x_{i})=-K\ln(x_{i})$, entonces:
 $$
-I=-K\sum_{i=1}^{\Omega}x_{i}\ln(x_{i})
+I=-K\sum_{i=1}^{\Omega}x_{i}\ln\left( \frac{1}{x_{i}} \right)
 $$
-que cumple que $0\ln(0)=0$, por l'Hopital, para evento de certeza.
-- $I(·)$ se anula si alguno de los $i$ eventos se conoce con certeza:
-$$
-I=0, \text{ si }x_{i}=1
-$$
-- $I(·)$ es máxima si $x_{i}=\text{cte}$ (no depende del número de evento $i$), osea ***$I(·)$ es máxima si los eventos son equiprobables.
-$$
-I_{\text{máx}}=K\ln(\Omega)
-$$
+### Propiedades Información Faltante 
+1. Cumple que $0\ln(0)=0$, por l'Hopital, para evento de certeza.
+2. $I(·)$ se anula si alguno de los $i$ eventos se conoce con certeza:
+   $$
+   I=0, \text{ si }x_{i}=1
+   $$
+3. $I(·)$ es máxima si $x_{i}=\text{cte}$ (no depende del número de evento $i$), osea $I(·)$ es máxima si los eventos son equiprobables.
+   $$
+   I_{\text{máx}}=K\ln(\Omega)
+   $$
 
 K determina la unidad en la que se está midiendo $I(·)$, 
 1. Si $K=1 \implies I_{2}=$, se mide en 'neps'.
-2. Si $K=\frac{1}{\ln(2)} \implies I=-\sum x_{i}\log_{2}(x_{i})$, se mide en **bits**. Ejemplo, la memoria computacional:
+2. Si $K=\frac{1}{\ln(2)} \implies I=-\sum x_{i}\log_{2}\left( \frac{1}{x_{i}} \right)$, se mide en **bits**. Ejemplo, la memoria computacional:
    La memoria es un conjunto de compartimientos que almacena un '0' o un '1', entonces se tienen 2 configuraciones en una sola casilla. Entonces para 'n' casillas se tienen $2^n$ configuraciones.
 
-***
-# Compactación
-Es el proceso de eliminar información que no es completamente relevante.
-	Ejemplo: '¿Qué?' -> Q?
+## Información faltante de Shannon
+Se tiene cuando la constante $K$ es de la forma:
+$$
+K=\frac{1}{\ln (2)}
+$$
+así la información faltante toma la forma:
+$$
+I_{2}=-\sum_{i=1}^{\Omega}x_{i}\log_{2}\left( \frac{1}{x_{i}} \right)
+$$
+que se le denomina **información faltante de Shannon** y se le asigna la unidad de medida $[\text{bit}]$ . Y se puede interpretar como el número promedio de opciones binarias.
 
-***
-## $I_{2}$ como número de mediciones
+- [ ] preguntar al profe por qué se define $I_{2}$ con signo menos, pero en cátedra, la siguiente diapositiva no tenía el menos ⏫ 🏁 keep 
 
-La función $I_{2}(·)=\sum_{i=1}^{\Omega}x_{i}\log_{2}(x_{i})$ se puede interpretar como el número promedio de opciones binarias.
-
-Ejemplo: Algoritmo de búsqueda de guía telefónica:
+##### Ejemplo: Algoritmo de búsqueda de guía telefónica:
 
 | Numero de mediciones | Opciones             |
 | -------------------- | -------------------- |
@@ -111,21 +130,20 @@ y se llega al final si el número de opciones es 1 o aproximadamente 1.
 $$
 \begin{align}
 
-\frac{\Omega}{2^n} \approx 1  \\ \\
+ & \frac{\Omega}{2^n} \approx 1  \\ \\
 
-\therefore \log_{2}(\Omega)=n
+\implies &  \log_{2}(\Omega)=n
 \end{align}
 $$
-es posible obtener la información desconocida máxima como:
+y es posible obtener la información desconocida máxima como:
 $$
 S = k_{b}\ln(\Omega)
 $$
 con $\Omega$ el número de configuraciones posibles.
 
-# Clase 08/08
+# Microestado y Macroestado
 No es posible describir el sistema viendo el comportamiento de cada partícula, entonces se usa una capa de abstracción del sistema de forma que se representa a nivel macro como una "caja negra". Al hacer esto se dice que se pierde información acerca del sistema, pero en realidad hay una información que nunca se tuvo.
 
-# Microestado y Macroestado
 ## Microestado, Configuración o Estado microscópico
 Es especificar las variables de cada partícula que compone el sistema.
 
@@ -558,6 +576,9 @@ $$
 
 ***
 # 25/08
+
+# Trabajo y Calor
+## Historia
 ### Teoría del Calórico
 Explicación hecha por Lavoisier: El calórico es una sustancia que se transmite de un cuerpo a otro.
 Experimento de rumford:
@@ -576,7 +597,7 @@ Experimento:
 - Un termómetro
 - Una masa cuelga afuera y al subir y bajar, subía la temperatura del agua en el interior. Mientras mayor masa, más subía la temperatura.
 
-# Trabajo y Calor
+## Definiciones
 El **trabajo** esta asociado a la transferencia de energía por medio de magnitudes macroscópicas (visibles)
 El **calor** es la transferencia de energía a través de variables microscópicas en forma de vibraciones atómicas, por lo que se puede relacionar con los microestados.
 
