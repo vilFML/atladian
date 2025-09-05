@@ -141,24 +141,48 @@ S = k_{b}\ln(\Omega)
 $$
 con $\Omega$ el número de configuraciones posibles.
 
-# Microestado y Macroestado
+
+# Sistemas Macro y Microscópicos
+Microscópico no se refiere a escala o a tamaño del objeto que se estudia, sino que se aplica a sistemas que se describen detalladamente en pocas variables, entregando toda la información posible. A pesar de ser detallado, es una aproximación pues es computacionalmente imposible el amacenamiento y procesamiento de cada una de las variables para todas las partículas que componen el sistema.
+*Ejemplo: Un sólido rígido*
+Es un sistema microscópico pues se entrega:
+- la posición y velocidad del centro de masa
+- ángulos de rotación
+- momento angular
+
+Cada una de estas variables describe microscópicamente el sistema pues proporciona una buena descripción del comportamiento mediante pocas variables en comparación a la cantidad de partículas que pueden componer el sólido rígido (que pueden ser del orden de $10^{20}$).
+
+Por otro lado, lo **macroscópico o macroestado** hace referencia a sistemas que se describen completamente con variables que determinan propiedades del sistema actuando como un conjunto completo: presión $P$, volumen $V$, temperatura $T$, masa $M$, energía $M$, etc.; son variables macroscópicas que se pueden (usualmente) medir experimentalmente y estas especifican el *estado macroscópico o macroestado*.
+
+## Microestado y Macroestado
 No es posible describir el sistema viendo el comportamiento de cada partícula, entonces se usa una capa de abstracción del sistema de forma que se representa a nivel macro como una "caja negra". Al hacer esto se dice que se pierde información acerca del sistema, pero en realidad hay una información que nunca se tuvo.
 
-## Microestado, Configuración o Estado microscópico
-Es especificar las variables de cada partícula que compone el sistema.
+### Estado microscópico, Microestado o  Configuración del Sistema
+El estado microscópico de un sistema corresponde a entregar todas las variables de todas las partículas que componen el sistema en cada instante. Es posible hacerlo para un sistema de pocas partículas, pero cuando se tienen sistemas compuestos por muchas partículas es imposible computacionalmente el almacenamiento de la posición, velocidad y aceleración, sin mencionar el procesamiento de ellos para obtener fuerza, momento, etc. Por lo tanto es imposible entregar la información detallada para cada partícula, sin embargo se acepta que esta existe.
+**Configuración** corresponde al estado microscópico completamente detallado y descrito, con el máximo nivel de detalle concebible.
 
-## Macroestado
-Es la descripción del sistema a mayor escala, con variables macroscópicas: Estas son relativamente pocas y en general son manejables.
-* Un mismo macroestado puede estar dado por distintos microestados, osea existen muchas configuraciones que corresponden al mismo macroestado, pero no son infinitas.
+> Si se considera que cada valor numérico requiere de varios bytes para ser almacenado, el número de bytes necesarios para almacenar esa información es [...] equivalente a unos cien millones de discos duros.
 
-	Ejemplo: Vacante (espacio vacío) en un sólido:
-	Un sólido puede tener un espacio vacío entre sus partículas. Este espacio puede cambiar de posición a cualquier partícula que compone el objeto, entonces:
-	sólido con $n$ espacios $\implies n$ configuraciones para 1 mismo macroestado (la misma manifestación del sólido).
-		\* las vacantes si se manifiestan visualmente, ejemplo: irradiar a un gas con una cantidad creciente de vacantes varía su color.
+*ej: gas ideal*
+Permite ilustrar el concepto de **configuración** que corresponde a cada posible asignación de posición y de velocidad para cada una de las moléculas que compone el gas. Cada asignación que varíe en, a lo menos, un parámetro es una configuración diferente.
+*ej: vacantes*
+Las diferentes posicinoes vacantes en un sólido corresponden a una configuración diferente:
+![[Pasted image 20250904200054.png]]
 
-Una configuración no puede corresponder a más de un macroestado.
-	Ejemplo: Velocidad de partículas dentro de un gas.
-	Múltiples posibles velocidades para las partículas que componen el gas, pero éstas resultan la misma presión.
+
+### Macroestado
+Con el antecedente de la problemática al describir un microestado, se introduce un enfoque que, en vez de considerar a cada partícula como un sistema de por sí, se toma el conjunto de todas las partículas como un sólo sistema, llamado **sistema macroscópico**.
+Luego, un **macroestado** se puede describir completamente con variables macroscópicas, las cuales son medibles experimentalmente, relativamente pocas y, en general, manejables. Por ejemplo: presión $P$, volumen $V$, energía $E$, masa $M$, etc.
+
+* Un mismo macroestado puede estar dado por distintos microestados. O sea existen muchas configuraciones que corresponden al mismo macroestado, pero no son infinitas.
+  *Ejemplo: Vacante (espacio vacío) en un sólido.*
+  El espacio vacío en un sólido puede cambiar de posición a cualquier otro espacio que compone el objeto, entonces: 
+  Sólido con $n$ espacios $\implies n$ configuraciones para un mismo macroestado (la misma manifestación del sólido).
+\* Las vacantes sí se manifiestan visualmente: Al irradiar a un gas con una cantidad creciente de vacantes varía su color.
+
+- Una configuración no puede corresponder a más de un macroestado.
+  *Ejemplo: Velocidad de partículas dentro de un gas.*
+  Múltiples posibles velocidades para las partículas que componen el gas, pero éstas resultan la misma presión.
 
 ## Configuraciones Accesibles ($\Omega$)
 Dado un macroestado, las configuraciones que lo entregan se dicen **configuraciones accesibles** del macroestado.
