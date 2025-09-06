@@ -184,35 +184,59 @@ Luego, un **macroestado** se puede describir completamente con variables macrosc
   *Ejemplo: Velocidad de partículas dentro de un gas.*
   Múltiples posibles velocidades para las partículas que componen el gas, pero éstas resultan la misma presión.
 
-## Configuraciones Accesibles ($\Omega$)
-Dado un macroestado, las configuraciones que lo entregan se dicen **configuraciones accesibles** del macroestado.
-El número de configuraciones accesibles se denota con $\Omega$
-### propiedades:
-1. El número de configuraciones accesibles $\Omega$ es multiplicativo:
-   $\Omega_{(A\cup B)}=\Omega_{A}\cdot \Omega_{B}$
-	   Ejemplo: Tener dos dados:
-	   1. se tiene un 1 y en el sig pueden ser 6
-	   2. se tiene un 2 y en el sig pueden ser 6
+## Configuraciones Accesibles
+*def:* Dado un macroestado, todas las configuraciones que lo entregan se denominan **configuraciones accesibles** del macroestado.
+
+*ejemplo: Caja con objetos dentro*
+Si se tiene una caja con objetos en el interior, las variables macroscópicas que definen el macroestado pueden ser el volumen $V$ y la masa $M$ de la caja con los objetos dentro y se pueden medir experimentalmente. Pero se desconocen qué objetos hay y cómo están repartidos. Y cada diferente distribución de los objetos entrega la misma caja con las mismas variables macro, entonces cada posible distribución de los objetos es una configuración accesible por el macroestado de la caja, con sus variables macro resultantes: el volumen, masa, etc.
+
+> El macroestado corresponde a las variables "visibles" y las configuraciones accesibles a las posibilidades equivalentes "invisibles" dentro del sistema.
+
+
+### Número de Configuraciones Accesibles $\Omega$ :
+El número de configuraciones accesibles por un macroestado se denota con $\Omega$.
+
+Para un gas ideal, las configuraciones accesibles a un macroestado de volumen $V$ y energía $E$ deben cumplir restricciones. Con que una sola partícula no cumpla, entonces la configuraciones ya no es accesible al macroestado correspondiente. Estas son:
+1. Todas las moléculas de la configuración estén en el volumen de gas: $\vec{x}_{i}\in V$
+2. La energía cinética (para gas ideal) de todas las moléculas deben sumar la energía del gas: $\sum_{i}^{N} \frac{1}{2}m_{i}\vec{v}_{i}=E$, que impone restricciones en las velocidades de las partículas.
+
+#### Propiedades de $\Omega$
+1. $\Omega$ **es una variable macrosópica** ya que está determinado por el estado macrosópico correspondiente (e.g. a cierto $V$, $E$, etc.).
+2. El número de configuraciones accesibles $\Omega$ es multiplicativo: $\Omega_{(A\cup B)}=\Omega_{A}\cdot \Omega_{B}$
+   Si dos sistemas que no se afectan el uno al otro se encuentran para dar a un nuevo macroestado, un sistema puede estar en cualquiera de sus $\Omega_{A}$ configuraciones, mientras que el otro también puede estar en cualquiera de sus $\Omega_{B}$, entonces las posibles configuraciones accesibles para el macroestado resultante es $\Omega_{A\cup B}=\Omega_{A}\cdot \Omega_{B}$
+   *ejemplo: tirar dos dados*
+    1. se tiene un 1 y en el otro pueden ser los 6 números
+    2. se tiene un 2 y en el otro pueden ser los 6 números
 	$\vdots$
-	entonces se tienen $6 \cdot 6
+	entonces se tienen $6\cdot 6$ configuraciones.
+3. Crece rápidamente con la energía disponible del sistema, ya que aumentan las posibles combinaciones, no solamente en cantidad.
+   *Ejemplo: Cuántas cosas se pueden comprar*
+	* con $2000 versus $4000 pesos: No es necesariamente el doble, si no que las posibilidades de productos se pueden combinar.
 
-2. Crece rápidamente con la energía disponible del sistema.
-	   Ejemplo: Cuántas cosas se pueden comprar con $2000 versus $4000 pesos: No es necesariamente el doble, si no que las posibilidades se pueden combinar
+##### Ejemplo Sólido con Vacantes
+Si se tiene un sistema de $N$ átomos $\implies N!$
+con $m$ configuraciones equivalentes de vacantes $\implies m!$
+entonces se tienen $N+m$ objetos (o espacios) $\implies (N+m)!$
 
-Si se tiene un sistema de $N$ átomos $\to N!$
-con $m$ configuraciones equivalentes $\implies m!$
-$N+m$ objetos $\to (N+m)!$
-
-entonces:
+entonces las configuraciones accesibles por el sistema son:
 $$
-\Omega=\frac{(N+m)!}{m!N!}=\left( \begin{matrix}
-N+m \\
-m
-\end{matrix} \right)
+\Omega=\binom{N+m}{m}=\frac{N+m!}{m!N!}
 $$
-esto corresponde a un sistema discreto. Para un sistema continuo:
-***dibujjo de curva***
-cada curva tiene infinitos puntos, pero también tienen **medida**, la cual varía según se tenga una línea, una superficie o volumen.
+
+#### $\Omega$ en Sistema Continuo
+Lo anterior corresponde a un sistema discreto. Para un sistema continuo, se tendría para la partícula $x_{i}$ su i-ésima posición $p_{x_{i}}$, gráficamente:
+
+![[Pasted image 20250906124441.png]]
+
+cada curva tiene infinitos puntos, pero también tienen **medida**, la cual varía según se tenga una línea, una superficie o volumen:
+* Línea: tamaño $L$
+* Superficie: área $L^{2}$, contorno $L$
+* Volumen: Volumen $L^{3}$, contorno $L^{2}$
+
+Luego, las configuraciones accesibles $\Omega$ es el tamaño de la medida del objeto geométrico.
+* Cada punto es una configuración específica,
+* Cada región corresponde a un macroestado,
+* entonces, un punto dentro de una región es una configuración específica del macroestado al que corresponde.
 
 
 ## Información faltante
