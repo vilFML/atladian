@@ -86,7 +86,7 @@ I=\sum_{i=1}^{\Omega}x_{i}f(x_{i})
 $$
 y como $f(x_{i})=-K\ln(x_{i})$, entonces:
 $$
-I=-K\sum_{i=1}^{\Omega}x_{i}\ln\left( \frac{1}{x_{i}} \right)
+I=-K\sum_{i=1}^{\Omega}x_{i}\ln(x_{i})
 $$
 ### Propiedades Información Faltante 
 1. Cumple que $0\ln(0)=0$, por l'Hopital, para evento de certeza.
@@ -101,7 +101,7 @@ $$
 
 K determina la unidad en la que se está midiendo $I(·)$, 
 1. Si $K=1 \implies I_{2}=$, se mide en 'neps'.
-2. Si $K=\frac{1}{\ln(2)} \implies I=-\sum x_{i}\log_{2}\left( \frac{1}{x_{i}} \right)$, se mide en **bits**. Ejemplo, la memoria computacional:
+2. Si $K=\frac{1}{\ln(2)} \implies I=\sum x_{i}\log_{2}\left( \frac{1}{x_{i}} \right)$, se mide en **bits**. Ejemplo, la memoria computacional:
    La memoria es un conjunto de compartimientos que almacena un '0' o un '1', entonces se tienen 2 configuraciones en una sola casilla. Entonces para 'n' casillas se tienen $2^n$ configuraciones.
 
 ## Información faltante de Shannon
@@ -111,11 +111,9 @@ K=\frac{1}{\ln (2)}
 $$
 así la información faltante toma la forma:
 $$
-I_{2}=-\sum_{i=1}^{\Omega}x_{i}\log_{2}\left( \frac{1}{x_{i}} \right)
+I_{2}=\sum_{i=1}^{\Omega}x_{i}\log_{2}\left( \frac{1}{x_{i}} \right)
 $$
 que se le denomina **información faltante de Shannon** y se le asigna la unidad de medida $[\text{bit}]$ . Y se puede interpretar como el número promedio de opciones binarias.
-
-- [ ] preguntar al profe por qué se define $I_{2}$ con signo menos, pero en cátedra, la siguiente diapositiva no tenía el menos ⏫ 🏁 keep 
 
 ##### Ejemplo: Algoritmo de búsqueda de guía telefónica:
 
@@ -238,22 +236,70 @@ Luego, las configuraciones accesibles $\Omega$ es el tamaño de la medida del ob
 * Cada región corresponde a un macroestado,
 * entonces, un punto dentro de una región es una configuración específica del macroestado al que corresponde.
 
+## Equilibrio
+Es un concepto que se asocia solamente al nivel macro, pues en el nivel micro las partículas vibran o se mueven constantemente. Entonces, para el equilibrio en sistemas macroscópicos no hay dependencia del tiempo, a nivel microscópico sí existe variación en el tiempo.
 
-## Información faltante
+Se verá que en cada caso, para el equilibrio entre sistemas debe haber algún parámetro que compartan en magnitud.
+##### Equilibrio Mecánico
+En un sistema mecánico, la condición de equilibrio se tiene cuando la fuerza neta que actúa sobre el sistema es nula:
+$$
+\sum_{i}^{n}\vec{F}_{i}=0
+$$
+Existen puntos de equilibrio:
+1. Estables: Cuando la partícula se aleja del punto de equilibrio, hay fuerzas restitutivas que devuelven a la partícula a la posición de equilibrio.
+2. Inestables: Al perturbar ligeramente al sistema del punto de equilibrio, este se aleja de tal punto.
+3. Metaestables: Corresponde a un punto mínimo local, si hay una energía lo suficientemente grande $E_{activacion}$, el sistema se comienza a alejar del punto.
 
-### Equilibrio
-Es un concepto que se asocia solamente al nivel macro, pues en el nivel micro las partículas vibran o se mueven constantemente.
-	Ej: Equilibrio Mecánico
-	existen puntos de equilibrio estable e inestable
-	Ejs: Químico, electro y térmico.
+![[Pasted image 20250906132904.png]]
 
-Cuando se tienen equilibrios mecánico, químico, eléctrico y térmico, se dice que se tiene **equilibrio termodinámico**.
-El equilibrio en macro no depende del tiempo, en micro sí existe variación en el tiempo.
+> Un equilibrio estable es constante en el tiempo. El sistema debe pasar por otros estados no estables para llegar a uno de equilibrio.
+
+\*Se están utilizando equilibrios microscópicos pues corresponden a una partícula. En termodinámica importa un sistema macroscópico.
+
+###### Sistema PVT
+Es un sistema que se describe con variables de presión $P$, volumen $V$ y  temperatura $T$.
+*Ejemplo: émbolo que separa dos gases*
+![[Pasted image 20250906214237.png]]
+En el sistema hay un equilibrio mecánico cuando los sistemas $A$ y $B$ tienen la misma presión 
+$$
+P_{A}=P_{B}=P
+$$
+
+
+Ejs: Químico, electro y térmico.
+
+
+
+##### Equilibrio Químico
+![[Pasted image 20250906214834.png]]
+Hay el mismo potencial químico en ambas especies.
+
+
+
+
+
+##### Equilibrio Eléctrico
+![[Pasted image 20250906214657.png]]
+Los potenciales en el punto a son iguales $V_{A}=V_{B}=V$, así no hay flujo de cargas.
+##### Equilibrio Térmico
+![[Pasted image 20250906214934.png]]
+Los sistemas $A$ y $B$ tienen en común su **temperatura** $T_{A}=T_{B}=T$
+### Equilibrio Termodinámico
+Cuando se tienen equilibrios mecánico, químico, eléctrico y térmico, se dice que se tiene **equilibrio termodinámico**. 
+Esto sólo se aplica a sistemas de nivel macro, ya que microscópicamente existen vibraciones y movimiento de las partículas que entregan el macroestado.
+Por último, se vé que para un sistema macro en equilibrio termodinámico, este tendrá ciertas variables macro: volumen $V_{0}$, presión $P_{0}$, temperatura $T_{0}$ y estas, en el equilibrio, **no varían en el tiempo.** Y el sistema macro estará transicionando entre configuraciones (microestados) permanentemente.
+
+*Ejemplo: Sólido*
+![[Pasted image 20250906215604.png]]
+El sólido si bien está en equilibrio, las moléculas que lo componen están vibrando constantemente.
+
 
 ### Axioma de Equiprobabilidad
-"***En el equilibrio, todas las configuraciones accesibles son equiprobables.***"
-* Si las configuraciones accesibles no son equiprobables, entonces no se está en equilibrio.
-	  Ejemplo:  Tener 2 compartimientos gaseosos separados.
+>***En el equilibrio, todas las configuraciones accesibles son equiprobables.***
+
+Si para un macroestado, las configuraciones accesibles no tienen la misma probabilidad, entonces el macroestado no se encuentra en en equilibrio.
+
+*Ejemplo:  Tener 2 compartimientos gaseosos separados.*
 	  En un instante se tiene la compuerta cerrada, y se está en equilibrio
 	  En otro instante se abre la compuerta y el gas se mueve (no está en equilibrio)
 	  En el instante final el gas llena ambos compartimientos y se llegó a otro equilibrio.
