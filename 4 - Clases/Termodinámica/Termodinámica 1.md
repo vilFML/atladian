@@ -293,6 +293,7 @@ Por último, se vé que para un sistema macro en equilibrio termodinámico, este
 ![[Pasted image 20250906215604.png]]
 El sólido si bien está en equilibrio, las moléculas que lo componen están vibrando constantemente.
 
+# Entropía
 
 ### Axioma de Equiprobabilidad
 >***En el equilibrio, todas las configuraciones accesibles son equiprobables.***
@@ -300,9 +301,9 @@ El sólido si bien está en equilibrio, las moléculas que lo componen están vi
 Si para un macroestado, las configuraciones accesibles no tienen la misma probabilidad, entonces el macroestado no se encuentra en en equilibrio.
 
 *Ejemplo:  Tener 2 compartimientos gaseosos separados.*
-	  En un instante se tiene la compuerta cerrada, y se está en equilibrio
-	  En otro instante se abre la compuerta y el gas se mueve (no está en equilibrio)
-	  En el instante final el gas llena ambos compartimientos y se llegó a otro equilibrio.
+En un instante se tiene la compuerta cerrada, y se está en equilibrio
+En otro instante se abre la compuerta y el gas se mueve (no está en equilibrio)
+En el instante final el gas llena ambos compartimientos y se llegó a otro equilibrio.
 
 Si las configuraciones son equiprobables, **la información faltante es máxima.**
 
@@ -324,9 +325,9 @@ S(A\cup B)  & = k_{b}\ln(\Omega _{A\cup B}) \\
  & =S_{A}+S_{B}
 \end{align}
 $$
-	*observaciones de clase:* 
-	1. Clausius: dice que la entropía es una magnitud que determina la capacidad transformadora de un sistema.
-	2. Landauer: Borrar memoria toma energía 'útil' y la disipa en forma de **calor**.
+*observaciones de clase:* 
+1. Clausius: dice que la entropía es una magnitud que determina la capacidad transformadora de un sistema.
+2. Landauer: Borrar memoria toma energía 'útil' y la disipa en forma de **calor**.
 
 # 
 Clase 11/08
@@ -823,6 +824,8 @@ Notación:
 $$
 \left( \frac{\partial F}{\partial x} \right) _{y}=\frac{\partial}{\partial x}F(x,y)
 $$
+corresponde a $F(x,y)$ derivada parcialmente con respecto a $x$ con $y$ constante.
+
 la temperatura sale luego de combinar la primera y segunda ley
 2° En un sist aislado no decrece la entropóa
 1° la en. en un sist aislado es constante
@@ -1039,3 +1042,8 @@ Por ejemplo: piedra vs metal para cocinar pizza
 1. Radiación
 2. Convección: Transporte de energía asociado al movimiento de una masa (un fluido)
 3. Conducción térmica.
+
+
+***
+Dónde ocurre la irreversibilidad en un proceso? En la frontera hay un aumento en la entropía
+

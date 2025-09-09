@@ -1,0 +1,1 @@
+Proceso que sucede a temperatura constante

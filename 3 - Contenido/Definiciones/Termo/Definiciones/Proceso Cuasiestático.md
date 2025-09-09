@@ -1,0 +1,1 @@
+Proceso **reversible** entre estados cercanos de equilibrio (cercanos infinitesimalmente) y las variables macroscópicas están bien definidas en todo momento. Por lo tanto, es posible graficar las variables, por ejemplo, en un plano PV
