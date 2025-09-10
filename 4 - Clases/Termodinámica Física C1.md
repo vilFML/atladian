@@ -461,7 +461,7 @@ $$
 Esto se puede interpretar como que, si el sistema disminuye su entropía, entonces la entropía del medio aumentará.
 > No se puede limpiar algo sin ensuciar otra cosa y es posible ensuciar todo sin limpiar.
 
-## Sentido del tiempo
+# Sentido del tiempo
 
 Los sistemas microscópicos son descritos por leyes simétricas temporalmente: El sistema puede ir desde un primer estado a un segundo estado y viceversa. En cuanto a sistemas con muchas partículas (nivel macroscópico) la experiencia nos dice que la simetría temporal no sucede, si no que *el tiempo siempre fluye en una dirección: del pasado al futuro, y no al revés.*
 El problema al asignar estado final e inicial viene de que un sistema puede interactuar con el medio, pudiendo disminuir su entropía.
@@ -475,11 +475,7 @@ un observador de sólamente la última situación, no puede determinar cuál de 
 
 ¿Se puede determinar el orden de las situaciones con las leyes de Newton? las leyes de newton establecen que:
 $$
-\begin{align}
-\vec{F}= & m\vec{a} \\
-\vec{F}= & m\frac{d^{2}\vec{x}}{dt^{2}} \\
-\vec{F}= & m \frac{d\vec{v}}{dt}
-\end{align}
+\vec{F}= m\vec{a} \iff \vec{F}=  m\frac{d^{2}\vec{x}}{dt^{2}} \iff \vec{F}=  m \frac{d\vec{v}}{dt}
 $$
 en la velocidad $\vec{v}=\frac{d\vec{v}}{dt}$ reemplazando el tiempo $t'$ como $-t$:
 $$
@@ -488,7 +484,7 @@ $$
 \iff & \vec{v}'=-\vec{v}
 \end{align}
 $$
-osea se invierte la velocidad cuando el tiempo es negativo, dicho de otro modo, cuando el tiempo va en reversa, la velocidad va 'hacia atrás' viéndose como el efecto de rebobinar una película.
+o sea, se invierte la velocidad cuando el tiempo es negativo. Dicho de otro modo: cuando el tiempo va en reversa, la velocidad va 'hacia atrás' viéndose como el efecto de rebobinar una película.
 Ahora, viendo qué le sucede a la aceleración si se reemplaza el tiempo por uno negativo $t'=-t$:
 
 $$
@@ -505,9 +501,11 @@ $$
 \vec{F}'= m\vec{a}'=m\vec{a}=\vec{F}
 $$
 por lo tanto las leyes de newton no distinguen entre futuro y pasado y son invertibles en términos temporales.
+
 > Para sistemas microscópicos (de pocas partículas) no es posible determinar cuál es el orden temporal de sucesos.
 
 ### El Tiempo en Sistema Macroscópico
+
 Si se tiene la misma situación anterior pero con una mayor cantidad de partículas:
 ![[Pasted image 20250823150156.png]]
 se muestran dos situaciones y se tiene una mayor intuición en cuanto a la temporalidad de sucesos: Se puede afirmar que la situación en donde las partículas están confinadas a la izquierda (luego de relajar la ligadura) es anterior a la situación en donde las partículas están repartidas por el contenedor.
