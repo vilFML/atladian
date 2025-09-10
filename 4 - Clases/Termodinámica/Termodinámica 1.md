@@ -293,9 +293,8 @@ Por último, se vé que para un sistema macro en equilibrio termodinámico, este
 ![[Pasted image 20250906215604.png]]
 El sólido si bien está en equilibrio, las moléculas que lo componen están vibrando constantemente.
 
-# Entropía
 
-### Axioma de Equiprobabilidad
+# Axioma de Equiprobabilidad
 >***En el equilibrio, todas las configuraciones accesibles son equiprobables.***
 
 Si para un macroestado, las configuraciones accesibles no tienen la misma probabilidad, entonces el macroestado no se encuentra en en equilibrio.
@@ -309,14 +308,18 @@ Si las configuraciones son equiprobables, **la información faltante es máxima.
 
 La información faltante es una medida, que en física es denominada **Entropía**.
 
-## Entropía
+# Entropía
+Dado un estado macroscópico en equilibrio, éste tiene de magnitudes macroscópicas $E,V,M,T,P,\text{etc.}$, las cuales determinan la cantidad de [[#Configuraciones Accesibles|configuraciones accesibles ]] $\Omega$ del sistema. Por lo tanto, $\Omega$ **es una variable macrosópica.**
 
- La información que le falta a un observador que conoce el macroestado de un sistema, pero desconoce la configuración (microestado) en la que se encuentra.
-Está dada por:
+La entropía, conceptualmente, corresponde a la información que le falta a un observador que conoce el macroestado de un sistema, pero desconoce la configuración (microestado) en la que se encuentra.
+La entropía esta dada por:
 $$
 S=k_{b}\ln \Omega
 $$
-se puede ver que, recordando que:  si $\Omega_{A},\Omega_{B}$ son independientes $\implies \Omega_{(A\cup B)}=\Omega_{A}\cdot \Omega_{B}$
+- Corresponde a una variable macroscópica.
+- Está definida solamente para un sistema en equilibrio pues cada microestado es equiprobable y se puede obtener entonces la cantidad de configuraciones accesibles para el sistema ($\Omega$)
+
+Recordando que:  si $\Omega_{A},\Omega_{B}$ son independientes $\implies \Omega_{(A\cup B)}=\Omega_{A}\cdot \Omega_{B}$
 así, para la entropía de dos sistemas $A,B$:
 $$
 \begin{align}
@@ -325,73 +328,42 @@ S(A\cup B)  & = k_{b}\ln(\Omega _{A\cup B}) \\
  & =S_{A}+S_{B}
 \end{align}
 $$
+
+Se puede obtener la entropía absoluta de un sistema, pero se va a trabajar con la variación de ella $\Delta S$, osea, para un sistema, se calcula la diferencia de configuraciones final y la inicial.
+
+> La entropía se conoce coloquialmente como el ´desorden' de un sistema, pero es más formal decir que hay más entropía en un sistema cuando la cantidad de configuraciones accesibles (posibles) es muy alta para el sistema.
+
 *observaciones de clase:* 
 1. Clausius: dice que la entropía es una magnitud que determina la capacidad transformadora de un sistema.
 2. Landauer: Borrar memoria toma energía 'útil' y la disipa en forma de **calor**.
+##### Ejemplo: Entropía en Expansión de Gas Ideal:
 
-# 
-Clase 11/08
-
-Se puede obtener la entropía absoluta de un sistema, pero se va a trabajar con la variación de ella $\Delta S$, osea, para un sistema, se calcula la diferencia de configuraciones final y la inicial.
-Por ejemplo, para la expansión de un gas contenido en un solo contenedor a dos:
+Para la expansión de un gas contenido en un solo contenedor a dos:
 ![[Pasted image 20250815105607.png]]
 si se propone que, para 1 molécula, $\Omega_{1} \propto V$, así:
 $$
 \begin{align}
-\Omega_{1}=k\cdot V \\
-\Omega_{2}=k\cdot V \\
+\text{molecula 1: }\Omega_{1}=k\cdot V \\
+\text{molecula 2: }\Omega_{2}=k\cdot V \\
 \vdots \\
-\Omega_{n}=\Omega
+\text{molecula N: }\Omega_{n}=\Omega
 \end{align}
 $$
-así, iniclal $\Omega_{i}=(k\cdot V)^{n}$ y final $\Omega_{f}=(k\cdot V)^{n}$, entonces:
+así, as configuraciones accesibles por el sistema inicial: $\Omega_{i}=(k\cdot V_{i})^{n}$ y final $\Omega_{f}=(k\cdot V_{f})^{n}$, entonces:
 $$
 \begin{align}
  & \Delta S=k\cdot \ln(\Omega_{f})-k\cdot \ln(\Omega_{i})=k\cdot \ln\left( \frac{\Omega_{f}}{\Omega_{i}} \right) \\
 \iff & \Delta S=k\cdot \ln\left( \frac{V_{f}}{V_{i}} \right)^{n}=nk\cdot \ln\left( \frac{V_{f}}{V_{i}} \right) \\
-\text{si suponemos que: }V_{f}=,N=N_{A}: &  \Delta S=N_{A}k\ln(2) \\
+\text{si suponemos que: }V_{f}=2V_{i},N=N_{A} \implies &  \Delta S=N_{A}k\ln(2) \\
 \text{si } k=\frac{R}{N_{A}}\implies & \Delta S_{mol}=R\ln (2) \\
  & \Delta S_{mol}=5,8 \left[ \frac{J}{K\cdot mol} \right]
 \end{align}
 $$
 
-La entropía se conoce coloquialmente como el ´desorden' de un sistema, pero es más formal decir que hay más entropía en un sistema cuando la cantidad de configuraciones posibles es muy alta para el sistema.
 
-## Sistema
-***def: Sistema***
-Es una región acotada del espacio bajo estudio.
-- Se denota con $\partial V$ como el contorno del sistema $V$.
 
-## Medio
-***def: Medio***
-Es el conjunto de todos los otros sistemas que interactúan con un sistema determinado.
 
-## Universo Local
-***def: Universo local***
-El universo local es la unión del sistema con el medio. Por construcción, es un sistema.
-
-## Estado
-Es la condición o caracterización se un sistema mediante las medidas $E,P,N,M,T,S$.
-- Si el sistema no está en equilibrio, los números son dependientes del tiempo.
-
-## Proceso
-Es la transición de un sistema desde un estado a otro (inicial a final), mediante estados intermedios.
-
-![[Pasted image 20250815183503.png]]
-
-Dados dos estados, hay un número indeterminado de procesos diferentes que conectan el mismo estado inicial con el mismo final.
-La fuerza y torque no son variables de estado, sino que se consideran como flujos de momento y momento angular, respectivamente.
-	Ejemplo:
-	micro: masa, posición, momento lineal
-	macro: presión, energía, masa
-
-## Sistema Aislado
-Es un sistema que cuya interacción con otros sistemas es menor de lo que se puede medir.
-- El universo local es un sistema aislado.
-
-## Ligadura
-Es una restricción que le impide evolucionar a un sistema.
-	Ejemplo: Evitar la expansión libre de un gas con una llave entremedio de dos contenedores.
+# [[Ligadura]]
 - Relajar una ligadura desencadena un proceso.
 - Casi todo proceso puede ser interpretado como **la relajación de una ligadura.**
 - Cuando se relaja una restricción **se están agregando posibles configuraciones del sistema.**
@@ -407,67 +379,95 @@ $$
 \end{align}
 $$
 La entropía $S$ puede ser igual ($\Delta S=0$) si el proceso desencadenado es trivial, osea que no hay efecto.
-## II° Ley de Termodinámica
-**AXIOMA:** ***En un sistema aislado, la entropía nunca decrece***, o bien, la entropía del universo local nunca decrece.
+
+# II° Ley de Termodinámica
+
+> **AXIOMA:** En un sistema aislado, la entropía nunca decrece, o bien, la entropía del universo local nunca decrece.
+
 - No es correcto decir que la entropía siempre crece, sino que la entropía de un sistema no decrece.
-- No es correcto decir que la entropía nunca puede disminir, sino que la entropía *de un sistema aislado* no disminuye. Pero la entropía de un sistema que interactúa con el medio sí puede disminuir.
-	Ejemplo: comprimir un gas con un émbolo, o los seres vivos.
+- No es correcto decir que la entropía nunca puede disminir, sino que la entropía **de un sistema aislado** no disminuye. Pero la entropía de un sistema que interactúa con el medio sí puede disminuir.
+  *Ejemplo:* comprimir un gas con un émbolo, o los seres vivos.
 
 ## Reversibilidad
-En un sistema aislado, un proceso es reversible es reversible si el sistema puede retornar por sí mismo al estado anterior.
-- Sólo tiene sentido **macroscópico**, los processos microscópicos son inherentemente reversibles.
-	Ejemplo: La expansión de una partícula gaseosa desde un contenedor a otro, sí es posible que ésta vuelva a su contenedor original.
+¿Qué sucede al reimponer la restricción luego de ya haberla relajado? ¿El sistema vuelve a su estado inicial?
 
-## Irreversibilidad y probabilidad de retorno
-Para tener probabilidad de retorno: 
+> En un sistema aislado, un proceso es reversible si el sistema puede retornar por sí mismo al estado anterior.
+
+Para que un proceso sea reversible se requiere un proceso [[Proceso Isentrópico|isentrópico]], osea que la variación de entropía sea nula:
 $$
-\frac{\text{casos favorables}}{\text{casos posibles}}
+\Delta S=0
 $$
+La reversibilidad solo tiene sentido en sistemas **macroscópicos**, ya que los procesos microscópicos son inherentemente reversibles. Esto se puede ver en la expansión de una partícula gaseosa desde un contenedor: Al reimponer la ligadura, ésta puede volver al contenedor en donde estaba inicialmente.
+
+### Irreversibilidad y Probabilidad de retorno
+La reversibilidad de un proceso macroscópico está gobernado por la estadística de lo empírico de observaciones de los fenómenos físicos. Luego, el análisis de la reversibilidad esta dado por la probabilidad de que esto suceda.
+Para tener la probabilidad de retorno: 
 $$
-=\frac{\Omega_{1}}{\Omega_{2}}\leq 1 \text{ siempre y, en general } \ll 1
+\begin{align}
+P_{\text{retorno}} & =\frac{\text{casos favorables}}{\text{casos posibles}} \\
+P_{\text{retorno}} &=\frac{\Omega_{1}}{\Omega_{2}} \\
+\leq 1 \text{ siempre y, en general } \ll 1
+\end{align}
 $$
-***
-Clase 18/08
-# Segunda Ley: Sistema No Aislado
+por la II° Ley de la Termodinámica se tiene que $\Omega_{1}<\Omega_{2}$ y en un sistema macroscópico (al relajar una ligadura) se tiene que la cantidad de configuraciones iniciales es mucho menor que la cantidad de configuraciones finales: $\Omega_{1}\ll \Omega_{2}$
+Así, la probabilidad de retorno
+$$
+P_{\text{retorno} }=\frac{\Omega_{1}}{\Omega_{2}} \ll 1
+$$
+lo que muestra que la probabilidad de retorno de un proceso para un sistema macroscópico es muy bajo.
+Un proceso es reversible si su probabilidad de retorno es de 100%, osea
+$$
+\text{reversible} \iff P_{\text{retorno}}=1
+$$
+lo que requiere un proceso isentrópico, osea
+$$
+S_{1}=S_{2}
+$$
+
+> Los procesos reversibles son puramente teóricos.
+
+## Segunda Ley para un Sistema No Aislado
 
 En el caso de un sistema no aislado, este interactúa con el medio. Y juntos conforman el universo local, el cual corresponde a un sistema aislado, gráficamente:
+
 ![[Pasted image 20250819111513.png]]
-si el universo es un sistema aislado, se le aplica la segunda ley de la termodinámica: La entropía no decrece,
+si el universo es un sistema aislado, se le aplica la segunda ley de la termodinámica: La entropía no decrece, entonces la entropía final del sistema es mayor o igual que el inicial:
 $$
 S_{U_{f}}\geq S_{U_{0}}
 $$
-además, por la razón de ser sistema aislado cumple que:
+además, si se cumple que la entropía del universo local corresponde a la del sistema con la del medio: $S_{U}=S_{\text{sist}}+S_{\text{medio}}$, por ser sistema aislado cumple que:
 $$
 \begin{align}
- & S_{u_{i}}=S_{sist_{i}}+S_{medio_{i}} \\
-\text{si } & S_{U_{f}}\geq S_{U_{0}}: \\
-\implies & S_{sist_{f}}+S_{medio_{f}}\geq S_{sist_{0}}+S_{medio_{0}} 
+ & S_{U_{i}}=S_{sist_{i}}+S_{medio_{i}} \\
+\text{si } & S_{U_{f}}\geq S_{U_{i}}: \\
+\implies & S_{sist_{f}}+S_{medio_{f}}\geq S_{sist_{i}}+S_{medio_{i}} 
 \end{align}
 $$
-el sistema no es aislado ya que interactúa con el medio, esto provoca que el sistema puede ir de un estado de mayor entropía a uno de menor entropía, osea:
+Ahora, considerando que el sistema no es aislado (ya que interactúa con el medio), el sistema puede ir de un estado de mayor entropía a uno de menor entropía, osea:
 $$
-S_{sist_{f}}\leq S_{sist_{0}}\iff S_{sist_{f}}=S_{sist_{0}} - \Delta S
+S_{sist_{f}}\leq S_{sist_{i}}\iff S_{sist_{f}}=S_{sist_{i}} - \Delta S
 $$
 entonces se tiene que:
 $$
 \begin{align}
-\text{si } & S_{sist_{f}}+S_{medio_{f}}\geq S_{sist_{0}}+S_{medio_{0}} \\
-\iff & S_{medio_{f}} \geq S_{sist_{0}}+S_{medio_{0}}-S_{sist_{f}} \\
+\text{si } & S_{sist_{f}}+S_{medio_{f}}\geq S_{sist_{i}}+S_{medio_{i}} \\
+\iff & S_{medio_{f}} \geq S_{sist_{i}}+S_{medio_{0}}-S_{sist_{f}} \\
 \text{si } S_{sist_{f}}=S_{sist_{0}}-\Delta S: \\
-\implies & S_{medio_{f}}=S_{sist_{0}}+S_{medio_{0}}-(S_{sist_{0}}-\Delta S) \\
-\iff & S_{medio_{f}}=S_{sist_{0}}+S_{medio_{0}}-S_{sist_{0}}+\Delta S \\
-\iff & S_{medio_{f}}=S_{medio_{0}}+\Delta S
+\implies & S_{medio_{f}}=S_{sist_{i}}+S_{medio_{i}}-(S_{sist_{i}}-\Delta S) \\
+\iff & S_{medio_{f}}=S_{sist_{i}}+S_{medio_{i}}-S_{sist_{i}}+\Delta S \\
+\iff & S_{medio_{f}}=S_{medio_{i}}+\Delta S
 \end{align}
 $$
 Esto se puede interpretar como que, si el sistema disminuye su entropía, entonces la entropía del medio aumentará.
+
 > No se puede limpiar algo sin ensuciar otra cosa y es posible ensuciar todo sin limpiar.
 
-## Sentido del tiempo
+# Sentido del tiempo
 
 Los sistemas microscópicos son descritos por leyes simétricas temporalmente: El sistema puede ir desde un primer estado a un segundo estado y viceversa. En cuanto a sistemas con muchas partículas (nivel macroscópico) la experiencia nos dice que la simetría temporal no sucede, si no que *el tiempo siempre fluye en una dirección: del pasado al futuro, y no al revés.*
 El problema al asignar estado final e inicial viene de que un sistema puede interactuar con el medio, pudiendo disminuir su entropía.
 
-### El Tiempo en Sistema Microscópico
+## El Tiempo en Sistema Microscópico
 Para un sistema microscópico, se puede considerar un sistema microscópico aislado compuesto por una partícula gaseosa confinada en un contenedor dividido por un tabique en dos cámaras, teniendo así la expansión libre de la partícula en una de las dos cámaras:
 ![[Pasted image 20250823132806.png]]
 El tabique actúa como una [[#Ligadura|ligadura]], y ,en un instante de tiempo, se **relaja** dicha ligadura provocando que la partícula pueda moverse libremente por todo el contenedor:
@@ -508,7 +508,7 @@ $$
 por lo tanto las leyes de newton no distinguen entre futuro y pasado y son invertibles en términos temporales.
 > Para sistemas microscópicos (de pocas partículas) no es posible determinar cuál es el orden temporal de sucesos.
 
-### El Tiempo en Sistema Macroscópico
+## El Tiempo en Sistema Macroscópico
 Si se tiene la misma situación anterior pero con una mayor cantidad de partículas:
 ![[Pasted image 20250823150156.png]]
 se muestran dos situaciones y se tiene una mayor intuición en cuanto a la temporalidad de sucesos: Se puede afirmar que la situación en donde las partículas están confinadas a la izquierda (luego de relajar la ligadura) es anterior a la situación en donde las partículas están repartidas por el contenedor.
@@ -524,7 +524,7 @@ $$
 $$
 tiene las mismas propiedades que para una partícula, ya que se está haciendo el cálculo para cada partícula singularmente. Por lo tanto, para la física mecánica, un sistema compuesto de muchas partículas también es reversible. Pero esto contradice a la experiencia cotidiana.
 
-#### Distribución Binomial
+### Distribución Binomial
 La física mecánica es determinista: Dado un estado inicial, se puede conocer siempre el estado final, dado por la leyes de Newton. Pero en la realidad el estado inicial de un sistema nunca es completamente determinado: Existen errores experimentales y también la **predicibilidad** del sistema, esto es, dados dos estados iniciales próximos, ello no garantiza que los estados finales lo sean. Condiciones iniciales con una pequeña diferencia pueden llevar a estados finales radicalmente diferentes.
 Luego, cabe preguntarse: Dado el estado inicial aproximado de un sistema, ¿Cuál es la *probabilidad* de encontrarlo en un estado final determinado, después de un largo intervalo de tiempo? Para simplificar, se toma el ejemplo del gas ideal compuesto de varias partículas, en donde el estado final de las partículas es estar en la cámara de la derecha o de la izquierda, sin importar la posición exacta de ellas:
 Considerando un total de $N$ partículas y que, si en una cámara hay $m$ partículas entonces hay $m!$ maneras de ordenarlas en su cámara, y para la cámara restante, hay $(N-m)!$ maneras de que estén las partículas en su interior. Luego, la manera en que las partículas pueden estar repartidas en el contenedor está dada por una combinación de ellas: $\frac{N!}{m!(N-m)!}$ maneras de que estén las partículas en el interior.
