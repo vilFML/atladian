@@ -468,6 +468,7 @@ Los sistemas microscópicos son descritos por leyes simétricas temporalmente: E
 El problema al asignar estado final e inicial viene de que un sistema puede interactuar con el medio, pudiendo disminuir su entropía.
 
 ## El Tiempo en Sistema Microscópico
+
 Para un sistema microscópico, se puede considerar un sistema microscópico aislado compuesto por una partícula gaseosa confinada en un contenedor dividido por un tabique en dos cámaras, teniendo así la expansión libre de la partícula en una de las dos cámaras:
 ![[Pasted image 20250823132806.png]]
 El tabique actúa como una [[#Ligadura|ligadura]], y ,en un instante de tiempo, se **relaja** dicha ligadura provocando que la partícula pueda moverse libremente por todo el contenedor:
