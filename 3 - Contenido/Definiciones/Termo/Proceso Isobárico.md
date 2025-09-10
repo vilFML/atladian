@@ -1,0 +1,1 @@
+Proceso en donde la presión se mantiene constante.

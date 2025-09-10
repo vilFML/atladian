@@ -1,5 +1,5 @@
 *tags:* 
-### Idea
+# Idea
 
 
-### definición
+# Definición
