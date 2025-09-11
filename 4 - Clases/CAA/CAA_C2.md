@@ -440,3 +440,113 @@ $$
 \Delta u=
 \end{align}
 $$
+
+
+***
+clase 11/09
+## prop
+1. Sean $f,g:\Omega \subseteq \mathbb{C}\to \mathbb{C}$ derivables en $z_{0}$ y sea $\alpha \in \mathbb{C}$, entonces $\alpha f+g$ es derivable en $z_{0}$ y se tiene 
+   $$
+(\alpha f+g)'(z_{0})=\alpha f'(z_{0})+g'(z_{0})
+$$
+
+2. Si $f,g:\Omega \subseteq \mathbb{C}\to \mathbb{C}$ son derivable en $z_{0}$ entonces el producto $fg$ es derivable en $z_{0}$ y se tiene que:
+   $$
+(fg)'(z_{0})=f'(z_{0})g(z_{0})+f(z_{0})g'(z_{0})
+$$
+
+3. Si $f,g:\Omega \subseteq \mathbb{C}\to \mathbb{C}$ son derivables en $z_{0}$ con $g(z_{0})\neq 0$, entonces $\frac{f}{g}$ es derivable en $z_{0}$ y además:
+   $$
+\left( \frac{f}{g} \right)'(z_{0})=\frac{f'(z_{0})g(z_{0})-f(z_{0})g'(z_{0})}{(g(z_{0}))^{2}}
+$$
+
+4. Si $f:\Omega \subseteq \mathbb{C}\to \mathbb{C}$ es derivable en $z_{0}$ y $g:D\subseteq \mathbb{C}\to \mathbb{C}$ es derivable en $f(z_{0})$, entonces $g o f$ es derivable en $z_{0}$ y además:
+   $$
+(gof)'(z_{0})=g'(f(z_{0}))f'(z_{0})
+$$
+*obs:* Todo polinomio $P(z)=C_{0}+C_{1}z+\dots+C_{k}z^{k}$ es holomorfo en $\mathbb{C}$ con:
+$$
+P'(z_{0})=C_{1}+2C_{2}z_{0}+\dots+KC_{K}z_{0}^{k-1}
+$$
+y similarmente
+$$
+f(z)=\frac{1}{z^{k}}
+$$
+es holomorfa en $\mathbb{C}\setminus \{ 0 \}$ con
+$$
+f'(z_{0})=-\frac{K}{z_{0}^{k+1}}, \forall z_{0}\neq 0
+$$
+
+por otra parte, es evidente que si $f \equiv C$, con $C\in \mathbb{C}$ entonces $f'\equiv 0$
+
+## prop:
+Sea $f:\Omega \subseteq \mathbb{C}\to \mathbb{C}$ holomorfa con $\Omega$ abierto y conexo. Si $f'\equiv 0$  en $\Omega$ entonces $f$ es constante en $\Omega$.
+
+*dem:*
+sea $f=u+iv\in H(\Omega)$ tal que $f'\equiv 0$ en $\Omega$
+por cauchy-riemann
+$$
+\frac{ \partial u(x,y) }{ \partial x } =\frac{ \partial u(x,y) }{ \partial y } =\frac{ \partial v(x,y) }{ \partial x } =\frac{ \partial v(x,y) }{ \partial y } = 0, \forall(x,y)\in \Omega
+$$
+
+Como $\Omega$ es conexo, se deduce que existen consatntes reales $C_{1},C_{2}$ tales que: $u\equiv C_{1},v\equiv C_{2}$ (por TVM en $\mathbb{R}^{2}$) y, por tanto:
+$$
+f=C_{1}+iC_{2}
+$$
+en $\Omega$
+
+
+# def
+Diremos que una función holomorfa $F:\Omega \subseteq \mathbb{C}\to \mathbb{C}$ es primitiva de $f:\Omega\to \mathbb{C}$, si:
+$$
+F'(z)=f(z), \forall z\in \Omega
+$$
+
+## Corolario
+Sean $F,G \in H(\Omega)$ dos primitivas de una función $f:\Omega\to \mathbb{C}$ con $\Omega$ abierto y conexo.
+Entonces existe $C\in \mathbb{C}$ tal que:
+$$
+F(z)=G(z)+C,\forall z\in \Omega
+$$
+
+*dem:* basta aplicar el resultado anterior a $H=F-G$
+
+
+# Series de Potencia
+Sea $(C_{k})_{k\geq 0}\subseteq \mathbb{C}$ una sucesión de números complejos y $a\in \mathbb{C}$ un punto fijo.
+Dado $z\in \mathbb{C}$ definimos la sucesión **suma parcial**:
+$$
+S_{N}(Z)= \sum_{k=0}^{N}C_{k}(z-a)^{k}
+$$
+
+# def
+Dada una sucesión de números reales $(a_{n})$, se define el límite superior de la sucesión como:
+$$
+\lim_{ n \to \infty } a_{n}=\lim_{ n \to \infty } \underset{ k\geq n }{ \text{sup}  }\ a_{k} \in(0,+\infty]
+$$
+
+*obs:* El limsup es el supremo de los puntos de acumulación de la sucesión.
+
+## teorema
+Sea:
+$$
+R=\frac{1}{\lim_{ k \to \infty } \text{sup }\sqrt[k]{\lvert C_{k} \rvert } }
+$$
+asumiendo que $\frac{1}{0}=\infty$. Entonces:
+
+1. $S_{N}(z)$ converge si $\lvert z-a \rvert<R$ y diverge si $\lvert z-a \rvert>R$. Al número $R$ se le llama **radio de convergencia** de la serie.
+
+2. La serie
+   $$
+S(k)=\sum_{k=0}^{\infty}C_{k}(z-a)^{k}
+$$
+es holomorfa en $D(a;R)=\{ z\in \mathbb{C}:\lvert z-a \rvert<R \}$ con
+$$
+S'(z)=\sum_{k=1}^{\infty}kC_{k}(z-a)^{k-1}
+$$
+
+*dem* 
+por simplicidad, supongamos que $a=0$ (caso $a\neq 0$ es análogo
+si
+
+- [ ] terminar xd (está en la tablet) 
