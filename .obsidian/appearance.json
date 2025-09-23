@@ -3,5 +3,8 @@
   "cssTheme": "Tokyo Night",
   "textFontFamily": "Futura",
   "monospaceFontFamily": "Cascadia Code",
-  "showRibbon": true
+  "showRibbon": true,
+  "enabledCssSnippets": [
+    "adaptive_images"
+  ]
 }
