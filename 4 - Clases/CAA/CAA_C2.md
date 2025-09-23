@@ -272,7 +272,7 @@ f'(z_{0})=\lim_{ z \to z_{0} } \frac{f(z)-f(z_{0})}{z-z_{0}}
 $$
 cuyo valor $f'(z_{0})$ le llamaremos la derivada de $f$ en $z_{0}$
 
-2. Si $f$ es derivable en toda $z_{0}\in \Omega$, diremos que es holomorfa en $\Omega$
+2. Si $f$ es derivable en toda $z_{0}\in \Omega$, diremos que es [[Función Holomorfa|holomorfa]] en 
 
 3. El conjunto de todas las funciones holomorfas en $\Omega$ se denota $H(\Omega)$, es decir:
    $$
@@ -550,3 +550,127 @@ por simplicidad, supongamos que $a=0$ (caso $a\neq 0$ es análogo
 si
 
 - [ ] terminar xd (está en la tablet) 
+
+
+*** 
+Clase 23/09
+
+# Funciones
+## Funciones Hiperbólicas
+
+El coseno hiperbólico es una función holomorfa en $\mathbb{C}$:
+$$
+\cosh:\mathbb{C}\to \mathbb{C}
+$$
+definida como:
+
+
+
+y el **seno hiérbólico** es también función holomorfa en $\mathbb{C}$, $\sinh:\mathbb{C}\to \mathbb{C}$
+
+### Propiedades
+1. Coseno hiperbólico es [[Función Par|función par]], entonces: 
+   $$
+\cosh(-z)=\cosh(z)
+$$
+2. Seno hiperbólico es [[Función Impar||función impar]] 
+$\vdots$
+
+* $\cosh(z)=0\iff z=\left( \frac{\pi}{2} + k\pi \right)i,\ k\in \mathbb{Z}$
+* $\sinh(z)=0\iff z=k\pi i,\ k\in \mathbb{Z}$
+
+## Funciones Trigonométricas
+***EJERCICIO:*** (Apunte Felipe Álvarez) Estudiar el comportamiento de cos, sen $:\mathbb{C}\to \mathbb{C}$ 
+- Escribir en serie de potencia y ver las propiedades
+
+## Función Logaritmo
+Se espera que la función logaritmo sea la inversa de la función exponencial en los complejos. Pero para si para que una función tenga inversa debe ser biyectiva (y por lo tanto inyectiva), se vé que:
+1. La función exponencial es $2\pi i$-periódica, por lo que ya no es inyectiva.
+2. Además no es epiyectiva, pues $\exp(z)\neq 0, \forall z\in \mathbb{C}$. 
+Para resolver la epiyectividad, se va a restringir el dominio del logaritmo al rango (o imagen) de la función exponencial, osea $\mathbb{C}\setminus \{ 0 \}$
+Para resolver la inyectividad, se busca definir $\log:\mathbb{C}\setminus \{ 0 \}\to \mathbb{C}$ tal que:
+$$
+\exp(\log(z))=z,\ z\in \mathbb{C}\setminus \{ 0 \}
+$$
+para ello:
+Sea $z=re^{ i\theta }$, con $r=|z|>0,\ z\neq 0$ y resolvemos la ecuación:
+$$
+(*)\exp(w)=z
+$$
+si se considera $w=x+iy$ de modo que $\exp(w)=e^{ x }e^{ iy }$, por lo que la ecuación $(*)$ queda:
+$$
+e^{ x }e^{ iy }=re^{ i\theta }
+$$
+en donde el término $e^{ x }$ es el término real, entonces se iguala con $r$ y se hace lo mismo para la parte imaginaria, teniendo como solución:
+$$
+x=\ln (r),\ y=\theta(\text{mod}2\pi)
+$$
+por lo que el conjunto de soluciones viene dado por:
+$$
+\{ \ln |z|+i(\text{arg}(z)+2kr):k\in \mathbb{Z} \}
+$$
+donde $\text{arg}(z)\in\ ]-\pi,\pi]$
+
+Así, para cada $k\in \mathbb{Z}$ tenemos la determinación k-ésima de la función logaritmo
+$$
+\log ^{k}:\mathbb{C}\setminus \{ 0 \}\to \mathbb{C}
+$$
+definida por:
+$$
+\log ^{k}(z)=\ln |z|+i(\text{arg}(z)+2k\pi)
+$$
+Luego, la determinación principal del logaritmo complejo es la función:
+$$
+\log:\mathbb{C}\setminus \{ 0 \}\to \mathbb{C}
+$$
+definida por
+$$
+\log(z)=\ln |z|+i\text{ arg}(z)
+$$
+### Propiedades
+
+$\vdots$
+
+***ejercicio:*** (En apunte de F.A.) probar que:
+1. 
+   $$
+\log(z)=\sum_{k=0}^{\infty} \frac{(-1)^{k}}{k+1} (z-1)^{k+1}
+$$ siempre que $|z-1|<1$
+
+2. 
+   $$
+\log(z)=\sum_{k=0}^{\infty} \frac{(-1)^{k}}{(k+1)z_{0}^{k+1}}(z-z_{0})^{k+1}
+$$
+
+
+# Integración en Plano Complejo
+
+*def:* Sea $(\Gamma,\gamma)$ una curva $\mathcal{C}^{1}$ por tramos, $\gamma:[a,b]\to \mathbb{C}$ y $f:\Gamma\to \mathbb{C}$ una función continua.
+Se define la integral compleja como:
+$$
+\int_{\Gamma}f(z)dz=\int _{a}^{b}f(\gamma(t))\gamma'(t) \, dt 
+$$
+
+*obs:* Si $\gamma(t)=x(t)+iy(t)$ y $f(z)=u(x,y)+iv(x,y),\ z=x+iy$, entonces:
+$$
+\int_{\Gamma}f(z)dz=\int_{a}^{b}[u(x(t),y(t))x'(t)-v(x(t),y(t))y'(t)]dt\ + \ i\int_{a}^{b}\underbrace{ [u(x(t),y(t)y'(t))+v(x(t),y(t))x'(t)] }_{ \left( \begin{matrix}
+u \\
+-v
+\end{matrix} \right)  }dt
+$$
+
+### Propiedades
+Sea $\Omega \subseteq \mathbb{C}$ un conjunto abierto y $\Gamma \subseteq \Omega$ una curva parametrizada por $\gamma:[a,b]\to \Omega$, entonces:
+1. a
+2. b
+3. Teorema Fundamental del Cálculo:
+   Si $f\in C(\Omega)$ admite primitiva, es decir $\exists F\in H(\Omega)$ tal que $F'(z)=f(z)$, entonces:
+   $$
+   \int_{\Gamma}f(z)dz=F(\gamma(b))-F(\gamma(a))
+   $$
+   y, en consecuencia, la integral es independiente del camino. En particular, si $\Gamma$ es cerrada:
+   $$
+   \oint_{\Gamma}f(z)dz=0
+   $$
+
+- [ ] completar 
