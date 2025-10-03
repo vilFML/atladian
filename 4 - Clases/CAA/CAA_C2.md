@@ -674,3 +674,20 @@ Sea $\Omega \subseteq \mathbb{C}$ un conjunto abierto y $\Gamma \subseteq \Omega
    $$
 
 - [ ] completar 
+
+
+# 30/09
+## ej 9.2.4
+
+## Def 9.2.5: Indicatriz
+*def:* 
+
+Para calcular $\text{Ind}_{\Gamma}(Z_{0})$, se parametriza $\Gamma$ en coordenadas polares relativas a un origen en el punto $z_{0}$ mediante:
+$$
+\gamma(t)=z_{0}+r(t)e^{ i\theta(t) }
+$$
+Luego... (cuaderno)
+
+## teo 9.3.3 cauchy-goursat
+
+## teo 9.3.5
