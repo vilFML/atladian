@@ -91,27 +91,38 @@ $$
 \text{si }Q_{1}=-Q_{2} \frac{T_{1}}{T_{2}}
 \end{align}
 $$
+donde $Q_{1}$ es la pérdida,
+$$
+\begin{align}
+\implies & -\frac{T_{1}}{T_{2}}Q_{2}+Q_{2}+\mathbb{W}=0 \\
+ & \left( 1-\frac{T_{1}}{T_{2}} \right)Q_{2}+\mathbb{W}=0
+\end{align}
+$$
+entonces $Q_{2}>0$ que corresponde a lo que se 'paga' literalmente.
 
-
-
-
+Se busca minimizar la pérdida de $Q_{1}$, eso se puede lograr con:
+1. Minimizar $T_{1}$, pero se tiene un límite de alrededor de $300K$
+2. Maximizar $T_{2}$, pero hay límite por materiales.
+para ello se introduce el concepto de [[rendimiendo]] $\eta$ como:
+$$
+\eta=\frac{\text{lo que se obtiene}}{\text{lo que se paga}}=\frac{\text{beneficio}}{\text{costo}}=\frac{\mathbb{W}'}{Q_{2}}
+$$
+con ello se tiene el límite de carnot $\eta_{\text{carnot}}$
 
 Es un límite físico que depende solamente de las temperaturas de las fuentes, **no depende del diseño de la máquina.**
 $$
 \begin{align}
- & \eta_{\text{carnot}} & =\frac{\mathbb{W}'}{Q_{2}} \\
-\text{si }
+ & \eta_{\text{carnot}}  =\frac{\mathbb{W}'}{Q_{2}} \\
+\text{si }\mathbb{W}' =-\mathbb{W}\\
+ & =-\frac{\mathbb{W}}{Q} \\
+
+ & \eta_{\text{carnot}} =1-\frac{T_{1}}{T_{2}}
 \end{align}
 $$
 
 - Se aplica solamente a máquinas térmicas.
 - No es predictivo, los rendimientos reales son mucho menores
 - Es prohibitivo, pues **el rendimiento real nunca va a alcanzar $\eta_{\text{carnot}}$**
-
-
-***
-
-***
 
 ##  II° Ley según Kelvin
 
@@ -136,7 +147,7 @@ Q_{1}= -\frac{\mathbb{W}}{1- \frac{T_{2}}{T_{1}}}=\frac{\mathbb{W}}{\frac{T_{2}}
 $$
 y se define la **eficiencia**
 
-# Eficiencia
+### Eficiencia
 $$
 E= \frac{\text{beneficio}}{\text{costo}}= \frac{Q_{1}}{\mathbb{W}}
 $$
@@ -145,13 +156,13 @@ si de beneficio o utilidad se busca enfriar, entonces corresponde al calor que s
 $$
 E = \frac{1}{\frac{T_{2}}{T_{1}}-1}
 $$
-# Enunciados IIa ley: Clausius -Clapeyron
-
-El calor no pasa de manera espontánea de un cuerpo de menor temperatura a uno de mayor.
-
-# ejemplo
-
 El rendimiento y eficiencia son conceptos diferentes, así no necesariamente se relacionan el valor número obtenidos para los casos de calentar o enfriar. 
 
+## II° Ley según Clausius-Clapeyron
 
-# Bomba Térmica (o Bomba de Calor)
+> El calor no pasa de manera espontánea de un cuerpo de menor temperatura a uno de mayor.
+
+## Bomba Térmica (o Bomba de Calor)
+
+![[Pasted image 20251003220845.png]]
+
