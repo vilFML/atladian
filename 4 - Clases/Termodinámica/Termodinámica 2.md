@@ -164,5 +164,120 @@ El rendimiento y eficiencia son conceptos diferentes, así no necesariamente se 
 
 ## Bomba Térmica (o Bomba de Calor)
 
+Si se usa una máquina frigorífica para calentar, se cambia qué se busca maximizar.
 ![[Pasted image 20251003220845.png]]
 
+$Q_{2}'=Q_{2}$ es el que ingresa a la habitación de temperatura $T_{2}$, luego:
+$$
+\begin{align}
+Q_{1}+Q_{2}+\mathbb{W}=E\mathbb{W}-Q_{2}'+\mathbb{W}=0 \\
+Q_{2}'=(1+E)\mathbb{W} \\
+\dot{Q}_{2}=(1+E)\dot{\mathbb{W}}
+\end{align}
+$$
+entonces
+$$
+\dot{Q}_{2}'=(1+E)\dot{\mathbb{W}}
+$$
+
+## Ciclo de Carnot
+### Ciclo de Carnot Genérico
+Para una fuente térmica $T_{2}$ y un sumidero $T_{1}$, en donde $T_{2}>T_{1}$: 
+![[Pasted image 20251003223358.png]]
+si el sistema de interés es la máquina misma, se tiene el ciclo de carnot genérico e imponiendo un proceso reversible:
+![[Pasted image 20251003223558.png]]
+La máquina realiza los siguientes procesos:
+1. Toma calor a $T_{2}$: Isoterma superior
+2. Enfría a $T_{1}$ (sin contacto con otros sistemas): Adiabática isentrópica.
+3. Cede calor a $T_{1}$: Isoterma inferior.
+4. Sube a $T_{2}$ (sin contacto con otros sistemas): adiabática isentrópica.
+
+### Ciclo de Carnot para Gas Ideal
+
+## Rendimiento Real
+Considerando que en una máquina real los procesos son inherentemente irreversibles:
+$$
+\Delta S_{\text{ciclo}}=\frac{Q_{1}}{T_{1}}+\frac{Q_{2}}{T_{2}}+\delta S_{\text{irr}} \iff Q_{1}=-\left( \frac{T_{1}}{T_{2}}Q_{2}+T_{1}\delta S_{\text{irr}} \right)
+$$
+y $Q_{1}$ corresponde a la energía que se entrega a la fuente fría térmica fría.
+Si $\mathbb{W}'=\mathbb{W}=Q_{1}+Q_{2}=Q_{2}-\left( \frac{T_{1}}{T_{2}}Q_{2}+T_{1}\delta S_{\text{irr}} \right)$, entonces el rendimiento $\eta$:
+$$
+\eta=\frac{\mathbb{W}'}{Q_{2}}=1-\frac{T_{1}}{T_{2}}-\frac{T_{1}\Delta S_{\text{irr}}}{Q_{2}}
+$$
+que corresponde al rendimiento real de la máquina:
+
+$$
+\eta_{\text{real}}=\underbrace{ 1-\frac{T_{1}}{T_{2}} }_{ \eta_{\text{carnot}} } - \underbrace{\frac{T_{1}\Delta S_{\text{irr}}}{Q_{2}} }_{ \text{Unidad de S por unidad de }Q_{2} }
+$$
+el rendimiento real puede llegar a ser 0, es cuyo caso, es equivalente a conectar un conductor de calor entre las fuentes.
+
+Para minimizar $\Delta S_{\text{irr}}$ la máquina debe ser lo más cuasiestática posible, o sea estar lo más cercano al equilibrio posible: Extremadamente lento. Pero, en general, se quiere que la máquina realice el proceso relativamente rápido.
+
+> Si se quiere más potencia, se sacrifica rendimiento.
+
+### Comparación con Máquina Eléctrica
+*Ejemplo:* Cargador con sólo 1 terminal: No hay flujo de cargas para que funcione.
+> En una máquina térmica hay flujo de entropía.
+
+Considerando el caso de una máquina eléctrica reversible: Se tienen dos fuentes de carga: 
+![[Pasted image 20251003231418.png]]
+donde la ampolleta realiza un trabajo $\mathbb{W}'=-\mathbb{W}$.
+Entra energía $d\Theta \phi_{2}$ y 'bota' energía $d\Theta \phi_{1}$.
+Por conservación de energía:
+$$
+\mathbb{W}'=(\phi_{2}-\phi_{1})d\Theta
+$$
+y el rendimiento será:
+$$
+\eta_{\text{elec}}=\frac{\text{beneficio}}{\text{costo}}=\frac{(\phi_{2}-\phi_{1})d\Theta}{\phi_{2}d\Theta}\iff \eta_{\text{elec}}=1- \frac{\phi_{1}}{\phi_{2}}
+$$
+para un enchufe: $\phi_{1}=0,\ \phi_{2}=220[V_{\text{RMS}}]$, entonces el rendimiento $\eta_{\text{elec}}=1$. En la realidad $\phi_{1}\approx 3$, pero el rendimiento sigue siendo mayor al de la máquina térmica. Esto debido a que la máquina térmica nunca dispone de una fuente cuya temperatura se acerque al cero absoluto $T=0K$
+
+## Modelo Chambadal-Navikov
+Si se considera la situación de tener una fuente térmica a temperatura $T_{2}$ y un sumidero térmico a $T_{1}$, y una máquina de la forma:
+![[Pasted image 20251003232331.png]]
+Existe la situación en que la máquina esté a la misma temperatura $T_{2}$ de la fuente térmica, entonces no debiese haber flujo de calor $Q$.
+Pero la fuente térmica 'vé' una temperatura $T_{2}'$ un poco menor que la suya, siendo suficiente como para que exista un flujo de calor. En este caso, se considera un proceso *endorreversible* (casi reversible), entonces:
+$$
+\begin{align}
+ & \eta =1-\frac{T_{1}'}{T_{2}'} \\
+\text{si }T_{1}'=T_{2}' \implies & \eta=0
+\end{align}
+$$
+Gráficamente, se tiene:
+![[Pasted image 20251003233252.png]]
+1. La potencia es 0 cuando no hay rendimiento (No funciona la máquina).
+2. En $\eta_{\text{carnot}}$ el proceso es cuasiestático, entonces es muy lento. Por lo tanto, la potencia $P=0$
+
+Entonces se tienen:
+1. $$
+   \eta_{\text{real}}=\frac{\text{beneficio}}{\text{costo}}
+   $$
+2. $$
+   \eta_{\text{carnot}}=\text{teorico ideal}
+   $$
+3. $$
+   \eta_{\text{C-A}}=\text{nuevo modelo}
+   $$
+
+## Computador
+Para un computador, la eficiencia corresponde a
+$$
+\eta =\frac{\text{proceso de bit}}{\text{energia usada}}
+$$
+
+La tendencia de Kooney dice que se duplica la eficiencia cada 4 años, pero existe un límite físico del orden de un procesamiento de $\approx 10^{34}$ bits por segundo por Joule.
+
+*Landauer:* Cuando se borra 1 bit de memoria se está aumentando la entropía del medio en $k_{b}\ln 2$
+
+Transferir la entropía al medio está asociada a un calor mínimo:
+$$
+Q_{\text{1bit}}=k\cdot T\cdot \ln 2
+$$
+y a $300K$:
+$$
+Q_{\text{1bit}}=kT\ln2 = 3\cdot 10^{-21} [J] = 0,02 [eV]
+$$
+es la energía mínima que se disipa al borrar un bit.
+
+- La computación reversible es posible si se tiene una compuerta lógica que entrega la información suficiente como para tener los números iniciales. *Ejemplo: Compuerta que entrega suma debe además entregar la diferencia.*
