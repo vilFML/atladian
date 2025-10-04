@@ -194,7 +194,10 @@ El campo electrostático es conservativo, entonces para integrar sólo importa e
 # 
 Clase 12/08
 ## Trabajo y Potencial Eléctrico
-Si se tiene una carga de prueba $q_{0}$ moviéndose desde un punto A hasta un punto B, bajo la existencia de un campo eléctrico externo $\vec{E}$, hay un trabajo $\mathbb{W}$ ejercido por la fuerza de coulomb $\vec{F}_{c}$ ejercida sobre la carga de prueba, y, por lo tanto, se puede relacionar con el campo eléctrico mediante la expresión $\vec{F}_{c}=q_{0}\cdot  \vec{E}$
+Si se tiene una carga de prueba $q_{0}$ moviéndose desde un punto A hasta un punto B, bajo la existencia de un campo eléctrico externo $\vec{E}$, hay un trabajo $\mathbb{W}$ ejercido por la fuerza de coulomb $\vec{F}_{c}$ ejercida sobre la carga de prueba, y, por lo tanto, se puede relacionar con el campo eléctrico mediante la expresión 
+$$
+\vec{F}_{c}=q_{0}\cdot  \vec{E}
+$$
 Gráficamente, se tiene la figura:
 ![[Pasted image 20250813194828.png]]
 

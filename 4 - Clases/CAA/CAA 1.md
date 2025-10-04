@@ -521,11 +521,12 @@ $$
 ### Teorema: Lema de Poincaré
 Dado un conjunto $\Omega \subseteq \mathbb{R}^{n}$ abierto y estrellado y sea un campo vectorial $\vec{F}:\Omega\to \mathbb{R}^{n}$ de clase $\mathcal{C}^{1}$ tal que $\forall x \in \Omega,\vec{F'(x)}$ es simétrico, entonces $\vec{F}$ es conservativo.
 
+
+## Simplemente Conexo
 Otra forma de definir conjuntos sin agujeros en $\mathbb{R}^{2}$ es considerar que el conjunto $\Omega$ es **simplemente conexo**. Para ello, se considera una curva de jordan $\Gamma \in \mathbb{R}^{2}$ divide a $\mathbb{R}^{2}\setminus \Gamma$ en dos dominios con frontera común $\Gamma$, la región interior a $\Gamma$ y la región exterior a $\Gamma$. Gráficamente:
 ![[Pasted image 20250815201806.png]]
 
-## Simplemente Conexo
-*def:* Un conjunto $\Omega \subseteq \mathbb{R}^{2}$ abierto y conexo, se llama **simplemente conexo** si,
+*def:* Un conjunto abierto y conexo, se llama simplemente conexo si,
 para cada curva de jordan $\Gamma \in \Omega$, la región interior a $\Gamma$ también está contenida en el conjunto $\Omega$. Gráficamente:
 ![[Pasted image 20250815201955.png]]
 
@@ -1008,7 +1009,7 @@ $$
 
 ## Teorema de Stokes (Forma Restringida)
 Supongamos que S es una superficie orientable suave, definida por $\vec{r}:T\subseteq \mathbb{R}^{2}\to \mathbb{R}^{3}$, donde T es convexo y cerrado, acotado por una curva de jordan $\Gamma$.
-Supongamos también que $\vec{r}$ es de clase $C 2$ en T y que $\vec{F}=(P,Q,R)$ es de clase $C 1$ en S.
+Supongamos también que $\vec{r}$ es de clase $\mathcal{C}^{2}$ en T y que $\vec{F}=(P,Q,R)$ es de clase $C 1$ en S.
 Sea $\hat{n}$ la orientación de S inducida por $\vec{r}$, y que $\vec{r}(u,v)$ recorre el borde de S, denotado por $\partial S$ exactamente una vez cuando $(u,v)$ recorre $\Gamma$. Entonces:
 $$
 \iint_{S}\text{rot}(\vec{F})\hat{n}dA=\oint_{\partial S}\vec{F}d\vec{x}
