@@ -895,7 +895,7 @@ V\approx V(T_{0})+ \frac{dV}{dT}|_{0}\;(T-T_{0})
 $$
 
 ***
-# 01/09
+# Notación Derivada Parcial en Termodinámica
 
 Sean $X_{1},X_{2},X_{3}$ tq: $F(X_{1},X_{2},X_{3})=0$, se elige:
 $$
@@ -972,7 +972,7 @@ $$
 C_{V}=\frac{q_{V}}{\Delta T}=\frac{q}{\Delta T}|_{V}
 $$
 Se refiere al sistema completo y se mide en $\frac{J}{K}$
-# Calor Específico C
+# Calor Específico c
 No depende de la cantidad, sino que de la temperatura y presión y, por lo tanto, **es una propiedad del material**.
 
 Se dice que el calor específico mide la capacidad de un objeto a 'almacenar calor', aunque no es preciso.

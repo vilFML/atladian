@@ -5,6 +5,7 @@
   "monospaceFontFamily": "Cascadia Code",
   "showRibbon": true,
   "enabledCssSnippets": [
-    "adaptive_images"
+    "adaptive_images",
+    "twocolumns"
   ]
 }

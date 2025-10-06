@@ -103,7 +103,7 @@ entonces $Q_{2}>0$ que corresponde a lo que se 'paga' literalmente.
 Se busca minimizar la pérdida de $Q_{1}$, eso se puede lograr con:
 1. Minimizar $T_{1}$, pero se tiene un límite de alrededor de $300K$
 2. Maximizar $T_{2}$, pero hay límite por materiales.
-para ello se introduce el concepto de [[rendimiendo]] $\eta$ como:
+para ello se introduce el concepto de [[rendimiento]] $\eta$ como:
 $$
 \eta=\frac{\text{lo que se obtiene}}{\text{lo que se paga}}=\frac{\text{beneficio}}{\text{costo}}=\frac{\mathbb{W}'}{Q_{2}}
 $$
