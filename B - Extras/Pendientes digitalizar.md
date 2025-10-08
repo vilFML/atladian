@@ -16,3 +16,6 @@ Electro
 - [ ] clase 02/10
 - [ ] aux extra 03/10 (desarrollo en tablet)
 - [ ] clase 07/10
+
+
+
