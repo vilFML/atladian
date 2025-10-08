@@ -673,21 +673,119 @@ Sea $\Omega \subseteq \mathbb{C}$ un conjunto abierto y $\Gamma \subseteq \Omega
    \oint_{\Gamma}f(z)dz=0
    $$
 
-- [ ] completar 
+
+### Corolario
+Bajo las hipótesis del teorema anterior, la serie:
+$$
+S(z)=\sum_{k=0}^{\infty}C_{k}(z-a)^{k}
+$$
+tiene derivadas de todos los ordenes en $D(a;\mathcal{R})$, lo que se denota como:
+$$
+S\in \mathbb{C}^{\infty}(D(a;\mathcal{R}))
+$$
+y además
+$$
+S^{(n)}(z)=\sum_{k)n}^{\infty}k(k-1)\dots(k-n+1)(z-a)^{k-n}, \forall n \in \mathbb{N}
+$$
+En particular:
+$$
+C_{k}=\frac{S^{(k)}(a)}{k!},\forall k\in \mathbb{N}
+$$
 
 
-# 30/09
+# Función Exponencial
+Se define la función **exponencial compleja** de $z\in \mathbb{C}$ como:
+$$
+\exp(z)=\sum_{k=0}^{\infty} \frac{z^{k}}{k!}
+$$
+donde
+$$
+\mathcal{R}=\frac{1}{\lim_{ k \to \infty }\sqrt[k]{ \frac{1}{k!} }}=\frac{1}{0}\to \infty
+$$
+se tiene entonces un disco de radio infinito, entonces son todos los $\mathbb{C}$. Por lo tanto la función exponencial queda bien definida para todo $z\in \mathbb{C}$:
+$$
+\exp:\mathbb{C}\to \mathbb{C}
+$$
+
+## Propiedades
+1. 
+   $$
+\forall x \in \mathbb{R}: \exp(x)=e^{ x }
+   $$
+2.  $$
+\forall y\in \mathbb{R}, \exp(iy)=\cos y+i\sin y
+   $$
+   esto ya que
+   $$
+   \exp(iy)=\sum_{k=0}^{\infty} \frac{(iy)^{k}}{k!}=\left[ 1-\frac{y^{2}}{2!}+\frac{y^{4}}{2!}+\dots \right]+i\left[ y-\frac{y^{3}}{3!}+\frac{y^{5}}{5!}\dots \right]=\cos y+i\sin y  
+   $$
+
+3. $\forall z_{1},z_{2}\in \mathbb{C}: \exp(z_{1}+z_{2})=\exp(z_{1})\exp(z_{2})$
+
+4. $\forall x,y\in \mathbb{R}: \exp(x+iy)=e^{ x }(\cos y+i\sin y)$
+5. La derivada de la función exponencial es la misma función exponencial: $\forall z_{0}\in \mathbb{C},z_{0}=x_{0}+iy_{0}:$
+   $$\begin{align}
+\exp'(z_{0}) & =\frac{ \partial (e^{ x }\cos y) }{ \partial x }|_{(x,y)=(x_{0},y_{0})}+i\frac{ \partial (e^{ x }\sin y) }{ \partial y } |_{(x,y)=(x_{0},y_{0})} \\
+ & =e^{ x_{0} }\cos(y_{0})+ie^{ y_{0} }\sin(y_{0}) \\
+\exp'(z_{0}) & =\exp(z_{0})
+\end{align}
+   $$
+
+6. La función exponencial es $2\pi i$-periódica: $\forall z\in \mathbb{C}$:
+   $$
+   \exp(z)=\exp(z+2k\pi i)
+   $$
+
+7. La función exponencial no tiene ceros:
+   Si $z\in \mathbb{C}:z+iy\implies |\exp(z)|=e^{ x }\neq 0, \forall x \in \mathbb{R}$
+***
+*hacer ejs. de apunte álvarez: Cap 8.3, p. 101*
+***
+
+
+
+# Integrales de Fresnel
+Las integrales de Fresnel corresponden a las identidades:
+$$
+\int_{-\infty}^{\infty}\cos (x^{2})dx=\int _{\infty}^{\infty}\sin(x^{2}) \, dx=\sqrt{ \frac{\pi}{2} }
+$$
+
+
+
+
 ## ej 9.2.4
 
-## Def 9.2.5: Indicatriz
-*def:* 
 
-Para calcular $\text{Ind}_{\Gamma}(Z_{0})$, se parametriza $\Gamma$ en coordenadas polares relativas a un origen en el punto $z_{0}$ mediante:
+
+
+## Indicatriz
+*def:* 
+dado $z_{0}\not\in \Gamma$ con $\Gamma$ camino cerrado, la **indicatriz** de $\Gamma$ en $z_{0}$ corresponde a:
+$$
+\text{Ind}_{\Gamma}(z_{0})=\frac{1}{2\pi i}\oint_{\Gamma} \frac{dz}{z-z_{0}}
+$$
+
+Para calcular $\text{Ind}_{\Gamma}(Z_{0})$, se parametriza $\Gamma$ en coordenadas polares, relativas a un origen en el punto $z_{0}$ de la forma:
 $$
 \gamma(t)=z_{0}+r(t)e^{ i\theta(t) }
 $$
 Luego... (cuaderno)
+$$
+\text{Ind}(z_{0})=\frac{1}{2\pi i}\int_{a}^{b} \frac{1}{r(t)e^{ i\theta(t) }}\left[ r'(t)e^{ i\theta(t) }+r(t)ie^{ i\theta(t) }\theta'(t) \right]  \, dt 
+$$
+distribuyendo:
+$$
+=\frac{1}{2\pi i}\left[ \int_{a}^{b} \frac{r'(t)}{r(t)} \, dt +i\int_{a}^{b} \theta'(t) \, dt  \right]=\frac{1}{2\pi i}\left( \ln\left( \frac{r(b)}{r(a)} \right)+i(\theta(b)-\theta(a)) \right)  
+$$
+como $\Gamma$ es cerrada, se usa que $r(a)=r(b)$ y entonces:
+$$
+=\frac{1}{2\pi i}\left( \cancelto{ 0 }{ \ln(1) }+i(\theta(b)-\theta(a)) \right) = \frac{1}{2\pi \cancel{ i }}\cdot \cancel{ i }(\theta(b)-\theta(a))
+$$
+entonces la indicatriz corresponde a:
+$$
+\text{Ind}(z_{0})=\frac{\theta(b)-\theta(a)}{2\pi}
+$$
+## Teorema de Cauchy-Goursat
 
-## teo 9.3.3 cauchy-goursat
 
 ## teo 9.3.5

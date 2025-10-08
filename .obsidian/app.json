@@ -1,5 +1,5 @@
 {
-  "livePreview": true,
+  "livePreview": false,
   "newFileLocation": "folder",
   "newFileFolderPath": "1 - Sin Organizar",
   "attachmentFolderPath": "A - Anexos",
@@ -14,5 +14,6 @@
     "landscape": false,
     "margin": "2",
     "downscalePercent": 91
-  }
+  },
+  "defaultViewMode": "preview"
 }
