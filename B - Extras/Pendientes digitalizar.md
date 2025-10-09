@@ -1,5 +1,5 @@
 Termodinámica
-- [ ] 1. 
+- [x] 1. clasexde ✅ 2025-10-08
 - [ ] aux 03/10
 - [ ] clase 03/10
 - [ ] clase 06/10

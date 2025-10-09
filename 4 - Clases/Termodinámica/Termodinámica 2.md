@@ -281,3 +281,215 @@ $$
 es la energía mínima que se disipa al borrar un bit.
 
 - La computación reversible es posible si se tiene una compuerta lógica que entrega la información suficiente como para tener los números iniciales. *Ejemplo: Compuerta que entrega suma debe además entregar la diferencia.*
+
+
+***
+
+# Formalismo Termodinámico
+
+No se puede medir la entropía o energía directamente. Entonces se buscan expresiones para ellas en función de magnitudes medibles (Hasta hora se tienen sólo para gases ideales).
+
+## Magnitudes Medibles
+Se tienen:
+1. Calores específicos: 
+   - a presión constante $C_{p}$ 
+   - a volumen constante $C_{v}$
+1. Coeficientes de dilatación: 
+   - Volumétrica: 
+     $$
+     \alpha_{V}=\frac{1}{V}\left( \frac{ \partial V }{ \partial T } \right)_{P} 
+     $$
+   - Lineal:
+     $$
+\alpha_{L}=\frac{1}{L}\left( \frac{ \partial L }{ \partial T }  \right) _{P}
+     $$
+
+1. Coeficiente de compresibilidad isotérmica:
+   $$
+   \beta=-\frac{1}{V}\left( \frac{ \partial V }{ \partial P }  \right)_{T}
+   $$
+
+## Funciones (o Potenciales) Termodinámicos
+1. Energía Libre de Helmholtz $F$:
+   $$
+   F=E-TS
+   $$
+   \* es libre pues no toda la energía de un sistema está disponible para realizar trabajo.
+2. Entalpía $H$:
+   $$
+   H=E-(-P)V=E+PV
+   $$
+   \* $(-P)$ pues se definen como la resta de la magnitud intensiva conjugada multiplicada por su extensiva. En este caso, $V$ es la extensiva y $-P$ es la intensiva conjugada correspondiente.
+3. Energía Libre de Gibbs $G$
+   $$
+G=E+PV-TS
+   $$
+
+### Variables Naturales
+Las variables naturales son las que se obtienen al derivar las funciones (o potenciales) termodinámicos. Entonces, se puede realizar el proceso para los tres potenciales:
+Primero, si se deriva la energía $E$:
+$$
+\begin{align}
+dE=dQ+d\mathbb{W} \\
+dE=TdS-PdV
+\end{align}
+$$
+luego, derivando los potenciales:
+1. Para la energía libre de Helmholtz $F$:
+   $$
+   \begin{align}
+dF & =dE-d(TS) \\
+ & = (TdS-PdV)-(dT\cdot S+T\cdot dS) \\
+ & =-PdV - SdT
+\end{align}
+   $$
+   se obtienen las variables $P$ y $S$ que corresponden a las variables naturales de la energía libre de Helmholtz $F$
+
+2. Para la entalpía $H$
+   $$
+   \begin{align}
+dH & =dE+d(PV) \\
+ & =dE+(dP\cdot V + P\cdot dV) \\
+ & =TdS-\cancel{ PdV }+VdP+\cancel{ PdV } \\
+dH=TdS+VdP
+\end{align}
+   $$
+   entonces las variables naturales de la entalpía $H$ corresponden a la temperatura $T$ y el volumen $V$.
+
+3. Para la enegría libre de Gibbs $G$:
+   $$
+   \begin{align}
+dG & =dE+d(PV)-d(TS) \\
+ & = \cancel{ TdS }\cancel{ -PdV } +VdP+\cancel{ PdV }-SdT\cancel{ -TdS } \\
+ & =VdP-SdT
+\end{align}
+   $$
+   luego, las variables naturales de la energía libre de Gibbs $G$ son el volumen $S$ y la entropía $S$
+
+### Relaciones de Maxwell
+
+Utilizando el teorema de Schwarz $\frac{ \partial  }{ \partial y }\left( \frac{ \partial f }{ \partial x } \right)=\frac{ \partial  }{ \partial x }\left( \frac{ \partial f }{ \partial y } \right)$ en los potenciales y relacionándolos las unas con las otras, se llegan a obtener las **relaciones de Maxwell**:
+$$
+\begin{align}
+\left( \frac{ \partial S }{ \partial P }  \right)_{V}=-\left( \frac{ \partial V }{ \partial T }  \right) \\
+\left( \frac{ \partial S }{ \partial V }  \right)_{S}=\left( \frac{ \partial P }{ \partial T }  \right)_{S}
+\end{align}
+$$
+las cuales entregan *una relación de la entropía $S$ con magnitudes medibles experimentalmente de prácticamente cualquier sustancia.*
+
+## Entropía y Capacidad Térmica $C_{p}$
+La capacidad térmica $C_{p}$ se conoce como la capacidad de un sistema de 'almacenar calor', pero en formalmente es la capacidad de un sistema de almacenar **entropía**
+si la capacidad térmica es:
+$$
+\begin{align}
+C_{p}= \frac{q}{\Delta T} \Biggr|_{P=\text{cte}}
+\end{align}
+$$
+y considerando un proceso cuásiestático a presión constante: $q_{p}=T\cdot \Delta S$, entonces:
+$$
+C_{p} =\frac{T\Delta S}{\Delta T}\Biggr|_{P=\text{cte}} \xrightarrow{\Delta t\to_{0}} T\left( \frac{ \partial S }{ \partial T }  \right)_{P}
+$$
+así, la capacidad térmica a presión constante es
+$$
+C_{P}=\left( \frac{ \partial S }{ \partial T }  \right)_{P}
+$$
+y la capacidad térmica a volumen constante: $C_{V}=\left( \frac{ \partial S }{ \partial T } \right)_{P}$
+
+## Ecuaciones $TdS$
+1. Entropía en función de temperatura y volumen: $S=S(T,V)$
+   Primero, diferencial de S:
+   $$
+   \begin{align}
+dS & =\underbrace{ \left( \frac{ \partial S }{ \partial T }U  \right)_{V} }_{ C_{V} }dT+\underbrace{ \left( \frac{ \partial S }{ \partial T }  \right)_{T} }_{ \left( \frac{ \partial P }{ \partial T } \right)_{V} }dV \\
+dS & =C_{V}+\left( \frac{ \partial P }{ \partial T } \right)_{V}dV \Bigr /\cdot T \\
+TdS &  =C_{V}dT+T\left( \frac{ \partial P }{ \partial T }  \right)_{V}dV
+   \end{align}
+$$
+en donde $C_{V}$ es medible y $P,T$ estpan relacionadas, entonces se puede *integrar y obtener S.*
+\* no confundir $TdS$ de proceso cuasiestático ($q=TdS$) ya que este caso es más general.
+
+2. Entropía en función de temperatura y presión: $S=S(T,P)$, realizando el mismo proceso que antes:
+   $$
+\begin{align}
+dS & =\underbrace{ \left( \frac{ \partial S }{ \partial T }  \right)_{P} }_{ C_{P} }dT+\underbrace{ \left( \frac{ \partial S }{ \partial P }  \right)_{T} }_{ \left( -\frac{ \partial V }{ \partial T }  \right)_{P} }dP \\
+dS & = C_{P}-\left( \frac{ \partial S }{ \partial T }  \right)_{P}dP \Biggr /\cdot T \\
+TdS & =TC_{P}-T\left( \frac{ \partial S }{ \partial T }  \right)_{P}dP
+   \end{align}
+$$
+
+3. Entropía en función de la presión $P$ y el volumen $V$: $S=S(P,V)$ es consecuencia de 1. y 2.
+
+***
+1. En plano $T,V$: proceso adiabático: $dS=0\implies C_{V}dT=-T\left( \frac{ \partial P }{ \partial T } \right)_{V}dV$
+2. En plano $T,P$: Proceso adiabático :$dS=0\implies C_{P}dT=T\left( \frac{ \partial V }{ \partial T } \right)_{P}dP$
+3. Para plano $P,V$ se divide 2. en 1. y se tiene que
+   $$
+\frac{ d P }{ d V } =-\gamma \frac{\left( \frac{ \partial P }{ \partial T }  \right)_{V}}{\left( \frac{ \partial V }{ \partial T }  \right)_{P}}
+$$ 
+en donde $\gamma=\frac{C_{P}}{C_{V}}$
+
+***
+para el caso de un gas **no ideal**, la temperatura puede variar, entonces, buscando una expresión para la energía en función del volumen $V$ y temperatura $T$: $E=E(V,T)$:
+Desde que $dE=dQ+d\mathbb{W}$
+$$
+\begin{align}
+\dots\ \iff dE=C_{V}dT+\left( T\left( \frac{ \partial P }{ \partial T }  \right)_{V}-P \right)dV \\
+\iff \left( \frac{ \partial E }{ \partial V }  \right)_{T} = T \left( \frac{ \partial P }{ \partial T }  \right)_{V}-P
+\end{align}
+
+$$
+lo que permite obtener la energía de cualquier sustancia en función del volumen $V$ y temperatura $T$.
+\* se puede verificar para el caso de un gas ideal usando que $PV=Nk_{b}T$
+
+## Equilibrio de un Sistema
+Es posible tener el equilibrio de un sistema con sus propiedades en casos particulares:
+Imponiendo caso cuasiestático: $dS'=\frac{q'}{T}$ y proceso espontáneo $dS_{U}=dS+dS'>0$ y si $q'=-q\implies dS'=-\frac{q}{T}$ y luego $dS_{U}=dS-\frac{q'}{T}>0$ 
+$$
+\vdots
+$$
+$$
+\iff q=dE+P'dV+\iff T'dS-dE-P'dV>0
+$$
+si se tiene un proceso a temperatura constante y considerando la función de Helmholtz
+$$
+\begin{align}
+\vdots \\
+\iff &  dF<0
+\end{align}
+$$
+osea se obliga a que $F$ disminuya, por ello, **el equilibrio será cuando $F$ sea mínimo.**
+Luego, se está en equilibrio si $F=E-TS$ es mínimo
+
+## Auxiliar 7
+lo que permite obtener la energía de cualquier sustancvia 
+- Las propiedades **extensivas** varían al cambiar el tamaño del sistema (en el sentido de concatenar 'doblar' la cantidad).
+- Las propiedades **intensivas** no cambian con el tamaño del sistema.
+
+
+|Extensiva     |Intensivas     |
+| --- | --- |
+|S     |T     |
+|$\Theta$|$\phi$|
+|V|-P|
+|A|$\alpha$ (tensión superficial)|
+|M|$\mu$ (potencial químico)|
+
+
+### Potenciales Termodinámicos
+Relacionados mediante:
+$$
+\begin{matrix}
+U &  & \xrightarrow{\big /-TS} &  & F \\ \\
+
+\downarrow\big/+PV &  & &  &\downarrow \big/+PV   \\ \\
+
+ H & & \xrightarrow{\big /-TS} &   & G
+\end{matrix}
+$$
+- Los potenciales son energías.
+- Dependen del estado del sistema (osea no del camino).
+- El que se use depende del sistema a analizar.
+- La energía del universo local $\mathbb{U}$ se conserva, pero los potenciales no se conservan.
+
+
+## 
