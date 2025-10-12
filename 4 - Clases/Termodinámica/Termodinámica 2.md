@@ -27,7 +27,7 @@ No es posible convertir la totalidad de calor en trabajo, pues la temperatura es
 
 ### Funcionamiento Reversible:
 Si se tiene una máquina con una fuente térmica $T_{2}$ que transfiere un calor $Q$ a la máquina, y ella realiza un trabajo $\mathbb{W}'$
-![[Pasted image 20251003201117.png]]
+![[Pasted image 20251003201117.png|300]]
 
 Suponiendo un funcionamiento reversible:
 $$
@@ -72,7 +72,7 @@ El problema surge del hecho de que cerrar el ciclo requiere ceder la entropía (
 ## Límite de carnot $\eta_{\text{carnot}}$
 
 Considerando el caso de tener una fuente y sumidero térmicos y una máquina térmica de funcionamiento reversible:
-![[Pasted image 20251003205626.png]]
+![[Pasted image 20251003205626.png|250]]
 en donde la temperatura del sumidero $T_{1}$ es mayor a la de la fuente $T_{2}$: $T_{1}<T_{2}$ .
 Si la diferencia de energía para un ciclo es 0: 
 $$\Delta E_{\text{ciclo}}=0 \iff Q_{1}+Q_{2}+\mathbb{W}=0$$
@@ -165,7 +165,7 @@ El rendimiento y eficiencia son conceptos diferentes, así no necesariamente se 
 ## Bomba Térmica (o Bomba de Calor)
 
 Si se usa una máquina frigorífica para calentar, se cambia qué se busca maximizar.
-![[Pasted image 20251003220845.png]]
+![[Pasted image 20251003220845.png|250]]
 
 $Q_{2}'=Q_{2}$ es el que ingresa a la habitación de temperatura $T_{2}$, luego:
 $$
@@ -183,9 +183,9 @@ $$
 ## Ciclo de Carnot
 ### Ciclo de Carnot Genérico
 Para una fuente térmica $T_{2}$ y un sumidero $T_{1}$, en donde $T_{2}>T_{1}$: 
-![[Pasted image 20251003223358.png]]
+![[Pasted image 20251003223358.png|250]]
 si el sistema de interés es la máquina misma, se tiene el ciclo de carnot genérico e imponiendo un proceso reversible:
-![[Pasted image 20251003223558.png]]
+![[Pasted image 20251003223558.png|250]]
 La máquina realiza los siguientes procesos:
 1. Toma calor a $T_{2}$: Isoterma superior
 2. Enfría a $T_{1}$ (sin contacto con otros sistemas): Adiabática isentrópica.
@@ -235,7 +235,7 @@ para un enchufe: $\phi_{1}=0,\ \phi_{2}=220[V_{\text{RMS}}]$, entonces el rendim
 
 ## Modelo Chambadal-Navikov
 Si se considera la situación de tener una fuente térmica a temperatura $T_{2}$ y un sumidero térmico a $T_{1}$, y una máquina de la forma:
-![[Pasted image 20251003232331.png]]
+![[Pasted image 20251003232331.png|250]]
 Existe la situación en que la máquina esté a la misma temperatura $T_{2}$ de la fuente térmica, entonces no debiese haber flujo de calor $Q$.
 Pero la fuente térmica 'vé' una temperatura $T_{2}'$ un poco menor que la suya, siendo suficiente como para que exista un flujo de calor. En este caso, se considera un proceso *endorreversible* (casi reversible), entonces:
 $$
@@ -245,7 +245,7 @@ $$
 \end{align}
 $$
 Gráficamente, se tiene:
-![[Pasted image 20251003233252.png]]
+![[Pasted image 20251003233252.png|300]]
 1. La potencia es 0 cuando no hay rendimiento (No funciona la máquina).
 2. En $\eta_{\text{carnot}}$ el proceso es cuasiestático, entonces es muy lento. Por lo tanto, la potencia $P=0$
 
@@ -492,4 +492,373 @@ $$
 - La energía del universo local $\mathbb{U}$ se conserva, pero los potenciales no se conservan.
 
 
-## 
+## Ecuación de la Energía
+Antes se tenía la ecuación $\left( \frac{ \partial E }{ \partial V }  \right)_{T} = T \left( \frac{ \partial P }{ \partial T }  \right)_{V}-P$, pero en la práctica se usan las ecuaciones:
+$$
+\begin{align}
+\left( \frac{ \partial E }{ \partial V }  \right)_{T}=T\left( \frac{ \partial P }{ \partial T }  \right)_{V}-P=\left( \frac{ \partial u }{ \partial v }  \right)_{T} \\
+\left( \frac{ \partial E }{ \partial T }  \right)_{V}=C_{v}\to\left( \frac{ \partial u }{ \partial T }  \right)_{V}=C_{V}
+\end{align}
+$$
+en donde $u=\frac{E}{\text{\# moles}},\ v=\frac{V}{\text{\# moles}}$
+
+##### Ej: Problema del Helio
+si $P=\frac{RT}{V}+\frac{RTB}{V^{2}}$, entonces
+$$
+\begin{align}
+ & \left( \frac{ \partial P }{ \partial T }  \right)_{V}=\frac{R}{V}+\frac{RB}{V^{2}}+\frac{RTB}{V^{2}} \\
+\text{si } B'=\frac{ d B(T) }{ d T } \implies & T\left( \frac{ \partial P }{ \partial T }  \right)_{V}-P=\left( \frac{R}{V}+\frac{RBT}{V^{2}}+\frac{RT^{2}B'}{V^{2}} \right)-\frac{RT}{V}-\frac{RTB}{V^{2}} \\
+\left( \frac{ \partial u }{ \partial v }  \right)_{T}=\frac{RT^{2}B'}{V^{2}} \text{ (integrando)}\implies & u=-\frac{RT^{2}B'}{V}+ \varphi(T)
+\end{align}
+$$
+para determinar $\varphi(T)$, considerando un gas muy diluido, o sea sucede que $v\to \infty$ y suponiendo que se tiene Helio (gas ideal monoatómico) en donde $E=\frac{r}{2}NkT,r=3$, además que se trabaja con 1 mol: $u=\frac{3}{2}N_{A}kT\to u=\frac{3}{2}kT$, entonces:
+$$
+\begin{align}
+u(v,T) & =-\frac{RT^{2}B'}{v}+\frac{3}{2}RT \\
+U(v,T) &  =\frac{3}{2}RT\left( 1-\frac{2}{3} \frac{TB'}{V} \right)
+\end{align}
+$$
+y para $C_{V}$:
+$$
+\left( \frac{ \partial u }{ \partial T }  \right)_{V}=\frac{3}{2}R-\frac{R}{V}(T^{2}B')'
+$$
+## Disponibilidad Termodinámica
+Denotando $X'$ como las variables que el sistema le ejerce al medio, se tiene la ecuación:
+$$
+\begin{align}
+-dA=T'dS-dE-P'dV>0  \\
+\iff dA=dE+P'dV-T'dS<0
+\end{align}
+$$
+donde $A$ es la **exergía.**
+\* La exergía es la parte de la energía de un sistema,  que es utilizable para realizar trabajo útil sobre el medio. La exergía en el equilibrio es = 0, aunque el sistema sí puede tener energía.
+
+Luego, la ecuación de **disponibilidad** es:
+$$
+T'dS-dE-P'dV>0
+$$
+
+### Caso: Proceso a Temperatura Constante
+Considerando el caso particular de un proceso a **temperatura constante**, se puede obtener su función de Helmholtz $F$:
+![[Pasted image 20251012100820.png]]
+su disponibilidad es
+$$
+T'dS-dE-P'dV>0
+$$
+considerando $T$ constante y $V$ constante, entonces $dV=0$ y la disponibilidad queda:
+$$
+\begin{align}
+T'dS-dE\cancel{ -P'dV }>0 \\
+TdS-dE=d(TS-E)>0 \\
+\end{align}
+$$
+luego $dF>0$ o $dF<0$ por condición de espontaneidad, entonces $dF=0$
+
+> Para un proceso a temperatura constante, el equilibrio se alcanza minimizando la energía libre de Helmholtz $F$.
+>  A $T=0$ se reduce a minimizar la energía
+
+#### Helmholtz como $\mathbb{W}$ máximo
+Considerando un proceso a temperatura constante $T=T'=\text{cte}$,
+$$
+\begin{align}
+ & dE =dQ+d\mathbb{W}_{T} \\
+T \text{ cte}\iff  & d\mathbb{W}_{T} =dE-TdS \\
+\iff  & dW_{T}=d(E-TS)_{T}=dF
+\end{align}
+$$
+si se tiene un proceso extendido: $\mathbb{W}_{T}=F_{2}-F_{1}$ y si interesa el trabajo $\mathbb{W}'_{T}$ que el sistema ejerce sobre el medio:
+$$
+\mathbb{W}_{T}'=-\mathbb{W}_{T}=F_{\text{inicial}}-F_{\text{final}}
+$$
+y el caso en que $F_{\text{final}}=0$:
+$$
+\mathbb{W}'=F_{\text{inicial}}=(E-TS)_{\text{inicial}}
+$$
+- El término $-TS$ hace que la energía esté 'menos disponible', entonces no toda la energía inicial del sistema puede usarse. 
+> Lo que resta es la "energía libre" para realizar trabajo.
+
+### Caso: Presión Constante
+Considerando un proceso a $P$ constante,
+$$
+\begin{align}
+dE & =dQ+d\mathbb{W} \\
+ & =dQ_{P}-PdV \\
+\iff dQ_{P} & =dE+PdV \\
+P\text{ cte: } &dQ_{P}=d(E+PV) 
+\end{align}
+$$
+y se define la **entalpía** como $H=E-(-P)V$:
+$$
+\begin{align}
+dQ_{P}=dH \bigg/\int \\
+\iff Q_{P}=H_{2}-H_{1}
+\end{align}
+$$
+> $Q$ no es variable de estado, pero en proceso isobárico (a $P$ cte) es igual a la diferencia de $H$ que sí es variable de estado.
+
+1. $Q_{P}>0$ : Se ingresa energía al sistema, proceso **endotérmico.**
+2. $Q_{P}<0$ : Se emite energía, proceso **exotérmico.**
+
+*obs:* no confundir con $\Delta E>0$ proceso *endergónico* y $\Delta E<0$ proceso *exergónico*.
+
+| Proceso                               | Relaciones                          |
+| ------------------------------------- | ----------------------------------- |
+| Adiabático $Q=0$                      | $\mathbb{W}_{adb}=\Delta E$         |
+| Isocórico $\mathbb{W}_{V}=\text{cte}$ | $Q_{V=\text{cte}}=\Delta E$         |
+| Isotérmico $\Delta T=0$               | $\mathbb{W}_{T\text{cte}}=\Delta F$ |
+| Isobárico $\Delta P=0$                | $Q_{P\text{cte}}=\Delta H$          |
+
+##### Ejemplo: Reacciones Químicas
+Se realizan a presión $P$ constante, entonces se usa entalpía $H$ para describirlas.
+
+Se determinan puntos de referencia para la entalpía en una reacción química:
+1. $T=25°C$
+2. $P=101325 [Pa]$
+las cuales determinan la **Entalpía de Formación Estándar** $\Delta H_{f}°$ que, para los elementos en su forma más común se define como 0: $\Delta H_{f}°=0$
+
+*Ej: Ozono $O_{3}$* 
+El $O_{3}$ requiere energía, entonces $\Delta H>0$
+*Ej: Quemar grafito* $C+0_{2}\longrightarrow CO_{2}$ a $P$ constante
+Se mide el calor desprendido de la reacción $Q_{P}$ y éste es igual a la variación de entalpía $\Delta H$. Luego de muchas mediciones, se determina el $\Delta H_{f}°(CO_{2})$
+
+- Así, se construyen las tablas con las entalpías estándar para los procesos químicos.
+*Ejemplo: Combustión de Glucosa*
+$$
+6CO_{2} (g)+6H_{2}O \longrightarrow C_{6}H_{12}O_{6}+O_{2}\\
+$$
+Luego, la entalpía del proceso es igual a: (Entalpía de Estados Iniciales) - (Entalpía de Estados Restantes), de la forma:
+$$
+\begin{align}
+\Delta H & =\bigg(6\Delta H_{f}°(CO_{2} (g))+6\Delta H_{f}°( H_{2}O)\bigg) - \bigg(\Delta H_{f}°(C_{6}H_{12}O_{6})+\cancelto{ 0 \text{ por def} }{ \Delta H_{f}°(O_{2}) }\bigg)\\
+ & =\bigg(6\cdot(-393,5)+6\cdot(-285,8)\bigg)-\bigg( -1273 \bigg)\ \left[ \frac{kJ}{\text{mol}} \right] \\
+\iff \Delta H & =-2803 \left[ \frac{J}{K} \right]
+\end{align}
+$$
+como $\Delta H<0$ corresponde a una reacción exotérmica.
+
+### Caso: Temperatura T y Presión P constantes
+La disponibilidad es
+$$
+T'dS-dE-P'dV>0
+$$
+proceso a T,P constantes y en condiciones de equilibrio con el medio $T'=T,P'=P$:
+$$
+\begin{align}
+ & d(TS-E-PV)>0 \\
+ & d\underbrace{ (E+PV-TS) }_{ dG }<0 \\
+\iff &  dG<0
+\end{align}
+$$
+> Para proceso a temperatura y presión constante, el equilibrio sucede cuando la energía libre de gibbs $G$ es mínima.
+
+##### Ej: Con trabajo eléctrico
+Si se tiene trabajo eléctrico $d\mathbb{W}_{e}=(d\mathbb{W}_{e}+\mathbb{W}_{PdV})+dQ$,
+$$
+\begin{align}
+ & dE=d\mathbb{W}_{e}-PdV+TdS \\
+\iff & d\mathbb{W}_{e}=dE+PdV-TdS \\
+P,T\text{ ctes: }\implies & d(E+PV-TS) \\
+\iff & d\mathbb{W}_{e}=dG \\
+\iff & \mathbb{W}_{e}=\Delta G
+\end{align}
+$$
+por lo tanto, $G$ es una medida de la disponibilidad de realizar $\mathbb{W}_{e}$ (o cualquier trabajo que no sea $PdV$).
+$\mathbb{W}_{e}$ no es una variable de estado, pero a P,T cte es igual a la diferencia de $G$ que sí lo es.
+
+## Ecuación de Euler
+Escribiendo la energía $E$ en función de sus variables extensibles:
+$$
+E=(\chi_{1},\chi_{2},\chi_{3},\dots,)
+$$
+entonces sus variables intensivas $\xi_{i}$ son:
+$$
+\xi_{i}=\frac{ \partial E }{ \partial \chi_{i} } 
+$$
+
+
+para una función homogénea de grado $n$ $f(\lambda x_{1},\lambda x_{2},\dots,\lambda x_{N})=\lambda^{n}f(x_{1},x_{2},\dots,x_{N})$ y derivando con respecto a $\lambda$, usando notación $\frac{ \partial f }{ \partial x_{1} }=f_{1}$:
+$$
+f_{1}()x_{1}+f_{2}()x_{2}+\dots+f_{n}()x_{n}=n\lambda^{n-1}f
+$$
+para $\lambda=1$:
+$$
+f_{1}x_{1}+f_{2}x_{2}+\dots+f_{N}x_{N}=f
+$$
+Uso en termodinámica: Duplicando el tamaño de un sistema, se tiene que $E$ es homogénea de grado 1, o sea, si se aumenta el tamaño del sistema, este crece en $\lambda=1$. Si se duplica el tamaño, la energía aumenta al doble; Si se triplica el tamaño, la energía aumenta al triple.
+
+### Relacion de Gibbs-Duhem
+Diferenciando la ecuacion anterior:
+$$E=d\sum_{i}\xi_{i}X_{i}=\sum_{i}d(\xi_{i}X_{i})$$
+$$=\sum_i\xi_idX_i+\sum_i(d\xi_i)X_i$$
+$$\begin{aligned}&\text{pero }dE=\sum_i\xi_idX_i \end{aligned}$$
+- No todas las variables intensivas pueden variarse independientemente.
+  *Ejemplo*: $SdT+Vd(-P)+\Theta d\phi=0$
+
+# Gases
+La ecuación de gas ideal corresponde a $PV=nRT$ y para un mol:
+$$
+PV=vRT
+$$
+con $v=\frac{V}{\text{nro de moles}}$
+
+Viendo modelos que no corresponden al caso del gas ideal.
+## Factor de Compresibilidad $Z$
+$Z$ es el factor de compresibilidad y está tabulado para gases de uso común.
+$$
+Z(P,T)=\frac{Pv}{RT}
+$$
+### Comparación con Respecto a Gas Ideal
+Obteniendo el volumen de la expansión de un gas en donde comienza en condiciones: $P_{1}=150[bar],T_{1}=25°C,V_{1}=40[L]$ hasta las condiciones: $P_{2}=1[bar], T_{2}=25°C$
+1. Considerando el gas como ideal, se tiene la ecuación de gases ideales:
+   $$
+   \begin{align}
+ & PV=NkT \iff \frac{PV}{T}=Nk \iff \frac{P_{1}V_{1}}{T_{1}}=\frac{P_{2}V_{2}}{T_{2}} \\
+ & V_{2}=\left( \frac{P_{1}}{P_{2}} \right)V_{1} \iff V_{2}=\left( \frac{150}{1} \right)V_{1} \\
+ & V_{2}=150\cdot 40 [L] \iff V_{2}=6000[L]=6[m^{3}]
+\end{align}
+   $$
+   2. Considerando el gas con un factor de compresibilidad $Z_{1}=0,943,\ Z_{2}=0,999$:
+      $$
+\begin{align}
+PV=NkTZ \\
+\implies P_{1}V_{1}=NkT_{1}Z_{1} \\
+\implies P_{2}V_{2}=NkT_{2}Z_{2}  \\
+ \\
+\frac{P_{2}V_{2}}{P_{1}V_{1}}=\frac{Nkt_{2}Z_{2}}{NkT_{1}Z_{1}} \iff \frac{P_{2}V_{2}}{P_{1}V_{1}}=\frac{Z_{2}}{Z_{1}} \\
+\iff V_{2}=\left( \frac{150[bar]\cdot40[L]}{1[bar]} \right)\cdot\left( \frac{0,999}{0,943} \right) =6000[L]\cdot 1,06=6356[L]=6,36[m^{3}]
+\end{align}
+$$
+así el error con respecto a al ecuación del gas ideal es de $\approx 6\%$
+
+## Ecuaciones Viriales
+Para el factor de compresibilidad $Z=Z(P,T)$ haciendo desarrollo de potencias:
+$$
+\begin{align}
+ & \frac{Pv}{RT}=Z(P,T) \\
+\iff  & \frac{Pv}{RT}=1+B'(T)+C'(T)^{2}+\dots
+\end{align}
+$$
+y para volumen:
+$$
+\begin{align}
+ & Z=Z(v,T) \\
+\iff & Z(v,T)=1+\frac{B(T)}{v}+\frac{C(T)}{v^{2}}+\frac{D(T)}{v^{3}}+\dots
+\end{align}
+$$
+los coeficientes $B(T)$ están tabulados para muchos gases.
+
+## Ecuaciones Semiempíricas
+
+### Ecuación de Clausius
+ Plantea que se debe corregir el volumen, pues el gas no se encuentra en absolutamente todo el espacio disponible para él, ya que las partículas que lo componen chocan entre ellas. Entonces
+ $$
+\begin{align}
+ & V_{\text{efectivo}}=V-b \\
+\implies & P\cdot V_{\text{efectivo}}=RT \\
+\iff & P(V-b)=RT
+\end{align}
+$$
+
+### Ecuación de Van der Waals
+Plantea que el gas ejerce una presión menor al recipiente debido a que las moléculas del gas cercanas entre sí, se atraen mutuamente, disminuyendo su momento.
+Se tiene que
+$$
+\underbrace{ \left( P+\frac{a}{v} \right) }_{ P_{\text{efectiva}} }\cdot\underbrace{ (V-b) }_{ V_{\text{efectiva}} }=RT
+$$
+donde $a,b$ se conocen como las constantes de Van der Waalks y dependen del gas, que corresponden a la relación de atracción entre sus moléculas.
+En la práctica se utilizan las relaciones para $a,b$:
+$$
+\begin{align}
+a & =\frac{27R^{2}T_{c}^{2}}{64P_{c}} \\
+b & =\frac{RT_{c}}{8P_{c}}
+\end{align}
+$$
+donde
+1. $T_{c}$ es la temperatura crítica del fluido: es la cual no se puede licuar el gas.
+2. $P_{c}$ es la presión crítica, es la que se necesita para licuar a $T_{c}$
+ambas son parámetros medibles.
+
+### Ecuación de Redlich-Kwong
+Es un reajuste numérico de la ecuación de gas ideal, ya que hay una disminución de la presión que es proporcional a la temperatura:
+$$
+P=\frac{RT}{V-b}- \frac{\frac{a}{\sqrt{ T }}}{\frac{V}{(v+b)}}
+$$
+
+## Procesos fuera del equilibrio
+
+### Expansión Libre
+
+Considerando un gas aislado, confinado a un volumen $V$ con una cavidad extra de volumen $\Delta V$, el gas pasa de tener un volumen $V$ a un volumen $V+\Delta V$. El proceso ocurre a energía $E$ constante por ser un sistema aislado, luego $Q=0,\mathbb{W}=0$.
+Y se busca determinar si el gas se calienta o se enfría, esto es equivalente a calculas el **coeficiente de Joule**.
+$$
+\begin{align}
+\frac{\Delta T}{\Delta V}\Biggr|_{E\text{ cte}}\iff  & \mu_{J}=\left( \frac{ \partial T }{ \partial V }  \right)_{E} \\
+\vdots \\
+\mu_{J}=\frac{1}{C_{V}}\left( T\left( \frac{ \partial P }{ \partial T }  \right)_{V}-P \right)
+\end{align}
+$$
+
+### Expansión Forzada en Proceso de Joule-Thompson
+Proceso en el cual una bomba hace circular un gas desde una presión alta a una baja a través de un obstáculo. Puede aumentar o disminuir la temperatura según el caso.
+
+Utilizando un *volumen de control* se estudia cómo evoluciona un volumen de gas a lo largo de un flujo en una tubería.
+Asumiendo proceso adiabático $Q=0$,
+$$
+\begin{align}
+\mathbb{W} & =\mathbb{W}_{\text{izq}}+\mathbb{W}_{\text{der}} \\
+\mathbb{W}_{\text{izq}} & =\int_{i}^{f} -P \, dv=-P_{2}(V_{f}-V_{i}) =P_{2}V_{2} \\
+\dots W_{\text{der}} & =-P_{1}V_{1} \\
+ & \vdots \\
+\underbrace{ E_{1}+P_{1}V_{1} }_{ H_{1} } & =\underbrace{ E_{2}+P_{2}V_{2} }_{ H_{2} } \\
+H_{1}=H_{2}
+\end{align}
+$$
+luego, la entalpía en expansión forzada es constante.
+
+#### Curvas Isentálpicas
+Considerando la energía para gas ideal $E=\frac{r}{2}NkT;\ PV=NkT$. Si $H=E+PV$, entonces:
+$$
+H=NkT\left( \frac{r}{2}+1 \right)
+$$
+![[Pasted image 20251012171820.png]]
+
+1. Se tienen dos zonas:
+   - La zona de enfriamiento (en gris): Gas se enfriará al realizar el proceso de expansión forzada
+   - La zona de calentamiento (en blanco): Gas se calienta en proceso de expansión forzada.
+
+1. Curva de inversión es la que limita la zona de enfriamiento con la de calentamiento.
+2. El punto de intersección de la curva de inversión con el eje de la temperatura es la temperatura de inversión máxima: Si el gas se encuentra a esa temperatura, independiente de la presión que se tenga, el gas sólo se va a calentar.
+
+> Todos los gases se comportan igual: Tienen zona de enfriamiento y calentamiento, delimitadas por una curva de inversión.
+
+Para saber si el gas se enfría o calienta:
+viendo $\frac{\Delta T}{\Delta V}\Biggr|_{E\text{ cte}}\iff  \mu_{J}=\left( \frac{ \partial T }{ \partial P }  \right)_{H}$, usando relación cíclica: 
+$$
+\underbrace{ \left( \frac{ \partial T }{ \partial P } \right)_{H} }_{ \mu_{J-T} }\left( \frac{ \partial P }{ \partial H } \right)_{T}\underbrace{ \left( \frac{ \partial H }{ \partial T } \right)_{P} }_{ C_{P} }=-1
+$$
+entonces:
+1. $$
+   \frac{PV}{RT}=1
+   $$
+2. Van der Waals:
+   $$
+   \left( P+\frac{q}{v^{2}} \right)(V-b)=RT
+   $$
+   donde existe la temperatura crítica $T_{C}$, que corresponde al límite de temperatura en donde es imposible licuarlo; $P_{C}$, la presión mínima necesaria para licuar a $T_{C}$; $V_{C}$, el volumen molar a $P_{C},T_{C}$.
+   Se define entonces la **temperatura reducida**:
+   $$
+T_{r}=\frac{T}{T_{c}},\ P_{r}=\frac{P}{P_{C}},\ V_{r}=\frac{V}{V_{C}}
+   $$
+   que son magnitudes adimensionales. Si se reemplazan en la ecuación de Van der Waals:
+   $$
+   \implies \left( P_{r}+\frac{3}{V_{r}^{2}} \right)(3V_{r}-1)=8T_{r}
+   $$
+   en donde ya no se encuentran las constante $a,c$ que dependen del gas (las constantes se pueden expresar con $P_{C}$ y se pueden despejar.
+
+> Todos los gases son iguales, debidamente escalados.
+
+y se define el **factor de compresibilidad crítico** $Z_{C}$:
+$$
+Z_{C}=\frac{P_{C}V_{C}}{RT_{C}}
+$$
+y hay grupos de gases que tienen el mismo factor de compresibilidad $Z$, y se comportan de manera similar. Así se pueden clasificar los gases.

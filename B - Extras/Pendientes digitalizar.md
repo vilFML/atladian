@@ -1,7 +1,7 @@
 Termodinámica
 - [x] 1. clasexde ✅ 2025-10-08
-- [ ] aux 03/10
-- [ ] clase 03/10
+- [x] aux 03/10 ✅ 2025-10-11
+- [x] clase 03/10 ✅ 2025-10-12
 - [ ] clase 06/10
 
 
