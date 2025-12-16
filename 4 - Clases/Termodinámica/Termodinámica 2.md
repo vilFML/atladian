@@ -27,7 +27,7 @@ No es posible convertir la totalidad de calor en trabajo, pues la temperatura es
 
 ### Funcionamiento Reversible:
 Si se tiene una máquina con una fuente térmica $T_{2}$ que transfiere un calor $Q$ a la máquina, y ella realiza un trabajo $\mathbb{W}'$
-![[Pasted image 20251003201117.png|300]]
+![[Pasted image 20251003201117.png|200]]
 
 Suponiendo un funcionamiento reversible:
 $$
@@ -72,7 +72,7 @@ El problema surge del hecho de que cerrar el ciclo requiere ceder la entropía (
 ## Límite de carnot $\eta_{\text{carnot}}$
 
 Considerando el caso de tener una fuente y sumidero térmicos y una máquina térmica de funcionamiento reversible:
-![[Pasted image 20251003205626.png|250]]
+![[Pasted image 20251003205626.png|150]]
 en donde la temperatura del sumidero $T_{1}$ es mayor a la de la fuente $T_{2}$: $T_{1}<T_{2}$ .
 Si la diferencia de energía para un ciclo es 0: 
 $$\Delta E_{\text{ciclo}}=0 \iff Q_{1}+Q_{2}+\mathbb{W}=0$$
@@ -165,7 +165,7 @@ El rendimiento y eficiencia son conceptos diferentes, así no necesariamente se 
 ## Bomba Térmica (o Bomba de Calor)
 
 Si se usa una máquina frigorífica para calentar, se cambia qué se busca maximizar.
-![[Pasted image 20251003220845.png|250]]
+![[Pasted image 20251003220845.png|200]]
 
 $Q_{2}'=Q_{2}$ es el que ingresa a la habitación de temperatura $T_{2}$, luego:
 $$
@@ -183,9 +183,9 @@ $$
 ## Ciclo de Carnot
 ### Ciclo de Carnot Genérico
 Para una fuente térmica $T_{2}$ y un sumidero $T_{1}$, en donde $T_{2}>T_{1}$: 
-![[Pasted image 20251003223358.png|250]]
+![[Pasted image 20251003223358.png|200]]
 si el sistema de interés es la máquina misma, se tiene el ciclo de carnot genérico e imponiendo un proceso reversible:
-![[Pasted image 20251003223558.png|250]]
+![[Pasted image 20251003223558.png|200]]
 La máquina realiza los siguientes procesos:
 1. Toma calor a $T_{2}$: Isoterma superior
 2. Enfría a $T_{1}$ (sin contacto con otros sistemas): Adiabática isentrópica.
@@ -220,7 +220,7 @@ Para minimizar $\Delta S_{\text{irr}}$ la máquina debe ser lo más cuasiestáti
 > En una máquina térmica hay flujo de entropía.
 
 Considerando el caso de una máquina eléctrica reversible: Se tienen dos fuentes de carga: 
-![[Pasted image 20251003231418.png]]
+![[Pasted image 20251003231418.png|250]]|
 donde la ampolleta realiza un trabajo $\mathbb{W}'=-\mathbb{W}$.
 Entra energía $d\Theta \phi_{2}$ y 'bota' energía $d\Theta \phi_{1}$.
 Por conservación de energía:
@@ -235,7 +235,7 @@ para un enchufe: $\phi_{1}=0,\ \phi_{2}=220[V_{\text{RMS}}]$, entonces el rendim
 
 ## Modelo Chambadal-Navikov
 Si se considera la situación de tener una fuente térmica a temperatura $T_{2}$ y un sumidero térmico a $T_{1}$, y una máquina de la forma:
-![[Pasted image 20251003232331.png|250]]
+![[Pasted image 20251003232331.png|200]]
 Existe la situación en que la máquina esté a la misma temperatura $T_{2}$ de la fuente térmica, entonces no debiese haber flujo de calor $Q$.
 Pero la fuente térmica 'vé' una temperatura $T_{2}'$ un poco menor que la suya, siendo suficiente como para que exista un flujo de calor. En este caso, se considera un proceso *endorreversible* (casi reversible), entonces:
 $$

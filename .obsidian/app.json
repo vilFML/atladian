@@ -1,19 +1,6 @@
 {
   "livePreview": false,
-  "newFileLocation": "folder",
-  "newFileFolderPath": "1 - Sin Organizar",
+  "newFileLocation": "current",
   "attachmentFolderPath": "A - Anexos",
-  "alwaysUpdateLinks": true,
-  "showLineNumber": false,
-  "autoPairBrackets": false,
-  "autoPairMarkdown": false,
-  "readableLineLength": true,
-  "pdfExportSettings": {
-    "includeName": true,
-    "pageSize": "A4",
-    "landscape": false,
-    "margin": "0",
-    "downscalePercent": 75
-  },
-  "defaultViewMode": "preview"
+  "autoPairBrackets": false
 }

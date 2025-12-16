@@ -1,11 +1,12 @@
 {
   "accentColor": "#fd3f3f",
-  "cssTheme": "Blue Topaz",
+  "cssTheme": "Tokyo Night",
   "textFontFamily": "Futura",
   "monospaceFontFamily": "Cascadia Code",
   "showRibbon": true,
   "enabledCssSnippets": [
     "adaptive_images",
     "twocolumns"
-  ]
+  ],
+  "theme": "system"
 }
