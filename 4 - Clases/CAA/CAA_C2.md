@@ -190,7 +190,7 @@ si $K=2$, $z^{2}=1$
 si $k=3,z^{3}=1$
 ***grafica ej2***
 
-- [ ] agregar graficos
+- [x] agregar graficos ✅ 2025-12-13
 
 *** 
 Clase 09/09
@@ -549,7 +549,7 @@ $$
 por simplicidad, supongamos que $a=0$ (caso $a\neq 0$ es análogo
 si
 
-- [ ] terminar xd (está en la tablet) 
+- [x] terminar xd (está en la tablet) ✅ 2025-12-13
 
 
 *** 

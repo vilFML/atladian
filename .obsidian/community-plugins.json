@@ -1,5 +1,8 @@
 [
   "obsidian-git",
   "obsidian-latex-suite",
-  "obsidian-tasks-plugin"
+  "obsidian-tasks-plugin",
+  "note-refactor-obsidian",
+  "execute-code",
+  "code-styler"
 ]
