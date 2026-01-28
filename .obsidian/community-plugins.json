@@ -2,7 +2,6 @@
   "obsidian-git",
   "obsidian-latex-suite",
   "obsidian-tasks-plugin",
-  "note-refactor-obsidian",
-  "execute-code",
-  "code-styler"
+  "code-styler",
+  "execute-code"
 ]
