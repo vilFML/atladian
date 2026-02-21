@@ -1,0 +1,1 @@
+El alcance de una variable se refiere a la región del código en 
