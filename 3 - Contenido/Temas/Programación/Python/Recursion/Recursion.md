@@ -158,3 +158,139 @@ assert digitoMayor(3102716) == 7
 1. Se utiliza un parámetro por omisión `mayor` para ir almacenando el mayor número que se ha visto.
 2. Si se llega al final, entonces se retorna el *máximo* que se ha ido guardando en la variable `mayor`.
 3. En cada llamada recursiva se actualiza la variable `mayor` en caso de que corresponda. Notar que siempre se entrega recursivamente un número menor (sin el último dígito).
+
+# Ciclos Recursivos
+Se puede hacer uso de la recursión para implementar *ciclos interactivos* con el usuario. Un patrón usual para este tipo de funciones es:
+1. Se pide al usuario cierta información
+2. *Caso base:* Corresponde a un dato especial definido por el problema (como un número negativo, un punto, una palabra clave como 'fin', etc) con la cual la recursión finaliza.
+3. *Caso recursivo:* Se hace alguna operación con el dato ingresado por el usuario y se vuelve a invocar la recursión.
+
+##### Ejemplo:
+Escribir una función recursiva que pida números positivos al usuario (hasta que ingrese un valor negativo) e imprima en pantalla la suma de ellos, sin considerar el número negativo.
+```py
+# suma_interactiva: None, (num) -> None
+# Pregunta por numeros positivos hasta que se
+# ingresa un numero negativo y luego entrega la suma de los numeros
+# Ej: No hay ejemplo, la funcion solo muestra en pantalla.
+def suma_interactiva(suma = 0):
+	n = float(input('numero? '))
+	
+	# Caso base
+	if n < 0:
+		print('la suma es: ', suma)
+		return None
+	
+	# Caso recursivo
+	else:
+		return suma_interactiva(suma + n)
+
+# tests: no hay tests pues siempre retorna None
+```
+- El parámetro por omisión permite guardar la suma de los números en las sucesivas llamadas recursivas.
+
+# Módulo turtle
+Es un módulo que permite dibujar en pantalla usando una tortuga. Los dibujos de harán en una ventana gráfica que contiene dentro de sí un sistema cartesiano.
+Al ejecutar el código se abre una ventana en la cual la tortuga podrá dibujar cosas.
+- La tortuga siempre comienza en la posición `(0,0)` mirando hacia la derecha.
+```py
+import turtle
+
+turtle.shape('turtle')
+turtle.done()
+
+```
+entrega una tortuga.
+
+## turtle.forward(n)
+La tortuga se mueve $n$ pixeles en la dirección en la que se está mirando la tortuga.
+
+## turtle.left(degrees)
+La tortuga gira hacia la izquierda una cantidad de degrees indicados
+\* Para giro a la derecha se usa `turtle.right(degrees)`
+
+## más funciones de turtle
+
+| Función            | Significado                                                                                         |
+| ------------------ | --------------------------------------------------------------------------------------------------- |
+| `turtle.back(n)`   | Movimiento hacia atrás $n$ pixeles                                                                  |
+| `turtle.penup()`   | Al avanzar, la tortuga no marca pixeles (levanta el lápiz)                                          |
+| `turtle.pendown()` | La tortuga baja el lapiz para comenzar a marcar pixeles (baja lápiz)                                |
+| `turtle.speed(n)`  | Para cambiar la velocidad de la tortuga, con `n = 0` se tiene máxima velocidad.                     |
+| `turtle.done()`    | Previene el cierre de la ventana en donde se dibuja. Debe ser la última instrucción que se ejecute. |
+|                    |                                                                                                     |
+|                    |                                                                                                     |
+##### Ejemplo: Dibujar cuadrado
+```py
+import turtle as t
+
+t.shape('turtle')
+
+# cuadrado: int -> None
+# Dibuja un cuadrado de lado L pixeles
+def cuadrado(L):
+	t. forward(L)
+	t.left(90)
+	t. forward(L)
+	t.left(90)
+	t. forward(L)
+	t.left(90)
+	t. forward(L)
+	t.left(90)
+
+# invocamos la función cuadrado
+cuadrado(100)
+t.done()
+
+```
+
+
+
+# Fractales
+Un fractal se puede definir como un objeto geométrico que *repite el mismo patrón en sí mismo*, a diferentes escalas y orientaciones.
+
+##### Ejemplo: Fractal de Sierpinski (trifuerza)
+Escribir la función `fractal_sierpinski(largo, n)` que recibe el largo del trazo y el nivel de profundidad recursiva $n$ que debe alcanzar el fractal.
+- La figura base es un triángulo equilátero y en cada llamada recursiva su largo disminuye a la mitad.
+1. **Caso base**: Se detecta que el caso base consiste en dibujar un triángulo equilátero de lados $L$.
+2. **Caso recursivo:** Teniendo el triángulo equilátero de lado $L$, se deben dibujar *tres triángulos equiláteros recursivamente* (T1, T2 y T3) en su interior y cada uno de lado $\frac{L}{2}$. El triángulo de en medio se forma naturalmente.
+   - Para dibujar los triángulos se parte siempre desde el punto inferior izquierdo de los triángulos T1, T2 y T3, puntos denotados como P1, P2 y P3, respectivamente.. Y al terminar de dibujar un triángulo, se deja siempre la tortuga mirando hacia la derecha para facilitar el cálculo de ángulos y giros necesarios.
+
+**Algoritmo Cursive**
+1. Se parte de `P1` y se dibuja recursivamente el fractal de Sierpinski del triángulo `T1`.
+2. La tortuga queda en el mismo punto `P1`, mirando a la derecha.
+3. Se avanza hacia `P2`
+4. Se dibuja recursivamente el fractal de Sierpinski en el triángulo `T2`.
+5. La tortuga queda en el punto `P2` mirando a la derecha.
+6. Se avanza hacia `P3`
+7. Se dibuja recursivamente el fractal de Sierpinski en el triángulo `T3`
+8. La tortuga queda en el punto `P3`, mirando a la derecha.
+9. Se avanza de vuelta al punto `P1`, dejándola mirando a la derecha.
+
+Solución:
+```py
+# fractal_sierpinski: int, int -> None
+# Dibuja un fractal del triangulo de sierpinski
+def fractal_sierpinski(largo,n):
+	if n == 1:
+		turtle.forward(largo)
+		turtle.left(120)
+		turtle.forward(largo)
+		turtle.left(120)
+		turtle.forward(largo)
+		turtle.left(120)
+	else:
+		fractal_sierpinski(largo / 2, n - 1)
+		turtle.forward(largo / 2)
+		turtle_sierpinski(largo / 2, n - 1)
+		turtle.back(largo / 2)
+		turtle.left(60)
+		turtle.forward(largo / 2)
+		turtle.right(60)
+		fractal_sierpinski(largo / 2, n - 1)
+		turtle.left(60)
+		turtle.back(largo / 2)
+		turtle.right(60)
+```
+- El **caso base** es el bloque `if`, en donde se dibuja un triángulo equilátero cuyo lado mide lo mismo que el largo que se entregue como parámetro.
+  \*Se deja la tortuga mirando a la derecha para consistencia entre dibujos.
+- El **caso recursivo** corresponde al bloque `else`. Se va a los puntos en donde debe dibujarse recursivamente y posteriormente dejar a la tortuga en su posición inicial.
