@@ -40,3 +40,34 @@ gráficamente:
 
 ## elif
 `elif` es una abrevación de else-if
+Se utiliza para evaluar varias condiciones que se puedan cumplir y ejecutar un bloque de código para cada caso.
+-  El primer bloque `elif` cuya condición sea `True` se ejecutará, ignorando los siguientes `elif` y `else`
+
+el código enraizado de la forma:
+```py
+if 'condicion1':
+	instrucciones1
+else:
+	if 'condicion2':
+		instrucciones2
+	else:
+		if 'condicion3':
+			instrucciones3
+			else:
+				instruccionesELSE
+```
+es poco claro, y se puede escribir mejor con `elif`:
+```py
+if 'condicion1':
+	instrucciones1
+elif 'condicion2':
+	instrucciones2
+elif 'condicion3':
+	instrucciones3
+else:
+	instruccionesElse
+```
+
+gráficamente, el flujo de comprobación es:
+![[Pasted image 20260302165428.png]]
+
