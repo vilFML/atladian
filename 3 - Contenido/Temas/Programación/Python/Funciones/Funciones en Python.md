@@ -1,4 +1,70 @@
-## Crear Funciones
+# Funciones Preinstaladas
+ Hay funciones que están siempre disponibles para programas en python (no es necesario invocar un módulo para usarlas). 
+
+## Input
+Para tener un programa interactivo y que éste no sea siempre predefinido, o evitar modificar las declaraciones de las variables en el código siempre que se busque realizar un cálculo con diferentes valores.
+
+La función `input()` permite que al ejecutar un programa, se pueda pedir al usuario que ingrese un valor para almacenarlos en una variable y procesarlo posteriormente.
+- Se puede mostrar un mensaje al usuario que ejecuta el código de la forma: `input('Ingrese un numero: ')`.
+
+Para uso:
+```py
+n = input('Ingrese un numero: ')
+```
+en donde 'n' será la variable en la que se almacenará el valor ingresado mediante la función input.
+
+**Todo lo que la función input recibe, es de tipo string.** Para el caso de procesos numéricos es necesario convertir el tipo de dato a lo que se requiera usar (int, float, etc.)
+
+## Print
+Para mostrar usuario resultados intermedios o dentro del proceso del programa, se usa `print()`.
+Dentro del paréntesis se indica lo que se desea mostrar: Se puede indicar una variable o un dato directamente:
+```py
+n = 11
+print(n)
+```
+```py
+print('ejemplo')
+```
+
+Usos de `print()`:
+1. Para mostrar sólamente strings se pueden concatenar y siguiendo lo aprendido en la concatenación de strings: Solamente se puede hacer concatenación entre strings, por lo que los datos numéricos deben convertirse a tipo string y luego concatenar con '+' usualmente.
+```py
+n = 11
+n2 = n * 2 + 7
+print(n)
+print('El valor de n2 es ' + str(n2))
+```
+\* se muestran dos valores diferentes con dos funciones print diferentes
+
+2. Uso con comas `,`
+   Otra forma es separar los datos mediante el uso de comas, así no se están concatenando strings y no es necesario convertir los datos. Se puede tener el mismo efecto de concatenación:
+```py
+nombre = 'Dante'
+edad = 3
+print('Mi perro se llama', nombre, 'y tiene', edad, 'años.' )
+```
+\* se agregan espacios en la comillas automáticamente.
+
+3. Usar f-strings:
+   se llaman también strings fromateados y es una nueva forma de crear texto en python, facilitando el uso de variables al interior de cadenas de texto.
+   Se agrega `f` antes de la comilla en el inicio de un string: `f'string formateado` y es posible ingresar variables en su interior, indicando el nombre de la variable entre llaves `{}`, quedando:
+```py
+nombre = 'Dante'
+edad = 3
+print(f'Mi perro se llama {nombre} y tiene {edad} años.')
+```
+usar f-string es mejor cuando se tienen múltiples variables y el código es más legible.
+
+## Otras funciones
+
+| Función        | Efecto                                                      | Ejemplo             | Resultado |
+| -------------- | ----------------------------------------------------------- | ------------------- | --------- |
+| `abs(x)`       | $\|x\|$, valor absoluto de $x$                              | `abs(-7)`           | `7`       |
+| `max(x,y,...)` | Máximo valor entre todos los valores ingresados.            | `max(4,3,-2,8)`     | `8`       |
+| `min(x,y,...)` | Mínimo entre todos los valores ingresados.                  | `min(4,3,-2,8)`     | `-2`      |
+| `round(x,z)`   | Aproxima un número decimal $x$ dejándolo con $z$ decimales. | `round(2.73545, 2)` | `2.74`    |
+
+# Crear Funciones
 \* Se recomienda seguir la [[Receta de Diseño]].
 Para crear una [[Funciones|función]] se usa la palabra reservada **def**, seguida del nombre que se le asignará a la función:
 ```py
@@ -109,12 +175,3 @@ def programaInteractivo():
 ## Recursión de Funciones
 Una función puede invocar otras funciones que hayan sido definidas previamente.
 
-# Funciones siempre disponibles
- Hay funciones que están siempre disponibles para programas en python (no es necesario invocar un módulo para usarlas). 
-
-| Función        | Efecto                                                      | Ejemplo             | Resultado |
-| -------------- | ----------------------------------------------------------- | ------------------- | --------- |
-| `abs(x)`       | $\|x\|$, valor absoluto de $x$                              | `abs(-7)`           | `7`       |
-| `max(x,y,...)` | Máximo valor entre todos los valores ingresados.            | `max(4,3,-2,8)`     | `8`       |
-| `min(x,y,...)` | Mínimo entre todos los valores ingresados.                  | `min(4,3,-2,8)`     | `-2`      |
-| `round(x,z)`   | Aproxima un número decimal $x$ dejándolo con $z$ decimales. | `round(2.73545, 2)` | `2.74`    |
