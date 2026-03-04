@@ -1,8 +1,8 @@
 [
   "obsidian-git",
-  "obsidian-latex-suite",
   "obsidian-tasks-plugin",
   "code-styler",
   "execute-code",
-  "tabout"
+  "tabout",
+  "obsidian-latex-suite"
 ]
