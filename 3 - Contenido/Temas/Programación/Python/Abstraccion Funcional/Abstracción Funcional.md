@@ -190,3 +190,85 @@ esPar = lambda n: n % 2 == 0
 ```
 
 # Abstracción Funcional
+Una forma de generalizar funciones es diseñarlas tales que permiten recibir funciones como parámetro. Con ello, la función no está ligada a resolver un solo problema en particular (y para datos/estructuras con una forma estricta), si no que se otorga una flexibilidad con la capacidad de 'inyectar' código a través de funciones externas.
+
+La **abstracción funcional** es encapsular procesos y lógica al interior de funciones y combinarlas entre ellas para solucionar problemas más complejos. Al hacerlo se tienen los beneficios de:
+- Prevenir la duplicación de código similar
+- Extender el rango o dominio en donde puede operar una función
+- Se pueden realizar rápidamente operaciones típicas al operar con datos (como filtrar o buscar algo en una lista de elementos).
+
+
+
+##### Ejemplo:
+Se puede visualizar esto en una función que recibe dos estructuras de animales y retorna `True` si son iguales o `False` si no. La igualdad debe hacerse bajo cierto criterio y no necesariamente con todos los atributos de la estructura (por ej. no importa si el animal tiene hambre)
+
+```py
+# igualdadAnimales: Animal, Animal -> bool
+# indica si dos animales son iguales de acuerdo a nuestros criterios
+# ej: igualdadAnimales(perrito, gatito) entrega False
+def igualdadAnimales(animal1, animal2):
+	assert esAnimal(animal1) and esAnimal(animal2)
+	
+	if (animal1.nombre == animal2.nombre and
+		animal1.tipo == animal2.tipo and
+		animal1.edad == animal2.edad):
+		return True
+	else:
+		return False
+
+perritoSinHambre = Animal("Linky", "perro", 1, False)
+perritoConHambre = Animal("Linky", "perro", 1, True)
+assert igualdadAnimales(perritoSinHambre, perritoConHambre)
+
+```
+en donde se usa el criterio de igualdad tal que dos animales son iguales si tienen el mismo `nombre`, `tipo` y `edad`; no importa `hambre`.
+
+Ahora se puede crear la función que opera con listas de estructuras `Animal` usando la función anterior `igualdadAnimal()` en vez del operador de igualdad `==`. 
+
+```py
+# contieneAnimal: lista(Animal), Animal -> bool
+# indica si el Animal existe en la lista de Animales
+# ej: contieneAnimal(LAnimales, gatito) entrega True
+def contieneAnimal(L, animal):
+	assert esLista(L)
+	assert esAnimal(animal)
+	
+	if L == listaVacia:
+		return False
+	else:
+		actual = cabeza(L)
+		if igualdadAnimales(actual, animal):
+			return True
+		else:
+			return contieneAnimal(cola(L), animal)
+```
+La función `igualdadAnimales()` recién creada determina si dos animales son iguales o no, de acuerdo al criterio indicado.
+
+Pero se tiene un problema: la función `contieneAnimal()` está ligada a la estructura de tipo `Animal`. Entonces la funcionalidad de buscar algún elemento en una lista de estructuras está restringida al tipo específico de estructuras con la forma de `Animal`. Para solucionar esto, se entrega como parámetro la función de igualdad, lo que permite tener distintos criterios de igualdad y *generalizar* la función `contiene` a distintas estructuras:
+```py
+# contieneEst: lista(any), any, (f: any,any -> bool) -> bool
+# indica si el elemento e existe en la lista L
+# ej: contieneEst(LAnimales, gatito, igualdadAnimales) entrega True
+def contieneEst(L, e, funIgualdad):
+	assert esLista(L)
+	
+	if L == listaVacia:
+		return False
+	else:
+		actual = cabeza(L)
+		if funIgualdad(actual, e):
+			return True
+		else:
+			return contieneEst(cola(L), e, funIgualdad)
+
+```
+ahora *se recibe una función igualdad* definida por el usuario, que toma dos parámetros y dice si dos elementos son iguales.
+En el bloque `else:` se invoca la función igualdad entregada como parámetro (sea de la forma que sea, esta debe funcionar para dos argumentos).
+
+## Abstracciones Funcionales
+Las tres mśa importantes son:
+1. Filtro / filter
+2. Mapa / map
+3. Reductor / reduce / fold
+
+### Función Filtro (filter)
