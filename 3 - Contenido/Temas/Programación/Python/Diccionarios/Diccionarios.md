@@ -1,27 +1,32 @@
-Un diccionario es similar a una lista, pero los elementos se indexan con datos no necesariamente numéricos. Por ejemplo, supongamos que queremos convertir "piedra", "papel" y "tijera" a una representación numérica 0, 1, 2, respectivamente:
-```py
-p_a_n = {"piedra":0, "papel":1, "tijera":2} # para convertir de palabra a número
 
-print(p_a_n["papel"])
+Es una lista en donde, en lugar de que a cada elemento se le asigna un índice de posición, se le asigna una palabra denominada *clave*.
+
+
+|             | 'valor1' | 'valor1' | ... | 'elementoN' |
+| ----------- | -------- | -------- | --- | ----------- |
+| Lista       | `0`      | `1`      | ... | `N`         |
+| Diccionario | 'clave1' | 'clave2' | ... | 'claveN'    |
+Ya no se usa un número para acceder a un elemento, si no que se usa *una palabra clave*.
+
+**Sintaxis**
+## Creación
+Para crear un diccionario, se declara similar a una lista, pero con `{}`, indicando la palabra clave y su valor, separados por `:`, de la forma:
+```py
+Diccionario = {'clave1':valor1, 'clave2':valor2,  ... , 'claveN':valorN
 ```
 
-La conversión inversa se puede hacer simplemente con una lista:
-
+Los valores pueden ser de cualquier tipo, específicamente, pueden ser una lista:
 ```py
-n_a_p = ["piedra", "papel", "tijera"] # para convertir de número a palabra
-print(n_a_p[1])
+Diccionario = {'clave1':[1,70,'perro']}
+
+
+#y para acceder
+valorEnLista = Diccionario['clave1'][indice]}
 ```
 
-##### Ejemplo
-Se puede construir una función en que el programa juegue 'cachípun' contra el usuario:
+## Acceder
+Para acceder a un valor, se hace de la forma:
 ```py
-def juega():
-	from random import randint
-	programa=randint(0,2)
-	usuario=p_a_n[input("¿piedra, papel o tijera? ")]
-	resultado="Empate" if programa==usuario else\
-		"Gana Usuario" if (programa+1)%3==usuario else "Gana Programa"
-	print("Usuario juega", n_a_p[usuario])
-	print("Programa juega", n_a_p[programa])
-	print("Resultado:", resultado)
+datoX = Diccionario['claveX']
 ```
+
