@@ -122,7 +122,7 @@ entonces la ***la curva es simple***
 - Cuando la curva no se intersecta a sí misma, entonces la curva es simple (no hay nudos).
 
 ### [[Curva de Jordan]]
-***def:*** Una curva se llama **de jordan** si ella es [[curva cerrada|cerrada]] y [[Curva simple|simple]].
+***def:*** Una curva se llama **de jordan** si ella es [[Curva cerrada|cerrada]] y [[Curva simple|simple]].
 
 ### [[Curva suave]]
 Recordemos que la derivada de una función $\gamma:[a,b]\to \mathbb{R}^{n}$ es:
