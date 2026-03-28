@@ -426,36 +426,74 @@ en donde $t$ es un parámetro que señala la contribución de cada uno de los pu
 Por ejemplo: Se puede tener un punto inicial completamente rojo $(255,0,0)$ y el final solamente verde $(0,255,0)$ y para un punto entre medio arbitrario, se elige un $t$ que indica la contribución de cada color.
 `t = 0.5` se traduce en un color $(255,0,0)\cdot 0,5 + (0,255,0) * 0.5 =(127,127,0)$
 
-# Canal Alfa
-El componente *alfa* corresponde a la **transparencia** de cada color.
+## Canal Alfa
 
-# Representación de Imagenes
-Una imagen se representa como una matriz de vectores RGB. Este modelo se conoce como **raster** (y por eso se conoce el proceso de mostrar algo como *rastering*).
+El canal o componente *alfa* corresponde a la **transparencia** de cada color. Las instrucciones de cada píxel necesita: 
+- Rojo
+- Verde
+- Azul
+- Alfa
+cada uno entregado por 8 bits, dando un total de 32 bits para cada píxel.
 
-Una imagen **raster** es un tipo de imagen que se compone de una cudrícula de pixeles organizados en filas y columnas.
-- Por ser de resolución fija, se pierde initidez al hacer zoom.
-- Es costoso se almacenar pues se guarda la información de cada pixel. Por ello existen distintos formatos de compresión como JPG, PNG, BMP (sin compresión)
+## Representación de Imagenes
 
-JPG elimina la información de transparencia y a los colores muy cercanos los asigna como iguales.
+Una imagen se representa como una matriz de vectores RGB, en donde cada componente contiene la información de un píxel. Este modelo de representación de imágenes se conoce como **raster** (y por eso se conoce el proceso de 'mostrar algo' como *rastering*).
+
+Entonces una imagen **raster** es un tipo de imagen que se compone de una cuadrícula de píxeles organizados en filas y columnas, y cumple que:
+- Es de *resolución fija*. Entonces se pierde nitidez al hacer zoom.
+- Como guarda información de todos los píxeles, es costoso en almacenamiento. Por ello, existen distintos formatos de compresión como JPG, PNG, BMP (sin compresión).
+  \* JPG elimina la información de transparencia y a los colores muy cercanos los asigna como iguales.
 
 ## Representación Vectorial
-Son imagenes que compone de modelos paramétricos dadas por ecuaciones matemáticas. Esto permite escalar la imagen reevaluando las funciones según la resolución, entonces se dicen que tienen *resolución infinita*
+
+Una *imagen vectorial* es una imagen que se compone de modelos paramétricos definidas por ecuaciones matemáticas. Esto permite escalar la imagen reevaluando las funciones según la resolución, por ello se dicen que estas imágenes tienen *resolución infinita*. *Por ejemplo:* SVG, EPS, PDF.
 
 # Arquitectura
+
+Para el proceso de imágenes en el computador, se tienen las componentes: Framebuffer, Video Controller
+
+
 ## Framebuffer
-Es el área de memoria que almacena la imagen. En ocasiones se usan 2, que se conoce como doble-buffer:
-1. Uno se encarga del frame actual y otro del frame siguiente.
-2. Se grafica el actual y el siguiente se modifica.
+
+El *framebuffer* es el área de memoria que almacena la imagen.
+En ocasiones se usan dos áreas de la memoria, lo que se conoce como doble-buffer, en donde un *framebuffer* se encarga del frame actual y el otro del frame siguiente, graficando el cuadro actual y modificando el siguiente.
 
 ## Video Controller
-Accede al framebuffer para refrescar la pantalla.
 
-## Especificar Colores:
+Accede al *framebuffer* para refrescar la pantalla. Este obtiene los valores de los píxeles durante un ciclo de refresco, típicamente son 60 cuadros por segundo.
+Antiguamente el video controller contenía la paleta de colores que se iban a utilizar, pero las GPU modernas pueden calcular el color con un fragment shader.
+
+## Especificar Colores
+
+Para especificar colores, una forma es almacenarlos directamente en el *framebuffer*. *Por ejemplo*: Para un framebuffer de 3 bits se puede usar 1 bit para cada color (rojo, verde, azul) y así se pueden representar 8 colores.
+
+
+| Código | Red | Green | Blue | Color Mostrado |
+| ------ | --- | ----- | ---- | -------------- |
+| 0      | 0   | 0     | 0    | Negro          |
+| 1      | 0   | 0     | 1    | Azul           |
+| 2      | 0   | 1     | 0    | Verde          |
+| 3      | 0   | 1     | 1    | Cyan           |
+| 4      | 1   | 0     | 0    | Rojo           |
+| 5      | 1   | 0     | 1    | Magenta        |
+| 6      | 1   | 1     | 0    | Amarillo       |
+| 7      | 1   | 1     | 1    | Blanco         |
+
+
 ### Esquema Directo
-Se almacenan directamente los colores codificando 1 bit para cada componente de RGB.
-Es costoso en memoria, pues para pantallas de resolución 1920x1080 cada color utiliza 8 bits.
+
+El esquema directo corresponde a *utilizar más bits* para representar un mayor espectro de colores, almacenando directamente los colores, codificando 1 bit para cada componente RGB.
+Querer mostrar un mayor espectro de colores es costoso en memoria.
+
+*Por ejemplo* para pantallas de resolución 1920x1080, si para cada color se disponen 8 bits, se tendría $1920 \times 1980 = 3801600$ píxeles. Si para cada uno se usan 8 bits, entonces $3801600 \times 8 = 30412800$ bits, o sea $3.8016$ MB para una imagen. Entonces, si se usan 32 bits para cada color o si se tiene una pantalla de resolución $4K$ aumenta la memoria que se necesita.
 
 ### Esquema Indirecto
-Se almacenan los colores que se tienen en una tabla separada como una 'paleta de colores'. Y en el frame-buffer se almacena un índice a un color, indicando en dónde se repiten. 
-Este esquema permite hacer modificaciones a lo que se muestra en pantalla de forma relativamente sencilla al manipular los índices en el buffer.
-Este esquema se usaban en consolas hasta la Super Nintendo y permite dar la sensación de movimiento en una imagen al hacer variar los colores de forma cíclica.
+
+El esquema indirecto corresponde a almacenar los colores que se tienen disponibles en una *tabla separada*. Similar a una 'paleta de colores' para las imágenes que se van a mostrar. Aparte, **en el *framebuffer* se almacena un índice a un color**, indicando en qué píxeles de utilizan
+
+Este esquema permite hacer modificaciones a lo que se muestra en pantalla de forma relativamente sencilla, al manipular los índices en el buffer para representar un cambio en los colores.
+
+\*Este esquema se usaba en consolas hasta la Super Nintendo y permite dar la sensación de movimiento en una imagen al hacer variar los colores de forma cíclica.
+
+# GPU y OpenGL
+
