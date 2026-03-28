@@ -26,6 +26,17 @@ Un modelo en tres dimensiones se compone de vértices, arcos y caras.
 
 Para generar movimiento se requiere *transformar* lo anterior, como por ejemplo, cambiar las coordenadas de los vértices.
 
+## Objetos 3D
+
+Al trabajar con modelos 3D, no se implementan en código sino que se trabajan con aplicaciones como *Blender*. Y se tienen distintos formatos para ellos como `.OFF`, `.PLY`, `.OBJ`, etc.
+
+### Formato .OBJ
+
+El formato `.OBJ` es un formato que almacena información de objetos 3D y es uno de los más simples.
+Este formato utiliza los componentes:
+--
+
+
 # Python en Modelación Gráfica
 
 En computación gráfica se suelen usar lenguajes compilados (como C++), pero se va a usar el lenguaje interpretado Python, que es lo suficientemente rápido y eficiente para propósito de estudios. Esto, pues las partes críticas de un programa, Python las implementa en el lenguaje de programación C.
@@ -197,7 +208,7 @@ Se van a usar *Numpy, Scipy y Networkx*.
 
 ## APIs Gráficas
 
-Las [[API]]s gráficas ofrecen operaciones para instrucciones que realizará la GPU.
+Las [[API]]s gráficas ofrecen operaciones para instrucciones que realizará la GPU, existen OpenGL, Vulkan, DirectX (de Microsoft), Metal (de Apple).
 
 ### OpenGL
 
@@ -207,40 +218,160 @@ Nuevas implementaciones de operaciones en GPU que cumplan las especificaciones d
 
 > Una implementación de OpenGL solamente se encarga de la generación de gráficos, o sea solamente mostrar lo buscado en pantalla. Lo demás se realiza de forma externa con Qt, SDL o Pyglet.
 
-## pyglet y trimsesh
+OpenGL funciona como una máquina lineal que procesa las distintas partes de la escena, se dice que es una *máquina de los estados* de la escena. En donde el usuario configura su *estado actual* y los *parámetros que reciben* los estados.
 
-Mientras OpenGL es un lenguaje de bajo nivel con un esquema propio de C.
+#### Especificando Objetos
+Los vértices contienen los atributos como `position` y `color` 
+los índices indican cuáles vértices conforman cada triángulo.
 
-- Pyglet: una biblioteca que *abstrae* parte de la funcionalidad de OpenGL con un esquema cercano a Python.
-- trimesh: Es una biblioteca que abstrae la carga y manipulación de modelos 3D.
+```py
+# definiendo datos para cada vertice
+				# posiciones       colores
+vertexData = [ -0.5, -0.5, 0.0, 1.0, 0.0, 0.0,
+				0.5, -0.5, 0.0, 0.0, 1.0, 0.0,
+				0.5, 0.5, 0.0, 0.0, 0.0, 1.0,
+				-0.5, 0.5, 0.0, 1.0, 1.0, 1.0]
 
-# Shader Programs
+# es importante usar datos de 32bits
+vertexData = np.array(vertexData, dtype = np.float32)
 
-Un modelo no necesariamente se ve solo de un solo color, si no que puede tener sombras. 
+# definir conexiones entre vértices.
+# Se tiene un triangulo por cada 3 índices seguidos.
+índices = np.array([0, 1, 2,
+					2, 3, 0], dtype = np.uint32)
 
-La apariencia visual de los modelos se calcula y determina con los *shaders*.
+
+```
+
+
+
+#### Procesamiento (Estructura de Datos)
+
+OpenGL opera con **vértices e índices** que, a bajo nivel, la información de estos elemtnos se almacena en *tres estructuras* llamadas *Vertex Buffer Object* (VBO), *Element Buffer Object* (EBO) y *Vertex Array Object* (VAO)
+
+1. *Vertex Buffer Object* (**VBO**):
+   Almacena los datos asociados a *cada vértice* en un bloque contiguo en la memoria. En la práctica **es solo una secuencia de números**. Por ejemplo, para un cuadrilátero:
+   $$
+   [\underbrace{ -1, -1 }_{ V_{0} }, \underbrace{ 1, -1 }_{ V_{1} }, \underbrace{ 1, 1 }_{ V_{2} }, \underbrace{ -1, 1 }_{ V_{3} }]
+   $$
+   así, cada vértice tiene su coordenada correspondiente.
+
+2. *Element Buffer Object* (**EBO**):
+   Contiene los **índices**, los cuales indican cómo se agrupan los vértices en el *VBO* en primitivas gráficas (o sea triángulos). Para el ejemplo anterior se tienen dos triángulos de índices
+   $$
+   [\underbrace{ 0, 1, 2 }_{ \text{Triangulo 1} }, \underbrace{ 2, 3, 0 }_{ \text{Triangulo 2} }]
+   $$
+   el primer triángulo ocupa los vértices $V_{0},V_{1},V_{2}$ y el segundo ocupa $V_{2}, V_{3},V_{0}$.
+   Esta forma de organizar la información en índices permite reutilizarlos para otros triángulos.
+
+3. *Vertex Array Object* (**VAO**):
+   Le indica a OpenGL cómo interpretar los números del VBO, pues sin esta instrucción el VBO es una secuencia de float sin estructura deifnida. Un ejemplo es que dice '2 `float` consecutivos corresponden a un atributo `vec2 position`, u otro ejemplo es que los primeros dos float consecutivos son la posición y los siguientes tres son el color de tal vértice.
+   
+Esta estructura se puede visualizar de la forma:
+
+![[Pasted image 20260328125824.png]]
+y se puede observar que cada vértice tiene asociada información de su posición y color; Y, como es un arreglo de una dimensión, se debe saber la distancia entre vértices y, dentro de un vértice, entre su propia información (En el ejemplo: posición y color).
+
+##### Implementación
+
+```py
+# El dato del vertice (Vertex Data) debe estar asociada a un VBO
+glBindBuffer(GL_ARRAY_BUFFER, vbo)
+glBufferData(GL_ARRAY_BUFFER, len(vertexData) * SIZE_IN_BYTES, vertexData, GL_STATIC_DRAW)
+
+# Conexiones entre vértices son almacenadas en el EBO
+glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, ebo)
+glBufferData(GL_ELEMENT_ARRAY_BUFFER, len(índices) * SIZE_IN_BYTES, índices, GL_STATIC_DRAW)
+
+```
+
+```py
+# binding the proper buffers
+glBindVertexArray(vao)
+glBindBuffer(GL_ARRAY_BUFFER, vbo)
+glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, ebo)
+
+# configurar donde se encuentran los datos de posición y color en el VBO
+# un vertice tiene 3 enteros para cada posición (c/u de 4 bytes)
+# y 3 enteros para el color (c/u de 4 bytes), por lo que 3*4 + 3*4 = 24 bytes
+
+position = glGenAttribLocation( shaderProgram, "position")
+glVertexAttribPointer(position, 3, GL_FLOAT, GL_FALSE, 24, ctypes.c_void_p(0))
+glEnableVertexAttribArray(position)
+
+color = glGenAttribLocation( shaderProgram, "color")
+glVertexAttribPointer(color, 3, GL_FLOAT, GL_FALSE, 24, ctypes.c_void_p(12))
+glEnableVertexAttribArray(color)
+
+```
+
+
+
+
+## pyglet
+
+Pyglet es una biblioteca que *abstrae* parte de la funcionalidad de OpenGL con un esquema cercano a Python. 
+
+## Trimesh
+
+Trimesh una biblioteca que abstrae la carga y manipulación de modelos 3D. 
+
+En particular, se va a utilizar la función `trimesh.load()` para cargar el objeto 3D al programa.
+
+
+
 
 # Pipeline Gráfico
 
-Un **pipeline** es la especificación de *shaders* que se aplicarán para generar la imagen de un elemento.
+Un **pipeline** es la especificación de todos los *shaders* (en la práctica es la compilación de ellos) que se usarán para generar la imagen de un elemento. También se puede ver como *el orden* en que se ejecutan los programas necesarios para mostrar un modelo en pantalla.
 
 ![[Pasted image 20260325101717.png]]
+implementado de la forma:
 
-Se tiene un modelo que:
-1. Se discretiza en pixeles
-2. Se pintan los pixeles
+```py
+# cargamos nuestros shaders (shaders básicos).
+# el shader de vértices solo lee pos y color de cada vértice 
+with open(Path(os.path.dirname(__file__)) / "vertex_program.glsl") as f:
+	vertex_source_code = f.read()
+# y el shader de píxeles solo lee el color del pixel
+with open(Path(os.path.dirname(__file__)) / "fragment_program.glsl") as f:
+	fragment_source_code = f.read()
 
-Un modelo de tres dimensiones es un conjunto de vértices.
+vert_shader = pyglet.graphics.shader.Shader(vertex_source_code, "vertex")
+frag_shader = pyglet.graphics.shader.Shader(fragment_source_code, "fragment")
+pipeline = pyglet.graphics.shader.ShaderProgram(vert_shader, frag_shader)
 
-## Vertex Shader
+```
+con la variable `pipeline` se especifican los Shaders a utilizar.
 
-El Vertex Shader **trabaja con los vértices del modelo**: Se encarga de manipular y definir sus atributos gráficos y entrega los píxeles que se van a pintar en la pantalla.
-Entre los atributos se tienen:
+El modelo se procesa de forma que:
+1. Se discretiza en píxeles
+2. Se pintan los píxeles
+
+El pipeline consiste en:
+1. *Vertex Shader*:
+2. *Fragment Shader*:
+
+## Shader Programs
+
+Un **Shader** es un programa que permite procesar vértices, geometría y píxeles, generando así efectos gráficos. Estos programas se implementan en  lenguajes similar a *C*: *GLSL* si se utiliza OpenGL, o *HLSL* si se utiliza DirectX.
+
+Cada programa requiere de parámetros de entrada y retorna parámetros u otra información asociada.
+
+\* Un modelo no necesariamente se ve solo de un solo color, si no que puede tener sombras. La apariencia visual de los modelos se calcula y determina con los *shaders*.
+
+
+### Vertex Shader
+
+Es el programa que se ejecuta **en la etapa inicial del Pipeline**
+
+El Vertex Shader **trabaja con los vértices del modelo**: Se encarga de manipular y definir sus atributos gráficos y entrega los píxeles que se van a pintar en la pantalla, de forma que **calcula la posición y los atributos de cada vértice**. Entre los atributos se tienen:
 - Color
 - Coordenadas de Texturas
 - Vector Normal
+y la posición resultante debe estar en coordenadas del volumen de vista.
 
-Por ejemplo, el siguiente shader calcula la posición y los atributos de cada vértice del modelo:
+Por ejemplo, se muestra un Shader básico que calcula la posición y los atributos de cada vértice de un modelo:
 ```C
 vertex_shader = """
 	#version 130
@@ -256,17 +387,48 @@ vertex_shader = """
 	}
 	"""
 ```
-en donde se especifica que cada vértice del modelo tiene una posición en tres dimensiones con `vec3` y un color.
+y se pueden identificar las secciones:
+
+#### Parámetros
+
+1. **Parámetros de Entrada**
+```C
+	in vec3 position;
+	in vec3 color;
+```
+Se entregan al programa dos parámetros: Un parámetro de posición llamado `position` y otro de color denominado `color`. Además, ambos son especificados como vectores de tres dimensiones con `vec3`.
+
+Con este proceso se indica que **cada vértice del modelo debe tener posición y color**.
+
+2. **Parámetros de Salida**
+```C
+	out vec3 fragColor;
+```
+corresponde a la información que se envía al siguiente programa (el *Fragment Shader*) y, en este caso el resultado es **un color** en el vértice que se denomina `fragColor`.
+
+3. **Función Principal (main)**
+
+```C
+	void main()
+		{
+			fragColor = color;
+			gl_Position = vec4(position, 1.0f)
+		}
+```
+en el proceso principal del *Vertex Shader* se observa que la variable `fragColor` que se entregará al siguiente programa es asignada directamente como el color que recibe `color`. O sea este *Vertex Shader* no le realiza ninguna modificación al color que recibe, simplemente lo entrega al siguiente programa.
+
+Por otro lado, se tiene una variable que se calcula **obligatoriamente** en el *Vertex Shader*: La variable `gl_Position`, que corresponde a la posición final del vértice. Esta debe ser un **vector de 4 dimensiones** en donde las primeras tres componentes corresponden a la posición del vértice (en este caso no se modifica y se asigna directamente como la posición anterior `position`) y la cuarta componente corresponde a un `float` (por ahora).
+
 \* La posición requiere un vector de 4 coordenadas pues es necesario para representar *coordenadas homogéneas*. La cuarta componente permite manejar transformaciones proyectivas.
 
-## Fragment Shader
+### Fragment Shader
 
-El fragment Shader determina **el color** de cada píxel según los atributos del modelo, específicamente, de los atributos de los vértices que rodean al pixel que se va a colorear.
+El *Fragment Shader* determina **el color** de cada píxel según los atributos del modelo. Específicamente, según los atributos de los vértices que rodean al píxel que se va a colorear.
 
-Este *shader* se ejecuta para cada píxel de cada objeto en la escena, esto se tiene después del proceso de **rasterización**.
-\* Puede que algunos pixeles queden fuera de la pantalla por haber *shaders* a distinta profundidad o fuera de la zona de renderizado.
+Este *Shader* se ejecuta para cada píxel de cada objeto en la escena, o sea se ejecuta después del proceso de **rasterización**.
+\* Puede que algunos píxeles queden fuera de la pantalla por haber *Shaders* a distinta profundidad o fuera de la zona de renderizado.
 
-Por ejemplo,
+Por ejemplo, un *Fragment Shader* básico:
 ```C
 vertex_shader = """
 
@@ -281,8 +443,31 @@ vertex_shader = """
 	}
 	"""
 ```
-la entrada son los atributos de los vértices, pero interpolados. Y el resultado es el **el color del píxel** o incluso un píxel descartado. También puede generar información auxiliar que puede ser leída por otro fragment shader (como de profundidad).
 
+
+#### Parámetros
+
+1. **Parámetros de Entrada**:
+En general, los parámetros de entrada son los atributos de los vértices, pero interpolados.
+```C
+	in vec3 fragColor;
+```
+En este caso el parámetro de entrada es la variable `fragColor` entregada por el Shader anterior, que corresponde al color del vértice.
+
+2. **Parámetros de Salida**:
+```C
+	out vec4 outColor;
+```
+Y el resultado es la variable `outColor`, correspondiendo al **color del píxel** o incluso un píxel descartado. También puede generar información auxiliar que puede ser leída por otro Fragment Shader (por ej. un Fragment Shader de profundidad).
+
+3. **Función Principal (main)**
+```C
+	void main()
+	{
+		outColor = vec4(fragColor, 1.0f);
+	}
+```
+Dentro del programa se realizan los cálculos para realizar efectos de iluminación, de texturas, etc.
 
 # Color
 
@@ -495,5 +680,18 @@ Este esquema permite hacer modificaciones a lo que se muestra en pantalla de for
 
 \*Este esquema se usaba en consolas hasta la Super Nintendo y permite dar la sensación de movimiento en una imagen al hacer variar los colores de forma cíclica.
 
-# GPU y OpenGL
+# GPU
 
+A fines de la década de los '80, las tarjetas gráficas cumplían funciones muy básicas: La comunicación entre el computador y el monitor, gestionar la imagen en la memoria y procesamiento de gráficos en 2D. Con el tiempo, se aumentó el poder de cómputo de estas unidades y se producen diversos chips, generando distintas bibliotecas, controladores, etc.
+En el 1999 NVidia lanzó al mercado la tarjeta gráfica GeForce 256, que la definieron como la primera GPU ya que se propusieron estándares para estas unidades: Definen una GPU como un procesador único que integra transformaciones, configuración y recorte de triángulos, un motor de graficación (rendering) y la capacidad de procesas un mínimo de 10 millones de polígonos por segundo.
+
+La definición moderna de GPU es:
+La GPU (*Graphics Processing Unit*) es un co-procesador dedicado al procesamiento de gráficos u operaciones de coma flotante para aligerar la carga de trabajo de la CPU en aplicaciones como videojuegos o aplicaciones interactivas.
+
+La GPU corresponde al *chip* central de procesamiento **dentro** de una tarjeta de video, es este caso es una GPU *discreta* o *dedicada*, o también este chip puede ser una parte dentro de la CPU, denominada como GPU *integrada*.
+
+Una GPU tiene muchas más unidades de cómputo que una CPU, pero a cambio, se tiene un menor control en cuanto a lo que sucede en cada módulo. Si bien inicialmente se concebió como un apoyo a la CPU, se vio que pueden realizar muchas tareas en paralelo. En particular, para mostrar una imagen en pantalla interesan:
+1. *Vertex Shader*: Realiza cálculos **sobre los vértices** de la escena
+2. *Geometry Shader*: Opera **sobre los elementos** de la escena, generando vértices y primitivas (e.g: los triángulos).
+3. *Fragment Shader*: **Pinta la escena** de acuerdo a al información de color.
+4. Finalmente se pasa al frame-buffer (memoria) para luego mostrarlo en pantalla.
