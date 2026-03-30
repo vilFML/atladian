@@ -34,7 +34,10 @@ Al trabajar con modelos 3D, no se implementan en código sino que se trabajan co
 
 El formato `.OBJ` es un formato que almacena información de objetos 3D y es uno de los más simples.
 Este formato utiliza los componentes:
---
+- $v$: Coordenadas de vértices
+- $vt$: Coordenadas de texturas
+- $vn$: Vectores normales
+- $f$: Triángulos
 
 
 # Python en Modelación Gráfica
@@ -593,10 +596,24 @@ Con esto, se tienen casos según el valor que tome $H_{i}$:
 - 5, entonces: $R = V$, $G = p$, $B = q$
 
 #### CMY(K) a RGB
-$$
 
+Cada color del CMY(K) es el complementario a un color en RGB. Entonces para cada color que se tiene de CMY, corresponde a la cantidad *que falta* de uno en RGB
+- Cyan es el opuesto del Rojo
+- Magenta el opuesto de Verde
+- Amarillo el opuesto de Azul
+entonces las fórmulas para cada uno serían:
 $$
-
+\begin{array}
+aC = 1-R \\
+M = 1 - G \\
+Y = 1 - B
+\end{array}
+$$
+Por otro lado, se determina **K** como el valor de *oscuridad común*, lo que corresponde a la cantidad de negro implícita en los tres canales. Esto se puede ver como que **la cantidad de negro (de base) es el mínimo entre los tres colores**:
+$$
+K = min(C',M',Y')\iff K = min(1-R, 1-G, 1-B)
+$$
+Por último se debe *normalizar* los valores entre $[0,1]$, ajustando los valores a la nueva escala.
 ## Interpolación de Colores (con RGB)
 
 Al mostrar un objeto en la pantalla, no es práctico indicar el color para todos los píxeles.  Una alternativa es la *interpolación* de los colores de píxeles.
@@ -695,3 +712,363 @@ Una GPU tiene muchas más unidades de cómputo que una CPU, pero a cambio, se ti
 2. *Geometry Shader*: Opera **sobre los elementos** de la escena, generando vértices y primitivas (e.g: los triángulos).
 3. *Fragment Shader*: **Pinta la escena** de acuerdo a al información de color.
 4. Finalmente se pasa al frame-buffer (memoria) para luego mostrarlo en pantalla.
+
+# Workflow
+
+Pyglet permite abstraer el proceso de generación de imágenes, ya que *Trimesh* se encarga de cargar y preparar los datos en un formato adecuado para entregarlos a OpenGL.
+En específico, se tiene la lista de $v,vt$ etc. que se convierte a un formato compatible con OpenGL y *Pyglet* se encarga de gestionar y graficar dichos datos.
+
+Se tienen las funciones:
+- `load()`que entrega el modelo al programa.
+-  `rendering.mesh_to_vertexlist()` entrega la información de la malla como una lista de elementos con diversa información del modelo (como los vértices, los triángulos que forman, etc.)
+
+##### Ejemplo
+
+```py
+bunny = tm.load("assets/Stanford_Bunny.stl")
+bunny_vertex_list = tm.rendering.mesh_to_vertexlist(bunny)
+
+nvertices = bunny_vertex_list[0]
+vertices_index = bunny_vertex_list[3]
+vertices_coord = bunny_vertex_list[4][1]
+
+bunny_gpu = pipeline.vertex_list_indexed
+	(
+		nvertices,
+		GL.GL_TRIANGLES,
+		vertices_index
+	)
+	
+bunny_gpu.position[:] = vertices_coord
+```
+en donde:
+```py
+nvertices = bunny_vertex_list[0]
+vertices_index = bunny_vertex_list[3]
+vertices_coord = bunny_vertex_list[4][1]
+```
+respectivamente, se extraen los datos que se necesita de la malla:
+- La cantidad de vértices
+- Las triadas de índices de los vértices que conforman un triángulo
+- El listado de coordenadas $(x,y,z)$ de cada vértice.
+\* Recordar que los datos son entregados por trimesh y estos estan en un arreglo unidimensional para OpenGL
+
+```py
+bunny_gpu = pipeline.vertex_list_indexed
+	(
+		nvertices,
+		GL.GL_TRIANGLES,
+		vertices_index
+	)
+```
+se reserva el espacio en la GPU. Para ello se indica, respectivamente:
+- La cantidad total de vértices
+- El modo de dibujo (`GL.GL_TRIANGLES`)
+- El listado de índices de vértices que conforman los triángulos.
+
+```py
+bunny_gpu.position[:] = vertices_coord
+```
+finalmente, se asigna el listado de vértices $(x,y,z)$ a la posición dentro del pipeline.
+
+Eventualmente dentro del *gameloop*, se activa el pipeline e indica que se dibuje el conejo.
+```py
+pipeline.use()
+bunny_gpu.draw(GL.GL_TRIANGLES)
+```
+
+
+## Dibujando en OpenGL
+
+Se tienen distintas formas de graficar triángulos en OpenGL. Usualmente se trabaja con `GL_TRIANGLES`, pero existen se tienen otros modos que pueden ser ventajosos para otros casos.
+
+```py
+glBindVertexArray(vao)
+glDrawElements(GL_TRIANGLES, len(indices), GL_UNSIGNED_INT, None)
+```
+
+# Animación Basada en la Física
+
+## Sistema de Partículas
+
+Un sistema de partículas es una colección de elementos *puntuales*, los cuales son descritos por su **estado actual**, dado por:
+1. Posición $(x,y,z)$
+2. Velocidad
+	y opcionales como masa, edad, color, etc. Y la idea es que estas propiedades cambien en el tiempo para generar los efectos deseados.
+Por ej: El disparo de un cañón, en donde las partículas cambian su posición en el tiempo y también pueden cambiar su color desde el momento del disparo en adelante.
+
+El movimiento de las partículas depende de **campos de fuerzas** externos y, eventualmente, fuerzas internas entre partículas.
+
+Las partículas también pueden tener un tiempo de vida asociado (*time to live* TTL)
+
+Un sistema de partículas se caracteriza por tener
+- una fuente emisora de partículas (muchas), 
+- un **campo de fuerza** que define las fuerzas externas que afectan a las partículas
+
+Para ello se utilizan las **leyes de la mecánica** y se integran sus ecuaciones diferenciales.
+
+En los casos más simples, se puede permitir que cada partícula sea *indepediente* de las demás, o que interactúen entre ellas.
+
+Sobre todo en la emisión, suele haber aleatoriedad. Generando efectos interesantes.
+
+### Ejemplo: Problema de los Boids
+
+Un *boid* es cuando se hace que las partículas tengan un *comportamiento*, simulando bandadas de pájaros o masas de gente.
+En este caso las partículas interactúan entre sí, entonces pierde su independencia con respecto a otras.
+Se tiene:
+- Separación: Hay movimiento para evitar estar muy cerca de un vecino
+- Alineación: Que haya orientación *hacia el promedio de orientación* de una vecindad de unidades
+- Cohesión: Movimiento para que la separación relativa entre los vecinos sea la misma.
+
+Se aplica en masas de pájaros, de gente o un cardumen de peces.También se usa en otros fenómenos como la caída de lluvia que se encuentra con un obstáculo.
+
+
+## Fuerzas a usar
+
+Se va a trabajar con fuerzas que *cambian el movimiento* de un sistema. 
+Las fuerzas dependen de la posición, tiempo y velocidad. Y algunas fuerzas son la de gravedad, resortes, viscosidad, resistencia del viento, etc.
+
+> Para masas puntuales, las fuerzas son vectores
+
+### Fuerza de Gravedad
+
+Para modelar la gravedad, se tiene solamente una dependencia de la *masa* de la partícula. Luego, $f(X,t)$ es una constante, y de forma vectorial, la fuerza que se le ejerce a la $i$ésima partícula es:
+$$
+f_{i}=
+\left( \begin{matrix}
+0 \\
+0 \\
+-m_{i}\cdot g
+\end{matrix} \right)
+$$
+
+
+
+\* El humo se puede modelar como partículas con la gravedad invertida.
+
+## Esquema de Trabajo
+
+El esquema usual de los programas que modelan partículas sigue un orden, generalmente:
+1. Creación
+2. Actualización
+
+### Creación
+
+```py
+PartList = []
+dispersión = 0.1
+k = 1000
+
+# generar k partículas, inicialmente en la misma posición generadora
+# pero con un factor aleatorio para determinar la dirección de velocidad
+for i in range(k):
+
+	p = nuevaParticula()
+	p.posición = (0, 0, 0)
+	p.velocidad = (0, 0, 1) + dispersión * (random(), random(), random())
+	
+	PartList.append(p)
+
+```
+en el código, el ciclo `for` se encarga de:
+- Crea las partículas en una posición determinada $(0,0,0)$
+- Tanto en $x$ como en $y$ no se aplica ninguna velocidad en el inicio. Pero sí se aplica una velocidad en $z$.
+- Además, con la función `random()` se agrega una aleatoriedad en las otras direcciones $x,y$.
+
+### Actualización
+
+Se actualiza la posición de las partículas por cada *frame*. Para cada cuadro se tiene un intervalo infinitesimal $dt$:
+```py
+# en cada paso de la simulación, para cada instante de tiempo dt
+while True:
+
+	dt = tiempoActual - tiempoAnterior
+	
+	# para cada partícula, se calculan su nueva posición y velocidad
+	# (y otras posibles propiedades)
+	for particle in PartList:
+	
+		particle.posición += particle.velocidad * dt # nueva pos.
+		particle.velocidad -= g*dt                   # nueva vel.
+		particle.color[3] -= 0.01 * dt               # nuevo color
+		
+		# se dibuja la particula
+		dibujar(particle)
+		
+		# y se puede sacar de la simulación si es que ocurre alguna condición
+		if particle.color[3] <= 0:	
+			PartList.remove(particle)
+
+```
+se espera que el $dt$ sea constante: En cada $dt$ la partícula sigue una trayectoria tangente, que se actualiza luego de terminar $dt$
+
+Se debe notar que en la modificación de color se está modificando la cuarta componente del array: $(R,G,B,A)$, osea $A$ que corresponde a la transparencia. Cada vez es más transparente y cuando tenga una transparencia tal que la partícula no se ve en pantalla, el `if` destruye la partícula.
+
+## Ecuaciones Diferenciales Ordinarias (EDO)
+
+La aplicación de fuerzas se reduce a solucionar EDOs.
+
+La trayectoria de una partícula se puede modelar con
+$$
+\frac{dX(t)}{dt}=f(x(t),t)
+$$
+con $\frac{dX(t)}{dt}$ el desplazamiento, y la fuerza $f$ es dependiente de la posición $X(t)$ y del tiempo $t$.
+
+Luego, dada una función $f(X(t),t)$, la idea es computar $X(t)$. Para ello se requiere una posición inicial $X(T=0)$ y tener valores $X(t)$ conocidos para $t >t_{0}$
+
+### Recuerdo EDO
+
+Como se va a trabajar con fuerzas, se va a trabajar con 
+$$
+\vec{F}=m\vec{a} \iff \vec{F}=m \frac{d^{2}\vec{x}}{dt^{2}}
+$$
+donde $\vec{x},\vec{F}$ son vectores; $\vec{F},m$ son conocidos (para $m$, la partícula es una masa puntual) y **se quiere resolver la ecuación para** $\vec{x}$, así, se tiene una Ecuación de Segundo Orden (EDO).
+Para reducir la EDO, se puede usar que la primera derivada de la posición es la velocidad $\frac{ d X }{ d t }=V$ y la segunda derivada de la posición, o sea la derivada de la velocidad: $\frac{ d V }{ d t }=\frac{F}{m}$ y se tiene:
+$$
+\vec{F}=m \frac{ d ^{2}\vec{x} }{ dt^{2} } 
+$$
+entonces,
+$$
+\implies 
+\left\{
+	\begin{array}{ll}
+		\frac{ d \vec{x} }{ d t } =\vec{v} \\
+		\frac{ d \vec{v} }{ d t } = \frac{\vec{F}}{m}
+	\end{array}
+\right.
+$$
+esto es útil pues resolver sistemas mayores a uno es complejo.
+
+Resolver sistemas de primer orden no es siempre sencillo, pero se tienen maneras conocidas para resolver. Luego, al derivar $f$:
+$$
+f(X,t)= \frac{ d x }{ d t }=\frac{ d  }{ d t } \left( \begin{matrix}
+\vec{x} \\
+\vec{v}
+\end{matrix} \right) = 
+\left( \begin{matrix}
+\vec{v} \\
+\frac{\vec{F}(x,v)}{m}
+\end{matrix} \right)
+$$
+Esto se puede extender para $N$ masas, **apilando los vectores $x$ y $\vec{v}$ en un solo vector** de tamaño 6N:
+$$
+X = \left( \begin{matrix}
+x_{1} \\
+v_{1} \\
+\dots \\
+x_{N} \\
+v_{N}
+\end{matrix} \right)
+;\ 
+f(X,t)=
+\left( \begin{matrix}
+v_{1} \\
+F_{1}(X,t) \\
+\vdots \\
+v_{N} \\
+F_{N}(X,t)
+\end{matrix} \right)
+$$
+con $x_{1},v_{1}$ es la información de la partícula 1, y así para las siguientes.
+
+La fuerza sobre la partícula $i$ es dependiente de $X$, entonces esta considera la información de todas las partículas para calcular las fuerzas sobre la partícula $i$ésima. Si las partículas no interactúan entre sí, entonces $F_{i}$ solo depende de la posición y de la velocidad de la misma partícula.
+
+
+### Interpretación
+
+La interpretación es que $X(t)$ indica **el camino a seguir** en un espacio, pues esta responde a la pregunta: ¿Dónde estará $X$ después de un intervalo de tiempo infinitesimal $dt$? Los diagramas se pueden interpretar como una 'foto' en el tiempo de las posiciones de la partícula, y $f=\frac{ d X }{ d t }$ es un vector que, en cada punto del espacio de fase, apunta en la dirección deseada.
+
+### Cálculo Numérico
+
+Para encontrar una solución numérica al problema se integra la EDO. Para ello, si se tiene un estado $X$, se puede mirar el valor de la función *cerca* del estado actual en el espacio y **se mueve una pequeña distancia $dX$ en tal dirección**. O sea:
+$$
+dX = dt \cdot f(X, t)
+$$
+usando el método de Euler, de la relación anterior se hace
+$$
+(X_{1}-X_{0})=(t_{1}-t_{0})\cdot f(X,t)
+$$
+y si se define **un paso de tiempo como h**: $h =t_{1}-t_{0}$ y una posición inicial $X_{0}=X(t_{0})$, entonces:
+$$
+(X_{1}-X_{0}) = h \cdot f(X_{0},t_{0})
+$$
+$$
+X_{1} = X_{0} + h \cdot f(X_{0},t_{0})
+$$
+Finalmente, se puede avanzar de la siguiente manera:
+$$
+t_{1}=t_{0}+h
+$$
+$$
+X_{1}=X_{0}+h\cdot f(X_{0},t_{0})
+$$
+donde $X_{1}$ es la siguiente posición.
+Este modelo corresponde a una aproximación por piezas del camino. La idea es caminar por las tangentes de la curva.
+
+El tamaño de $h$ controla la precisión de la aproximación (o trayectoria del movimiento), de forma que un paso más pequeño está dado por un menor valor de $h$:
+![[Pasted image 20260326093353.png]]
+desde abajo hacia arriba se incrementó la precisión al reducir el valor de $h$
+
+> Para tener la posición siguiente $X_{N}$ de la partícula se necesita la posición anterior $X_{N-1}$ y el valor de la fuerza en la posición anterior $f(X_{N-1},t)$, de la forma:
+> $$
+> X_{N}=X_{N-1} + \Delta t \cdot f(X_{N-1}, t)
+> $$
+> con $X_{0}$ conocido.
+
+\* El método de euler no representa un círculo, si  no que una espiral, pues se basa en la tangente.
+#### Método RK4
+
+Recalcula la pendiente desde cada punto para ir, efectivamente, al punto final.
+
+#### Método Verlet
+
+De las ecuaciones cinemáticas de movimiento, se tiene que:
+$$
+x(t+\Delta t) = x(t) + v(t) \cdot \Delta t + \frac{1}{2} \cdot a \cdot \Delta t^{2}
+$$
+$$
+v(t+\Delta t) = v(t) + a \cdot \Delta t
+$$
+en donde se asume una aceleración $a$ constante. Puede ser que no siempre se tenga pues en algunos sistemas la aceleración depende de la posición (e.g. un resorte).
+Haciendo una expansión de Taylor y sumando ambas ecuaciones:
+$$
+x(t+\Delta t) + x(t - \Delta t) = 2 \cdot x(t) + a(t) \cdot \Delta t^{2} + o(\Delta t^{4})
+$$
+y despejando para la posición siguiente $x(t+\Delta t)$, se tiene la **ecuación del método de Verlet**:
+$$
+x(t+\Delta t) = 2 \cdot x(t) - x(t - \Delta t) + a(t) \cdot \Delta t^{2}
+$$
+en donde:
+- $x(t+\Delta t)$ es la nueva posición a calcular.
+- $x(t)$ es la posición actualmente conocida.
+- $x(t-\Delta t)$ es la posición previa conocida.
+- $a(t)$ es la fuerza aplicada.
+La ecuación de Verlet permite calcular la posición siguiente de la partícula en función de las dos posiciones anteriores: La actual y la anterior, sin depender directamente de la velocidad. 
+Reescribiendo la ecuación de forma "discreta":
+$$
+\begin{array}
+ &  &  X_{N-1} = 2 \cdot X_{N} - X_{N-1} + f(X_{N},t) \cdot h^{2}  \\
+\iff & x_{t+1} = 2\cdot x_{t} - x_{t-1} + f(x_{t})\cdot \Delta t^{2}
+\end{array}
+$$
+en los códigos en donde se implementa, en el bloque de actualización del *frame* se tiene usualmente:
+```py
+aux = vertice.posicion
+
+vertice.posicion = 2 * vertice.posicion - vertice.posicionPrevia + vertice.fuerza * delta_t * delta_t
+
+vertice.posicionPrevia = aux
+
+```
+
+##### Variación: Velocity-Verlet
+
+El método de Verlet tiene una variación que permite **obtener la velocidad** según la posición siguiente calculando ella primero, de la forma:
+$$
+x_{t+1} = x_{t} + v_{t} \cdot \Delta t + \frac{1}{2} \cdot f(X_{t}) \cdot \Delta t^{2}
+$$
+y luego para obtener la velocidad siguiente:
+$$
+v_{t+1} = v_{t} + \frac{f(x_{t}) + f(x_{t + 1})}{2} \cdot \Delta t
+$$
+En vez de ir guardando la posición actual y previa, se requiere guardar la *posición y velocidad actuales*.
