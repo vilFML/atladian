@@ -786,7 +786,7 @@ Las diferencias se pueden ver en la siguiente tabla:
 Una CPU es un **procesador generalista**: Tiene pocos núcleos, pero ejecuta instrucciones variadas y complejas independientemente (Modelo MIMD); múltiples niveles de caché permiten mejor gestión y ramificación de procesos. 
 Una GPU aplica las mismas instrucciones a múltiples datos simultáneamente, por ello le es útil tener muchos núcleos, una unidad de control mínima y reducida memoria caché. Esta arquitectura permite procesar millones de polígonos por segundo, necesario para aplicaciones 3D.
 
-## Rendering
+## Rendering: *Rendering Pipeline*
 
 La renderización es parte un procesamiento secuencial llamado *rendering pipeline*, en la cual cada componente procesa la información y se transmite al siguiente. En general, se tienen los procesos de:
 1. Aplicación
