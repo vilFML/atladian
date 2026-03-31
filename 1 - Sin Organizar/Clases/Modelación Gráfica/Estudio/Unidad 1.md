@@ -40,173 +40,6 @@ Este formato utiliza los componentes:
 - $f$: Triángulos
 
 
-# Python en Modelación Gráfica
-
-En computación gráfica se suelen usar lenguajes compilados (como C++), pero se va a usar el lenguaje interpretado Python, que es lo suficientemente rápido y eficiente para propósito de estudios. Esto, pues las partes críticas de un programa, Python las implementa en el lenguaje de programación C.
-
-## Módulos, Paquetes y Librerías
-
-- En python, un módulo es un archivo `.py`.
-- Un paquete es **una carpeta** que contiene módulos, en conjunto con un archivo especial de nombre `__init__.py`
-- Una biblioteca es una colección de paquetes y módulos reutilizables.
-
-### Módulos a Utilizar
-
-Principalmente se van a usar:
-1. `pyglet` para la gestión de ventanas, E/S (Entrada y salida e.g. teclado y mouse) y acceso a **OpenGL** para Python.
-2. `numpy` para vectores, matrices y operaciones algebraicas.
-3. `trimesh` para la carga y manipulación de mallas geométricas 3D.
-4. `pymunk`: Simulación de física de cuerpos rígidos en 2D
-5. `mesa` simulación basada en agentes
-6. `grafica` un modulo propio del curso
-
-#### Módulo grafica
-El módulo `grafica` complementa `Pyglet` con herramientas que se van a desarrollar. Sus componentes principales son:
-- `grafica.transformations`: matrices de transformación (traslación, rotación, escala) listas para usar con OpenGL.
-- `grafica.scenegraph`: implementación de grafos de escena basada en networkx.
-- `grafica.textures`: utilidades para cargar y gestionar texturas.
-- `grafica.particle`: estructuras para simulación de partículas.
-- `grafica.math`: funciones matemáticas auxiliares.
-- `grafica.intersections`: pruebas de intersección geométrica.
-- `grafica.arcball`: control de cámara interactivo mediante arcball.
-
-## Estructuras a Utilizar
-
-Con Python se tienen tres formas de almacenar un conjunto de información: [[Listas]], Tuplas, Conjuntos y [[Diccionarios]].
-
-### Listas
-Una lista es una secuencia *mutable* de longitud variable
-
-### Tuplas
-
-Una tupla es una secuencia *inmutable*. Usualmente se usan para representar valores que son conceptualmente una unidad y que no debiesen cambiar. Se usan para almacenar una coordenada, un color o un tamaño.
-
-```py
-# posicion: (x, y, z)
-posicion = (0.5, -1.0, 0.0)
-
-# color: (r, g, b)
-color_rojo = (1.0, 0.0, 0.0)
-
-# resolucion: (ancho, alto)
-resolucion = (1280, 720)
-
-```
-
-### Arrays (Arreglos)
-
-Los arrays o arreglos son parte de `Numpy`. (`nd.ndarray`). Son una colección de valores que corresponden **al mismo tipo numérico**, o sea una colección de `int` o `float`. Estos números se almacenan de forma compacta en la memoria, evitando acceder múltiples veces a la memoria al realizar operaciones. Son similares a las listas, pero tienen propiedades diferentes:
-1. Los elementos dentro de un array **deben ser del mismo tipo de dato**. Hay casos en donde transforma los tipos de datos a uno en particular para que sean todos del mismo tipo.
-2. Se pueden sumar los elementos directamente con los operadores matemáticos.
-3. Los arrays son multidimensionales, así *se pueden tener vectores, matrices o tablas.*
-
-
-```py
-vertices = np.array([
-	-1.0, -1.0, 0.0,
-	 1.0, -1.0, 0.0,
-	 1.0,  1.0, 0.0,
-], dtype=np.foat32
-```
-
-El tipo de dato que almacena el array se indica con `dtype`. En GLSL (OpenGL Shading Language, el lenguaje en el que se va a trabajar) el tipo `float` es de $32$ bits y los tipos de datos que se usarán `vec3`, `mat4` y otros más, tienen esta precisión. Los arrays de *Numpy* utilizan `float64` por defecto y aunque la librería *Pyglet* se puede encargar de realizar la conversión de tipos desde un array a 32 bits, es buena práctica especificar el tipo `np.float32` al momento de crear las matrices.
-\* La precisión de 32 bits es más que suficiente para el renderizado en tiempo real, pero es necesaria en simulaciones científicas por la acumulación de errores numéricos.
-
-
-#### Diferencias con Listas
-
-Para realizar un escalado de vértices, se deben multiplicar todas las componentes de una matriz por el factor. Esto en Python nativo se puede realizar mediante un ciclo `for` a cada elemento de la lista:
-```py
-vertices_escalados = []
-for i in range(0, len(vertices), 3):
-	vertices_escalados.append(vertices[i]   * 2.0)
-	vertices_escalados.append(vertices[i+1] * 2.0)
-	vertices_escalados.append(vertices[i+2] * 2.0)
-```
-mientras que con la librería Numpy, es mas simple pues el operador `*` opera sobre cada elemento del array:
-```py
-vertices_escalados = vertices * 2.0
-```
-por un lado es más corto y legible, y, por el otro lado, Numpy ejecuta la operación en el lenguaje C sobre todos los elementos a la vez. Esto es conveniente al trabajar con una cantidad grande de vértices.
-
-Para multiplicar matrices, en Python:
-```py
-# Con listas anidadas y for:
-resultado = [[sum(A[i][k] * B[k][j] for k in range(n)) for j in range(m)] for i in range(p)]
-
-```
-mientras tanto que Numpy implementa el operador `@`:
-```py
-resultado = A @ B
-```
-
-
-> Si se ve un ciclo `for` que recorre números haciendo aritmética, probablemente hay una implementación en Numpy más simple y eficiente.
-
-
-### Conjuntos
-
-Un conjunto se crea con `{}` e indicando los datos en su interior. Y cumplen propiedades similares a un conjunto matemático:
-- Son semi-mutables: No se pueden modificar los elementos en su interior, pero *si* se pueden agregar o eliminar.
-- No tienen un orden definido.
-- No permiten valores duplicados.
-
-Los conjuntos generalmente se utilizan para mantener un registro de los elementos disponibles en el mundo virtual que se estén graficando. Entonces tienen un uso mas en la lógica del mundo más que la implementación gráfica de este.
-
-### Diccionarios
-
-Un diccionario asocia llaves a valores. Útil para agrupar propiedades relacionadas bajo un nombre, evitando variables sueltas, o sea:
-```py
-material_color = (0.8, 0.2, 0.1)
-material_shininess = 32.0
-material_texture = None
-```
-pasa a ser:
-```py
-material = {
-	"color":	(0.8, 0.2, 0.1),
-	"shininess": 32.0,
-	"texture":   None,
-}
-```
-así se tiene un código más compacto. Y se usa, por ejemplo para mapear nombres a recursos ya cargados como *shaders* o texturas y representar propiedades de objetos de la escena antes de enviarlos a la GPU, comúnmente un diccionario se construye:
-```py
-texturas = {}
-for nombre in ["ladrillo", "madera", "metal"]:
-	texturas[nombre] = cargar_textura(f"assets/{nombre}.png")
-
-# y luego
-textura_activa = texturas["ladrillo"]
-```
-
-## Celdas y REPL
-
-En Python es posible verificar un sector del código utilizando **celdas**. Las celdas son un bloque de código delimitado por el marcador `# %%` y estos bloques son detectados por editores de código como *Zed* o *VScode*, permitiendo ejecutar cada celda por separado. Así, se pueden verificar secciones del código para una mejor depuración.
-
-```py
-# %% Celda 1: Importaciones
-import numpy as np
-import grafica.transformations as tr
-
-# %% Celda 2: Construir una matriz de rotación
-R = tr.rotationZ(np.pi / 4)
-print(R)
-
-# %% Celda 3: Verificar que preserva la norma del vector
-v = np.array([1.0, 0.0, 0.0, 1.0], dtype=np.float32)
-v_rot = R @ v
-print(f"norma: {np.linalg.norm(v_rot[:3]):.4f}") # debe ser ~1.0
-```
-cada celda se ejecuta de manera independiente: Se puede modificar y volver a ejecutar sin afectar lo anterior ni lo siguiente. Al corregir el fragmento, este queda guardado en el mismo archivo `.py`.
-
-## Ecosistema de Python
-
-Se van a usar *Numpy, Scipy y Networkx*.
-
-- Numpy: Es una bibioteca numérica con arreglos, matrices y operaciones matemáticas.
-- SciPy: Permite utilizar modelos estadísticos, funciones científicas, matrices dispersas, etc.
-- Networkx: Para utilizar redes, objetos conectados con otros y la manera de recorrer tales objetos.
-
 # Herramientas Gráficas
 
 ## APIs Gráficas
@@ -308,18 +141,188 @@ glEnableVertexAttribArray(color)
 
 ```
 
+## Python en Modelación Gráfica
 
+En computación gráfica se suelen usar lenguajes compilados (como C++), pero se va a usar el lenguaje interpretado Python, que es lo suficientemente rápido y eficiente para propósito de estudios. Esto, pues las partes críticas de un programa, Python las implementa en el lenguaje de programación C.
 
+### Módulos, Paquetes y Librerías
 
-## pyglet
+- En python, un módulo es un archivo `.py`.
+- Un paquete es **una carpeta** que contiene módulos, en conjunto con un archivo especial de nombre `__init__.py`
+- Una biblioteca es una colección de paquetes y módulos reutilizables.
+
+#### Módulos a Utilizar
+
+Principalmente se van a usar:
+1. `pyglet` para la gestión de ventanas, E/S (Entrada y salida e.g. teclado y mouse) y acceso a **OpenGL** para Python.
+2. `numpy` para vectores, matrices y operaciones algebraicas.
+3. `trimesh` para la carga y manipulación de mallas geométricas 3D.
+4. `pymunk`: Simulación de física de cuerpos rígidos en 2D
+5. `mesa` simulación basada en agentes
+6. `grafica` un modulo propio del curso
+
+##### Módulo grafica
+El módulo `grafica` complementa `Pyglet` con herramientas que se van a desarrollar. Sus componentes principales son:
+- `grafica.transformations`: matrices de transformación (traslación, rotación, escala) listas para usar con OpenGL.
+- `grafica.scenegraph`: implementación de grafos de escena basada en networkx.
+- `grafica.textures`: utilidades para cargar y gestionar texturas.
+- `grafica.particle`: estructuras para simulación de partículas.
+- `grafica.math`: funciones matemáticas auxiliares.
+- `grafica.intersections`: pruebas de intersección geométrica.
+- `grafica.arcball`: control de cámara interactivo mediante arcball.
+
+##### Pyglet
 
 Pyglet es una biblioteca que *abstrae* parte de la funcionalidad de OpenGL con un esquema cercano a Python. 
 
-## Trimesh
+##### Trimesh
 
 Trimesh una biblioteca que abstrae la carga y manipulación de modelos 3D. 
 
 En particular, se va a utilizar la función `trimesh.load()` para cargar el objeto 3D al programa.
+
+### Estructuras a Utilizar
+
+Con Python se tienen tres formas de almacenar un conjunto de información: [[Listas]], Tuplas, Conjuntos y [[Diccionarios]].
+
+#### Listas
+Una lista es una secuencia *mutable* de longitud variable
+
+#### Tuplas
+
+Una tupla es una secuencia *inmutable*. Usualmente se usan para representar valores que son conceptualmente una unidad y que no debiesen cambiar. Se usan para almacenar una coordenada, un color o un tamaño.
+
+```py
+# posicion: (x, y, z)
+posicion = (0.5, -1.0, 0.0)
+
+# color: (r, g, b)
+color_rojo = (1.0, 0.0, 0.0)
+
+# resolucion: (ancho, alto)
+resolucion = (1280, 720)
+
+```
+
+#### Arrays (Arreglos)
+
+Los arrays o arreglos son parte de `Numpy`. (`nd.ndarray`). Son una colección de valores que corresponden **al mismo tipo numérico**, o sea una colección de `int` o `float`. Estos números se almacenan de forma compacta en la memoria, evitando acceder múltiples veces a la memoria al realizar operaciones. Son similares a las listas, pero tienen propiedades diferentes:
+1. Los elementos dentro de un array **deben ser del mismo tipo de dato**. Hay casos en donde transforma los tipos de datos a uno en particular para que sean todos del mismo tipo.
+2. Se pueden sumar los elementos directamente con los operadores matemáticos.
+3. Los arrays son multidimensionales, así *se pueden tener vectores, matrices o tablas.*
+
+
+```py
+vertices = np.array([
+	-1.0, -1.0, 0.0,
+	 1.0, -1.0, 0.0,
+	 1.0,  1.0, 0.0,
+], dtype=np.foat32
+```
+
+El tipo de dato que almacena el array se indica con `dtype`. En GLSL (OpenGL Shading Language, el lenguaje en el que se va a trabajar) el tipo `float` es de $32$ bits y los tipos de datos que se usarán `vec3`, `mat4` y otros más, tienen esta precisión. Los arrays de *Numpy* utilizan `float64` por defecto y aunque la librería *Pyglet* se puede encargar de realizar la conversión de tipos desde un array a 32 bits, es buena práctica especificar el tipo `np.float32` al momento de crear las matrices.
+\* La precisión de 32 bits es más que suficiente para el renderizado en tiempo real, pero es necesaria en simulaciones científicas por la acumulación de errores numéricos.
+
+
+##### Diferencias con Listas
+
+Para realizar un escalado de vértices, se deben multiplicar todas las componentes de una matriz por el factor. Esto en Python nativo se puede realizar mediante un ciclo `for` a cada elemento de la lista:
+```py
+vertices_escalados = []
+for i in range(0, len(vertices), 3):
+	vertices_escalados.append(vertices[i]   * 2.0)
+	vertices_escalados.append(vertices[i+1] * 2.0)
+	vertices_escalados.append(vertices[i+2] * 2.0)
+```
+mientras que con la librería Numpy, es mas simple pues el operador `*` opera sobre cada elemento del array:
+```py
+vertices_escalados = vertices * 2.0
+```
+por un lado es más corto y legible, y, por el otro lado, Numpy ejecuta la operación en el lenguaje C sobre todos los elementos a la vez. Esto es conveniente al trabajar con una cantidad grande de vértices.
+
+Para multiplicar matrices, en Python:
+```py
+# Con listas anidadas y for:
+resultado = [[sum(A[i][k] * B[k][j] for k in range(n)) for j in range(m)] for i in range(p)]
+
+```
+mientras tanto que Numpy implementa el operador `@`:
+```py
+resultado = A @ B
+```
+
+
+> Si se ve un ciclo `for` que recorre números haciendo aritmética, probablemente hay una implementación en Numpy más simple y eficiente.
+
+
+#### Conjuntos
+
+Un conjunto se crea con `{}` e indicando los datos en su interior. Y cumplen propiedades similares a un conjunto matemático:
+- Son semi-mutables: No se pueden modificar los elementos en su interior, pero *si* se pueden agregar o eliminar.
+- No tienen un orden definido.
+- No permiten valores duplicados.
+
+Los conjuntos generalmente se utilizan para mantener un registro de los elementos disponibles en el mundo virtual que se estén graficando. Entonces tienen un uso mas en la lógica del mundo más que la implementación gráfica de este.
+
+#### Diccionarios
+
+Un diccionario asocia llaves a valores. Útil para agrupar propiedades relacionadas bajo un nombre, evitando variables sueltas, o sea:
+```py
+material_color = (0.8, 0.2, 0.1)
+material_shininess = 32.0
+material_texture = None
+```
+pasa a ser:
+```py
+material = {
+	"color":	(0.8, 0.2, 0.1),
+	"shininess": 32.0,
+	"texture":   None,
+}
+```
+así se tiene un código más compacto. Y se usa, por ejemplo para mapear nombres a recursos ya cargados como *shaders* o texturas y representar propiedades de objetos de la escena antes de enviarlos a la GPU, comúnmente un diccionario se construye:
+```py
+texturas = {}
+for nombre in ["ladrillo", "madera", "metal"]:
+	texturas[nombre] = cargar_textura(f"assets/{nombre}.png")
+
+# y luego
+textura_activa = texturas["ladrillo"]
+```
+
+### Celdas y REPL
+
+En Python es posible verificar un sector del código utilizando **celdas**. Las celdas son un bloque de código delimitado por el marcador `# %%` y estos bloques son detectados por editores de código como *Zed* o *VScode*, permitiendo ejecutar cada celda por separado. Así, se pueden verificar secciones del código para una mejor depuración.
+
+```py
+# %% Celda 1: Importaciones
+import numpy as np
+import grafica.transformations as tr
+
+# %% Celda 2: Construir una matriz de rotación
+R = tr.rotationZ(np.pi / 4)
+print(R)
+
+# %% Celda 3: Verificar que preserva la norma del vector
+v = np.array([1.0, 0.0, 0.0, 1.0], dtype=np.float32)
+v_rot = R @ v
+print(f"norma: {np.linalg.norm(v_rot[:3]):.4f}") # debe ser ~1.0
+```
+cada celda se ejecuta de manera independiente: Se puede modificar y volver a ejecutar sin afectar lo anterior ni lo siguiente. Al corregir el fragmento, este queda guardado en el mismo archivo `.py`.
+
+### Ecosistema de Python
+
+Se van a usar *Numpy, Scipy y Networkx*.
+
+- Numpy: Es una bibioteca numérica con arreglos, matrices y operaciones matemáticas.
+- SciPy: Permite utilizar modelos estadísticos, funciones científicas, matrices dispersas, etc.
+- Networkx: Para utilizar redes, objetos conectados con otros y la manera de recorrer tales objetos.
+
+
+
+
+
+
 
 
 
@@ -637,35 +640,84 @@ El canal o componente *alfa* corresponde a la **transparencia** de cada color. L
 - Alfa
 cada uno entregado por 8 bits, dando un total de 32 bits para cada píxel.
 
-## Representación de Imagenes
+## Representación de Imágenes
 
-Una imagen se representa como una matriz de vectores RGB, en donde cada componente contiene la información de un píxel. Este modelo de representación de imágenes se conoce como **raster** (y por eso se conoce el proceso de 'mostrar algo' como *rastering*).
 
-Entonces una imagen **raster** es un tipo de imagen que se compone de una cuadrícula de píxeles organizados en filas y columnas, y cumple que:
+Una imagen digital es una colección estructurada de colores organizados en una cuadrícula bidimensional. Cada celda corresponde a un píxel, el que contiene la información de color específica para su ubicación en la pantalla. 
+Se va a utilizar una matriz de vectores RGB, en donde cada componente contiene la información de un píxel, con la posibilidad de agregar una cuarta componente para la transparencia (el canal alfa).
+Formalmente, de define un color en el espacio RGB como un vector de tres dimensiones, o sea:
+$$
+\text{Color}_{\text{RGB}}=(r,g,b)\in[0,1]^{3}
+$$
+y si se incluye el canal alfa para la transparencia:
+$$
+\text{Color}_{RGBA}=(r,g,b,\alpha)\in[0,1]^{4}
+$$
+donde cada componente $r,g,b,\alpha \in \mathbb{R}$ y, en la práctica son valores `float` entre 0 y 1, o también pueden ser `int` tomando valores entre 0 y 255.
+
+Una imagen, formalmente se define como una matriz tridimensional, de la forma:
+$$
+I\in[0,1]^{n\times m\times c}
+$$
+donde $n$ es el número de filas (como la altura de la imagen), $m$ es el número de columnas (ancho) y $c$ es el número de *canales* de cada píxel (3 o 4 si se incluye la transparencia).
+
+- La **resolución** de la imagen corresponde a un valor $r = n\times m$, que indica el número total de celdas (píxeles) que compone la imagen.
+
+- Para el almacenamiento en memoria, depende de si se incluye la transparencia:
+  $$
+  \text{Tmñ}(\text{Color}_{\text{RGB}}) = 4\cdot\text{Tmñ}(float) = 4\cdot4=16 \text{ bytes}
+  $$
+  o si no se incluye:
+  $$
+  \text{Tmñ}(\text{Color}_{\text{RGB}}) = 3\cdot\text{Tmñ}(float) = 3\cdot4=12 \text{ bytes}
+  $$
+
+
+### Modelo *raster*
+
+Representar imágenes como una matriz de píxeles se conoce como **raster**, y por eso se conoce el proceso de 'mostrar algo' como *rastering*. Un **raster** es un tipo de imagen que se compone de una cuadrícula de píxeles organizados en filas y columnas, y cumple que:
 - Es de *resolución fija*. Entonces se pierde nitidez al hacer zoom.
 - Como guarda información de todos los píxeles, es costoso en almacenamiento. Por ello, existen distintos formatos de compresión como JPG, PNG, BMP (sin compresión).
   \* JPG elimina la información de transparencia y a los colores muy cercanos los asigna como iguales.
+Las imágenes *raster* son ideales para fotografías y contenido con detalles complejos.
 
-## Representación Vectorial
+### Modelo Vectorial
 
-Una *imagen vectorial* es una imagen que se compone de modelos paramétricos definidas por ecuaciones matemáticas. Esto permite escalar la imagen reevaluando las funciones según la resolución, por ello se dicen que estas imágenes tienen *resolución infinita*. *Por ejemplo:* SVG, EPS, PDF.
-
-# Arquitectura
-
-Para el proceso de imágenes en el computador, se tienen las componentes: Framebuffer, Video Controller
+Una *imagen vectorial* es una imagen que se compone de modelos paramétricos definidas por ecuaciones matemáticas: líneas, curvas, polígonos y sus propiedades. Esto permite escalar la imagen reevaluando las funciones según la resolución, por ello se dicen que estas imágenes tienen *resolución infinita*. 
+A diferencia de las imágenes *raster*, el peso de un archivo depende de la complejidad de los modelos paramétricos y no de las dimensinoes de la imagen. *Por ejemplo:* SVG, EPS, PDF.
+El modelo vectorial es usado en ilustraciones, tipografía, diagramas y cualquier gráfico que requiera precisión o escalabilidad. 
 
 
-## Framebuffer
+## Arquitectura
 
-El *framebuffer* es el área de memoria que almacena la imagen.
-En ocasiones se usan dos áreas de la memoria, lo que se conoce como doble-buffer, en donde un *framebuffer* se encarga del frame actual y el otro del frame siguiente, graficando el cuadro actual y modificando el siguiente.
+El proceso por el que pasan los datos de una imagen hasta que se muestra en pantalla requiere de una arquitectura específica. Entre otros, se tienen los componentes: Framebuffer, Video Controller.
 
-## Video Controller
 
-Accede al *framebuffer* para refrescar la pantalla. Este obtiene los valores de los píxeles durante un ciclo de refresco, típicamente son 60 cuadros por segundo.
+### Frame Buffer
+
+En el núcleo del procesamiento se encuentra el *Frame Buffer*, que corresponde a una región de memoria dedicada a almacenar la representación de la imagen que se va a mostrar en pantalla finalmente y cada celda de esta memoria contiene la información de un píxel: color y transparencia.
+En sistemas modernos este *buffer* se encuentra en la memoria visual (VRAM) dentro de la tarjeta de video.
+
+En ocasiones se usan dos áreas de la memoria (o incluso tres):
+1. El *front buffer* dedicado a la imagen que se está mostrando.
+2. El *back buffer* dedicado al siguiente cuadro.
+esta técnica se llama *page flipping* y provee una visualización fluida.
+\* El *tearing* sucede cuando se modifica el buffer que se está mostrando actualmente.
+
+
+
+### Video Controller
+
+Como interfaz entre el contenido del *frame buffer* y la pantalla se tiene el controlador de video (*video controller*). Este lee la memoria *buffer* y lo envía a la pantalla, realizando la conversión de los datos digitales a las señales requeridas por las tecnologías de pantalla (LCD,OLED, etc.), además de los estándares de conexión (HDMI, DisplayPort, etc.). 
+El controlador de vídeo realiza el procesamiento una frecuencia específica, medida en cuadros por segundo *FPS* o Hertz $[Hz]$ . Usualmente son 60 cuadros por segundo, aunque en aplicaciones que se requiera una mejor respuesta y baja latencia se aumenta a $120[Hz],144[Hz],240[Hz]$.
 Antiguamente el video controller contenía la paleta de colores que se iban a utilizar, pero las GPU modernas pueden calcular el color con un fragment shader.
 
-## Especificar Colores
+### Fragment Program
+
+Un *fragment program* (o *pixel shader* en DirectX) es un tipo de programa ejecutado en la GPU para cada píxel (o fragmento) de la imagen. Este determina el color final de cada píxel según parámetros de escena, configuración y la estética deseada.
+Los *fragment program* son parte de un pipeline más amplio de renderización: la *rendering pipeline*.
+
+### Especificar Colores
 
 Para especificar colores, una forma es almacenarlos directamente en el *framebuffer*. *Por ejemplo*: Para un framebuffer de 3 bits se puede usar 1 bit para cada color (rojo, verde, azul) y así se pueden representar 8 colores.
 
@@ -682,14 +734,14 @@ Para especificar colores, una forma es almacenarlos directamente en el *framebuf
 | 7      | 1   | 1     | 1    | Blanco         |
 
 
-### Esquema Directo
+#### Esquema Directo
 
 El esquema directo corresponde a *utilizar más bits* para representar un mayor espectro de colores, almacenando directamente los colores, codificando 1 bit para cada componente RGB.
 Querer mostrar un mayor espectro de colores es costoso en memoria.
 
 *Por ejemplo* para pantallas de resolución 1920x1080, si para cada color se disponen 8 bits, se tendría $1920 \times 1980 = 3801600$ píxeles. Si para cada uno se usan 8 bits, entonces $3801600 \times 8 = 30412800$ bits, o sea $3.8016$ MB para una imagen. Entonces, si se usan 32 bits para cada color o si se tiene una pantalla de resolución $4K$ aumenta la memoria que se necesita.
 
-### Esquema Indirecto
+#### Esquema Indirecto
 
 El esquema indirecto corresponde a almacenar los colores que se tienen disponibles en una *tabla separada*. Similar a una 'paleta de colores' para las imágenes que se van a mostrar. Aparte, **en el *framebuffer* se almacena un índice a un color**, indicando en qué píxeles de utilizan
 
@@ -702,16 +754,55 @@ Este esquema permite hacer modificaciones a lo que se muestra en pantalla de for
 A fines de la década de los '80, las tarjetas gráficas cumplían funciones muy básicas: La comunicación entre el computador y el monitor, gestionar la imagen en la memoria y procesamiento de gráficos en 2D. Con el tiempo, se aumentó el poder de cómputo de estas unidades y se producen diversos chips, generando distintas bibliotecas, controladores, etc.
 En el 1999 NVidia lanzó al mercado la tarjeta gráfica GeForce 256, que la definieron como la primera GPU ya que se propusieron estándares para estas unidades: Definen una GPU como un procesador único que integra transformaciones, configuración y recorte de triángulos, un motor de graficación (rendering) y la capacidad de procesas un mínimo de 10 millones de polígonos por segundo.
 
-La definición moderna de GPU es:
-La GPU (*Graphics Processing Unit*) es un co-procesador dedicado al procesamiento de gráficos u operaciones de coma flotante para aligerar la carga de trabajo de la CPU en aplicaciones como videojuegos o aplicaciones interactivas.
+> La **definición** moderna de GPU es: La GPU (*Graphics Processing Unit*) es un co-procesador dedicado al procesamiento de gráficos u operaciones de coma flotante para aligerar la carga de trabajo de la CPU en aplicaciones como videojuegos o aplicaciones interactivas.
 
 La GPU corresponde al *chip* central de procesamiento **dentro** de una tarjeta de video, es este caso es una GPU *discreta* o *dedicada*, o también este chip puede ser una parte dentro de la CPU, denominada como GPU *integrada*.
+
+Los chips GPU de primera generación operaban con una *pipeline* fija. O sea, los procesos que se requerían para mostrar la imagen en pantalla no se podían modificar. Las GPU modernas cuentan con co-procesadores no modificables para algunas operaciones gráficas (como el *rastering*), pero la mayor parte de sus operaciones son programables.
 
 Una GPU tiene muchas más unidades de cómputo que una CPU, pero a cambio, se tiene un menor control en cuanto a lo que sucede en cada módulo. Si bien inicialmente se concebió como un apoyo a la CPU, se vio que pueden realizar muchas tareas en paralelo. En particular, para mostrar una imagen en pantalla interesan:
 1. *Vertex Shader*: Realiza cálculos **sobre los vértices** de la escena
 2. *Geometry Shader*: Opera **sobre los elementos** de la escena, generando vértices y primitivas (e.g: los triángulos).
 3. *Fragment Shader*: **Pinta la escena** de acuerdo a al información de color.
 4. Finalmente se pasa al frame-buffer (memoria) para luego mostrarlo en pantalla.
+
+##### Diferencia con CPU
+
+Para entender la diferencia entre GPU y CPU es útil examinar las componentes internas de cada una. Ambas comparten componentes pero las tienen en distintas proporciones:
+1. **Core (Núcleo)**: Corresponde a la unidad que ejecuta instrucciones y realiza cálculos aritméticos. Dependiendo de su complejidad puede realizar operaciones más o menos básicos.
+2. **Unidad de Control**: Componente que coordina la ejecución de instrucciones dentro de un núcleo: Qué operación, el orden y gestiona el flujo del programa (por ejemplo las instrucciones condicionales). Si se soportan instrucciones más complejas, el núcleo se concentra al control aún mas.
+3. **Caché**: Memoria de poca capacidad pero de mucha velocidad que almacena datos de acceso frecuente. Más caché permite reutlizar datos sin tener que buscarlos en la memoria principal y se organiza según *L1, L2, L3* donde *L1* es la más rápida, pero de menor capacidad y *L3* es lo contrario.
+4. **Memoria (DRAM)**: Unidad de almacenamiento principal de datos. Para una CPU, corresponde a la RAM usual del sistema y para GPU la RAM visual (o VRAM).
+
+Las diferencias se pueden ver en la siguiente tabla:
+
+| Componente          | CPU                                   | GPU                                                       |
+| ------------------- | ------------------------------------- | --------------------------------------------------------- |
+| *Cores*             | Pocos, grandes y complejos            | Muchos, pequeños y simples                                |
+| Unidad de Control   | Grande, dedicada a cada núcleo        | Mínima, controla muchos núcleos                           |
+| Memoria *Caché*     | Posee los tres niveles *L1, L2, L3*   | Solo tiene *L2*                                           |
+| Memoria RAM         | RAM del sistema                       | RAM dedicada (o del sistema si GPU es integrada)          |
+| Modelo de Operación | Variedad de tareas en paralelo (MIMD) | Una misma operación sobre muchos datos en paralelo (SIMD) |
+Una CPU es un **procesador generalista**: Tiene pocos núcleos, pero ejecuta instrucciones variadas y complejas independientemente (Modelo MIMD); múltiples niveles de caché permiten mejor gestión y ramificación de procesos. 
+Una GPU aplica las mismas instrucciones a múltiples datos simultáneamente, por ello le es útil tener muchos núcleos, una unidad de control mínima y reducida memoria caché. Esta arquitectura permite procesar millones de polígonos por segundo, necesario para aplicaciones 3D.
+
+## Rendering
+
+La renderización es parte un procesamiento secuencial llamado *rendering pipeline*, en la cual cada componente procesa la información y se transmite al siguiente. En general, se tienen los procesos de:
+1. Aplicación
+2. Procesamiento Geométrico
+3. Recorte
+4. Rasterización
+5. Procesamiento de Píxeles
+también se pueden incluir el controlador de video y el procesamiento de señal en el monitor.
+
+El punto de partida del *pipeline* es una escena. *Por ejemplo*: La *Caja de Cornell*: Contiene múltiples objetos con propiedades específicas y una fuente de luz.
+
+1. **Aplicación**: Es la etapa que se encarga de la construcción, actualización y de mantener el mundo virtual renderizado. Realiza simulaciones, captura entradas del sistema, monitorea el estado de la red y otras tareas.
+Cuando la etapa de aplicación construye la escena, esta es transmitida a la GPU como una lista de primitivas gráficas: puntos, líneas y triángulos, siendo esta última la primitiva fundamental. La GPU realiza cálculos geométricos sobre los vértices con los [[#Shader Programs]]
+2. **Rasterización**: Convierte los triángulos dentro del volumen de visión en píxeles y, en general, no es programable.
+3. **Procesamiento de Píxeles**: Determina el color correspondiente a cada píxel, según sea visible o no en la imagen final; El proceso se realiza según los atributos del triángulo y su iluminación.
+
 
 # Workflow
 
@@ -906,28 +997,13 @@ Se debe notar que en la modificación de color se está modificando la cuarta co
 
 ## Ecuaciones Diferenciales Ordinarias (EDO)
 
-La aplicación de fuerzas se reduce a solucionar EDOs.
-
-La trayectoria de una partícula se puede modelar con
-$$
-\frac{dX(t)}{dt}=f(x(t),t)
-$$
-con $\frac{dX(t)}{dt}$ el desplazamiento, y la fuerza $f$ es dependiente de la posición $X(t)$ y del tiempo $t$.
-
-Luego, dada una función $f(X(t),t)$, la idea es computar $X(t)$. Para ello se requiere una posición inicial $X(T=0)$ y tener valores $X(t)$ conocidos para $t >t_{0}$
-
-### Recuerdo EDO
-
+En computación gráfica, las EDOs de interés describen el movimiento de partículas bajo fuerzas.
 Como se va a trabajar con fuerzas, se va a trabajar con 
 $$
 \vec{F}=m\vec{a} \iff \vec{F}=m \frac{d^{2}\vec{x}}{dt^{2}}
 $$
-donde $\vec{x},\vec{F}$ son vectores; $\vec{F},m$ son conocidos (para $m$, la partícula es una masa puntual) y **se quiere resolver la ecuación para** $\vec{x}$, así, se tiene una Ecuación de Segundo Orden (EDO).
-Para reducir la EDO, se puede usar que la primera derivada de la posición es la velocidad $\frac{ d X }{ d t }=V$ y la segunda derivada de la posición, o sea la derivada de la velocidad: $\frac{ d V }{ d t }=\frac{F}{m}$ y se tiene:
-$$
-\vec{F}=m \frac{ d ^{2}\vec{x} }{ dt^{2} } 
-$$
-entonces,
+donde $\vec{x},\vec{F}$ son vectores; $\vec{F},m$ son conocidos (para $m$, la partícula es una masa puntual) y **se quiere resolver la ecuación para** $\vec{x}$, así, se tiene una Ecuación de Segundo Orden.
+Para reducir la ecuación diferencial, se puede usar que la primera derivada de la posición es la velocidad y la segunda derivada de la posición, o sea la derivada de la velocidad es la fuerza dividida en la masa.
 $$
 \implies 
 \left\{
@@ -938,6 +1014,10 @@ $$
 \right.
 $$
 esto es útil pues resolver sistemas mayores a uno es complejo.
+
+## Métodos de Integración Numérica
+
+La mayoría de las ecuaciones diferenciales que se tienen en la realidad no tienen soluciones analíticas exactas. Para trabajar con ellas se va a usar la *integración numérica*, que aproximan soluciones con métodos iterativos: No se predice la posición de una partícula en un tiempo arbitrario usando cierta expresión, si no que se calcula la siguiente posición (en el cuadro siguiente) pues sí se conoce el cambio. Y a partir de ese instante, se obtiene el siguiente y así sucesivamente, para pequeños instantes de tiempo $dt$, conocido como paso temporal.
 
 Resolver sistemas de primer orden no es siempre sencillo, pero se tienen maneras conocidas para resolver. Luego, al derivar $f$:
 $$
@@ -973,55 +1053,69 @@ con $x_{1},v_{1}$ es la información de la partícula 1, y así para las siguien
 
 La fuerza sobre la partícula $i$ es dependiente de $X$, entonces esta considera la información de todas las partículas para calcular las fuerzas sobre la partícula $i$ésima. Si las partículas no interactúan entre sí, entonces $F_{i}$ solo depende de la posición y de la velocidad de la misma partícula.
 
+La trayectoria de una partícula se puede modelar con
+$$
+\frac{dX(t)}{dt}=f(x(t),t)
+$$
+con $\frac{dX(t)}{dt}$ el desplazamiento, y la fuerza $f$ es dependiente de la posición $X(t)$ y del tiempo $t$.
+
+Luego, dada una función $f(X(t),t)$, la idea es computar $X(t)$. Para ello se requiere una posición inicial $X(T=0)$ y tener valores $X(t)$ conocidos para $t >t_{0}$
 
 ### Interpretación
 
 La interpretación es que $X(t)$ indica **el camino a seguir** en un espacio, pues esta responde a la pregunta: ¿Dónde estará $X$ después de un intervalo de tiempo infinitesimal $dt$? Los diagramas se pueden interpretar como una 'foto' en el tiempo de las posiciones de la partícula, y $f=\frac{ d X }{ d t }$ es un vector que, en cada punto del espacio de fase, apunta en la dirección deseada.
 
-### Cálculo Numérico
+### Método de Euler
 
-Para encontrar una solución numérica al problema se integra la EDO. Para ello, si se tiene un estado $X$, se puede mirar el valor de la función *cerca* del estado actual en el espacio y **se mueve una pequeña distancia $dX$ en tal dirección**. O sea:
+Este método es el más simple para resolver una EDO de forma numérica.
+Dada una EDO
 $$
-dX = dt \cdot f(X, t)
+\frac{ d y }{ d t } = f(t,y)
 $$
-usando el método de Euler, de la relación anterior se hace
+con condición inicial $y(t_{0})=y_{0}$. Y la fórmula de iteración (o actualización por cuadro) es:
 $$
-(X_{1}-X_{0})=(t_{1}-t_{0})\cdot f(X,t)
+y_{n+1}=y_{n}+h\cdot f(t_{n},y_{n})
 $$
-y si se define **un paso de tiempo como h**: $h =t_{1}-t_{0}$ y una posición inicial $X_{0}=X(t_{0})$, entonces:
-$$
-(X_{1}-X_{0}) = h \cdot f(X_{0},t_{0})
-$$
-$$
-X_{1} = X_{0} + h \cdot f(X_{0},t_{0})
-$$
-Finalmente, se puede avanzar de la siguiente manera:
-$$
-t_{1}=t_{0}+h
-$$
-$$
-X_{1}=X_{0}+h\cdot f(X_{0},t_{0})
-$$
-donde $X_{1}$ es la siguiente posición.
-Este modelo corresponde a una aproximación por piezas del camino. La idea es caminar por las tangentes de la curva.
 
-El tamaño de $h$ controla la precisión de la aproximación (o trayectoria del movimiento), de forma que un paso más pequeño está dado por un menor valor de $h$:
+Donde $h$ es el tamaño del paso temporal y $t_{n+1}=t_{n}+h$. Esta fórmula proviene de la aproximación lineal de la serie de Taylor.
+Este modelo corresponde a una aproximación por piezas del camino. La idea es caminar por las tangentes de la curva y el tamaño de $h$ controla la precisión de la aproximación (o trayectoria del movimiento), de forma que un paso más pequeño está dado por un menor valor de $h$:
 ![[Pasted image 20260326093353.png]]
 desde abajo hacia arriba se incrementó la precisión al reducir el valor de $h$
 
-> Para tener la posición siguiente $X_{N}$ de la partícula se necesita la posición anterior $X_{N-1}$ y el valor de la fuerza en la posición anterior $f(X_{N-1},t)$, de la forma:
-> $$
-> X_{N}=X_{N-1} + \Delta t \cdot f(X_{N-1}, t)
-> $$
-> con $X_{0}$ conocido.
+**La implementación** de un paso de Euler se reduce a:
+```py
+def euler_step(f, t, y, h):
+	return y + h * f(t, y)
+```
+pero se tiene un costo, pues el método acumula error. Además el método no conserva energía ni momento.
 
 \* El método de euler no representa un círculo, si  no que una espiral, pues se basa en la tangente.
-#### Método RK4
+### Método Runge-Kutta de 4° Orden (RK4)
 
-Recalcula la pendiente desde cada punto para ir, efectivamente, al punto final.
+El método *RK4* evalúa la derivada en cuatro puntos diferentes para cada paso de la integración.
+Para una EDO de la forma:
+$$
+\frac{ d y }{ d t } = f(t,y)
+$$
+la fórmula *RK4* es:
+$$
+\begin{array}{ll}
+k_{1}=f(t_{n},y_{n}) \\
+k_{2}=f\left( t_{n}+\frac{h}{2}, y_{n}+\frac{h}{2}k_{1} \right) \\
+k_{3}=f\left( t_{n}+\frac{h}{2},y_{n}+\frac{h}{2}k_{2} \right) \\
+k_{4}=f(t_{n}+h, y_{n}+hk_{3}) \\
+y_{n+1}=y_{n}+ \frac{h}{6}(k_{1}+2k_{2}+2k_{3}+k_{4})
 
-#### Método Verlet
+\end{array}
+$$
+donde cada $k_{i}$ evalúa la función en diferentes posiciones: $k_{1}$ al inicio, $k_{4}$ al final y $k_{2},k_{3}$ en los pasos intermedios. Y el **valor final es un promedio ponderado de estas evaluacoines**.
+Este método evalúa mejor que el método de Euler (bajo el mismo paso de tiempo), pero tiene un mayor costo computacional.
 
+El método *RK4* recalcula la pendiente desde cada punto para ir, efectivamente, al punto final.
+
+### Método Verlet
+
+Este método se centra en la integración de la posición sin calcular la velocidad.
 De las ecuaciones cinemáticas de movimiento, se tiene que:
 $$
 x(t+\Delta t) = x(t) + v(t) \cdot \Delta t + \frac{1}{2} \cdot a \cdot \Delta t^{2}
@@ -1061,7 +1155,7 @@ vertice.posicionPrevia = aux
 
 ```
 
-##### Variación: Velocity-Verlet
+#### Variación: Velocity-Verlet
 
 El método de Verlet tiene una variación que permite **obtener la velocidad** según la posición siguiente calculando ella primero, de la forma:
 $$
