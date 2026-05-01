@@ -1,31 +1,13 @@
-Tarea 1: Juego de tenis
+Se tiene un arreglo de tamaño $n$ y esta se sub-divide en un arreglo de tamaño $2\cdot\frac{n}{3}$ más una cantidad constante de procesos $C$ para obtener los sub-índices. Entonces se tiene:
 
-Juego corre siempre (ciclo `while`), condiciones para que termine el juego:
-while (juego corriendo):
-	Algún jugador llega a los 45 ptos, termina juego.
-	`if ptosA == 45 or ptosB == 45`
-		dar ganador
-		break ciclo
-	En caso de ambos en 40 ptos.: Desempate, nuevo bucle `while`:
-	`if ptosA == 40 and ptosB == 40:`
-		nuevo bucle while
-		`while:` siempre activo
-			`if` alguno tiene 45 ptos:
-				salir break
-			nuevo sistema de ptaje: siguen con 40 ptos, pero ganador se le asigna ventaja
-			`input` ganador de punto
-			`if` tenia ventaja
-				dar 5 ptos
-				break ciclo interior
-			`if` no tenía ventaja y el otro tampoco, dar ventaja al ganador
-				dar ventaja
-			`if` si no tenia ventaja y el otro sí, quitársela al otro
-				quitar ventaja al perdedor
-		`check` si alguno tiene 45 ptos.
-		Ingresar ganador de punto, sumarle 5
-
-
-\* Cómo tener ganador y perdedor?
-siempre se están checkeando los ptajes de ambos jugadores, de ahi se podría sacar.
-
-if  ganador no tenia ventaja y 
+$$
+T(n)= T\left( 2\cdot\frac{n}{3} \right) + C_{n^{0}}=T\left( \frac{n}{\frac{3}{2}} \right) + C_{n^{0}}
+$$
+usando el teorema maestro, se identifican los elementos $p = 1$, $q = \frac{3}{2}$, $r = 0$ y se compara $q^{r}$ con $p$:
+$$
+q^{r} = \left( \frac{2}{2} \right)^{0}=1
+$$
+entonces $q^{r}=1=p$, luego, la complejidad es:
+$$
+T(n)=\Theta(n^{r} \log_{q}n)=\Theta(n^{0}\log_{2}n)=\Theta(\log_{2}n)
+$$
