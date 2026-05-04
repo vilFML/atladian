@@ -324,3 +324,81 @@ def inOrden(self):
 	self.raiz.inorden()
 	print()
 ```
+
+# Tipos de Datos Abstractos
+
+En Python se tienen tipos de datos internos. Los tipos de datos básicos son `int`,`float`,`bool`, que se denominan **tipos de datos primitivos** y para cada tipo ed dato se definen operaciones (e.g. para `int`: `+`,`-`, etc.)
+
+Un **tipo abstracto de dato (TAD)** se construye en base a los tipos primitivos, estos almacenan un conjunto de datos y tienen operaciones para el conjunto; el dato también contiene sus operaciones del tipo.
+Por ejemplo, una lista de Python `L = [1,2,3]`, que tiene operaciones `len(L)`,`L.append(x)`
+La implementación de las operaciones de un TAD está hecha de alguna forma desconocida para un usuario, pues este solamente sabe cómo se utilizan las operaciones, estas son conocidas como **interfaz**.
+
+## Pila (o Stack)
+Una pila es un tipo abstracto de dato, y corresponde a una *colección de elementos* con funcionalidades particulares:
+Las pilas tienen un **tope**, que corresponde al límite superior. Cuando se agrega un elemento, siempre se agrega por encima del tope; también cuando se saca, se eliminan desde el tope.
+
+Se tienen las operaciones:
+* para *insertar* un elemento en la pila: `push()`
+* para *sacar*, eliminando el elemento de la pila (no se guarda): `pop()`
+* Acceder a un elemento, *sin sacarlo*: `top`
+
+La implementación se hace a través de una clase:
+```py
+class Pila:
+	def __init__(self):
+		self.s=[] # Se empieza una pila como una lista vacía.
+		
+	def push(self,x):
+		self.s.append(x)   # viendolo como lista: se agrega elem al final
+		
+	def pop(self):
+		assert len(self.s)>0
+		return self.s.pop()   #simil de lista: se una fn 'pop'
+```
+
+Como la implementación de `append()` y `pop()` son desconocidos, se pueden tener ordenes de operaciones distintas a la esperada cuando se trabaja con estas funciones en una pila. De hecho, como Python crea nuevas listas según el tamaño de la que se va modificando, la complejidad de estas operaciones no son necesariamente del orden de $O(n)$.
+
+Otra forma de implementación de una pila es en forma de arreglo (o array), lo que permite más control. Así, por ejemplo para hacer `push()`, se sabe en dónde se requiere agregar el elemento (en $n$) y también para `pop()` (se saca en $n-1$).
+\* Como se tiene un array, la pila tiene un tamaño máximo cuando se instancia.
+
+```py
+class Pila:
+	def __init__(self, maxn=100):
+		self.n = 0   #n almacena la cant de elemento del array, inicio vacio
+	def push (self,x)
+		assert self.n<len(self.s)-1   #check si hay espacio para meter nro
+		self.s[self.n] = x   # n tmb es la pos en dde se debiese insertar nuevo elemento
+		self.n += 1   #se aumenta tmñ de array
+		
+```
+La implementación de `push()` de esta forma permite contar la cantidad de operaciones para cierto número de elementos. Más control sobre la complejidad.
+
+```py
+def pop(self):
+	assert self.n>0
+	self.n -= 1   #n contaba que elem son parte de la pila
+	return self.s[self.n]   #se indica cual es el que se saco
+```
+Esta implementación también permite contar la cantidad de operaciones para $n$, de hecho siempre son 3 operaciones y no depende del tamaño $n$ del array.
+
+```py
+def is_empty(self):
+        return self.n==0
+```
+
+Para evitar el límite de tamaño se puede implementar la pila como una lista enlazada. Para ello es conveniente *definir el tope como el inicio de la lista enlazada*, pues ya se tiene las funcionalidades de insertar e insertar:
+-  Para insertar se crea una nodo con campo `info` según lo que se quiera ingresar a la pila y el campo `sgte` se define apuntando al elemento que se encuentra actualmente (antes de ser insertado el elemento) en el tope.
+- Para eliminar (`pop`) se cambia el campo `sgte` del tope al siguiente elemento.
+
+### Aplicaciones
+Al ejecutar en Python este primero verifica la sintaxis. Lo que hace es crear una pila que comienza a ingresar con `push` los caracteres en el código. Cuando encuentra el caracter que le corresponde al almacenado, elimina ambos con `pop` y así para cada elemento ingresado. Finalmente, la sintaxis es válida si la pila esta vacía.
+
+También se pueden almacenar las operaciones de forma *post fijo*. Por ejemplo, una notación de una operación matemática es $(2*3)-(1*2)$, que se puede llevar a forma de árbol binario con los nodos como operaciones y luego recorrer el arbol en *post orden*:
+$$
+2,3,*,1,2,*,-
+$$
+esto en forma de pila indica que, luego de acumular números, estos se operan con el operador que se encuentre en un nodo.
+
+#### Recorrido no recursivo de un árbol binario
+Para pasar a una implementación iterativa, se debe pasar la recursividad a una forma compatible con hacer la [[Recursividad#Recursividad v/s Iteración|'traducción' a iteración]]:
+Se pasa a forma *preorden*, en donde se hace push a la derecha primero y luego a la izquierda. Con ello se garantiza que el siguiente ciclo saque el elemento de la izquierda.
