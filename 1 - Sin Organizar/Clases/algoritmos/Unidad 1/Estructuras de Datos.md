@@ -225,3 +225,102 @@ def insertar_despues_de(self,p,info): # inserta después de nodo p
 	r = p.sgte
 	p.sgte = r.prev = Nodo(p,info,r)
 ```
+
+### Eliminar nodo
+Se debe evitar eliminar un nodo cabecera, pues si se tiene lista vacía, no hay nada que eliminar; y si es una lista válida, eliminar el nodo cabecera hace perder el acceso a la lista.
+```py
+assert p is not None
+```
+Luego, se *actualizan los punteros de los nodos vecinos* para 'saltarse' el que se elimina.
+1. Para acceder al nodo siguiente a $p$: `p.sgte` y al anterior `p.prev`
+   - Para acceder a los *punteros* de los nodos vecinos
+     * el siguiente al nodo anterior `p.prev.sgte`,
+     * y el anterior al nodo siguiente `p.sgte.prev`.
+1. Reemplazar los punteros de los nodos vecinos entre ellos mismos.
+
+La función queda
+```py
+def eliminar(self,p):
+	assert p is not None
+	p.prev.sgte = p.sgte   # puntero del anterior al siguiente
+	p.sgte.prev = p.prev   # puntero del siguiente al anterior
+```
+
+# Árboles Binarios
+Las listas son estructuras de datos lineales y tienen la limitación de que para acceder a los elementos, se debe pasar por todos los anteriores,
+Una alternativa es usar una estructura de forma jerárquica, formando gráficamente un árbol. Ahora, para cada nodo se pueden tener ambos enlaces apuntando a otros nodos y se les pone nombre jerárquico: De un nodo *padre* salen dos nodos *hijos*: izquierdo y derecho, que, a su vez, pueden ser padres de otros dos nodos.
+![[Pasted image 20260504084501.png]]
+> Cada nodo puede tener, a lo más, dos hijos.
+
+Los árboles binarios son similares a las listas de doble enlace, pero la diferencia es que la información (sus datos) son jerárquicos y los punteros de cada nodo pasan a ser `izq` y `der`. 
+![[Pasted image 20260504084521.png]]
+El nodo 'inicial' se llama *nodo raíz* y los circulares (incluyendo la raíz) se llaman *nodos internos*. Los cuadrados son nodos vacíos y se llaman *externos*.
+Así, la clase `Nodo` tiene otra implementación:
+```py
+class Nodo
+	def __init__(self, izq, info, der):
+		self.izq = izq
+		self.info = info
+		self.der = der
+```
+
+Y se encapsula a los nodos interconectados en una sola entidad, como una clase `Arbol`. Similar a la instanciación de una lista.
+```py
+class Arbol:
+	def __init__(self, raiz=None):
+		self.raiz = raiz
+```
+por defecto se crea un árbol vacío, si no, cuando se instancia, se debe indicar el nodo raíz del árbol. 
+
+> Similar al nodo cabecera para las listas, es el nodo raíz el que permite el acceso a la información del árbol.
+
+## Ordenes
+
+Con respecto al acceso a la información, hay *diferentes formas de recorrer un árbol*: **Pre, In y Post** orden.
+En su base, se llama la función de recorrer recursivamente sobre los elementos del árbol, pero se diferencian en el orden de la recursión:
+1. **Preorden**: Primero la raíz, luego el sub-árbol izquierdo y finalmente el sub-árbol derecho.
+2. **In orden**: Primero sub-árbol izquierdo, después la raíz y al final el sub-árbol derecho.
+3. **Post orden**: Se recorre primero los nodos hijos, de forma que primero se recorre el sub-árbol izquierdo, después el sub-árbol derecho y finalmente la raíz.
+
+En cada nodo se tienen tres piezas de información: sub-árbol izquierdo, la raíz y el sub-árbol derecho. Y cada método difiere *en el orden* en que se accede a la información.
+```py
+def pre(p):
+	if (p is not None):
+		print(p.info, end=' ')
+		pre(p.izq)
+		pre(p.der)
+```
+y para generar la lista en Python:
+```py
+def pre(p):
+	if (p is not None):
+		yield p
+		yield from pre(p.izq)
+		yield from pre(p.der)
+```
+
+Para los nodos externos, es posible crear una clase para ellos en vez de que sean simplemente `None` (no tienen datos en `izq`,`der` o `info`). Si se implementa una clase, puede usarse `pass` para que no tenga funcionalidad o cambiarlo por alguna otra cosa. Con la clase de nodos externos ya no es necesario agregar el `assert` para verificar que el nodo actual sea `None`, pues, si se definen las funciones `pre`,`in` o `post` se agrega `Yield None` para que no entregue valores.
+Por lo tanto, se tendrían dos clases:
+```py
+class Nodoi:
+	def __init__(self, izq, info, der):
+		# no hay variación
+```
+```py
+class Nodoe:
+	def __init__(self):
+		pass
+	def pre(self):
+		yield None
+	def in(self):
+		yield None
+	def post(self):
+		yield None
+```
+y para el árbol, la función pre, in o post:
+```py
+def inOrden(self):
+	print('In orden: ', end=' ')
+	self.raiz.inorden()
+	print()
+```
