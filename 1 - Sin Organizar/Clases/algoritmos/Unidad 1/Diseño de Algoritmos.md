@@ -88,6 +88,42 @@ T(n) = 3\cdot T\left( \frac{n}{2} \right)+C_{n}
 $$
 y se bajó a tres multiplicaciones, aumentando un poco el trabajo al término que redistribuye los resultados. Luego, con el teorema maestro se tiene que la complejidad del algoritmo es del orden de $\Theta(n^{1,59})$
 
+## Ejemplo: Ejercicio 4
+
+Se tiene una lista $A$ que consta de un conjunto de números ceros seguidos por un conjunto de números unos. Un ejemplo de lista $A$ es el siguiente:
+$$
+A = [0,0,0,0,0,0,0,0,0,1,1,1]
+$$
+Implemente la función "contar_ceros" que use la estrategia "dividir para reinar" y que devuelve la cantidad de ceros de la lista de entrada en tiempo $O(\log{n})$
+
+```py
+def contar_ceros(A, i, j):
+  # Se entrega una lista de ceros contiguos, entonces el índide del último es la cantidad de ceros que hay
+  # Para una última llamada de la función, como i es en donde empieza a buscar, es también la cantidad de ceros cuando se llega al ultimo 0 de los contiguos en la lista
+
+  # Se va a usar recursión, en donde:
+  # Caso Base: En la recusión final, se tiene un solo elemento: i = j entonces si este es 0, se 
+  # retorna el indice siguiente
+  if (i == j):
+    if (A[i] == 0):
+      return (i + 1)
+    else:
+      return i
+
+  # Como se va dividiento lista, la suma de i,j (son sus nuevos inicios y fin) es la longitud de ella
+  mitad = (i + j) // 2
+  #si nro es 1:
+  if A[mitad] == 1:
+    # Usar recursivamente a la izq
+    return contar_ceros(A, i, mitad)
+  else:
+    # se tiene 0, usar recursivamente a la der
+    return contar_ceros(A, mitad + 1 , j )
+
+```
+
+
+
 # Programación Dinámica
 Viendo el cálculo del n-ésimo término de la serie de fibonaci, antes de hizo un algoritmo con recursividad. El cual tiene una complejidad del orden de $\Theta(\phi^{n})$, esto pues para tener la serie de fibonacci para un término, se tiene una especie de árbol, en donde las cantidades de operaciones que hace cada rama es similar:
 Para tener $f(5)$, se debe hacer $f(4)$ que, a su vez, requiere $f(3)$ y así sucesivamente.

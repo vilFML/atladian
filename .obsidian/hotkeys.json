@@ -8,15 +8,6 @@
       "key": "K"
     }
   ],
-  "editor:toggle-source": [
-    {
-      "modifiers": [
-        "Mod",
-        "Shift"
-      ],
-      "key": "O"
-    }
-  ],
   "app:toggle-left-sidebar": [
     {
       "modifiers": [
@@ -33,6 +24,15 @@
         "Shift"
       ],
       "key": "D"
+    }
+  ],
+  "editor:toggle-source": [
+    {
+      "modifiers": [
+        "Mod",
+        "Shift"
+      ],
+      "key": "E"
     }
   ]
 }

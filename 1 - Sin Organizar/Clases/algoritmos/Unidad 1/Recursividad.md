@@ -129,3 +129,38 @@ En la recursividad no se define una variable de estado, si no que se entrega com
 La idea de tener equivalencias es que la solución puede ser mejor vista con cualquiera de las dos formas.
 > Usualmente, la versión iterativa utiliza menos recursos que la recursión.
 
+# Ejemplo: Ejercicio 2
+Se le pide que escriba las instrucciones de la función ``genera_binarios`` de acuerdo al siguiente algoritmo:
+* si el valor de ``k`` es igual a ``n``, ya se han generado todos los dígitos por
+    lo cual se imprime el arreglo en pantalla ``(print(a))``
+* si no, se hacen dos cosas:  
+    - se pone un 0 en la ``k``-ésima posicion y se llama recursivamente
+      a la función para que genere los dígitos restantes
+    - luego se pone un 1 en la misma ``k``-ésima posición (reemplazando el 0) y se
+      llama recursivamente a la función para que genere los dígitos restantes
+
+Pruebe su función con para el caso ``n=4``. Asegúrese de que genere el mismo resultado que el que aparece en el enunciado.
+
+
+Implementación:
+---
+Se pide que se entregue todos los posibles números binarios que se pueden escribir con una cierta cantidad de dígitos.
+
+La implementación corresponde a un algoritmo recursivo, se deben identificar los casos base y la llamada recursiva:
+* **Caso base**: $k-n=0$, esto es, no faltan dígitos. Entonces se imprime el arreglo.
+* **Llamada recursiva**: Para cada dígito se tienen dos maneras de colocar un dígito: que tenga un `0` o un `1`. Esto se puede enfrentar recursivamente si se dividen los números a generar según qué número va en el primer dígito, y luego llamar recursivamente para todos los restantes, de la forma:
+  1. Se coloca un `0` en la k-ésima posición y se llama recursivamente a la función para que genere los $n-k$ dígitos restantes. Así se tienen todos los posibles números de $n$ dígitos que empiezan con un `0`.
+  2. Se coloca un `1` en la k-ésima posición y se llama recursivamente para los siguientes $n-k$ dígitos y se obtienen todos los números que empiezan con `1`.
+  En la primera ejecución se va a llamar para $k=1$, o sea se pueden tener los dos casos. Y para cada uno, se llama recursivamente a la función en los dígitos restantes.
+
+```py
+def genera_binarios(a,k,n):
+	if k == n:   # caso base: k-n = 0, no quedan dígitos restantes por llamarles recursivamente la funcion
+		print(a)
+	else:
+		a[k] = 0    #primer dígito = 0
+		genera_binarios(a,k+1,n)
+		
+		a[k] = 1    #primer dígito = 1
+		genera_binarios(a,k+1,n)
+```

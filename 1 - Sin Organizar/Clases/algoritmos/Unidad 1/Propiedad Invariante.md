@@ -252,3 +252,40 @@ def ordena_burbuja_v2(a):
 		k = i
 ```
 así se ordenan elementos en un tiempo de ejecución lineal si se tiene una lista ordenada. Para el peor caso posible, sigue siendo de orden cuadrático.
+
+## Ejercicio 1: Ordenación Lomuto
+
+Existe un algoritmo alternativo a Hoare, que resulta en una codificación más sencilla. Este algoritmo, debido a **Lomuto**, se basa en el siguiente invariante:
+
+![particion-Lomuto](https://github.com/ivansipiran/AED-Apuntes/blob/main/recursos/particion-Lomuto.png?raw=1)  
+
+En este algoritmo, en cada iteración, si $a[j]<p$, se intercambian $a[i]$ con $a[j]$ y se incrementa $i$, porque ahora hay un elemento más en el grupo de los menores que $p$. Después de esto, se incrementa $j$, *incondicionalmente* (¿por qué es correcto hacer eso?).
+
+- Se debe aumentar $j$ porque se mantiene la cantidad de mayores que $p$ y se aumentó la cantidad de menores que $p$. Entonces, se debe desplazar el análisis al siguiente elemento de la lista sin revisar.
+
+Implementación:
+1. Inicialmente no hay elementos de la lista procesados, entonces el tamaño de los conjuntos solución de los menores que $p$ es vacío: $i=0$ y los mayores que $p$ también: $i=0$
+2. **En proceso**:  Cada elemento no procesado pertenece a la lista marcada con '?', entonces se analiza el número j-ésimo:
+   - Si $a[j]<p:$ entonces el número debiese estar en el conjunto solución izquierdo, se debiese hacer crecer dicho conjunto al pasar este elemento a la i-ésima posición y el elemento que está en $i$ es parte de los $>p$ y se intercambia con elemento en $j$ (así se procesa después como $>p$)
+   - Si $a[j] > p$, el elemento pertence al conjunto solución $>p$. Entonces se hace crecer el conjunto solamente acrecentando $j$.
+1. **Final**: El análisis de la lista se termina cuando el índice $j$ supera la cantidad total de elementos $n$, o sea cuando $j>n$
+
+
+```py
+def particionLomuto(a,p):
+	# Retorna pto de corte: p; nro de elementos <p: i; lista procesada: a
+	
+	n = len(a)   # total elementos de lista	
+	i = 0        # inicialmente <p no tiene elementos (ninguno procesado)
+	
+	for j in range(0,n):   # para cada jesimo (elemento de la lista)
+		if (a[j] < p):     # si jesimo es menor que p:
+			#intercambiar: jesimo pertenece a conj <p, iesimo sigue perteneciendo a >p
+			numGuardado = a[i]   # respaldar iesimo
+			a[i] = a[j]          # almacenar jesimo en iesimo
+			a[j] = numGuardado   # se preserva el >p en conjunto derecho
+			i += 1               # crece conjunto solucion <p
+	
+	return (p,i,a)
+	
+```

@@ -2,11 +2,12 @@
   "accentColor": "#fd3f3f",
   "cssTheme": "Primary",
   "textFontFamily": "Futura",
-  "monospaceFontFamily": "Cascadia Code",
+  "monospaceFontFamily": "Hack,Source Code Pro,Cascadia Code",
   "showRibbon": true,
   "enabledCssSnippets": [
     "adaptive_images",
     "twocolumns"
   ],
-  "theme": "system"
+  "theme": "system",
+  "showViewHeader": true
 }
