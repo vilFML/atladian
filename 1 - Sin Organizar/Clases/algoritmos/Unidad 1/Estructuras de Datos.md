@@ -277,10 +277,34 @@ por defecto se crea un árbol vacío, si no, cuando se instancia, se debe indica
 ## Ordenes
 
 Con respecto al acceso a la información, hay *diferentes formas de recorrer un árbol*: **Pre, In y Post** orden.
-En su base, se llama la función de recorrer recursivamente sobre los elementos del árbol, pero se diferencian en el orden de la recursión:
+En su base, *se llama la función de recorrer recursivamente* sobre los elementos del árbol, pero se diferencian en el orden de la recursión:
 1. **Preorden**: Primero la raíz, luego el sub-árbol izquierdo y finalmente el sub-árbol derecho.
+   ```py
+   def pre(p):
+	   if p is not None:
+		   print(p.info, end=' ')   #1. raiz
+		   pre(p.izq)               #2. subarbol izq
+		   pre(p.der)               #3. subarbol der
+   ```
+   
 2. **In orden**: Primero sub-árbol izquierdo, después la raíz y al final el sub-árbol derecho.
+   ```py
+   def ino(p):
+	   if p is not None:
+		   ino(p.izq)
+		   print(p.info, end=' ')
+		   ino(p.der)
+   ```
+   
 3. **Post orden**: Se recorre primero los nodos hijos, de forma que primero se recorre el sub-árbol izquierdo, después el sub-árbol derecho y finalmente la raíz.
+   ```py
+   def post(p):
+	   if p is not None:
+		   post(p.izq)
+		   post(p.der)
+		   print(p.info, end=' ')
+   ```
+   
 
 En cada nodo se tienen tres piezas de información: sub-árbol izquierdo, la raíz y el sub-árbol derecho. Y cada método difiere *en el orden* en que se accede a la información.
 ```py

@@ -118,12 +118,12 @@ $$
 ## Teorema Maestro
 La cantidad de operaciones para resolver el problema de tamaño $n$, se deben hacer 'p' veces la misma, pero para un problema de tamaño $\frac{n}{q}$ mas una cantidad de trabajo general $C_{n}$:
 $$
-T(n)=p\cdot T\left( \frac{n}{q} \right) + C_{n^{r}}
+T(n)=p\cdot T\left( \frac{n}{q} \right) + C\cdot n^{r}
 $$
 esto dice el tamaño al resolver un problema que **se subdivide**.
 Para resolver, se identifican los parámetros $p, q, r$ en lo que se tenga, y se tiene una complejidad según los casos:
 1. Si $q^{r}<\implies T(n)=\Theta(n^{\log_{q}p})$
-2. Si $q^{r}=p\implies T(n)=\Theta(n^{r}\log_{q}n)$
+2. Si $q^{r}=p\implies T(n)=\Theta(n^{r}\log n)$
 3. Si $q^{r>p}\implies T(n)=\Theta(n^{r})$
 
 ### Pasos comunes resolución

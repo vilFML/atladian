@@ -1,4 +1,4 @@
-# P1 : P1 C1 2018-1
+# P1 : P1, C1, 2018-1
 Para cada ecuación recursiva, indique a qué categoría pertenece (lineal de primer orden, lineal con coeficientes constantes, no lineal tipo [[Análisis de Algoritmos#Teorema Maestro| teorema maestro]]) y el orden asintótico más ajustado de su solución:
 $$
 \begin{aligned}
@@ -9,9 +9,7 @@ $$
 $$
 
 ##### a)
-Es homogénea pues no hay término que corresponde a $T(n)$
-Entonces la solución es de la forma $T(n)=\lambda^{n}$. **Este tipo de solución se tiene para lineales y también a constantes.**
-Luego, se reemplaza $T(n)=\lambda^{n}$
+Se tiene una [[Ecuaciones de Recurencia#Recurrencia Lineal|recurrencia lineal]]. Entonces, se reemplaza $T(n)=\lambda^{n}$:
 $$
 \begin{align}
  & \lambda^{n}=3\lambda^{n-1}+4\lambda^{n-2} & \iff \\
@@ -27,7 +25,7 @@ $$
 $$
 así, se tiene una solución como combinación lineal de los $\lambda$, o sea:
 $$
-t(n)=A\cdot 4^{n}+B(-1)^{n}
+T(n)=A\cdot 4^{n}+B(-1)^{n}
 $$
 y las constantes se obtienen utilizando las condiciones iniciales (o cond. borde): $T(0)=T(1)=1$:
 $$
