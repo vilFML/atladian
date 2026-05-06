@@ -125,3 +125,9 @@ Para resolver, se identifican los parámetros $p, q, r$ en lo que se tenga, y se
 1. Si $q^{r}<\implies T(n)=\Theta(n^{\log_{q}p})$
 2. Si $q^{r}=p\implies T(n)=\Theta(n^{r}\log_{q}n)$
 3. Si $q^{r>p}\implies T(n)=\Theta(n^{r})$
+
+### Pasos comunes resolución
+1. Ajustar forma de $T(n)$ para llevarlo a teorema.
+2. Identificar $p,q,r$
+3. Ver el caso que se tenga de $q^{r} <,=,> p$
+4. Aplicar teorema según el caso.
