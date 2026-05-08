@@ -125,3 +125,101 @@ $$
 T(n) = p\cdot T\left( \frac{n}{q} \right)+C\cdot n^{r=0} \implies T(n)=p\cdot T\left( \frac{n}{q} \right)
 $$
 esto significa que se debe dividir para reinar.
+
+# P7: Mezclar listas enlazadas
+Suponga que se dispone de la siguiente implementación de un `Nodo` de una lista enlazada:
+```py
+class Nodo:
+	def __init__(self, valor, sgte):
+		self.valor = valor
+		self.sgte = sgte
+```
+Diseñe un algoritmo iterativo y escriba el método `mezclarListasOrdenadas(self, lista2)`. Este se llamará desde una lista ordenada y recibirá como parámetro una segunda lista ordenada (ascendentemente por valor), retornando una lista que representará la mezcla ordenada de ambas listas. 
+
+Defina claramente cuáles son los invariantes del problema, la inicialización, la condición de término, en qué parte del código se rompe el invariante, dónde se recupera, etc.
+
+## Idea
+- Inicio: `p1`, `p2` en respectivas cabeceras.
+- Proceso: conjunto de solución: Única lista enlazada con elementos ya ordenados tales que ninguno es mayor al valor que está en los nodos `p1` o `p2`.
+  Pasa a ser parte del conjunto solución el menor valor entre ellos (si son iguales solamente se agranda el conj solución pasando al siguiente puntero de p1)
+- Término: Cuando `p1` o `p2` son `None`, pues ya se procesaron sus valores (ya se cambiaron a sus campos siguientes finales). 
+  Si queda alguna lista 1 con elementos, se termina pues ya están ordenados los siguientes; Si lista 2 con elementos, se redirige puntero `p1.sgte=None` a `p2` (no None) 
+
+## Invariante del ciclo
+
+Antes de cada iteración:
+
+1. La lista resultado contiene los menores elementos de ambas listas originales, ya ordenados.
+2. Todos los elementos ya agregados al resultado son menores o iguales que los elementos aún no procesados.
+3. `p1` y `p2` apuntan al primer nodo no procesado de cada lista.
+
+---
+
+# Inicialización
+
+Antes de entrar al ciclo:
+
+- la lista resultado está vacía;
+- no se procesó ningún elemento;
+- `p1` y `p2` apuntan a las cabeceras.
+
+Por lo tanto, el invariante se cumple.
+
+---
+
+# Dónde se rompe el invariante
+
+Se rompe momentáneamente **cuando se comparan los valores.**
+
+1. Se compara `p1.valor` y `p2.valor`;
+2. Se elige uno;
+3. Se avanza el puntero correspondiente.
+
+Por ejemplo:
+
+```py
+if p1.valor <= p2.valor:
+```
+En tal instante todavía no se actualiza la estructura del conjunto solución.
+
+---
+
+# Dónde se recupera
+
+El invariante se recupera cuando:
+
+- Se enlaza el nodo elegido al final de la lista resultado;
+- Se actualiza el puntero final;
+- Se avanza `p1` o `p2`.
+
+Ahí vuelve a cumplirse que:
+
+- el resultado sigue ordenado;
+- contiene **exactamente los menores elementos** ya procesados;
+- `p1` y `p2` siguen apuntando al primer no procesado.
+
+---
+
+# Condición de terminación
+
+El ciclo termina cuando:
+
+```
+p1 is None or p2 is None
+```
+
+En ese momento:
+
+- una de las listas ya fue completamente procesada;
+- la otra sigue ordenada;
+- basta enlazar el resto al resultado.
+
+---
+
+# Idea importante
+
+Un invariante no describe “qué hace el algoritmo”, sino:
+
+> qué propiedad permanece verdadera durante toda la ejecución del ciclo.
+
+Tu descripción del “menor pasa al conjunto solución” es más bien la lógica del algoritmo, no la propiedad invariante formal.
