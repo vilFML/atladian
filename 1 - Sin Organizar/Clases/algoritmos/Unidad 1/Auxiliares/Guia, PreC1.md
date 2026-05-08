@@ -1,4 +1,7 @@
 # P1
+
+^5b4e55
+
 Resolver las relaciones de recurrencia
 ## a.
 $$
@@ -43,6 +46,75 @@ $$
 Es similar a a)
 
 # P2
+Considere la siguiente ecuación de recurrencia:
+$$
+\begin{align}
+ & T(n)=8T(n-1)-15T(n-2) \\
+ & T(0)=1 \\
+ & T(1)=1
+\end{align}
+$$
+a) Escriba una función recursiva que calcule $T(n)$ en base a esta ecuación e indique el orden de magnitud del tiempo que demoraría (no es necesario ser preciso, basta que diga si es lineal, cuadrático, logarítmico, exponencial, etc.)
+b) A continuación, use una estrategia de tabulación para obtener un algoritmo más eficiente. Indique el orden de magnitud del tiempo que demoraría. 
+c) Finalmente, resuelva analíticamente la ecuación para $T(n)$.
+
+___
+Tomando la sucesión de fibonacci con una resta:
+$$
+\begin{align}
+ & f(n)=f(n-1)-f(n-2) \\
+ & f(0)=0 \\
+ & f(1)=1
+\end{align}
+$$
+la secuencia es $0,1,1,0,-1,-1,0,1,1,\dots$ o sea se tiene un comportamiento *periódico u oscilatorio*.
+\* Esto viene de resolver la ecuación con el polinomio característico haciendo $f(n)=\lambda^{n}$ como en [[Aux3#a)]]
+___
+
+##### a)
+Para $T(n)=8T(n-1)-15T(n-2)$, con $T(0)=1,T(1)=1$ puede hacerse una función simple que retorne directamente lo de la llamada recursiva para el caso n-ésimo, o sea que haga `return 8*f(n-1) - 15*f(n-2)` y retorne los casos base directamente. Entonces:
+```py
+def t(n):
+	if n==0:
+		return 1
+	elif n==1:
+		return 1
+	else:
+		return 8*t(n-1)-15*t(n-2)
+```
+como la función **llama dos veces** a ella misma por cada ejecución, se puede ver la situación como:
+$$
+\underbrace{ 2 }_{ 1 \text{ vez} }\cdot\underbrace{ 2 }_{ 2\text{° vez} }\cdot 2\cdot 2 \dots \underbrace{ 2 }_{ n\text{ veces} } = 2^{n}
+$$
+luego, tiene complejidad del orden de $O(2^{n})$
+
+##### b)
+Estrategia de tabulación es la [[Diseño de Algoritmos#Programación Dinámica|programación dinámica]].
+en pseudocódigo:
+```
+se def t(n) nueva:
+	si no tiene la sol para n
+		se implementa recursivamente
+```
+de la forma
+```py
+def t(n):
+	Taux = np.zeros(n+1, dtype=int)
+	
+	def t_rec(k):
+		if k>0 and Taux[k] == 0: # hay un 0 en la pos: no se ha implementado
+			if k<=1:   # caso base, llega a 1
+				Taux[k] = k
+			else:   # casos recursivos
+				Taux[k] = 8*t_rec(k-1) - 15*t_rec(k-2)
+		return Taux[k]   #entregar solucion para valor pedido
+	
+	return t_rec(n)
+```
+usando esta forma de resolución se tiene una complejidad de orden lineal: $\Theta(n)$ pues un caso se resuelve una única vez, y si se tienen $n$ llamadas, se resuelve sólo una vez cada una.
+
+##### c)
+Se desarrolla analíticamente haciendo el cambio de variable usual para recurrencia homogénea de coeficientes constantes: $T(n)=\lambda^{n}$ igual que en [[Aux3#a)]].
 
 # P3
 Se tiene algo similar a [[Tarea 3]]. La diferencia es que se descarta el tramo en donde se encuentre el número mayor.
