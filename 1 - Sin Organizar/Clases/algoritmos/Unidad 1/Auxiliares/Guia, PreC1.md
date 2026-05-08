@@ -41,3 +41,15 @@ $$
 
 ## c.
 Es similar a a)
+
+# P2
+
+# P3
+Se tiene algo similar a [[Tarea 3]]. La diferencia es que se descarta el tramo en donde se encuentre el número mayor.
+
+Para justificar la complejidad del orden $\Theta(\log n)$:
+Utilizando el teorema maestro, para tener una complejidad de $\Theta(\log n)$ se debe tener que $r=0$ entonces no debe tener término 'extra', o sea se requiere que el algoritmo sea de la forma:
+$$
+T(n) = p\cdot T\left( \frac{n}{q} \right)+C\cdot n^{r=0} \implies T(n)=p\cdot T\left( \frac{n}{q} \right)
+$$
+esto significa que se debe dividir para reinar.
