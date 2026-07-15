@@ -1,7 +1,7 @@
 {
   "livePreview": false,
   "newFileLocation": "current",
-  "attachmentFolderPath": "A - Anexos",
+  "attachmentFolderPath": "A-Recursos/Imgs",
   "autoPairBrackets": false,
   "autoPairMarkdown": false,
   "pdfExportSettings": {
@@ -11,5 +11,8 @@
     "margin": "0",
     "downscalePercent": 100
   },
-  "showInlineTitle": true
+  "showInlineTitle": true,
+  "defaultViewMode": "preview",
+  "strictLineBreaks": false,
+  "showLineNumber": true
 }

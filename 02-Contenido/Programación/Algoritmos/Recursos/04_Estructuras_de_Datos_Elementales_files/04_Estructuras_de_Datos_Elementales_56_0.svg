@@ -1,0 +1,45 @@
+<svg height="133pt" viewBox="0.00 0.00 198.00 133.20" width="198pt" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+<g class="graph" id="graph0" transform="scale(1 1) rotate(0) translate(4 129.1982)">
+<title>Arbol</title>
+<polygon fill="#ffffff" points="-4,4 -4,-129.1982 193.9981,-129.1982 193.9981,4 -4,4" stroke="transparent"/>
+<!-- 5 -->
+<g class="node" id="node1">
+<title>5</title>
+<ellipse cx="18" cy="-18" fill="none" rx="18" ry="18" stroke="#000000"/>
+<text fill="#000000" font-family="Times,serif" font-size="14.00" text-anchor="middle" x="18" y="-14.3">5</text>
+</g>
+<!-- 7 -->
+<g class="node" id="node2">
+<title>7</title>
+<ellipse cx="68.4" cy="-61.2" fill="none" rx="18" ry="18" stroke="#000000"/>
+<text fill="#000000" font-family="Times,serif" font-size="14.00" text-anchor="middle" x="68.4" y="-57.5">7</text>
+</g>
+<!-- 7&#45;&#45;5 -->
+<g class="edge" id="edge2">
+<title>7--5</title>
+<path d="M54.628,-49.3954C47.5165,-43.2998 38.8645,-35.8838 31.7554,-29.7903" fill="none" stroke="#000000"/>
+</g>
+<!-- 9 -->
+<g class="node" id="node3">
+<title>9</title>
+<ellipse cx="118.8" cy="-18" fill="none" rx="18" ry="18" stroke="#000000"/>
+<text fill="#000000" font-family="Times,serif" font-size="14.00" text-anchor="middle" x="118.8" y="-14.3">9</text>
+</g>
+<!-- 7&#45;&#45;9 -->
+<g class="edge" id="edge3">
+<title>7--9</title>
+<path d="M82.172,-49.3954C89.2835,-43.2998 97.9355,-35.8838 105.0446,-29.7903" fill="none" stroke="#000000"/>
+</g>
+<!-- 10 -->
+<g class="node" id="node4">
+<title>10</title>
+<ellipse cx="169.2" cy="-104.4" fill="none" rx="20.5982" ry="20.5982" stroke="#000000"/>
+<text fill="#000000" font-family="Times,serif" font-size="14.00" text-anchor="middle" x="169.2" y="-100.7">10</text>
+</g>
+<!-- 10&#45;&#45;7 -->
+<g class="edge" id="edge1">
+<title>10--7</title>
+<path d="M149.7647,-96.0706C131,-88.0286 102.8855,-75.9795 85.1016,-68.3578" fill="none" stroke="#000000"/>
+</g>
+</g>
+</svg>

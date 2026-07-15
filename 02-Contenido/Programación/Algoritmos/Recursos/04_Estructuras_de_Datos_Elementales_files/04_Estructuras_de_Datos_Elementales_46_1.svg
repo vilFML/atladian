@@ -1,0 +1,48 @@
+<svg height="44pt" viewBox="0.00 0.00 242.00 44.00" width="242pt" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+<g class="graph" id="graph0" transform="scale(1 1) rotate(0) translate(4 40)">
+<title>Lista</title>
+<polygon fill="#ffffff" points="-4,4 -4,-40 238,-40 238,4 -4,4" stroke="transparent"/>
+<!-- 42 -->
+<g class="node" id="node1">
+<title>42</title>
+<ellipse cx="27" cy="-18" fill="none" rx="27" ry="18" stroke="#000000"/>
+<text fill="#000000" font-family="Times,serif" font-size="14.00" text-anchor="middle" x="27" y="-14.3">42</text>
+</g>
+<!-- 65 -->
+<g class="node" id="node2">
+<title>65</title>
+<ellipse cx="117" cy="-18" fill="none" rx="27" ry="18" stroke="#000000"/>
+<text fill="#000000" font-family="Times,serif" font-size="14.00" text-anchor="middle" x="117" y="-14.3">65</text>
+</g>
+<!-- 42&#45;&gt;65 -->
+<g class="edge" id="edge1">
+<title>42-&gt;65</title>
+<path d="M52.5497,-11.8449C61.4801,-11.2634 71.6762,-11.1082 81.2822,-11.3793" fill="none" stroke="#000000"/>
+<polygon fill="#000000" points="81.2372,-14.8808 91.3865,-11.8408 81.5566,-7.8881 81.2372,-14.8808" stroke="#000000"/>
+</g>
+<!-- 65&#45;&gt;42 -->
+<g class="edge" id="edge4">
+<title>65-&gt;42</title>
+<path d="M91.3865,-24.1592C82.45,-24.7387 72.2523,-24.8919 62.6491,-24.6188" fill="none" stroke="#000000"/>
+<polygon fill="#000000" points="62.6997,-21.1175 52.5497,-24.1551 62.3786,-28.1101 62.6997,-21.1175" stroke="#000000"/>
+</g>
+<!-- 44 -->
+<g class="node" id="node3">
+<title>44</title>
+<ellipse cx="207" cy="-18" fill="none" rx="27" ry="18" stroke="#000000"/>
+<text fill="#000000" font-family="Times,serif" font-size="14.00" text-anchor="middle" x="207" y="-14.3">44</text>
+</g>
+<!-- 65&#45;&gt;44 -->
+<g class="edge" id="edge2">
+<title>65-&gt;44</title>
+<path d="M142.5497,-11.8449C151.4801,-11.2634 161.6762,-11.1082 171.2822,-11.3793" fill="none" stroke="#000000"/>
+<polygon fill="#000000" points="171.2372,-14.8808 181.3865,-11.8408 171.5566,-7.8881 171.2372,-14.8808" stroke="#000000"/>
+</g>
+<!-- 44&#45;&gt;65 -->
+<g class="edge" id="edge3">
+<title>44-&gt;65</title>
+<path d="M181.3865,-24.1592C172.45,-24.7387 162.2523,-24.8919 152.6491,-24.6188" fill="none" stroke="#000000"/>
+<polygon fill="#000000" points="152.6997,-21.1175 142.5497,-24.1551 152.3786,-28.1101 152.6997,-21.1175" stroke="#000000"/>
+</g>
+</g>
+</svg>
