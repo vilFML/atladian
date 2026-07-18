@@ -14,5 +14,6 @@
   "showInlineTitle": true,
   "defaultViewMode": "preview",
   "strictLineBreaks": false,
-  "showLineNumber": true
+  "showLineNumber": true,
+  "alwaysUpdateLinks": true
 }

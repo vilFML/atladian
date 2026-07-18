@@ -1,0 +1,1 @@
+Los PPPs son índices de precios que miden cuánto cuesta comprar una canasta básica de bienes y servicios, comparado con cuánto cuesta comprar la misma canasta en otra región de referencia, para la misma época. De referencia se usa, por ejemplo, el país de Estados Unidos en el año 2011.

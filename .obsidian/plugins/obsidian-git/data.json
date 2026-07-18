@@ -1,8 +1,8 @@
 {
-  "commitMessage": "actualización fecha: {{date}} en {{hostname}}",
+  "commitMessage": "default-commit {{date}} | {{hostname}}",
   "autoCommitMessage": "actualización fecha: {{date}} en {{hostname}}",
   "commitMessageScript": "",
-  "commitDateFormat": "DD-MM-YYYY, HH:mm:ss",
+  "commitDateFormat": "DD/MM/YY, HH:mm",
   "autoSaveInterval": 0,
   "autoPushInterval": 0,
   "autoPullInterval": 0,
