@@ -1,14 +1,16 @@
 # 3 Diseño de Algoritmos Eficientes
 
-En este capítulo veremos un conjunto de ideas que permiten diseñar algoritmos que, en muchos casos, son de los más eficientes que se conocen para sus respectivos problemas.
+En el capítulo se revisan un conjunto de ideas que permiten diseñar algoritmos que, en muchos casos, son de los más eficientes que se conocen para sus respectivos problemas.
+
 
 ## Dividir para Reinar
 
-Este es un método de diseño de algoritmos que se basa en subdividir el problema en sub-problemas, resolverlos recursivamente, y luego combinar las soluciones de los sub-problemas para construir la solución del problema original. Es necesario que los subproblemas tengan la misma estructura que el problema original, de modo que se pueda aplicar la recursividad.
+Este es un método de diseño de algoritmos que se basa en subdividir el problema en sub-problemas, resolverlos recursivamente, y luego combinar las soluciones de los sub-problemas para construir la solución del problema original.
 
-### Ejemplo: Multiplicación de Polinomios
+\* Es necesario que los subproblemas tengan la misma estructura que el problema original, de modo que se pueda aplicar la recursividad.
 
-Supongamos que tenemos dos polinomios $A(x)$ y $B(x)$, cada uno de grado $n-1$:
+### Algoritmo de Karatsuba
+Viendo el problema de multiplicar polinomios: Suponiendo que tenemos dos polinomios $A(x)$ y $B(x)$, cada uno de grado $n-1$,
 
 $$
 A(x) = a_0+a_1 x+a_2 x^2 + \ldots + a_{n-1}x^{n-1}
@@ -17,9 +19,9 @@ $$
 B(x) = b_0+b_1 x+b_2 x^2 + \ldots + b_{n-1}x^{n-1}
 $$
 
-representados por sus respectivos arreglos de coeficientes $a[0],\ldots,a[n-1]$ y $b[0],\ldots,b[n-1]$.
+estos se pueden representar por arreglos de sus coeficientes numéricos respectivos, en donde la $i$-ésima posición representa el coeficiente numérico de la $i$-ésima potencia de $x$: $a[0],\ldots,a[n-1]$ para el polinomio $A(x)$ y $b[0],\ldots,b[n-1]$ para $B(x)$.
 
-El problema consiste en calcular los coeficientes $c[0],\ldots,c[2n-2]$ del polinomio producto $C(x)=A(x)B(x)$.
+Si se quiere multiplicar los polinomios, el problema se reduce a calcular los coeficientes $c[0],\ldots,c[2n-2]$ del polinomio producto $C(x)=A(x)\cdot B(x)$
 
 Por ejemplo,
 
@@ -31,8 +33,39 @@ C(x) &= A(x)B(x) = 2+x-3x^2+18x^3-16x^4-3x^5+x^6
 \end{align}
 $$
 
-La manera obvia de resolver este problema es multiplicando cada término de $A(x)$ por cada término de $B(x)$ y acumulando los resultados que corresponden a la misma potencia de $x$:
+#### Forma 1 (Naive)
+Si $C(x)=A(x)\cdot B(x)$ es la multiplicación, se puede multiplicar cada coeficiente de un polinomio por todos los coeficientes del segundo.
+Se usa una forma de columnas: cada factor se ordena en su respectiva columna según el grado de $x$:
+$$
+\begin{matrix}
+A = &  2 & + & 2x & + & x^{2} \\
+B = & 1 & - & 2x & + & 3x^{2} \\
+C= & 2 & + & 2x & + & x^{2} \\
+ &  & - & 4x & - & 4x^{2} & - & 2x^{3} \\
+  &  &  &  &  & 6x^{2} & + & 6x^{3} & + & 3x^{4} \\
+C=  & 2 & - & 2x & + & 3x^{2} & + & 4x^{3} & + & 3x^{4}
+\end{matrix}
+$$
+Representando los polinomios como arreglos:
+```py
+A = [2  2 1]
+B = [1 -2 3]
+```
+y luego, se multiplica cada elemento de los arreglos por todos los elementos del otro. Viendo a $C$ como **una tabla**, en donde las columnas se enumeran desde el $0$:
 
+| Índice | 0   | 1   | 2   | ... |
+| ------ | --- | --- | --- | --- |
+| C =    | 2   | +2  | 1   | ... |
+|        |     | -4  | -4  | ... |
+|        |     |     | 6   | ... |
+La multiplicación entre $A(x)$ y $B(x)$ corresponde a la suma de los números que se multiplican, en donde el índice indica la columna a la que corresponden en $C$ que, a su vez, es el grado de $x$ al que acompaña cada factor.
+Idea de implementación en pseudocódigo:
+```py
+check de igual grado
+crear array de longitud 2n-1 con ceros
+la mult de los nros se acumulan en la lista
+C es el índice de C que es la suma de sus propios indices
+```
 
 ```python
 import numpy as np
@@ -44,38 +77,27 @@ def multpol(a, b):
         for j in range(0,n):
             c[i+j]+=a[i]*b[j]
     return c
-```
 
-
-```python
 multpol(np.array([2,3,-6,1]), np.array([1,-1,3,1]))
 ```
-
-
-
-
     array([  2.,   1.,  -3.,  18., -16.,  -3.,   1.])
 
-
-
-Evidentemente, este algoritmo demora tiempo $O(n^2)$.
-¿Es posible hacerlo más rápido?
-Para esto, aplicaremos la técnica de _dividir para reinar_.
-
-Supongamos que $n$ es par, y dividamos los polinomios en dos partes, separando las potencias bajas de las altas.
-Por ejemplo, si
-
+Luego, *la cantidad de veces que se multiplican los $n$ elementos* de un polinomio es de $n$ veces. O sea, se tiene un algoritmo del orden de $O(n^{2})$.
+#### Forma 2: Subdividir el problema
+Aplicando la técnica de _dividir para reinar_.
+Si los polinomios $A(x), B(x)$ se factorizan, se tienen polinomios de menor tamaño, separando las potencias bajas de las altas. Por ejemplo, si
 $$
-A(x)=2+3x-6x^2+x^3
+A(x) = 1+2x+3x^{2}+2x^{3}=(1+2x)+x^{2}(3+2x)
 $$
-
-lo podemos reescribir como
-
 $$
-A(x)=(2+3x) + (-6+3x)x^2
+B(x) = 4-2x+x^{2}-4x^{3} = (4-2x)+x^{2}(1-4x)
+$$
+y definiendo $A',A'',B',B''$ como los nuevos polinomios:
+$$
+A'=1+2x, A''=3+2x, \dots
 $$
 
-En general, podemos reescribir $A(x)$ y $B(x)$ como
+de forma general, es posible reescribir $A(x)$ y $B(x)$ como
 
 $$
 A(x) = A'(x)+A''(x)x^{n/2}
@@ -89,9 +111,12 @@ y entonces (omitiendo los "$(x)$" para simplificar la notación),
 $$
 C = A'B'+(A'B''+A''B')x^{n/2}+A''B''x^n
 $$
-
-Esto se puede implementar con 4 multiplicaciones recursivas, cada una involucrando polinomios de la mitad del tamaño.
-Nótese que las multiplicaciones por potencias de $x$ son solo realineaciones de los arreglos de coeficientes, de modo que son "gratis".
+en el ejemplo queda:
+$$
+C = A'B'+A''B'x^{2}+A'B''x^{2}+A''B''x^{4}=A'B'+(A''B'+A'B'')x^{2}+A''B''x^{4}
+$$
+ahora se tienen multiplicación de polinomios de grado $\frac{n}{2}$, en donde los términos que se multiplican por $x^{2},x^{4}$ es solamente *mover el resultado de la multiplicación numérica* en la lista $C$.
+En este caso, **se dividió el problema original en tamaños menores del mismo**. O sea, para resolver el problema de tamaño $n$, se está pasando a un problema de resolver 4 multiplicaciones de tamaño $\frac{n}{2}$ más un trabajo para mezclar los resultados.Esto se puede implementar con 4 multiplicaciones recursivas, cada una involucrando polinomios de la mitad del tamaño.
 
 Si llamamos $T(n)$ al número total de operaciones, éste obedece la ecuación de recurrencia
 
@@ -99,19 +124,50 @@ $$
 T(n) = 4T \left(\frac{n}{2}\right)+Kn
 $$
 
-para alguna constante K.
-
-Por el Teorema Maestro, con $p=4$, $q=2$, $r=1$, tenemos
-
+para alguna constante K y el término $n$ representa mezclar los resultados. Son $n$ operaciones pues se recorre la lista de tamaño $n$.
+\* Notar que las multiplicaciones por potencias de $x$ son solo realineaciones de los arreglos de coeficientes, de modo que son "gratis".
+Luego, por el [[2.2 Ecuaciones de Recurrencia#El Teorema Maestro|| teorema maestro]]: $p=4$, $q=2$, $r=1$ y resulta que el número de operaciones es
 $$
 T(n)=\Theta(n^2)
 $$
 
-lo cual no es mejor que el algoritmo anterior.
+##### Ejemplo: Ejercicio 4
 
-Afortunadamente, hay una manera de obtener un algoritmo realmente más eficiente.
-Si calculamos
+Se tiene una lista $A$ que consta de un conjunto de números ceros seguidos por un conjunto de números unos. Un ejemplo de lista $A$ es el siguiente:
+$$
+A = [0,0,0,0,0,0,0,0,0,1,1,1]
+$$
+Implemente la función "contar_ceros" que use la estrategia "dividir para reinar" y que devuelve la cantidad de ceros de la lista de entrada en tiempo $O(\log{n})$
 
+```py
+def contar_ceros(A, i, j):
+  # Se entrega una lista de ceros contiguos, entonces el índide del último es la cantidad de ceros que hay
+  # Para una última llamada de la función, como i es en donde empieza a buscar, es también la cantidad de ceros cuando se llega al ultimo 0 de los contiguos en la lista
+
+  # Se va a usar recursión, en donde:
+  # Caso Base: En la recusión final, se tiene un solo elemento: i = j entonces si este es 0, se 
+  # retorna el indice siguiente
+  if (i == j):
+    if (A[i] == 0):
+      return (i + 1)
+    else:
+      return i
+
+  # Como se va dividiento lista, la suma de i,j (son sus nuevos inicios y fin) es la longitud de ella
+  mitad = (i + j) // 2
+  #si nro es 1:
+  if A[mitad] == 1:
+    # Usar recursivamente a la izq
+    return contar_ceros(A, i, mitad)
+  else:
+    # se tiene 0, usar recursivamente a la der
+    return contar_ceros(A, mitad + 1 , j )
+
+```
+
+
+#### Forma 3: Karatsuba
+Un algoritmo más eficiente es definir nuevos polinomios $D,E,F$, de la forma:
 $$
 \begin{align}
 D &= (A'+A'')(B'+B'')\\
@@ -119,26 +175,25 @@ E &= A'B'\\
 F &= A''B''
 \end{align}
 $$
-
-podemos construir el polinomio $C$ de la manera siguiente:
+y se construye el polinomio $C$ de la forma:
 
 $$
 C = E+(D-E-F)x^{n/2}+Fx^n
 $$
-
-¡lo cual utiliza solo 3 multiplicaciones recursivas!
+en donde el término central $D-E-F = \cancel{ A'B' }+A'B''+A''B'+\cancel{ A''B'' }$, luego, se reemplaza una multiplicación por una suma. Y el proceso finalmente  utiliza solo 3 multiplicaciones recursivas. Viendo el número de operaciones $T(n)$,
 
 $$
 T(n) = 3T \left(\frac{n}{2}\right)+Kn
 $$
-
-Usando nuevamente el Teorema Maestro, esta vez con $p=3$, tenemos que
+Con el Teorema Maestro, esta vez con $p=3$, tenemos que
 
 $$
 T(n)=\Theta(n^{\log_2{3}}) \approx \Theta(n^{1.59})
 $$
+entonces se tiene una mejora en la eficiencia.
+Ésta forma de resolver el problema se llama *Algoritmo de Karatsuba*.
 
-Éste se llama el *Algoritmo de Karatsuba*.
+##### Ejemplo: Ejercicio 4
 
 ---
 
@@ -146,7 +201,7 @@ $$
 
 Hay ocasiones en que la simple aplicación de la recursividad conduce a algoritmos muy ineficientes, pero es posible evitar esa ineficiencia con un uso adecuado de memoria.
 
-### Ejemplo: Cálculo de un número de Fibonacci
+### Ejemplo: nésimo término de Fibonacci
 
 Recordemos la ecuación de Fibonacci
 
@@ -166,8 +221,7 @@ algunos de cuyos valores son:
 
 Queremos resolver el siguiente problema: dado un $n$, calcular $f_n$.
 
-A partir de la ecuación de recurrencia podemos escribir de inmediato una solución recursiva:
-
+La solución recursiva es:
 
 ```python
 def fibonacci(n):
@@ -175,18 +229,15 @@ def fibonacci(n):
         return n
     else:
         return fibonacci(n-1)+fibonacci(n-2)
-```
 
-
-```python
 print(fibonacci(10))
 ```
-
     55
 
 
-El problema es que, para $n$ grande, este algoritmo es horriblemente ineficiente.
-El motivo de esto es que, a medida que se van ejecutando las llamadas recursivas, un mismo número de Fibonacci puede calcularse múltiples veces, independientemente de si ya se ha calculado antes.
+El problema es que, para $n$ grande, este algoritmo es muy ineficiente, pues a medida que se van ejecutando las llamadas recursivas, un mismo número de Fibonacci puede calcularse múltiples veces, independientemente de si ya se ha calculado antes. Para tener la serie de Fibonacci para un término, se tiene una especie de árbol, en donde las cantidades de operaciones que hace cada rama es similar:
+Para tener $f(5)$, se debe hacer $f(4)$ que, a su vez, requiere $f(3)$ y así sucesivamente.
+
 
 Una forma de dimensionar esta ineficiencia es calcular, por ejemplo, el número de operaciones de suma que se hacen al calcular `fibonacci(n)`.
 Llamemos $s_n$ a ese número de sumas. Es fácil ver que

@@ -1,0 +1,1 @@
+Insumos de entrada para un proceso de producción. Algunos factores de producción son el trabajo, maquinaria, equipamiento (o capital), terreno, energía y materiales en bruto.

@@ -1,3 +1,5 @@
+# Módulos
+
 Al usar módulos se están encapsulando funciones, variables e instrucciones para resolver un determinado problema. El módulo se puede **reutilizar** en otros programas.
 Hay módulos que vienen disponibles para usar con python o se pueden crear módulos personales.
 
@@ -5,8 +7,8 @@ Para agregar un módulo a un programa se usa la palabra reservada `import`.
 
 \* Listado de funciones siempre disponibles: [[Funciones en Python]]
 
-# Uso de Módulos
-## Agregar Módulo
+## Uso de Módulos
+### Agregar Módulo
 
 Suponiendo que se quieren usar las funciones `randint()` y `uniform()` del módulo `random`:
 1. Se debe importar el módulo usando `import` seguido del nómbre del módulo: `random`, quedando la línea como `import 'modulo'`
@@ -19,7 +21,7 @@ n1 = random.randint(1, 2)
 n2 = random.uniform(3 ,4)
 ```
 
-### Dar alias a módulo
+#### Dar alias a módulo
 Como se debe escribir el nombre del módulo en cada implementación de sus funciones, se puede abreviar el nombre del módulo dándole un alias con la palabra `as` seguida del alias deseado, de la forma `import 'módulo' as 'alias'`
 Al tener un alias en un módulo sólo se requiere indicar el alias y no el nombre completo al utilizar una función.
 ##### Ejemplo
@@ -32,7 +34,7 @@ n1 = r.randint(1, 2)
 n2 = r.uniform(3 ,4)
 ```
 
-### Importar ciertas funciones de un modulo
+#### Importar ciertas funciones de un modulo
 Si se desean utilizar solo ciertas funciones de un módulo, se indica de qué modulo provienen con `from 'modulo'` seguido de las funciones que se agregan con `import 'funcion1', 'funcion2'` (se indica el nombre de las funciones separadas por coma `,`).
 \* En este caso se pueden utilizar las funciones sin necesidad de anteponer el nombre del módulo.
 ##### Ejemplo
@@ -59,11 +61,10 @@ n1 = randint(1, 2)
 n2 = uniform(3, 4)
 ```
 
-
-# Módulos Preinstalados
+## Módulos Preinstalados
 Son módulos que vienen con una instalación de python, pero que para utilizar las funciones en cada módulo se deben incluir los módulos.
-## Módulo math
 
+### Módulo math
 El módulo `math` de Python ofrece funciones relacionadas con matemáticas:
 
 | Función         | Significado  | Ejemplo             | Resultado   |
@@ -85,7 +86,8 @@ también trae constantes matemáticas:
 | `math.inf` | $\infty$     | `inf`          |
 | `math.nan` | not a number | `nan`          |
 | `math.pi`  | $\pi$        | `3.1415592...` |
-## Módulo random
+
+### Módulo random
 Es un módulo útil para implementar comportamientos aleatorios.
 
 | Función               | Significado                                                                               |
@@ -93,13 +95,124 @@ Es un módulo útil para implementar comportamientos aleatorios.
 | `random.random()`     | Número `float` $N$ al azar en el intervalo $0,0 \leq x < 1,0$<br>\**no toma el valor 1,0* |
 | `random.uniform(x,y)` | Número `float` $N$ al azar en el intervalo $x \leq N \leq y$                              |
 | `random.randint(x,y)` | Número `int` $N$ al azar en el intervalo $x \leq N \leq y$                                |
-###### Ejemplos:
+##### Ejemplos:
 1. `random.randint(0,1)` puede modelar el lanzamiento de una moneda, donde los valores `0` y `1` se asignan a cara o sello.
 2. `random.randint(1,6)` puede modelar el lanzamiento de un dado.
 
+## Módulos Disponibles para Instalar
+
+### Numpy y Arreglos
+
+Numpy es la principal biblioteca para computación científica en Python.
+
+Una de las características de Numpy es que provee arreglos multidimensionales de alta eficiencia. Mientras la gran flexibilidad de las listas de Python puede hacer que no sea muy eficiente el acceso a elementos específicos, los arreglos de Numpy aseguran el acceso a cada elemento en tiempo constante. Por esa razón, utilizaremos estos arreglos cuando necesitemos asegurar la eficiencia de la implementación de los algoritmos.
 
 
-# Módulos Propios
+
+```python
+import numpy as np
+
+a = np.array([6.5, 5.2, 4.6, 7.0, 4.3])
+print(a[2])
+print(len(a))
+```
+
+    4.6
+    5
+
+#### Inicializar Arreglos
+Hay varias formas de crear arreglos inicializados con ceros, unos, valores constantes o valores aleatorios.
+
+
+```python
+b = np.ones(10)
+print(b)
+```
+
+    [1. 1. 1. 1. 1. 1. 1. 1. 1. 1.]
+
+
+
+```python
+c = np.zeros(7,dtype=int)
+print(c)
+```
+
+    [0 0 0 0 0 0 0]
+
+
+En los dos ejemplos anteriores se muestra la diferencia que se produce al explicitar el tipo de datos del arreglo. En el primero, se obtiene el *default*, que es flotante, mientras en el segundo se fuerza a que sea entero.
+
+
+```python
+c = np.full(5, 2)
+print(c)
+```
+
+    [2 2 2 2 2]
+
+
+
+```python
+d = np.random.random(6)
+print(d)
+```
+
+    [0.39229597 0.99294597 0.16978406 0.49579816 0.3654721  0.43266937]
+
+#### Arreglo Multidimensional (Matriz)
+También es posible crear y manejar arreglos de varias dimensiones.
+
+
+```python
+a = np.array([[1,2,3],[4,5,6]])
+print(a)
+```
+
+    [[1 2 3]
+     [4 5 6]]
+
+
+
+```python
+print(a[0,2])
+```
+
+    3
+
+
+
+```python
+(m,n)=np.shape(a)
+print(m,n)
+```
+
+    2 3
+
+
+
+```python
+b = np.zeros((3,3))
+print(b)
+```
+
+    [[0. 0. 0.]
+     [0. 0. 0.]
+     [0. 0. 0.]]
+
+
+
+```python
+c = np.eye(3)
+print(c)
+```
+
+    [[1. 0. 0.]
+     [0. 1. 0.]
+     [0. 0. 1.]]
+
+
+## Módulos Propios
 Para crear módulos se debe crear un archivo de extensión `.py` que contiene las definiciones de las funciones en su interior.
 El módulo de las funciones que se desean agregar al programa **debe estar en la misma carpeta que el programa**.
 

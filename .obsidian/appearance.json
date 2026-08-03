@@ -1,6 +1,6 @@
 {
-  "accentColor": "#a72a2a",
-  "cssTheme": "Primary",
+  "accentColor": "#992424",
+  "cssTheme": "Typewriter",
   "textFontFamily": "Futura",
   "monospaceFontFamily": "Hack,Source Code Pro,Cascadia Code",
   "showRibbon": true,

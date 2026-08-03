@@ -19,7 +19,7 @@ Las listas enlazadas se componen de **nodos**, que corresponden a bloques que al
 1. La información del mismo (e.g. el número que almacena).
 2. La posición en la que se encuentra el siguiente bloque.
 
-La implementación de los **nodos** se hace a través de una [[02-Contenido/Programación/Python/1. Expresiones, Tipos y Variables/Clases|clase]] con dos parámetros: `info` y `sgte`.
+La implementación de los **nodos** se hace a través de una [[02-Contenido/Programación/Python/Expresiones, Tipos y Variables/Clases|clase]] con dos parámetros: `info` y `sgte`.
 
 ```py
 class Nodo:
@@ -424,5 +424,5 @@ $$
 esto en forma de pila indica que, luego de acumular números, estos se operan con el operador que se encuentre en un nodo.
 
 #### Recorrido no recursivo de un árbol binario
-Para pasar a una implementación iterativa, se debe pasar la recursividad a una forma compatible con hacer la [[Recursividad#Recursividad v/s Iteración|'traducción' a iteración]]:
+Para pasar a una implementación iterativa, se debe pasar la recursividad a una forma compatible con hacer la [[1.2 Recursividad#Recursividad v/s Iteración|'traducción' a iteración]]:
 Se pasa a forma *preorden*, en donde se hace push a la derecha primero y luego a la izquierda. Con ello se garantiza que el siguiente ciclo saque el elemento de la izquierda.

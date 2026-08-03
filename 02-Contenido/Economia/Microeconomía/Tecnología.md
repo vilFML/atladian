@@ -1,0 +1,1 @@
+Proceso que usa un conjunto de materiales y otros insumos, incluyendo el trabajo de personas y maquinaria, para producir otros insumos.

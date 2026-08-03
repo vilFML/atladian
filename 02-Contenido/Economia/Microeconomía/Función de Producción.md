@@ -1,0 +1,1 @@
+Es una relación entre la cantidad de insumos de entrada y de salida, para un proceso de producción.
