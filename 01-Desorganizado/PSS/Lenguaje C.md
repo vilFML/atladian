@@ -334,9 +334,30 @@ En C los números se pueden representar indicando diferentes bases:
 \* no nay base binaria
 El más usado es hexadecimal.
 
-| 0x                                      | 1    | 0    |
-| --------------------------------------- | ---- | ---- |
-| Prefijo para indicar número hexadecimal | 0001 | 0000 |
+##### Hexadecimal
+
+
+Tabla resumen por tamaño (tipos comunes)
+
+| Tipo | Tamaño (bits) | Rango hexadecimal (mínimo a máximo) | Ejemplo mínimo | Ejemplo máximo |
+|------|---------------|--------------------------------------|----------------|----------------|
+| `signed char` | 8 | `0x80` a `0x7f` | `0x80` (-128) | `0x7f` (127) |
+| `unsigned char` | 8 | `0x00` a `0xff` | `0x00` (0) | `0xff` (255) |
+| `short` | 16 | `0x8000` a `0x7fff` | `0x8000` (-32768) | `0x7fff` (32767) |
+| `unsigned short` | 16 | `0x0000` a `0xffff` | `0x0000` (0) | `0xffff` (65535) |
+| `int` | 32 | `0x80000000` a `0x7fffffff` | `0x80000000` (-2147483648) | `0x7fffffff` (2147483647) |
+| `unsigned int` | 32 | `0x00000000` a `0xffffffff` | `0x00000000` (0) | `0xffffffff` (4294967295) |
+| `long` (64-bit) | 64 | `0x8000000000000000` a `0x7fffffffffffffff` | `0x8000000000000000` (-9223372036854775808) | `0x7fffffffffffffff` (9223372036854775807) |
+| `unsigned long` (64-bit) | 64 | `0x0000000000000000` a `0xffffffffffffffff` | `0x0000000000000000` (0) | `0xffffffffffffffff` (18446744073709551615) |
+| `long long` (64-bit) | 64 | `0x8000000000000000` a `0x7fffffffffffffff` | `0x8000000000000000` (-9223372036854775808) | `0x7fffffffffffffff` (9223372036854775807) |
+| `unsigned long long` (64-bit) | 64 | `0x0000000000000000` a `0xffffffffffffffff` | `0x0000000000000000` (0) | `0xffffffffffffffff` (18446744073709551615) |
+
+Notas importantes:
+
+- **Complemento a dos:** En tipos con signo, el valor más significativo (primer bit = 1) representa números negativos
+- **Truncamiento:** Al asignar un valor hexadecimal a un tipo más pequeño, se pierden los bits más significativos
+- **Sufijos:** Usa `u`, `l`, `ll`, `ul`, `ull` para forzar el tipo del literal
+- **Dependencia de plataforma:** El tamaño de `int`, `long` y `long long` puede variar según la arquitectura y el compilador
 
 ### Operadores
 Si 1 representa verdadero y 0 falso:
@@ -476,16 +497,19 @@ Si se quiere hacer un desplazamiento sin considerar el signo de un número, se p
 
 ---
 
-El desplazamiento a al derecha es equivalente a dividir por una potencia de 2, en donde $i$ son las posiciones a desplazar que indica la $i$ésima potencia $2^{i}$:
+El desplazamiento a la derecha es equivalente a dividir por una potencia de 2, en donde $i$ son las posiciones a desplazar que indica la $i$ésima potencia $2^{i}$:
 `valor >> i` $\iff \frac{\text{valor}}{2^{i}}$
 
 ##### Máscara
 Una máscara es un número tal que al operarlo con otro permite extraer sus bits, o sea este va a tener `1` en las posiciones que se quieran extraer.
 Formas de formar una máscara:
-Para formar la máscara `int x = 0x11`
-1. `int m = 0xff`
-2. `int m = (unsigned int)-1 >> 28`: Por `28` quedan cuatro `1` y se rellenan las posiciones con `0`.
-3. `int m = ~(-1<<4)`
+1. Notación directa: Usando la notación hexadecimal, se indican los bits a almacenar directamente
+   - Para `int` se tienen 8 bits
+   `int m = 0xff`
+2. Para una capacidad de 32 bits, se forma la máscara desplazando los bits una cantidad $32-i$ con $i$ la cantidad de `1` que tendrá la máscara desde la derecha.
+   Por ejemplo, para una máscara con cuatro `1` o sea el número `000...0001111` se hace `int m = (unsigned int)-1 >> 28`: Por $32-4=28$ quedan cuatro `1` y se rellenan las posiciones a la izquierda con `0` por hacer cast a `unsigned` lo que ignora el `1` en el primer bit. 
+3. Generar solo `1` en todas las posiciones y desplazar hacia la izquierda para tener `0` en las posiciones deseadas pues finalmente se niega todo el número para tener la máscara deseada.
+   `int m = ~(-1<<4)` genera `000...001111` pues se negaron los bits `111111...11110000`.
 
 ## Punteros
 Un puntero es un tipo particular de dado que **almacena una dirección de memoria** de una variable. No almacena valores (e.g. `int`, `float`, etc.).
