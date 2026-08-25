@@ -739,3 +739,96 @@ void delete(char *s, char x){
 	return
 }
 ```
+
+# Malloc
+Las variables tienen un 'tiempo de vida' desde que se define hasta que se libera la memoria que utilizaba (destrucción).
+```C
+int fn (int x){
+	int y;
+	if (...){
+		int z;
+	}
+	return;
+}
+```
+el tiempo de vida de `x` es desde la definción de la función hasta el fin de ella; para `y` es desde la segunda línea hasta el fin de la misma función; y para `z` es solamente dentro del bloque `if()`.
+
+Las variables comunes 'mueren' en el retorno de la función en donde se definen.
+\* Todas las variables se mueren en el `return` de la función `main`.
+
+## Variables Dinámicas
+Las variables dinámicas son las que sobreviven al retorno de la función en donde se definió. Estas tienen un ciclo de vida desde que **es definida hasta que explícitamente se libera su memoria**.
+Las variables dinámicas se crean utilizando `malloc()`, de la forma:
+```C
+void * malloc(int size);
+```
+en donde `void *` es un *puntero opaco* e `int size` es el tamaño de la memoria a utilizar (en Bytes).
+
+Por ejemplo: para crear un arreglo de `int`, para almacenar 5 números:
+```C
+int *p = malloc(5*sizeof(int));
+```
+y se tiene un arreglo de memoria de 5 bloques exactos para números de tipo `int`. Las variables son
+- `*p` es una variable local.
+- `malloc()` indica una variable dinámica.
+
+Otro ejemplo es
+```C
+char *p = malloc(20)
+```
+en donde se reservaron 20 Bytes de memoria, pero en este caso se *subdividen de forma diferente* por la capacidad que utiliza el tipo de dato `char`.
+
+---
+
+Para **liberar** el espacio de una variable dinámica, se utiliza `free()` de la forma:
+```C
+void free(void *ptr);
+```
+en donde `*ptr` es una variable que se creó con `malloc()`.
+
+Liberar memoria tiene restricciones:
+1. **Solo se puede hacer `free()` a variables que se crearon con `malloc()`**, o sea solamente se pueden liberar espacios de memoria de variables dinámicas (pues estas *sobreviven* a término de una función).
+2. **Solo se puede liberar la memoria 1 vez**.
+3. Siempre se libera **toda la memoria** utilizada por la variable dinámica. Esto suele suceder cuando se libera un arreglo mediante su puntero, definido como variable dinámica, y este *haya sido desplazado y ya no apunte al primer elemento del arreglo* como por ejemplo:
+   ```C
+   int *p = malloc(20);
+   p++;
+   free(p);   //error: p no apunta al 1er elem
+   ```
+
+> Si se modifica un puntero y este ya no apunta al primer elemento de un arreglo, no hay forma de liberar el espacio del arreglo.
+
+Si no se libera la memoria utilizada antes de finalizar el programa (o sea ejecutar `return;` de `main()`), se podría llenar la memoria del PC. Por ejemplo el caso de tener un bucle que vaya reservando memoria con `malloc()`.
+\*Se puede liberar matando el programa con `CTRL+C`.
+
+##### Comando sanidad
+\* Comando que revisa tareas del curso.
+Este reclama cuando:
+1. Pedir más memoria de la que se utiliza efectivamente en el programa.
+2. Goteo de memoria (*Memory Leak*): Cuando no se libera la memoria de ua variable dinámica.
+
+## Problemas de malloc
+El uso de `malloc()` debe ser controladamente pues es propenso a errores:
+1. *Memory Leak*: La memoria reservada por el programa no se liberó durante su ejecución.
+   Por ejemplo usar una variable auxiliar y no liberarla al terminar su uso:
+   ```C
+   char *copia(char *s){
+	   char *res = malloc(strlen(s) + 1);
+	   char *aux = malloc(strlen(s) + 1);   //no se le hace free
+	   return strcpy(res, s);
+   }
+   ```
+   en donde se debiese hacer `free()` a `*aux` antes de retornar.
+
+2. **Referencia Colgante (*Dangling Reference*)**: Es cuando se hacer `free` a la variable (o puntero) y este queda apuntando a bloques de memoria vacias.
+   Por ejemplo,
+   ```C
+   char *p = malloc(20);
+   ...
+   free(p);
+   ...
+   *p      //SEGFAULT
+   return;
+   ```
+   Si se hace `free()` un puntero y se utiliza, se va a intentar acceder a bloques de memoria vacios.
+   > Para prevenir: **hacer `free()` justo antes de retornar**.
