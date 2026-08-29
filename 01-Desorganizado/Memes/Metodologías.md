@@ -272,9 +272,19 @@ def areEqual(
 
 
 # Programación Orientada a Objetos
+##### Vocabulario
 
-**Programación Estructurada**: Una metodología de programación estructurada utiliza la secuenciación, selección e iteración para organizar el flujo de trabajo, evitando así saltos arbitrarios en el programa.
-La metodología suele complementarse con *descomposición procedural en funciones*. Esto es la técnica de dividir un problema complejo en subproblemas manejables **mediante la creación de funciones**. 
+- **Estado Mutable**: Se refiere a una variable o alguna estructura de datos cuyo contenido puede cambiar a lo largo del programa.
+
+- **Cliente**: El cliente (o código cliente) es la parte del programa que utiliza, consume o interactúa con un servicio o componente provisto por otro objeto.
+  Es el elemento que **coordina** las acciones generales sin tener la necesidad de conocer los detalles internos de **cómo** el proveedor realiza las acciones (como solicitar una lista de elementos o pedirle a figuras que se muestren en pantalla).
+- **Interfaz**:
+  1. Como *contrato* observable: Corresponde al conjunto de operaciones y servicios que un objeto expone a sus clientes. Describe **qué se le puede pedir a un objeto** (como los servicios disponibles), ocultando el *cómo* se realizan las operaciones.
+  2. Como *lista de promesas*: (Implementado en código en Scala como `trait`) Premisa de *"si se usa este 'trait', se deben implementar estos miembros".* Permite que el cliente y las implementaciones concretas se desarrollen por separado, dejando que sea necesario ponerse de acuerdo en el contrato compartido.
+
+## Programación Estructurada
+Una metodología de programación estructurada es utilizar secuenciación, selección e iteración para organizar el flujo de trabajo, evitando así saltos arbitrarios en el programa.
+\* La metodología suele complementarse con *descomposición procedural en funciones*. Esto es la técnica de dividir un problema complejo en subproblemas manejables **mediante la creación de funciones**. 
 Por ejemplo, para tener el promedio de una secuencia
 ```Scala
 def sumUpTo(n: Int): Int =
@@ -287,11 +297,14 @@ def average(n: Int):Double =
 ```
 en donde se divide el problema en dos funciones `sumUpTo`, donde`for` repite una acción; y la función `average`.
 
-Expresar el flujo de control no dice *cómo repartir responsabilidades cuando el sistema crece*.
+Pero expresar el flujo de control no dice *cómo repartir responsabilidades cuando el sistema crece*.
 
-\* **Estado Mutable**: Se refiere a una variable o alguna estructura de datos cuyo contenido puede cambiar a lo largo del programa.
+## Diseñar Programa
 
-## Cohesión y Acoplamiento
+Además de estructurar el flujo de control de un programa, se debe considerar la problemática cuando se aumenten los requerimientos, usualmente van a surgir dos problemas fundamentales:
+1. **Baja cohesión**: Una función o módulo toma múltiples responsabilidades no necesariamente relacionadas entre sí, o que tienen un distinto nivel de abstracción.
+2. **Alto acoplamiento**: Los módulos dependen profundamente de cómo está implementado el código en otros módulos. Luego, un cambio en uno desencadena en fallos en múltiples puntos.
+---
 Como caso de estudio, se tiene una aplicación gráfica que recibe una colección de figuras y luego se muestran en pantalla.
 Para mostrar las figuras se podría crear una función central que se encargue de revisar el tipo de figura para decidir qué función llamar
 ```Scala
@@ -348,8 +361,165 @@ class Circle(val radius: Int, val position: Point) extends Shape:
 
 ```
 
+## Paradigma Orientado a Objetos
+El enfoque del paradigma orientado a objetos es en quién toma las decisiones en el código. En lugar de que el cliente inspeccione el tipo de dato para decidir qué hacer, el cliente **delega** la acción al objeto.
+> Principio: "Dime, no me preguntes": El cliente **invoca un servicio** y el objeto receptor resuelve internamente la ejecución.
+
+**Las tres perspectivas de Martin Fowler**:
+Para analizar un objeto correctamente, **evitando confundir el diseño con el código** se tienen las perspectivas:
+1. **Conceptual**: "¿Qué representa en el dominio?", esto modela los conceptos y responsabilidades en el problema.
+2. **De Especificación**: "Qué servicios promete ofrecer", lo que define la *interfaz pública* y contratos observables sin revelar detalles.
+3. **De Implementación**: "Cómo cumple sus tareas", que define los campos de estado y el código de sus métodos.
+Un ejemplo para el caso de estudio de cómo trabajan juntas las perspectivas es:
+- Conceptual: Una figura sabe cómo mostrarse
+- Especificación:
+  ~~~Scala
+  def displayOn(screen: Screen): Unit
+  ~~~
+- Implementación: `Square` utilizasu lado y posición para dibujarse.
 
 
+
+
+
+
+### Interfaz de Objeto
+La interfaz de un objeto es el **conjunto de operaciones que expone a sus clientes**. Estas describen qué servicios están disponibles y ocultan los detalles de cómo son implementados, permitiendo así que clientes dependan de un **contrato estable**.
+\* Conceptualmente, puede ser implementado diferente a `interface` o `trait`.
+
+Por ejemplo, para una especificación de una cuenta de banco, en Scala se puede expresar una interfaz con `trait`:
+~~~Scala
+trait Account:
+	def getBalance: Int
+	def withdraw(amount: Int): Boolean
+	def deposit(amount: Int): Boolean
+~~~
+en donde los métodos definidos con `def` definen las operaciones que promete ofrecer la especificación de la cuenta de banco.
+**Se definió qué mensajes responde la cuenta, no el cómo lo hace.**
+
+---
+Para representar las interfaces, se utiliza UML
+![[Pasted image 20260829150309.png]]
+https://www.visual-paradigm.com/guide/uml-unified-modeling-language/uml-class-diagram-tutorial/
+
+En el ejemplo de la cuenta:
+![[Pasted image 20260829152939.png]]
+que se traduce
+~~~Scala
+class SimpleAccount(
+	var balance: Int,
+	var currency : String
+) extends Account:
+	def getBalance: Int = balance
+	def withdraw(amount: Int): Boolean =
+		if balance >= amount then
+			balance -= amount
+			true
+		else false
+	def deposit(amount: Int): Boolean =
+		balance += amount
+		true
+
+~~~
+
+### Objeto
+Cada objeto encapsula la información y el comportamiento necesarios para cumplir responsabilidades concretas. Una buena distribución intenta mantener relacionadas la información necesaria y las decisiones que dependen de sea información. Por ejemplo:
+
+| Objeto  | Responsabilidades                                     |
+| ------- | ----------------------------------------------------- |
+| Cliente | - Pide lista de figuras<br>- Pide a figuras mostrarse |
+| Figura  | Define cómo mostrarse                                 |
+| BDD     | Define cómo obtener lista de figuras                  |
+
+> ¿Cómo descomponer orientado a objetos?
+> Los **sustantivos** pueden sugerir **objetos**
+> Los **verbos** pueden sugerir **responsabilidades**
+
+y estas se validan según la cohesión, el acoplamiento y cambios esperables.
+
+Un objeto se compone de tres dimensiones esenciales:
+1. **Identidad**: Esto distingue de forma única a un objeto de cualquier otro en la memoria, aunque estos compartan datos.
+2. **Estado**: Información interna almacenada por el objeto, representado por **campos o variables de instancia** (mutables `var` o inmutable `val`).
+3. **Comportamiento**: Operaciones expuestas mediante métodos públicos que conforman su interfaz, implentado mediante **métodos**.
+
+Un ejemplo del nivel de implementación de una cuenta bancaria, se crea un objeto con `object`, y se puede implementar una interfaz de tal objeto con la palabra `extends`.
+~~~Scala
+object AccountOfBigby extends Account:
+	// Estado: Campos
+	var balance: Int = 50_000
+	val currency : String = "CLP"
+
+// Comportamiento: Métodos
+	def getBalance: Int = balance
+	def withdraw(amount: Int): Boolean =
+		if balance >= amount then
+			balance -= amount
+			true
+		else
+			false
+	def deposit(amount: Int): Boolean =
+		balance += amount
+		true
+~~~
+`extends` requiere que se implementen todos los métodos definidos en el trait `Account`.
+\***Nota**: `account` es de tipo `AccountOfBigby` y `Account`
+
+#### Crear Objetos en Scala
+1. Se pueden crear objetos de forma *nominal*:
+~~~Scala
+object Alexander:
+	val name: String = "Alexander"
+	def talk(): Unit =
+		println(name + ": Ed...ward")
+
+@main def run(): Unit =
+	val alexander = Alexander
+	alexander.talk()
+~~~
+en donde no se tiene `trait`, luego la interfaz del objeto lo forman `name` `talk`.
+\* Alternativamente a la concatenación con `+` de strings, se puede usar la interpolación de cadenas, de la forma `s"..."` en donde se usa `$v` para ingresar una variable en el lugar y `${expr}` para expresiones, como `s"{x.foo}"`.
+
+2. De forma *anónima*
+~~~Scala
+trait Animal:
+	val name: String
+	def talk(): Unit
+
+@main def run(): Unit =
+	val alexander = new Animal:
+		val name: String = "Alexander"
+		def talk(): Unit =
+			println(s"$name: Ed...ward")
+	alexander.talk()
+
+~~~
+
+## Clases como fábricas de Objetos
+Una clase es una especie de 'fábrica' de objetos, como una plantilla para instanciarlos. En donde se describe qué valores se necesitan para crear un objeto, su estado y comportamiento.
+
+Por ejemplo, instanciar un perro como animal:
+~~~Scala
+class Dog(val name: String) extends Animal:
+	def talk(): Unit =
+		println(s"$name: Woof!")
+~~~
+en donde **una clase puede tomar argumentos** y se pueden usar esos argumentos en su cuerpo.
+
+#### Ejemplo
+~~~Scala
+class Dog(val name: String) extends Animal:
+	def talk(): Unit =
+		println(s"$name: Woof!")
+
+@main def dogMain(): Unit =
+	val dog1: Animal = new Dog("Alexander")
+	dog1.talk()
+	val dog2: Animal = new Dog("Bond")
+	dog2.talk()
+~~~
+![[Pasted image 20260829152730.png]]
+en donde `dog1` y `dog2` tienen la misma implementación. Y visualizando en diagrama UML:
+![[Pasted image 20260829152830.png]]
 ## Clases y Objetos
 En una orientación a objetos, cada valor es un objeto y las definiciones de su comportamiento se definenn en clases o *traits*. 
 Una **clase** define una plantilla, o sea **un tipo de dato estructurado**, que combina:
