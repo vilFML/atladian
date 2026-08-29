@@ -740,7 +740,7 @@ void delete(char *s, char x){
 }
 ```
 
-# Malloc
+## Malloc
 Las variables tienen un 'tiempo de vida' desde que se define hasta que se libera la memoria que utilizaba (destrucción).
 ```C
 int fn (int x){
@@ -756,7 +756,7 @@ el tiempo de vida de `x` es desde la definción de la función hasta el fin de e
 Las variables comunes 'mueren' en el retorno de la función en donde se definen.
 \* Todas las variables se mueren en el `return` de la función `main`.
 
-## Variables Dinámicas
+### Variables Dinámicas
 Las variables dinámicas son las que sobreviven al retorno de la función en donde se definió. Estas tienen un ciclo de vida desde que **es definida hasta que explícitamente se libera su memoria**.
 Las variables dinámicas se crean utilizando `malloc()`, de la forma:
 ```C
@@ -807,7 +807,7 @@ Este reclama cuando:
 1. Pedir más memoria de la que se utiliza efectivamente en el programa.
 2. Goteo de memoria (*Memory Leak*): Cuando no se libera la memoria de ua variable dinámica.
 
-## Problemas de malloc
+### Problemas de malloc
 El uso de `malloc()` debe ser controladamente pues es propenso a errores:
 1. *Memory Leak*: La memoria reservada por el programa no se liberó durante su ejecución.
    Por ejemplo usar una variable auxiliar y no liberarla al terminar su uso:
