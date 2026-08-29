@@ -272,6 +272,84 @@ def areEqual(
 
 
 # Programación Orientada a Objetos
+
+**Programación Estructurada**: Una metodología de programación estructurada utiliza la secuenciación, selección e iteración para organizar el flujo de trabajo, evitando así saltos arbitrarios en el programa.
+La metodología suele complementarse con *descomposición procedural en funciones*. Esto es la técnica de dividir un problema complejo en subproblemas manejables **mediante la creación de funciones**. 
+Por ejemplo, para tener el promedio de una secuencia
+```Scala
+def sumUpTo(n: Int): Int =
+	var sum = 0
+	for i <- 1 to n do sum += i
+	sum
+
+def average(n: Int):Double =
+	sumUpTo(n).toDouble / n
+```
+en donde se divide el problema en dos funciones `sumUpTo`, donde`for` repite una acción; y la función `average`.
+
+Expresar el flujo de control no dice *cómo repartir responsabilidades cuando el sistema crece*.
+
+\* **Estado Mutable**: Se refiere a una variable o alguna estructura de datos cuyo contenido puede cambiar a lo largo del programa.
+
+## Cohesión y Acoplamiento
+Como caso de estudio, se tiene una aplicación gráfica que recibe una colección de figuras y luego se muestran en pantalla.
+Para mostrar las figuras se podría crear una función central que se encargue de revisar el tipo de figura para decidir qué función llamar
+```Scala
+def displayShape(s: Map[String, String]): Unit =
+	if s("type") == "square" then
+		drawSquare(s)
+	else if s("type") == "circle" then
+		drawCircle(s)
+	else println("Unknown shape type")
+```
+luego, en el caso de que **el sistema crezca** y se requiera agregar más figuras, sería necesario incluir cada caso, volviendo el código más largo:
+```Scala
+def displayShape(s: Map[String, String]): Unit =
+	if s("type") == "square" then
+		drawSquare(s)
+	else if s("type") == "circle" then
+		drawCircle(s)
+	else if s("type") == "triangle" then
+		drawTriangle(s)
+	else if s("type") == "rectangle" then
+		drawRectangl(s)
+	...
+	
+	else println("Unknown shape type")
+```
+
+La función `displayShape` tiene **baja cohesión y alto acoplamiento** pues tiene que *saber* demasiado: conocer los nombres de los tipos, las llaves de los diccionarios ("radius", "side") y los detalles internos de representación de las figuras.
+
+\* Además usar un mapeo genérico `Map[String, String]` no garantiza que la llave `"radius"` exista, que esté bien escrita o que su valor sea un número entero válido. Entonces es propenso a errores tipográficos. 
+
+Se realiza entonces un cambio de perspectiva a una orientada a objetos
+- **Antes**: El cliente pregunta *'Qué tipo de figura eres'* para decidir qué hacer.
+- **Después**: El cliente pide a la figura mostrarse y **cada objeto resuelve cómo hacerlo** por sí mismo.
+La tarea del programa no cambia, solamente se redistribuyeron las responsabilidades.
+
+En lugar de esconder los datos en mapeos genéricos y evaluar según el caso que se reciba, se define una interfaz clara y se deja que cada figura implemente su propio comportamiento:
+- Cliente **coordina**: Recorre la colección y llama a una operación.
+- Figura **encapsula**: Esta sabe cuáles son sus atributos y cómo dibujarse.
+
+```Scala
+//Se define una interfaz o 'contrato' conceptual
+trait Shape:
+	def displayOn(screen: Screen): Unit
+
+//Cada figura encapsula sus propios datos y su forma de dibujarse
+class Square(val side: Int, val position: Point) extends Shape:
+	//lógica interna del cuadrado para dibujarse a si mismo
+	println(s"dibujando cuadrado de lado $side")
+
+class Circle(val radius: Int, val position: Point) extends Shape:
+	override def displayOn(screen: Screen): Unit =
+	//logica interna del circulo para dibujars a si mismo
+	println(s"dibujando un circulo de radio $radius")
+
+```
+
+
+
 ## Clases y Objetos
 En una orientación a objetos, cada valor es un objeto y las definiciones de su comportamiento se definenn en clases o *traits*. 
 Una **clase** define una plantilla, o sea **un tipo de dato estructurado**, que combina:
@@ -303,7 +381,6 @@ class Punto(var x: Int, var y: Int){
 }
 ```
 
-## Programación Estructurada
-Una metodología de programación estructurada utiliza la secuenciación, selección e iteración para organizar el flujo, evitando así saltos arbitrarios.
-\* Suele complementarse con descomposición procedural en funciones.
+
+
 
