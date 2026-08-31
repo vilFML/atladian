@@ -773,3 +773,224 @@ Con `Option` se devuelve:
 var o1: Option[Money] = None
 var o2: Option[Money] = Some(_12clp)
 ```
+
+# Abstracciones
+## Creación de Objetos (Constructor)
+
+En programación orientada a objetos, la decisión del diseño del objeto es algo fundamental. Las **clases** definen tanto los tipos de los objetos como la forma en la que se inicializan.
+En este punto es importante el **constructor**, el cual es el *método* responsable de crear el objeto en memoria e inicializar su estado interno.
+Por ejemplo, para definiciones de clases
+```Scala
+class Person(var name: String, var age: Int)
+class Musician(var name: String, var role: String)
+class Book(var title: String, var author: Person, var year: Int)
+class Movie(var name: String, var director: Person, var year: Int)
+```
+al hacer
+```Scala
+new Musician("Masahi Hamauzu", "Composer"):
+//...
+```
+se está **instanciando** un objeto, en donde el constructor:
+1. **Crea el objeto**: solicita al sistema reservar el espacio de memoria necesario.
+2. **Inicialización**: Se define el estado y sus comportamientos.
+
+\* En lenguajes anteriores era necesario asignar la memoria explícitamente (como `malloc()` en C) y luego inicializar es un proceso separado. En lenguajes orientados a objetos modernos, la asignación de memoria es manejado por la máquina virtual y el programador es el que define la lógica de inicialización.
+
+---
+
+Ejemplo de inicialización completa
+```Scala
+import java.awt.Color
+class ColorPoint(
+	var x: Double,
+	var y: Double
+):
+	//color parte como None
+	var color: Option[Color] = None
+	
+	//metodo asigna color
+	def setColor(c: Color): Unit =
+	color = Some(c)
+```
+el problema de este diseño es que si no se invoca el método `setColor` inmediatamente al instanciar un objeto `ColorPoint`, se tendrá un objeto incompleto o inconsistente.
+Un buen diseño del constructor previene estados inválidos.
+
+## Campos de Objeto
+> Los campos del objeto representan **su estado**.
+
+
+Una vez instanciada una clase, se pueden acceder a los campos del objeto. Estos campos siguen la regla de mutabilidad según si está definido con `val` o `var`, respectivamente.
+
+
+
+Por ejemplo,
+```Scala
+val m = new Musician("Kai Hansen", "Guitarist")
+println(m.name) // > Kai Hansen
+println(m.role) // guitarrista
+```
+
+## Constructores Auxiliares
+Toda clase tiene su constructor primario, pero estas pueden requerir *múltiples formas de inicialización* entonces se pueden añadir inicializaciones alternativas con constructores **secundarios** o auxiliares.
+En Scala los constructores auxiliares se definen de la forma
+```Scala
+def this(..)
+```
+
+En Scala los constructores auxiliares **deben delegar** la operación de inicialización al constructor primario, ya sea directa o indirectamente invocando `this(...)` **como primera instrucción**.
+\* La instrucción `this` hace referencia a la misma entidad en donde se está escribiendo. En este caso, `this()` se refiere al constructor principal de la clase en donde se está implementando el constructor auxiliar, entregando los respectivos parámetros como si estuviese instanciando fuera de él.
+
+Por ejemplo, para una clase `Student` que permite la creación de objetos con tres niveles de especificidad: Entregando todos los datos, omitiendo la fecha (asumiendo la actual) u omitiendo la decha y el ID, generando uno a partir del nombre.
+```Scala
+class Student(val name: String, val id: String, val enrollmentDate: LocalDate):
+  
+  def this(name: String, id: String) =
+    this(name, id, LocalDate.now())
+    
+  def this(name: String) =
+    this(name, name.take(3).toUpperCase + "-000")
+```
+en donde en cada método definido con `this()`, se agrega la instrucción `this()` que hace referencia al constructor de la clase `Student`, entregando los valores de los parámetros que se deseen. Luego, la instanciación de un estudiante se adaptará según lo que se ingrese en el flujo principal.
+
+## Parámetros por Defecto
+Una alternativa a tener múltiples constructores secundarios son los parámetros por defecto, que permiten crear constructores más flexibles, evitando la duplicación de definiciones.
+Para crear un objeto, el compilador sigue el orden de prioridad según:
+1. Argumentos nombrados **explícitamente**.
+2. Argumentos posicionales.
+3. Parámetro ausente: asignación al valor por defecto.
+
+Por ejemplo,
+```Scala
+class Socket(val timeout: Int = 5000, val linger: Int = 5000)
+@main def socketExample(): Unit =
+val s1 = Socket() // timeout = 5000, linger = 5000
+val s2 = Socket(1000) // timeout = 1000, linger = 5000
+val s3 = Socket(1000, 2000) // timeout = 1000, linger = 2000
+val s4 = Socket(linger = 3000) // timeout = 5000, linger = 3000
+val s5 = Socket(timeout = 1000, linger = 3000) // timeout = 1000, linger = 3000
+val s6 = Socket(linger = 3000, timeout = 1000) // timeout = 1000, linger = 3000
+```
+
+---
+
+El cuerpo entero de una clase actúa como parte del constructor principal. Por ejemplo, el flujo de inicialización
+```Scala
+class A(val x: Int):
+  print("a")
+  
+  def this(x: String) =
+    this(x.toInt)
+    print("b")
+    
+  def this() =
+    this("0")
+    print("c")
+    
+  print("d")
+```
+Si el cliente invoca `new A()`, el flujo de ejecución es:
+1. Se invoca el constructor auxiliar sin parámetros `def this()`.
+    
+2. Su primera instrucción es `this("0")`, que delega al segundo constructor auxiliar pues es el constructor que se utiliza cuando se ingresa 1 argumento de tipo `string`.
+    
+3. El segundo constructor invoca `this(x.toInt)`, que delega al constructor primario, pasando el entero `0`.
+    
+4. El constructor primario evalúa el cuerpo de la clase secuencialmente. Imprime `"a"` y luego imprime `"d"`.
+    
+5. El control retorna al constructor que lo invocó (el segundo auxiliar), el cual ejecuta su siguiente instrucción e imprime `"b"`.
+    
+6. Finalmente, el control retorna al primer constructor auxiliar, que imprime `"c"`.
+    
+
+La salida estándar será, en consecuencia, `adbc`.
+
+## Diseño Estructural
+
+### Traits
+Un `trait` define un **contrato**: Este especifica el comportamiento de un objeto (el *qué* hace), pero no se entrega la implementación de tal comportamiento, delegando la implementación a cada clase.
+- Regla práctica: Si múltiples clases deben acatar las mismas reglas pero implementarlas de formas distinta, se debe **extraer el comportamiento a un `trait`**.
+\* Scala permite implementación por defecto dentro de un `trait`, pero se van a limitar solo a interfaces puras.
+
+![[Pasted image 20260830203640.png]]
+
+De esta manera el código cliente y las implementaciones pueden probarse por separado y solo necesitan ponerse de acuerdo en la interfaz mediante el `trait`.
+
+> Implementar un trait permite que una clase sea más formal respecto del
+comportamiento que promete proporcionar: el compilador se asegura de
+que la clase realmente cumpla todas las promesas de cada trait.
+
+---
+
+Por ejemplo
+```Scala
+trait Legged:
+  val numLegs: Int
+  def walk(): Unit
+
+class AkitaInu(val name: String) extends Legged:
+  override val numLegs: Int = 4
+  override def walk(): Unit = println(s"$name is walking on its $numLegs legs.")
+```
+la clase `AkitaInu` firma el contrato al utilizar la palabra clave `extends`. Si se omite la implementación de `numLegs` o `walk()` el compilador entrega un error pues la clase **falla en cumplir las promesas establecidas en la abstraccioń** `Legged`.
+El uso de `override` es para **explicitar** que se está entregando la implementación de un miembro abstraído.
+
+---
+
+Los `trait` pueden extender a otros para apilar capacidades, por ejemplo:
+```Scala
+trait Camera:
+	def takePhoto(): Unit
+
+trait Phone:
+	def makeCall(number: String): Unit
+	// A Smartphone extends both capabilities
+trait Smartphone extends Camera, Phone
+```
+
+### Polimorfismo de Tipos
+> Programa sobre abstracciones, no sobre implementaciones.
+
+Si se diseña una función `def putShoes(d: AkitaInu)`, la función está rígidamente acoplada a una clase concreta. Si se utiliza el contrato: `def putShoes(d: Legged)`, la función operará correctamente con cualquier clase actual o futura que implementa `Legged` lo que aumenta la reutilización del código.
+
+Lo último funciona gracias al polimorfismo de subtipos, que se define como:
+El tipo B es un subtipo del tipo A si cualquier contxto que espera una expresión del tipo A puede aceptar una expresión de tipo B sin erorres.
+El subtipado corresponde a una relación "es un" entre tipos, notando que no necesariamente se tiene la relación inversa (Todo perro es un animal pero no todo animal es un perro).
+
+> El polimorfismo de subtipos permite escribir código una vez y reutilizarlo para muchos subtipos.
+
+Por ejemplo, si `Dog` es un `Animal`, se puede usar un `Dog` en cualquier lugar en donde se espera un `Animal`. Luego `Dog` es un subtipo de `Animal`.
+
+\* En lenguajes de tipado dinámico (como Python), el subtipado es implícito: Si el objeto tiene los métodos correctos, simplemente funciona. En lenguajes de tipado estático, se debe explicitar el subtipado para evitar un error de compilación.
+
+##### Caso de estudio: Árbol Binario
+Implementando un árbol binario, que permita calcular la suma de sus nodos y enconrtar los valores mínimos y máximos.
+Una aproximación procimental incrustada en objetos, podría ser:
+```Scala
+class Tree(var value: Int, var left: Option[Tree], var right: Option[Tree]):
+	def sum: Int =
+	    val rightSum = if right.isDefined then right.get.sum else 0
+	    val leftSum = if left.isDefined then left.get.sum else 0
+	    value + rightSum + leftSum
+```
+el defecto metodológico de este enfoque se puede observar en una cita de William Cook: "Un modelo de programación que permita inspeccionar la representación de más de una abstracción al mismo tiempo no es orientado a objetos." O sea que utilizar estructuras de control como `if left.isEmpty` para verificar el estado de la representanción (en este caso, un `Option` o ver si es nulo) acopla la lógica de control estructural dentro de un solo bloque centralizado.
+Una solución orientada a objetos utiliza polimorfismo para distribuir responsabilidades:
+```Scala
+trait Tree:
+  def sum: Int
+  def min: Int
+  def max: Int
+
+class Leaf(val value: Int) extends Tree:
+  override def sum: Int = value
+  override def min: Int = value
+  override def max: Int = value
+
+class InternalNode(val value: Int, val left: Tree, val right: Tree) extends Tree:
+  override def sum: Int = value + left.sum + right.sum
+  override def min: Int = math.min(value, math.min(left.min, right.min))
+  override def max: Int = math.max(value, math.max(left.max, right.max))
+```
+En este modelo, la abstracción es `Tree`. Se tienen dos implementaciones concretas, en los cuales:
+`InternalNode` no inspecciona si `left` o `right` están vacíos, este deleha la responsabilidad invocando `left.sum` y el mecanismo de despacho dinámico dle polimorfismo de subtipos determina si se ejecuta la lógica de `Leaf` o de `InternalNode`. 
+El código es **modular** y no tiene estructuras de control condicional para manejar los tipos lógicos.
