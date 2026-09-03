@@ -832,3 +832,186 @@ El uso de `malloc()` debe ser controladamente pues es propenso a errores:
    ```
    Si se hace `free()` un puntero y se utiliza, se va a intentar acceder a bloques de memoria vacios.
    > Para prevenir: **hacer `free()` justo antes de retornar**.
+   
+# Estructuras
+
+## Typedef
+`typedef` es un comando para redefinir **el nombre** de un tipo de dato, o sea se le define un 'alias'.
+Se hace de la forma:
+```C
+typedef tipo alias;
+```
+luego, se puede usar el alias en vez del nombre del tipo completo,
+```C
+tipo x = ...
+//equivalente a
+alias x = ...
+```
+
+
+Por ejemplo, el tipo de dato `unsigened longlong` es muy largo de escribir. Se le puede dar un alias `ull` para referise a él:
+```C
+typedef unsigned long long ull;
+```
+luego, hacer ` ull=10;` $\iff$ `unsigned long long = 10;`
+
+## Estructuras
+En C no hay clases, pero se usan estructuras (`struct`) para simular el comportamiento de clases de lenguajes modernos.
+
+Una estructura es una **unión** de múltiples variables **en un único tipo**. Se definen de la forma:
+```C
+struct id_estructura {
+	tipo1 var1;
+	tipo2 var2;
+	...
+}
+```
+y para crear una variable con la estructura anterior:
+```C
+struct id_estructura var_struct ={
+	valor1;
+	valor2;
+	...
+}
+```
+en donde `var_struct` es la variable que será del tipo `id_estructura`, y se ingresan los valores directamente en el campo en donde se señala.
+
+Para acceder a los campos de la estructura (o las variables que tiene la estructura en su interior), se señala el nombre de la variable creada con la estructura, seguida de punto y el campo al que acceder:
+```C
+tipo varx = var_struct.campo
+```
+
+> La estructura creada es como un nuevo tipo de dato.
+
+Por ejemplo,
+```C
+struct persona{
+	int edad;
+	char nom[20];
+	char rut[9];
+}
+```
+```C
+struct persona P = {
+	20;
+	"Luis";
+	"111111111";
+}
+```
+```C
+int edadP = P.edad;
+char *nombreP = P.nom
+```
+
+El espacio de memoria  que ocupa la variable creada con una estructura es **a lo menos** la suma de los espacios que ocupan los campos en su interior. Esto pues puede haber espacio vacío entre memoria de los campos. En el ejemplo a anterior, el espacio que ocupa `P` (una variable con la estructura) es a lo menos la suma del espacio que ocupa su campo `P.edad`, el campo nombre `P.nom` y  el campo de su rut `P.rut`, o sea
+$$
+sizeof(P)\geq sizeof(edad)+sizeof(nom)+sizeof(rut)
+$$ 
+Luego, en C es necesario que la dirección de memoria de la variable en donde se va a guardar la variable creada con la estructura, sea un *múltiplo del tipo a guardar*.
+
+Por lo tanto, como el espacio de memoria a usar no siempre es una suma simple de las memorias de los campos, es mejor usar `sizeof(estructura)` para indicar un espacio a reservar.
+
+### Alias de Estructuras
+El nombre de una estructura puede ser largo, entonces se le puede dar un alias para que sea más corto el código. Hay tres maneras:
+1. Uso de `typedef` usual,
+   ```C
+   typedef struct id_estructura alias_estructura;
+   ```
+
+2. Asignar `typedef` en la misma definición de la estructura,
+   ```C
+   typedef [struct id_estructura{
+	   //definicion estructura
+	}] alias_estruct;
+   ```
+   lo que permite hacer `struct persona P` $\iff$ `pers P` 
+
+3. Sin indicar el nombre de la estructura, solamente la definición (o plantilla)
+   ```C
+   typedef struct{
+	   //plantilla
+   } alias;
+   ```
+   y después se puede hacer `alias varStruct = {20, "Luis", "11..."}`
+
+## Ámbito de Variable
+
+En el lenguaje C se tienen distintos ámbitos en donde viven las variables creadas, lo que no siempre se cumple que al modificar una variable en una función, modifica el valor esperado, si no que se puede modificar una *copia* que hace C cuando se ingresa el valor en una función.
+Por ejemplo,
+```C
+typed struct{
+	double r;
+	double im;
+} Complejo;
+```
+```C
+void suma(Complejo x, Complejo y){
+	x.r += y.r;
+	x.im += y.im;
+}
+```
+```C
+int main(){
+	Complejo x = {1, 20};
+	Compleyo y = {-2, 3};
+	suma (x,y);
+	return;
+}
+```
+en donde en la función `main` , la invocación de `suma(x,y)` **no cambia el valor de `x` o `y`** pues `suma` usa una *réplica* de ambos como variables locales solamente para aquella función; No se están modificando las variables `x`,`y` que se encuentran en `main()`.
+
+Para modificar efectivamente la variable, se deben entregar **punteros** a las variables que se buscan cambiar. Así, se debe cambiar también la definición de la función `suma` tal que utilice punteros.
+```C
+typed struct{
+	double r;
+	double im;
+} Complejo;
+```
+```C
+void suma(Complejo *px, Complejo y){
+	(*px).r += y.r;
+	(*px).im += y.im;
+}
+```
+en `(*px)` se está accediendo al valor de `x`, y luego a su campo `r`.
+```C
+int main(){
+	Complejo x = {1, 20};
+	Compleyo y = {-2, 3};
+	suma (&x,y);
+	return 0;
+}
+```
+finalmente, a `suma` se le debe entregar la dirección de memoria de `x` pues esta funciona son puntero a la dirección de memoria en donde se encuentra `x`. Así se modifica efectivamente `x` pues se está cambiando la 'variable que vive en esa dirección de emoria'
+
+> Cuando se quiere modificar una variable en otro ámbito, se debe entregar la dirección de memoria de la variable a la función que va a modificarla, para que 'vea' la variable real.
+
+Para acceder al campo de un puntero que contiene la dirección de memoria de una variable definida según una estructura, se puede ser más conciso con
+```C
+(*px).campo
+```
+es equivalente a hacer
+```C
+px -> r
+```
+que significa que `px` es un puntero que apunta a una variable con el campo `r`, y se está accediendo a tal campo.
+
+## Estructura Recursiva
+Una estructura es recursiva cuanndo uno o más campos de la estructura se definen como un tipo de dato de su misma estructura.
+> En este caso **se debe tener el nombre de la estructura** para que el campo pueda ver la misma estructura en la que se encuentra.
+
+Por ejemplo, se puede implementar una lista enlazada, tal que cada nodo es una estructura que incluye un  dato y un puntero al siguiente nodo. Pero para que el puntero pueda ser definido, se debe indicar que apuntará a una variable del tipo de la misma estructura.
+```C
+typedef struct nodo{
+	int x;
+	struct nodo *prox;
+} Nodo;
+```
+
+luego una lista enlazada se puede inicializar como
+```C
+Nodo a = {1, NULL};
+Nodo b = {2, &a};
+Nodo c = {3, &b};
+```
+en donde se entregan las direcciones de memoria de los nodos siguientes para almacenarlos en el puntero; además el nodo `a` apunta a un nodo `NULL` (o vacío) marcando el final de la lista enlazada.
