@@ -554,226 +554,7 @@ en donde `dog1` y `dog2` tienen la misma implementación. Y visualizando en diag
 
 
 
-# Testing
-
-Se van a analizar las metodologías formales y empíricas de verificación de software, con énfasos en el diseño sistemático de pruebas unitarias.
-
-Existen múltiples formas de verificar software. El análisis estático y los métodos formales permiten evaluar propiedades sin observar la ejecución, mientras que el testing requiere la ejecución de casos concretos para comparar el comportamiento observado.
-*"El testing de programas puede usarse para demostrar la presencia de errores, pero nunca para demostrar su ausencia."* (Dijkstra, 1970)
-
-El enfoque tradicional es realizar pruebas manuales, o *ad-hoc*, no estructurado. Este presenta limitaciones como que cada modificación en el código fuente exige repetir las pruebas, llegando a ser costosas, inconsistentes y difícles de reproducir.
-
-## Test-Driven Development TDD
-El enfoque Test-Driven Development es una forma de desarrollo de software en la cual **las pruebas se escriben antes del código de producción**, en vez de "implementar y luego probar".
-El proceso opera bajo tres fases:
-1. **Red**: Esta fase define la *especificación*, en donde se escribe una prueba **falla por la ausencia del comportamiento**.
-2. **Green**: Esta exige una implementación mínima del código para satisfacer la aserción.
-3. **Refactor**: Finalmente, esta autoriza la modificación de la estructura interna del código, garantizando que el comportamiento observable, protegido por las pruebas previas, se mantenga inalterado.
-
----
-
-TDD también ayuda a corregir errores de la forma:
-1. Escribir una prueba para reproducir el bug.
-2. Corregir el código hasta que la prueba pase.
-3. El test queda como protección para evitar futuras regresiones al error.
-### Fases
-El proceso opera bajo tres fases estrictas: Red, Green y Refactor.
-#### Red
-> Empezar con un test que falle.
-
-Escribir primero una prueba que exprese el **comportamiento esperado** y ejecutarlo antes de implementar y este debiese fallar porque el comportamiento no está presente.
-Se debe comprobar que la prueba falle **por la razón esperada**, si ya pasa, se debe revisar qué está comprobando realmente la prueba.
-Así, la fase RED no significa cualquier fallo.
-
-> RED: Con la prueba, primero se define **qué debe hacer el sistema**.
-
-#### Green
-> Hacer que el test pase.
-
-En esta fase se debe implementar lo mínimo necesario para satisfacer la prueba diseñada en Red.
-Se debe avanzar de a pasos pequeños, volviendo a ejecutar las pruebas después de cada modificación.
-- No anticipar un requisito; Agregar comportamiento cuando exista una necesidad concreta.
-
-#### Refactor
-> Mejorar el diseño con confianza.
-
-Finalmente, se reestrucura de a poco, mejorando la estructura, los nombres y responsabilidades del código.
-Se debe **mantener el comportamiento observable**, ejecutando el conjunto de pruebas después de cada cambio.
-- Si algo falla, corregir o revertir el último cambio antes de continuar.
-
-> Refactorizar cambia **cómo** está escrito el código, **no qué hace**.
-
-## Diseñar Casos de Pruebas
-
-Para seleccionar las **entradas** de las pruebas, es inviable evaluar la totalidad de los parámetros de entrada, por ello se debe adoptar la metodología de *particionar los dominios*.
-
-Por ejemplo, implementando una función `abs()` que entrega el valor absoluto de números enteros:
-```Scala
-trait IntOps:
-	def abs(n: Int):
-```
-la función tiene entrada de tipo `Int` y salida `Int`, pero el comportamiento *depende del valor de entrada*.
-Probar todas las entradas es inviable entonces **se particiona** el dominio de entrada en *subdominios* tales que la función tiene comportamiento similar:
-Se dividen los números enteros en positivos $n>0$, negativos $n<0$ y el caso especial (o borde) cero $n=0$.
-Finalmente, se eligen unos pocos casos de prueba para cada subdominio tal que **se prioricen los casos borde** que, para este caso, sería `-1`, `0`, `1`
-> Las discrepancias lógicas suelen concentrarse en las fronteras de los subdominios.
-
-## Testing Frameworks
-Se va a emplear la arquitectura de testo *xUnit*, estándar de industria orginado de Smalltalk y adoptado transversalmente por frameworks modernos.
-A diferencia de una biblioteca estándar, dónde el código del programador determina el flujo de control, xUnit opera como un framework que *invierte el control*: **El entorno determina cuándo, cómo y en qué orden ejecuta los módulos** (él determina cuándo llama al código del programador). 
-Los componentes centrales de xUnit son:
-1. El caso de prueba (Test case): La unidad mínima de prueba.
-2. El oráculo de prueba, Test Oracle (aserciones): Mecanismo como criterio para decidir si el comportamiento observado es correcto. Una forma común de expresar oráculos es con **aserciones**
-3. La suite de pruebas (Test suite): Se agrupan casos de pruebas relacionados entre sí.
-4. El fixture de prueba (Test fixture): Pereparación de un entoorno consistente para cada test.
-5. Ejecutor de tests (Test runner): Ejecuta los test y muestra los resultados.
-
-### JUnit, MUnit
-Hay muchos frameworks derivados de XUnit. En Scala la biblioteca de testing es *MUnit* que, a su vez, es runner del framework ligero *JUnit*.
-
-Se revisa un ejemplo de configuraciones de tests para una calculadora:
-1. Un código de ejemplo en JUnit 5.x:
-```Scala
-// Importar las funcionalidades del framework
-import org.junit.jupiter.api.Assertions.assertEquals
-import org.junit.jupiter.api.{BeforeEach, DisplayName, Test}
-
-class CalculatorTest:
-	var calculator: Calculator = null
-
-	/*
-		Con @BeaforeEach se marca el metodo como
-		fixture q se ejecuta antes de cada test.
-		Si hay 2 metodos de test, se ejecuta 2 veces.
-		Metodo suele llamarse setUp()
-	*/
-	@BeforeEach
-	def setUp(): Unit =
-		calculator = new Calculator("Test Calculator")
-
-	/*
-		con @test se marca metodo como un test, se define
-		la logica de prueba
-	*/
-	@Test
-	@DisplayName("Test addition of two positive integers")
-	def testAddPositiveIntegers(): Unit =
-		val result = calculator.add(2, 3)
-		assertEquals(5, result)
-```
-
-2. Código de ejemplo en MUnit
-En lugar de importar funcioalidades, el test **extiende** `munit.FunSuite`
-```Scala
-class CalculatorTest extends munit.FunSuite:
-	var calculator: Calculator = null
-
-	/*
-		En vez de usar anotaciones, se sobrescriben
-		metodos del framework con 'override'
-	*/
-	override def beforeEach(context: BeforeEach): Unit =
-		calculator = new Calculator("Test Calculator")
-
-	/*
-		Nombre del test descriptivo
-	*/
-	test("Test addition of two positive integers"):
-		val result = calculator.add(2, 3)
-		assertEquals(5, result)
-```
-
-Si varios test comparten un mismo objeto mutable, un test puede dejarlo en un estado distinto para el siguiente, produciendo *contaminación* entre las pruebas, dependiendo del orden de ejecución determinado por el framework.
-```Scala
-class CounterTest extends munit.FunSuite:
-	val counter = new Counter()
-	test("incrementa una vez"):
-		counter.increment()
-		assertEquals(counter.current, 1)
-		/* 
-			el counter se incrementa, y el siguiete assert
-			 lo recibe modificado
-		*/
-		test("parte en cero"):
-		assertEquals(counter.current, 0)
-```
-para que cada prueba sea independiente, se reinicializa el estado antes de cada test con `beaforeEach()`
-```Scala
-class CounterTest extends munit.FunSuite:
-	var counter: Counter = null
-	
-	override def beforeEach(context: BeforeEach): Unit =
-			//esto se ejecuta antes de cada test individual
-			counter = new Counter()
-		
-	test("incrementa una vez"):
-		counter.increment()
-		assertEquals(counter.current, 1)
-	test("parte en cero"):
-		assertEquals(counter.current, 0)
-```
-
-## Ejemplo de diseño: Aritmética de Divisas
-Definiendo un caso de prueba que implementa la inferfaz que se busca que la clase `Money`:
-```Scala
-class MoneyTest extends munit.FunSuite:
-	var _12clp: Money = null
-	var _14clp: Money = null
-
-override def beforeEach(context: BeforeEach): Unit =
-	_12clp = new Money(12, "CLP")
-	_14clp = new Money(14, "CLP")
-	//...
-```
-y se definen métodos para realizar pruebas básicas, testeando comportamientos que se esperan:
-```Scala
-class MoneyTest extends munit.FunSuite:
-	//..
-	test("Igualdad de dos objetos Money con el mismo monto y divisa"):
-		assertEquals(_12clp, _12clp)
-		assertEquales(_12clp, new Money/12, "CLP"))
-		assertNotEquals(_12clp, _14clp)
-		
-	test("Money puede sumarse con otro objeto de la misma divisa"):
-		val expected = new Money(26, "CLP")
-		val result = _12clp.add(_14clp)
-		assertEquals(expected, result)
-```
-
-### Igualdad de Objetos
-Creando dos objetos separados que, a priori, son iguales pues tienen la misma cantidad y divisa, por ejemplo dos montos de 12 CLP y se le pide a MUnit que los compare utilizando `assertEquals()`, se tendrá un error. Se indicará que no son iguales, mostrando algo como `Money@1622f1b` y `Money@a22f9e2`.
-Esto sucede pues se están comparando las **direcciones de memoria** de los objetos y no sus valores internos.
-Para solucionar este comportamiento, se implementa en la clase dos cosas:
-1. Por defecto, la representación en texto de un objeto tiene el formato `<Clase>@<Direccion>`. Luego, se implementa el método `toString` para que muestre una descripción clara del objeto.
-```Scala
-class Money(val amount: Int, val currency: String):
-	// ...
-	override def toString: String =
-	s"Money($amount, $currency)
-```
-pero se seguirán comparando las direcciones de memoria.
-2. Se define un método de igualdad personalizado
-```Scala
-override def equals(obj: Any): Boolean =
-    if obj.isInstanceOf[Money] then
-      val other = obj.asInstanceOf[Money]
-      amount == other.amount && currency == other.currency
-    else false
-```
-
-### Valor OPTION
-En lenguajes antiguos, cuando un valor no existía o no se encontraba, se utilizaba un valor nulo `NULL`. Utilizar este valor induce un comportamiento propenso a errores, lo que puede causar fallas de seguridad y de sistemas.
-Para evitar utilizar `NULL` en Scala, se utiliza el tipo `Option`. Un `Option` es una estructura que envuelve un valor indicando explícitamente si este se encuentra presente con `Some` o si está ausente con `None`.
-Si un valor *puede faltar*, lo mejor es modelarlo como tipo `Option`. Así, el compilador obliga a tratar el caso de la ausencia de forma explícita.
-![[Pasted image 20260830134433.png]]
-Con `Option` se devuelve:
-- `Some(valor)` si hay un valor.
-- `None` si no hay.
-```Scala
-var o1: Option[Money] = None
-var o2: Option[Money] = Some(_12clp)
-```
-
+[[01-Desorganizado/Memes/Testing]]
 # Abstracciones
 ## Creación de Objetos (Constructor)
 
@@ -994,3 +775,308 @@ class InternalNode(val value: Int, val left: Tree, val right: Tree) extends Tree
 En este modelo, la abstracción es `Tree`. Se tienen dos implementaciones concretas, en los cuales:
 `InternalNode` no inspecciona si `left` o `right` están vacíos, este deleha la responsabilidad invocando `left.sum` y el mecanismo de despacho dinámico dle polimorfismo de subtipos determina si se ejecuta la lógica de `Leaf` o de `InternalNode`. 
 El código es **modular** y no tiene estructuras de control condicional para manejar los tipos lógicos.
+
+# Clases Abstractas
+
+Caso de estudio: Implementación de listas.
+Una lista es una colección o secuencia ordenada que soporta operaciones: Inserción, acceso por posición y búsqueda de elementos.
+
+Para la implementación de listas, surge el diseño de ellas: Debería ser una clase o un `trait`?
+
+Las intefraces (`trait`) definen el contrato: Qué puede hacer una lista sin entregar el cómo lo hace. Luego, se define `SimpleList` como una interfaz y a partir de ella se extiende una segunda interfaz `MutableList` que hereda la primera y además añade la operación de mutación `add(...)`:
+```Scala
+trait SimpleList:
+	def get(index: Int): Option[Any]
+	def contains(value: Any): Boolean
+	def indexOf(value: Any): Int
+
+trait MutableList extends List:
+	def add(index: Int, value: Any): Unit
+```
+en UML:
+![[Pasted image 20260831163821.png]]
+en donde la flecha denota una relación de generalización, apuntando desde la interfaz más específica a la más general.
+
+> Las interfaces definen **qué** puede hacer una lista. Para crear una lista, se necesita una clase.
+
+Para crear una lista, se pueden implementar de distintas formas que ofrezcan la misma interfaz, pero tienen comportamiento distinto en su interior: Lista basada en arreglo (bloques de memoria contiguos), lista enlazada (nodos conectados por referencias), etc.
+
+##### Ejemplo: Lista basada en Arreglo
+
+Viendo la implementación de lista basada en arreglos:
+```Scala
+class ArrayList(capacity: Int = 10) extends MutableList:
+var size: Int = 0
+var data: Array[Any] = new Array[Any](capacity)
+override def add(index: Int, value: Any): Unit =
+if index < 0 || index > size then println("Index out of bounds")
+else
+if size == data.length then
+val newData = new Array[Any](data.length * 2)
+for i <- 0 until size do newData(i) = data(i)
+data = newData
+for i <- size - 1 to index by -1 do data(i + 1) = data(i)
+data(index) = value
+size += 1
+override def get(index: Int): Option[Any] = ???
+override def contains(value: Any): Boolean = ???
+override def indexOf(value: Any): Int = ???
+```
+La clase se define estableciendo una capacidad inicial: `class ArrayList(capacity: Int = 10) extends MutableList`. Internamente, requiere mantener el tamaño actual `var size: Int = 0` y el arreglo subyacente `var data: Array[Any] = new Array[Any](capacity)`. El método `add` presenta una complejidad particular que debemos analizar línea por línea:
+
+1. Se valida que el índice esté dentro de los límites: `if index < 0 || index > size then println("Index out of bounds")`.
+    
+2. Si el índice es válido, se verifica si el arreglo subyacente está lleno: `if size == data.length`.
+    
+3. De estar lleno, se debe redimensionar. Se crea un nuevo arreglo con el doble de capacidad: `val newData = new Array[Any](data.length * 2)`.
+    
+4. Se copian los elementos del arreglo antiguo al nuevo mediante una iteración: `for i <- 0 until size do newData(i) = data(i)`.
+    
+5. Se actualiza la referencia del arreglo interno: `data = newData`.
+    
+6. A continuación, para insertar el nuevo valor, se deben desplazar los elementos existentes hacia la derecha para hacer espacio: `for i <- size - 1 to index by -1 do data(i + 1) = data(i)`.
+    
+7. Finalmente, se inserta el valor en la posición solicitada `data(index) = value` y se incrementa el tamaño `size += 1`.
+    
+
+Por su parte, el método `get` en el `ArrayList` es de acceso directo: verifica si el índice es válido y retorna `Some(data(index))`, o `None` en caso contrario.
+
+##### Ejemplo: Lista Enlazada
+```Scala
+class LinkedList extends MutableList:
+	var size: Int = 0
+	var first: Option[Node] = None
+	var last: Option[Node] = None
+	
+	override def add(index: Int, value: Any): Unit =
+		if index < 0 || index > size then println("Index out of bounds")
+		else
+			val newNode = new Node(value)
+			val after = getNode(index)
+			if after.isDefined then ???
+			else ???
+
+	override def get(index: Int): Option[Any] = ???
+	override def contains(value: Any): Boolean = ???
+	override def indexOf(value: Any): Int = ???
+	def getNode(index: Int): Option[Node] = ???
+```
+
+A diferencia del arreglo, esta clase no utiliza memoria contigua, sino referencias a un objeto `Node`. La clase `Node` almacena un valor `val value: Any` y dos referencias opcionales: `var next: Option[Node] = None` y `var prev: Option[Node] = None`. La clase `LinkedList` mantiene referencias al primer y último nodo: `var first: Option[Node] = None` y `var last: Option[Node] = None`. Analicemos la lógica de inserción `add`:
+
+1. Se instancia el nuevo nodo: `val newNode = new Node(value)`.
+    
+2. Se busca el nodo en la posición actual mediante un método auxiliar: `val after = getNode(index)`.
+    
+3. Si el nodo destino existe (`after.isDefined`), procedemos a ajustar los punteros:
+    
+4. El siguiente del nuevo nodo apunta al nodo encontrado: `newNode.next = after`.
+    
+5. El previo del nuevo nodo apunta al previo del nodo encontrado: `newNode.prev = after.get.prev`.
+    
+6. Se actualiza la referencia del nodo anterior para que apunte al nuevo nodo. Si el previo era vacío, el nuevo nodo pasa a ser el primero: `if after.get.prev.isEmpty then first = Some(newNode)`. Si no era vacío, se actualiza el puntero `next` de dicho nodo previo: `else after.get.prev.get.next = Some(newNode)`.
+    
+7. Finalmente, el nodo desplazado ahora tiene como previo al nuevo nodo: `after.get.prev = Some(newNode)` y se incrementa el tamaño `size += 1`.
+
+## Asociación y Composición
+Se define la **asociación** como una relación general donde un objeto usa a otro, pero ambos pueden existir independientemente.
+
+Por ejemplo, una clase `Library` contiene una lista de libros `var books: List[Book] = Nil`.
+```Scala
+package cl.uchile.dcc
+package library
+
+class Library:
+  var books: List[Book] = Nil
+```
+```Scala
+package cl.uchile.dcc
+package library
+
+class Book
+```
+los libros existen de forma independiente a la biblioteca.
+
+La **Composición** es una forma estructa de asociación que implica *propiedad y dependencia*: **Las partes no pueden existir sin el todo**. Por ejemplo,
+un `Engine` es parte intrínseca de un `Car`. Si el auto es destruido en memoria, el motor deja de existir en ese contexto.
+```Scala
+package car
+class Car:
+	val engine = new Engine
+	
+		@return
+	def start(): String =
+		engine.start()
+```
+```Scala
+package car
+class Engine:
+		@return
+	def start(): String =
+		"Engine started"
+```
+
+
+Finalmente, la relación entre una lista enlazada `LinkedList` y los nodos `Node` es de composición pues los nodos carecen de sentido (u operabilidad) fuera de la lista que los contiene.
+
+## Clases Abstractas
+
+Si se quiere expandir el requerimiento de las listas tal que se agreguen nuevos métodos para una lista mutable `MutableList` como para agregar un elemento al final de la lista y para agregar múltiples elementos, se tienen un problema de diseño metodológico: El código en ambos métodos es **exactamente idéntico** en ambas clases:
+- para `add(value: Any)`, ambas clases llaman a `add(getSize, value)`
+- para `addAll`, ambas clases iteran sobre la colección en reversa llamando al método `add` posicional.
+es posible no duplicar el código en cada implementación utilizando clases abstractas.
+
+Dado que los `trait` en este contexto definen exclusivamente contratos, se requiere una abstracción intermedia que comparta la implementación en común.
+
+### Clase Abstracta
+Una clase abstracta se puede definir como una **clase incompleta**, y se declara usando la palabra reservada `abstract`, de la forma:
+```Scala
+abstract class AbstractMutableList extends MutableList
+```
+
+- Las clases abstractas no pueden ser instanciadas, o sea no se puede hacer `new AbstractMutableList()`, ya que existe solamente para ser extendida. Además puede contener métodos abstractos (o sea no implementados) que deben ser proporcionadas por las subclases.
+- Las clases abstractas no deberían usarse como tipos; en su lugar, se deben usar interfaces (o `trait` en Scala).
+
+### Clase Concreta
+Una clase concreta **debe implementar** o heredar las implementaciones de:
+1. Métodos de interfaces implementadas directamente.
+2. Métodos de todas las interfaces "padre" transitivamente.
+   Si C extiende B, y B extiende A, entonces C también debe imple,entar los métodos de A.
+3. Todos los métodos abstractos que hereda.
+
+Por ejemplo, 
+```Scala
+abstract class AbstractMutableList extends MutableList:
+  override def add(index: Int, value: Any): Unit // Método abstracto
+  override def get(index: Int): Option[Any]      // Método abstracto
+  
+  override def add(value: Any): Unit =
+    add(getSize, value)                          // Método concreto reutilizable
+    
+  override def addAll(index: Int, values: List[Any]): Unit =
+    for value <- values.reverse do add(index, value) // Método concreto reutilizable
+```
+luego `ArrayList` y `LinkedList` extienden de `AbstractMutableList` en lugar de extender directamente la interfaz, heredando la implementación de `add` y `addAll`, quedando necesaria la implementación `add(index, value)`
+
+```Scala
+class ArrayList(capacity: Int = 10) extends AbstractMutableList:
+
+	override def get(index: Int): Option[Any] =
+		if index < 0 || index >= size then None
+		else Some(data(index))
+```
+```Scala
+class LinkedList extends AbstractMutableList:
+
+	override def get(index: Int): Option[Any] =
+	val node = getNode(index)
+	if node.isDefined then Some(node.get.value)
+	else None
+```
+se sobrescribe **solo lo que cambia**, no es necesario sobrescribir `add(Any)` ni `addAll(Int, List[Any])`
+En UML:
+![[Pasted image 20260831172352.png]]
+en donde:
+- *cursiva indica "abstracto"*
+- Flecha continua: Herencia entre clases o entre traits
+- Flecha discontinua: Implementación de interfaz por una clase.
+
+---
+
+Se establecen tres roles claros en la jerarquía:
+1. `trait` define un contrato.
+2. Clase Abstracta: Comparte implementación común y deja partes por completar.
+3. Clase concreta: Proporciona una implementación completa e *instanciable*.
+
+### Herencia
+Una clase define una familia de objetos: Define su estado y comportamiento; Sus instancias comparten esa definición.
+
+La herencia **expresa especialización**, en donde una subclase representa una versión más específica de su superclase y puede heredar y refinar estados y comportamientos de su clase.
+\*La superclase puede concentrar una implementación común, pero compartir código no basta para justificar una relación de herencia.
+
+Cuando una clase A extiende una clase B:
+- A hereda implementación de B
+- A es **subtipo** de B, denotado $A<:B$
+Luego, la superclsae puede concentrar estado y comportamientos comunes que sus subclases reutilizarán.
+\* En lenguajes modernos de OOP, todas las clases derivan de una única clase raíz `Any`. Con herencia simple de clases, la jerarquía es un árbol.
+![[Pasted image 20260831170953.png]]
+
+## Clase Abstracta vs Interfaz
+Una clase puramente abstracta (sin campos ni la implementación de los metodos) es similar a una interfaz, pero *no son equivlaentes*.
+
+Las interfaces soportan estructuras no jerárquicas y permiten añadir comportamiento opcional mediante *mixins* (o sea comportamiento adicional o opcional) y es fácil adaptar una clase para que implemente una nueva interfaz.
+
+> Usar interfaz para definir un tipo y una clase abstracta para compartir comportamiento
+
+Una ventaja de las clases abstractas es que pueden agrgar métodos concretos nuevos sin romper las subclases existentes y evolucionar una interfaz es más difícil ya que las implementaciones que ya existen se deben actualizar.
+
+##### Ejemplo: Implementar `Comparable` en una jerarquía
+El objetivo es hacer comparable una jerarquía `Tree` basando el orden en la suma de sus nodos: un árbol es menor que otro si la suma de los valores en sus nodos es menor. 
+Se define un _trait_ base:
+```Scala
+trait Comparable:
+  def compareTo(other: Comparable): Int
+```
+
+Luego, la clase abstracta `AbstractTree` define la jerarquía base. En el código implementado, se calculará el peso o suma del árbol recursivamente entre sus nodos internos (`InternalNode`) y sus hojas (`Leaf`), para finalmente implementar `compareTo` delegando la comparación aritmética de estos resultados.
+
+Avanzando en la extensión de clases, la herencia permite extender y refinar clases concretas, no solo abstractas. Tenemos una clase base `Point`:
+```Scala
+class Point(val x: Int, val y: Int):
+  def getPosition: (Int, Int) = (x, y)
+  def moveBy(dx: Int, dy: Int): Point = new Point(x + dx, y + dy)
+  def display(screen: Screen): Unit = screen.drawPoint(x, y)
+```
+
+La subclase `ColorPoint` extiende `Point` y refina su comportamiento añadiendo un color
+```Scala
+class ColorPoint(x: Int, y: Int, val color: Color) extends Point(x, y)
+```
+Aquí observamos un aspecto crítico del mecanismo de herencia: el flujo de construcción. Al instanciar `ColorPoint`, se debe proveer argumentos al constructor de su superclase `Point(x, y)`.
+
+### Orden Constructores de Superclases
+El orden de ejecución de los constructores es siempre de **superclase a subclase**, o sea "de arriba hacia abajo". Por ejemplo,
+```Scala
+abstract class AbstractPerson(val name: String,
+								val age: Int,
+								val email: String):
+	println("Creating a person...")
+	
+class Student(name: String,
+					age: Int,
+					val studentId: String) extends AbstractPerson(name, age, s"$studentId@university.edu"):
+	println("Creating a Student...")
+
+class PhDStudent(name: String,
+				age: Int,
+				studentId: String,
+				val researchArea: String)
+	extends Student(name, age, studentId):
+	println("Creating a PhD Student...")
+```
+haciendo `new PhDStudent("Grace", 25, "ghop", "Entomology")`:
+Primero, se invoca el constructor de `PhDStudent`. Sin embargo, antes de ejecutar su propio cuerpo de inicialización, este identifica que depende del constructor de su superclase `Student` y delega la ejecución pasándole los parámetros correspondientes. A su vez, el constructor de `Student` no puede ejecutarse inmediatamente, pues depende del constructor de su superclase `AbstractPerson`, delegándole el control. Dado que `AbstractPerson` es la raíz de esta jerarquía, ejecuta su bloque de inicialización primario (por ejemplo, ejecutando `println("Creating a person...")`). Una vez que `AbstractPerson` finaliza, el control regresa a `Student`, el cual ejecuta su propio cuerpo (`println("Creating a Student...")`). Finalmente, el control regresa a `PhDStudent`, el cual concluye el proceso instanciando sus variables específicas y ejecutando su cuerpo (`println("Creating a PhD Student...")`).
+![[Pasted image 20260831174458.png]]
+
+Este comportamiento se mantiene idéntico si se invocan constructores auxiliares mediante `def this(...)`. El flujo siempre resuelve **hasta el constructor primario de la clase más alta** en la jerarquía antes de ejecutar el código concreto hacia abajo.
+
+Finalmente, se debe notar que **los constructores no se heredan**. Si una superclase define los constructores `Point()` y `Point(int x, int y)`, la subclase `ColorPoint` no hereda el constructor `new ColorPoint(1,2)` si no lo define explícitamente. Si la superclase carece de un constructor por defecto (no tiene parámetros), la subclase está obligada a invocar el constructor parametrizado explícitamente en su declaración de herencia.
+
+Por ejemplo,
+![[Pasted image 20260831174747.png]]
+- `new Point()` y `new Point(1, 2)` está bien pues ambos constructores están definidos.
+- `new ColorPoint()` también pues está el constructor por defecto.
+- `new ColorPoint(1, 2)` no compila pues el constructor no se hereda.
+Luego, para
+![[Pasted image 20260831175007.png]]
+- `new Point()` y `new Point(1, 2)` está bien pues ambos constructores están definidos.
+- `new ColorPoint()` no compila pues no hay constructor por defecto
+- `new ColorPoint(1, 2)` ahora si compila.
+Finalmente, se debe explicitar el constructor por defecto:
+![[Pasted image 20260831175138.png]]
+
+
+
+[[Sobrescritura, Sobrecarga y Búsqueda de Métodos]]
+
+[[Encapsulamiento]]
