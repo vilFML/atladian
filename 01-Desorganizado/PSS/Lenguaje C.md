@@ -512,8 +512,8 @@ Formas de formar una máscara:
    `int m = ~(-1<<4)` genera `000...001111` pues se negaron los bits `111111...11110000`.
 
 ## Punteros
-Un puntero es un tipo particular de dado que **almacena una dirección de memoria** de una variable. No almacena valores (e.g. `int`, `float`, etc.).
-> Se dice que un puntero *apunta* a una variable
+Un puntero es un tipo particular de dato que **almacena una dirección de memoria** de una variable. No almacena valores (e.g. `int`, `float`, etc.).
+> Si un puntero contiene la dirección de memoria de una variable, se dice que el puntero *apunta* a la variable
 
 Para definir un puntero se indica:
 1. el tipo de la variable que almacena
