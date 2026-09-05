@@ -268,6 +268,8 @@ Distinguir imágenes entre perros y gatos corresponde a observar las caracterís
 
 > Regresión Logística utiliza el **peso (weight)** que entrega la importancia o relevancia de la característica para obtener la predicción.
 
+- [ ] Terminar
+
 ### Clasificador de Regresión Logística
 Dados pares entrada y salida (input/output) $m=(x^{(i)},y^{(i)})$, se tienen:
 1. Una **representación de las características** de la entrada. 
@@ -1654,4 +1656,109 @@ print("\n💡 En las próximas clases verán cómo los Modelos Neuronales aprove
     Similitud entre 'perro' y 'mesa':  0.0786
     
     💡 En las próximas clases verán cómo los Modelos Neuronales aprovechan esta similitud para generalizar el lenguaje de forma que los N-gramas clásicos nunca pudieron. 🚀
+
+# Clase 5
+
+## Word Meaning
+
+Idea: When you don't know the meaning of the word, you look it up on a dictionary.
+- In humans you can get the meaning 
+
+But how can we represent word meaning computationally?
+For example: Mouse
+1. a rodent
+2. a hand-operated computer device.
+
+A measure for two words having similar meaning is synonymity.
+Theres is also antonyms,
+relatedness: A semantic relationship between words (ex: relatedness between 'hospital' dworlds like doctor, nurse, etc.
+Connotation: The affective, social or cultural associations of a word (ex: trash of a household, and trash as of a depective word for a human being).
+
+### Synonymy
+
+## Word Similarity
+Words with similar meaning but they are not necesarrily synonyms, they share some elements of meaning like Car and bicycle.
+
+> Similar meaning != synonymy
+
+Similar meanings are words that are not necessarily synonyms but share some elements of meaning.
+
+
+## Computational approach to word meaning
+
+A model about word meaning es **vector semantics**
+
+The idea is that words that are close in a multidimensional space diagram, they are closer in meaning. They form clusters of words that give similar meaning or are related.
+
+> "You shall know a word by the company it keeps" - J.R. Firth
+
+A similar approach was Bag-of-Words but it didnt get the context of the words, just the number of ocurrences.
+
+**Co-currence Matrix** gives sparse word vectors, for example $[0,1670,1683,85,5,4,0,0,0,0,0,0,0,0,0,\dots]$ and have  alot of `0`. This translates into a large amount of computation.
+
+---
+
+Dot product and cosine
+
+the most common similarity measure in NLP is the cosine similarity, based on the dot product.
+It produces a scalar that tends to be high when the two vectores have large values in the same dimensions.
+\* If they dont overlap (i.e., are orthogonal) then $v\cdot w=0$
+
+$$
+cosine(x,y)=\frac{x\cdot y}{|x||y|}
+$$
+\*denominator normalizes dot product.
+
+and
+* -1 vectors point in the **opposite** directions
+* +1 same direction
+* 0: orthogonal direction.
+
+Words with similar meanings tend to point in similar directions.
+\* The magnitude can be different, but it doesnt matter much so that is why the dot product is normalized.
+
+$$
+\cos(\vec{v},\vec{w})=\frac{\vec{v}\cdot \vec{w}}{|\vec{v}||\vec{w}|}= \frac{\sum_{i=1}^{N}v_{i}w_{i}}{\sqrt{ \sum_{i=1}^{N}v_{i}^{2}}\sqrt{ \sum_{i=1}^{N}w_{i}^{2} }}
+$$
+
+
+--- 
+Example:
+
+
+
+### Dense Representations
+
+The representation can have a lot of dimensions. 
+
+\* In order to apply Naive Bayes and Logistic Regression there is a 'pipeline'.
+1. the input
+
+
+
+Features: the proper characteristics that the machine uses to learn patterns in order to do the predictions.
+
+In this method, the feature are the number of ocurrences.
+
+## Word2Vec
+
+It has two variants
+
+
+
+### Skip-gram
+
+We apply the idea of logistic regression: to learn the features that distinguish the classes.
+We get:
+1. Positive examples, words that actually occur together
+   $$
+   (w,c)\to 1
+   $$
+   and they are an observed context pair
+2. Negative examples, randomly sampled words
+   $$
+   (w,c) \to 0
+   $$
+   an unlikely context pair.
+
 
