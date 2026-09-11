@@ -308,9 +308,9 @@ class Punto(var x: Int, var y: Int){
 
 - **Cliente**: El cliente (o código cliente) es la parte del programa que utiliza, consume o interactúa con un servicio o componente provisto por otro objeto.
   Es el elemento que **coordina** las acciones generales sin tener la necesidad de conocer los detalles internos de **cómo** el proveedor realiza las acciones (como solicitar una lista de elementos o pedirle a figuras que se muestren en pantalla).
-- **Interfaz**:
+- **Interfaz**: (Implementado en código en Scala como `trait`)
   1. Como *contrato* observable: Corresponde al conjunto de operaciones y servicios que un objeto expone a sus clientes. Describe **qué se le puede pedir a un objeto** (como los servicios disponibles), ocultando el *cómo* se realizan las operaciones.
-  2. Como *lista de promesas*: (Implementado en código en Scala como `trait`) Premisa de *"si se usa este 'trait', se deben implementar estos miembros".* Permite que el cliente y las implementaciones concretas se desarrollen por separado, dejando que sea necesario ponerse de acuerdo en el contrato compartido.
+  2. Como *lista de promesas*:  Premisa de *"si se usa este 'trait', se deben implementar estos miembros".* Permite que el cliente y las implementaciones concretas se desarrollen por separado, dejando que sea necesario ponerse de acuerdo en el contrato compartido.
 
 ## Programación Estructurada
 Una metodología de programación estructurada es utilizar secuenciación, selección e iteración para organizar el flujo de trabajo, evitando así saltos arbitrarios en el programa.
