@@ -1,0 +1,1 @@
+1. En el ejemplo que entregaste, cuando $y=1001$, se tiene que $|w|_{1}=1$, pero para x, se tiene que $x=001$ y $|w|_{0}=2$, entonces no son suficiente las dos condiciones.
